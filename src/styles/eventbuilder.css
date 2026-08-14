@@ -1,0 +1,1028 @@
+/**
+ * The event builder. It borrows the activity builder's shell — `wiz-bar`,
+ * `wiz-grid`, `wiz-card`, the field primitives — and adds only what an event
+ * needs that an activity does not: a tip beside every heading, the venue and
+ * virtual field groups, and a schedule that reads as a timeline.
+ */
+
+/* ============ Section head with its tip ============ */
+
+.evt-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+.evt-head .wiz-section__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.evt-head__badge {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-tint-strong);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+.evt-head .wiz-section__lede {
+  margin-bottom: 0;
+}
+.evt-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--r-lg);
+  background: var(--brand-tint);
+  overflow: hidden;
+}
+.evt-tip__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.evt-tip p {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.evt-tip__art .image-slot::after {
+  display: none;
+}
+.evt-tip__art {
+  width: 58px;
+  height: 58px;
+  flex: none;
+  align-self: flex-end;
+  margin-bottom: -12px;
+}
+
+/* ============ 1.1 Identity ============ */
+
+.evt-cover {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--r-lg);
+  background: var(--surface-panel);
+}
+.evt-cover__drop {
+  position: relative;
+  height: 150px;
+}
+.evt-cover__drop .image-slot {
+  background: transparent;
+}
+.evt-cover__drop .image-slot__label {
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  opacity: 1;
+  padding-bottom: 44px;
+}
+.evt-cover__drop .image-slot__label svg {
+  width: 30px;
+  height: 30px;
+  color: var(--brand);
+}
+/* Labels the slot behind it — the whole slot is the control. */
+.evt-cover__browse {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  padding: 7px 16px;
+  border: 1px solid var(--brand-border);
+  border-radius: var(--r-md);
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand);
+  pointer-events: none;
+}
+.evt-cover__preview {
+  position: relative;
+  height: 150px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.evt-cover__change {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.94);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.evt-host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  max-width: 620px;
+}
+
+.evt-types {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.evt-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 8px;
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-md);
+  background: #fff;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.evt-type:hover {
+  border-color: var(--brand-border);
+}
+.evt-type.is-on {
+  border-color: var(--brand);
+  background: var(--brand-tint);
+  color: var(--brand-deep);
+  font-weight: 600;
+}
+.evt-type .wiz-tile__radio {
+  width: 15px;
+  height: 15px;
+  margin-top: 0;
+}
+.evt-type.is-on .wiz-tile__radio {
+  border: 4.5px solid var(--brand);
+}
+
+/* ============ 1.2 Experience details ============ */
+
+.wiz-vis--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.wiz-vis--2 .wiz-vistile__top {
+  gap: 10px;
+  justify-content: flex-start;
+}
+.wiz-vis--2 .wiz-tile__title {
+  margin-left: 2px;
+}
+
+/* ============ 1.3 Benefits ============ */
+
+.evt-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.evt-highlight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 16px;
+  border: 1px solid var(--brand-border);
+  border-radius: var(--r-lg);
+  background: #fff;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+.evt-highlight:hover {
+  background: var(--brand-tint);
+}
+.evt-highlight--add {
+  justify-content: center;
+  border-style: dashed;
+  color: var(--brand);
+  font-weight: 600;
+}
+.evt-highlights__picker {
+  margin-top: 12px;
+}
+
+.evt-benefits {
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.evt-benefit {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 10px 6px 8px;
+  background: #fff;
+}
+.evt-benefit + .evt-benefit {
+  border-top: 1px solid var(--line-faint);
+}
+.evt-benefit.is-dragging {
+  opacity: 0.45;
+}
+.evt-benefit__grip {
+  display: flex;
+  cursor: grab;
+}
+.evt-benefit input {
+  height: 38px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--ink);
+  min-width: 0;
+}
+.evt-benefit__add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-top: 1px solid var(--line-faint);
+  background: var(--surface-alt);
+}
+.evt-benefit__add input {
+  flex: 1;
+  height: 46px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--brand);
+  min-width: 0;
+}
+.evt-benefit__add input::placeholder {
+  color: var(--brand);
+  opacity: 1;
+}
+.evt-benefits__count {
+  text-align: right;
+  font-size: 11.5px;
+  color: var(--grey-faint);
+  margin-top: 8px;
+}
+
+/* ============ 2.1 Date and location ============ */
+
+.evt-when {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: end;
+}
+.evt-when__field > span:first-child {
+  display: block;
+  font-size: 12px;
+  color: var(--grey);
+  margin-bottom: 6px;
+}
+.evt-when__arrow {
+  display: flex;
+  height: 44px;
+  align-items: center;
+}
+
+.wiz-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+.wiz-toggle__track {
+  width: 38px;
+  height: 22px;
+  flex: none;
+  border-radius: var(--r-pill);
+  background: var(--line-strong);
+  padding: 3px;
+  transition: background 0.2s ease;
+}
+.wiz-toggle__knob {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(20, 10, 60, 0.25);
+  transition: transform 0.2s var(--ease-out);
+}
+.wiz-toggle.is-on .wiz-toggle__track {
+  background: var(--brand);
+}
+.wiz-toggle.is-on .wiz-toggle__knob {
+  transform: translateX(16px);
+}
+.wiz-toggle__label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ============ 2.2 Venue and virtual ============ */
+
+.evt-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  background: var(--brand-tint);
+}
+.evt-banner strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--brand-deep);
+}
+.evt-banner span {
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.evt-typechip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 300px;
+  height: 44px;
+  padding: 0 8px 0 14px;
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-md);
+  background: #fff;
+}
+.evt-typechip > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.evt-typechip button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: none;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand);
+  cursor: pointer;
+}
+
+.evt-map {
+  position: relative;
+  height: 190px;
+  margin-top: 12px;
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.evt-map__pin {
+  position: absolute;
+  left: 16%;
+  top: 32%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 70%;
+  padding: 6px 10px 6px 6px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--sh-card);
+  pointer-events: none;
+}
+.evt-map__pin strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+}
+.evt-map__pin em {
+  display: block;
+  font-style: normal;
+  font-size: 10.5px;
+  color: var(--grey);
+}
+.evt-map__action {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: var(--r-sm);
+  background: #fff;
+  box-shadow: var(--sh-card);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brand);
+}
+.evt-map__zoom {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--sh-card);
+}
+.evt-map__zoom span {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.evt-map__zoom span + span {
+  border-top: 1px solid var(--line);
+}
+
+.evt-subpanel {
+  padding: 16px 18px;
+  box-shadow: none;
+}
+.evt-span {
+  grid-column: 1 / -1;
+}
+
+.evt-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 26px;
+  align-items: start;
+}
+.evt-split__main,
+.evt-split__side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.evt-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+  align-items: start;
+}
+.evt-columns > section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+.evt-columns__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.evt-columns__head strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.evt-columns__head span {
+  font-size: 12px;
+  color: var(--grey);
+}
+/* A hybrid column is roughly 300px — every pair inside it needs its own line
+   or the inputs get clipped by their own counters. */
+.evt-columns .wiz-pair,
+.evt-columns .wiz-triple,
+.evt-columns .evt-pair--url {
+  grid-template-columns: minmax(0, 1fr);
+}
+.evt-columns .evt-url {
+  flex-wrap: wrap;
+  height: auto;
+  padding-bottom: 4px;
+}
+.evt-columns .evt-url input {
+  flex: 1 1 100%;
+}
+.evt-columns .evt-url__test {
+  padding: 0 12px 6px;
+}
+.evt-recording {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-faint);
+}
+
+.evt-pair--url {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+}
+.evt-url input {
+  min-width: 0;
+}
+.evt-url__test {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  padding: 0 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand);
+  white-space: nowrap;
+}
+.evt-flag {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.evt-rich {
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.evt-rich__bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line-faint);
+  background: var(--surface-alt);
+}
+.evt-rich__bar button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.evt-rich__bar button:hover {
+  background: var(--brand-tint);
+}
+.evt-rich__divider {
+  width: 1px;
+  height: 16px;
+  background: var(--line-strong);
+  margin: 0 5px;
+}
+.evt-rich .wiz-area textarea {
+  border: 0;
+  border-radius: 0;
+}
+.evt-rich .wiz-area textarea:focus {
+  box-shadow: none;
+}
+
+/* ============ 2.3 Event schedule ============ */
+
+.evt-sched__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.evt-sched__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.evt-timeline {
+  display: flex;
+  flex-direction: column;
+}
+/* One row shape for all three event types. The meta group wraps rather than
+   demanding a column, so the session title always has room to read. */
+.evt-tl {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) auto 32px;
+  gap: 8px 14px;
+  align-items: center;
+  padding: 12px 4px;
+}
+.evt-tl__meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.evt-tl + .evt-tl {
+  border-top: 1px solid var(--line-faint);
+}
+.evt-tl__when {
+  position: relative;
+  padding-left: 16px;
+  line-height: 1.35;
+}
+.evt-tl__dot {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+.evt-tl__when strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.evt-tl__when em {
+  display: block;
+  font-style: normal;
+  font-size: 12.5px;
+  color: var(--grey);
+}
+.evt-tl__mins {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  background: var(--surface-chip);
+  font-size: 11px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.evt-tl__when .evt-tl__mins {
+  margin-top: 4px;
+}
+.evt-tl__body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.evt-tl__body > div {
+  min-width: 0;
+}
+.evt-tl__body strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.evt-tl__body span {
+  display: block;
+  font-size: 12px;
+  color: var(--grey);
+  margin-top: 2px;
+}
+.evt-tl__body .wiz-sess__tone {
+  width: 36px;
+  height: 36px;
+}
+.evt-tl__icon--violet {
+  background: var(--brand-tint-strong);
+}
+.evt-tl__icon--blue {
+  background: #e7effd;
+}
+.evt-tl__icon--green {
+  background: var(--green-tint);
+}
+.evt-tl__icon--amber {
+  background: var(--amber-tint);
+}
+.evt-tl__icon--pink {
+  background: #fdeaf4;
+}
+.evt-tl__who {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.evt-tl__dash {
+  color: var(--grey-faint);
+}
+.evt-kind {
+  display: inline-flex;
+  padding: 4px 11px;
+  border-radius: var(--r-pill);
+  background: var(--brand-tint-strong);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--brand-deep);
+}
+
+.evt-mode {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.evt-mode--onsite {
+  background: var(--brand-tint-strong);
+  color: var(--brand-deep);
+}
+.evt-mode--online {
+  background: #e7effd;
+  color: #1d4ed8;
+}
+.evt-mode--both {
+  background: var(--green-tint);
+  color: var(--green-deep);
+}
+.evt-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.evt-modes .evt-mode {
+  cursor: pointer;
+  opacity: 0.55;
+}
+.evt-modes .evt-mode.is-on {
+  opacity: 1;
+  border-color: currentColor;
+}
+
+.evt-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.evt-row {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-lg);
+}
+.evt-row.is-dragging {
+  opacity: 0.45;
+}
+.evt-row__time {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 22px;
+  line-height: 1.35;
+}
+.evt-row__grip {
+  display: flex;
+  cursor: grab;
+  padding-top: 2px;
+}
+.evt-row__time strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.evt-row__time em {
+  display: block;
+  font-style: normal;
+  font-size: 12.5px;
+  color: var(--grey);
+}
+.evt-row__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.evt-row__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 10px;
+}
+.evt-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.evt-addbreak {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 46px;
+  border: 1.5px dashed var(--brand-border);
+  border-radius: var(--r-lg);
+  background: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand);
+  cursor: pointer;
+}
+.evt-addbreak:hover {
+  background: var(--brand-tint);
+}
+.evt-sched__foot {
+  padding: 12px 14px;
+  border-radius: var(--r-lg);
+  background: var(--surface-panel);
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+.evt-sched__foot span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ============ Live preview ============ */
+
+.evt-pv__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 7px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.evt-pv__mode {
+  position: absolute;
+  bottom: 10px;
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
+  background: rgba(12, 11, 18, 0.66);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+.evt-pv__mode--left {
+  left: 10px;
+}
+.evt-pv__mode--right {
+  right: 10px;
+}
+.evt-pv__title {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+.evt-pv__lede {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  margin: 8px 0 14px;
+}
+.evt-pv__head {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 16px 0 10px;
+}
+.evt-pv__host {
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px solid var(--line-faint);
+}
+.evt-pv__hostrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.evt-pv__avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 11px;
+}
+.evt-pv__hostrow strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+.evt-pv__hostrow > div > span:not(.evt-pv__rating) {
+  display: block;
+  font-size: 11.5px;
+  color: var(--grey);
+}
+.evt-pv__rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: var(--grey);
+}
+.evt-pv__schedule {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.evt-pv__schedule li {
+  display: flex;
+  gap: 12px;
+}
+.evt-pv__schedule li span {
+  flex: none;
+  width: 42px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.evt-pv__more {
+  color: var(--grey);
+  font-style: italic;
+}
+
+/* ============ Narrower consoles ============ */
+
+@media (max-width: 1400px) {
+  .evt-head,
+  .evt-split,
+  .evt-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* Below this the meta group needs its own line under the title. */
+  .evt-tl {
+    grid-template-columns: 88px minmax(0, 1fr) 32px;
+  }
+  .evt-tl__meta {
+    grid-column: 2;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .evt-cover,
+  .evt-host,
+  .evt-when,
+  .evt-highlights,
+  .evt-types {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .evt-when__arrow {
+    display: none;
+  }
+  .evt-tip__art {
+    display: none;
+  }
+  .evt-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .evt-row__time {
+    grid-column: 1 / -1;
+    padding-top: 0;
+  }
+  .evt-row__pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .evt-tl {
+    grid-template-columns: 76px minmax(0, 1fr) 32px;
+  }
+}

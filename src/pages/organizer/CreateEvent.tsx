@@ -1,0 +1,194 @@
+import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { EventPreview } from '@/components/organizer/EventPreview';
+import { WizardStepper } from '@/components/organizer/WizardStepper';
+import { EventBenefits } from '@/components/organizer/event/Benefits';
+import { EventDateLocation } from '@/components/organizer/event/DateLocation';
+import { EventExperience } from '@/components/organizer/event/Experience';
+import { EventIdentity } from '@/components/organizer/event/Identity';
+import { EventPlace } from '@/components/organizer/event/Place';
+import { EventSchedule } from '@/components/organizer/event/Schedule';
+import { EventTickets } from '@/components/organizer/event/Tickets';
+import { EventBrand } from '@/components/organizer/event/Brand';
+import { EventReview } from '@/components/organizer/event/Review';
+import { EventPublish } from '@/components/organizer/event/Publish';
+import { EventFinalPublish } from '@/components/organizer/event/FinalPublish';
+import type { EventSectionProps } from '@/components/organizer/event/shared';
+import { Button } from '@/components/ui/Button';
+import { Reveal } from '@/components/ui/Reveal';
+import { useToast } from '@/components/ui/Toast';
+import { ArrowLeft, ArrowRight, Rocket } from '@/components/ui/icons';
+import { EVENT_DRAFT_SEED, eventSteps, type EventDraft } from '@/data/eventBuilder';
+import { fireConfetti } from '@/lib/motion';
+
+/** Which component owns each sub-section, keyed `step.substep`. */
+const SECTIONS: Record<string, (props: EventSectionProps) => JSX.Element> = {
+  '1.0': EventIdentity,
+  '1.1': EventExperience,
+  '1.2': EventBenefits,
+  '2.0': EventDateLocation,
+  '2.1': EventPlace,
+  '2.2': EventSchedule,
+  '3.0': EventTickets,
+  '4.0': EventBrand,
+  '5.0': EventReview,
+  '5.1': EventPublish,
+  '5.2': EventFinalPublish,
+};
+
+/** 5.2 and 5.3 swap the live page preview for listing and share previews. */
+const PREVIEW_VARIANT: Record<string, 'discover' | 'final'> = {
+  '5.1': 'discover',
+  '5.2': 'final',
+};
+
+/**
+ * The event builder. Step 2 reshapes itself around the event type — offline
+ * asks for a venue, online for a meeting link, hybrid for both — so the step
+ * map is derived from the draft rather than declared once.
+ */
+export function OrgCreateEvent() {
+  const navigate = useNavigate();
+  const toast = useToast();
+
+  const [draft, setDraft] = useState<EventDraft>(EVENT_DRAFT_SEED);
+  const [step, setStep] = useState(1);
+  const [substep, setSubstep] = useState(0);
+
+  const set = useMemo(
+    () =>
+      <K extends keyof EventDraft>(key: K) =>
+        (value: EventDraft[K]) =>
+          setDraft((current) => ({ ...current, [key]: value })),
+    [],
+  );
+
+  const steps = useMemo(() => eventSteps(draft.eventType), [draft.eventType]);
+
+  /** Every sub-section of every built step, in order — Prev/Next walk this. */
+  const trail = useMemo(
+    () =>
+      steps
+        .filter((item) => item.ready)
+        .flatMap((item) =>
+          item.substeps.length === 0
+            ? [{ step: item.id, stepLabel: item.label, index: 0, label: item.label }]
+            : item.substeps.map((sub, index) => ({
+                step: item.id,
+                stepLabel: item.label,
+                index,
+                label: sub.label,
+              })),
+        ),
+    [steps],
+  );
+
+  const at = trail.findIndex((entry) => entry.step === step && entry.index === substep);
+  const previous = at > 0 ? trail[at - 1] : undefined;
+  const next = trail[at + 1];
+  const lockedNext = steps[step];
+
+  function goTo(nextStep: number, nextSub: number) {
+    setStep(nextStep);
+    setSubstep(nextSub);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goStep(id: number) {
+    const target = steps[id - 1];
+    if (!target.ready) {
+      toast(`${target.label} is the next part of the builder we're making`);
+      return;
+    }
+    goTo(id, 0);
+  }
+
+  const previousLabel = previous
+    ? previous.step === step
+      ? previous.label
+      : previous.stepLabel
+    : '';
+
+  const key = `${step}.${substep}`;
+  const Section = SECTIONS[key];
+
+  function saveDraft() {
+    toast('Draft saved \u2014 pick it up any time from Experiences \u2192 Drafts');
+    navigate('/organizer/drafts');
+  }
+
+  function publish(event: React.MouseEvent<HTMLButtonElement>) {
+    fireConfetti(event.currentTarget);
+    toast(
+      draft.registrationStatus === 'scheduled'
+        ? `${draft.title || 'Your event'} is scheduled for ${draft.publishDate}`
+        : `${draft.title || 'Your event'} is live`,
+    );
+    navigate('/organizer/experiences');
+  }
+
+  return (
+    <div className="wiz">
+      <WizardStepper
+        steps={steps}
+        step={step}
+        substep={substep}
+        onStep={goStep}
+        onSubstep={(index) => goTo(step, index)}
+      />
+
+      <div className="wiz-grid">
+        <div className="wiz-form">
+          <Reveal className="wiz-section" key={`${step}.${substep}.${draft.eventType}`}>
+            <Section draft={draft} set={set} goTo={goTo} />
+          </Reveal>
+
+          <div className="wiz-foot">
+            {previous ? (
+              <Button as="button" variant="neutral" onClick={() => goTo(previous.step, previous.index)}>
+                <ArrowLeft size={15} strokeWidth={2} />
+                Previous: {previousLabel}
+              </Button>
+            ) : (
+              <Button as="link" to="/organizer/create" variant="neutral">
+                Cancel
+              </Button>
+            )}
+
+            <Button as="button" variant="outline" onClick={saveDraft}>
+              Save Draft
+            </Button>
+
+            {next ? (
+              <Button
+                as="button"
+                variant="primary"
+                size="lg"
+                onClick={() => goTo(next.step, next.index)}
+              >
+                Next: {next.step === step ? next.label : next.stepLabel}
+                <ArrowRight size={16} strokeWidth={2} />
+              </Button>
+            ) : lockedNext ? (
+              <Button as="button" variant="primary" size="lg" onClick={() => goStep(step + 1)}>
+                Next: {lockedNext.label}
+                <ArrowRight size={16} strokeWidth={2} />
+              </Button>
+            ) : (
+              /* End of the trail — the only thing left is to ship it. */
+              <Button as="button" variant="primary" size="lg" halo onClick={publish}>
+                <Rocket size={16} strokeWidth={1.9} />
+                <span className="evt-publish__btn">
+                  Publish Event Now
+                  <em>Your event will be live and visible to everyone!</em>
+                </span>
+              </Button>
+            )}
+          </div>
+        </div>
+
+        <EventPreview draft={draft} onCover={set('cover')} variant={PREVIEW_VARIANT[key]} />
+      </div>
+    </div>
+  );
+}

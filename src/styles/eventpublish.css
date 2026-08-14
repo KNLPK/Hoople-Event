@@ -1,0 +1,1022 @@
+/**
+ * Event builder, steps 3 to 5: tickets, branding, review and publish.
+ * Split from `eventbuilder.css` only to keep each file readable — the two
+ * share the same `evt-` namespace and the same shell.
+ */
+
+/* ============ 3 Ticket Setup ============ */
+
+.evt-tickets {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+/* The colour bar down the left says at a glance who the ticket is for. */
+.evt-ticket {
+  position: relative;
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-lg);
+  background: #fff;
+  overflow: hidden;
+}
+.evt-ticket::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+.evt-ticket--onsite::before {
+  background: var(--brand);
+}
+.evt-ticket--online::before {
+  background: #2563eb;
+}
+.evt-ticket--both::before {
+  background: var(--green);
+}
+.evt-ticket.is-open {
+  border-color: var(--brand-border);
+}
+.evt-ticket.is-off {
+  opacity: 0.6;
+}
+/* Price and capacity size to their content so the name and perks keep the
+   room they need — fixed columns starved them beside the preview. */
+.evt-ticket__row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto auto auto auto;
+  gap: 12px 14px;
+  align-items: center;
+  padding: 14px 14px 14px 18px;
+}
+.evt-ticket__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-md);
+  background: var(--brand-tint-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.evt-ticket__main {
+  min-width: 0;
+}
+.evt-ticket__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+.evt-ticket__main p {
+  font-size: 12.5px;
+  color: var(--grey);
+  margin-top: 4px;
+}
+.evt-ticket__perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  margin-top: 8px;
+}
+.evt-ticket__perks span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  color: var(--grey);
+}
+.evt-ticket__stat {
+  min-width: 92px;
+  border-left: 1px solid var(--line-faint);
+  padding-left: 14px;
+  line-height: 1.35;
+}
+.evt-ticket__stat > span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--grey);
+  margin-bottom: 4px;
+}
+.evt-ticket__stat strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.evt-ticket__stat em {
+  display: block;
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--grey);
+  margin-top: 3px;
+}
+.evt-ticket__toggle {
+  align-items: center;
+}
+.evt-ticket__edit {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 16px 16px 18px;
+  border-top: 1px solid var(--line-faint);
+  background: var(--surface-alt);
+}
+.evt-ticket__delete {
+  align-self: flex-start;
+}
+.wiz-tokens__suggest button.is-on {
+  border-style: solid;
+  background: var(--brand-tint);
+  color: var(--brand-deep);
+  font-weight: 600;
+}
+
+.evt-pays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.evt-pay {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-sm);
+  background: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--grey-faint);
+  cursor: pointer;
+}
+.evt-pay.is-on {
+  border-color: var(--brand-border);
+  background: var(--brand-tint);
+  color: var(--ink);
+}
+
+/* ============ 4 Brand & Host ============ */
+
+.evt-brand {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  margin-top: 14px;
+}
+.evt-asset__row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-top: 8px;
+}
+.evt-asset__square {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex: none;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.evt-asset__square--brand {
+  background: var(--brand);
+}
+.evt-asset__square--brand .image-slot {
+  background: transparent;
+}
+.evt-asset__initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  pointer-events: none;
+}
+.evt-asset__banner {
+  flex: 1;
+  min-width: 0;
+  height: 132px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.evt-asset__btn {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid var(--line-input);
+  border-radius: var(--r-md);
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+  pointer-events: none;
+}
+.evt-asset__hint {
+  display: block;
+  font-size: 11.5px;
+  color: var(--grey);
+  line-height: 1.6;
+}
+
+.evt-brandrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 26px;
+  align-items: start;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid var(--line-faint);
+}
+.evt-swatches {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.evt-swatch {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.evt-swatch.is-on {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px currentColor;
+}
+.evt-swatch--add {
+  background: var(--surface-chip);
+  border: 1px dashed var(--line-dashed);
+}
+.evt-swatches--read {
+  gap: 7px;
+}
+.evt-swatches--read i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: block;
+}
+.evt-aa {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--grey);
+}
+
+.evt-hostgrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 26px;
+  align-items: start;
+  margin-top: 18px;
+}
+
+/* ============ 5.1 Review Summary ============ */
+
+.evt-review__top {
+  display: flex;
+  justify-content: flex-end;
+}
+.evt-review {
+  padding: 4px 22px;
+}
+.evt-rv {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 16px;
+  padding: 20px 0;
+}
+.evt-rv + .evt-rv {
+  border-top: 1px solid var(--line-faint);
+}
+.evt-rv__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.evt-rv__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.evt-rv__index {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand);
+}
+.evt-rv__head strong {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.evt-rv__action {
+  margin-left: auto;
+}
+.evt-rv__edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  border: 0;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand);
+  cursor: pointer;
+}
+.evt-rv__action + .evt-rv__edit {
+  margin-left: 0;
+}
+.evt-rv__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px;
+}
+.evt-rv__fields p {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  white-space: pre-line;
+}
+.evt-review__label {
+  display: block;
+  font-size: 11.5px;
+  color: var(--grey);
+  margin-bottom: 5px;
+}
+.evt-review__tickets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.evt-review__tickets span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.evt-review__tickets i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.evt-review__tickets strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.evt-review__brand {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+.evt-review__contact {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.evt-linkbtn {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  color: var(--brand);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ============ 5.2 Publish Settings ============ */
+
+.evt-lettered {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.evt-lettered__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding-top: 4px;
+}
+.evt-lettered__letter {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--brand-tint-strong);
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.evt-lettered__head strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.evt-lettered__head span {
+  display: block;
+  font-size: 12px;
+  color: var(--grey);
+  line-height: 1.5;
+  margin-top: 3px;
+}
+
+.evt-publishwhen {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: var(--r-lg);
+  background: var(--surface-panel);
+}
+.evt-publishwhen.is-off {
+  opacity: 0.55;
+}
+
+.evt-discovery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.evt-nested {
+  padding: 14px;
+  border-radius: var(--r-lg);
+  background: var(--surface-panel);
+}
+.evt-nested.is-off {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.evt-notify {
+  position: relative;
+}
+.evt-notify .wiz-field__hint {
+  margin-left: 28px;
+  margin-top: 5px;
+}
+.evt-soon {
+  display: inline-flex;
+  margin: 8px 0 0 28px;
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  background: var(--brand-tint-strong);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.evt-share {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.evt-sharelink {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.evt-sharelink .wiz-affix {
+  flex: 1;
+  min-width: 0;
+}
+.evt-social {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.evt-social__art {
+  height: 70px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.evt-social strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.evt-social span {
+  display: block;
+  font-size: 11px;
+  color: var(--grey);
+  line-height: 1.5;
+  margin-top: 3px;
+}
+.evt-social em {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  color: var(--grey-faint);
+  margin-top: 5px;
+}
+
+.evt-checkchips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+.evt-checkchips span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--grey);
+}
+.evt-checkchips span.is-done {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.evt-ready {
+  margin-left: auto;
+  padding: 6px 13px;
+  border-radius: var(--r-md);
+  background: var(--brand-tint-strong);
+  color: var(--brand-deep) !important;
+  font-weight: 600 !important;
+}
+.evt-ready.is-waiting {
+  background: var(--amber-tint);
+  color: var(--amber-ink) !important;
+}
+
+/* ============ 5.3 Final Publish ============ */
+
+.evt-final {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.evt-final__ready {
+  text-align: left;
+}
+.evt-final__seal {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+.evt-final__seal.is-waiting {
+  background: var(--amber-tint);
+}
+.evt-final__ready h3 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+}
+.evt-final__ready > p {
+  font-size: 12.5px;
+  color: var(--grey);
+  line-height: 1.6;
+  text-align: center;
+  margin: 6px auto 20px;
+  max-width: 320px;
+}
+.evt-final__checks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.evt-final__checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+.evt-final__checks strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.evt-final__checks span {
+  display: block;
+  font-size: 12px;
+  color: var(--grey);
+  margin-top: 2px;
+}
+.evt-final__checks li:not(.is-done) strong {
+  color: var(--grey);
+}
+.evt-final__estimate {
+  margin-top: 20px;
+  padding: 15px 16px;
+  border-radius: var(--r-lg);
+  background: var(--brand-tint);
+}
+.evt-final__estimate strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.evt-final__estimate ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.evt-final__estimate li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.evt-next {
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 16px;
+}
+.evt-next li {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  position: relative;
+}
+/* The connector runs behind the icons, stopping before the last one. */
+.evt-next li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 42px;
+  bottom: -18px;
+  width: 1px;
+  background: var(--line-strong);
+}
+.evt-next__icon {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--brand-tint-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.evt-next strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+.evt-next span {
+  display: block;
+  font-size: 12px;
+  color: var(--grey);
+  line-height: 1.55;
+  margin-top: 3px;
+}
+
+.evt-publish__btn {
+  display: block;
+  text-align: center;
+  line-height: 1.3;
+}
+.evt-publish__btn em {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* ============ Discover and final previews ============ */
+
+.evt-dp__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  margin: 18px 0 8px;
+}
+.evt-dp__label:first-of-type {
+  margin-top: 0;
+}
+.evt-dcard {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--sh-card);
+}
+.evt-dcard__media {
+  position: relative;
+  height: 150px;
+}
+.evt-dcard__body {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px;
+}
+/* The date block lifts over the photo, as a listing card does — it needs a
+   stacking context of its own or the media paints over it. */
+.evt-dcard__date {
+  position: relative;
+  z-index: 1;
+  width: 52px;
+  margin-top: -34px;
+  border-radius: var(--r-md);
+  background: #fff;
+  box-shadow: var(--sh-card);
+  padding: 8px 0;
+  text-align: center;
+  align-self: start;
+}
+.evt-dcard__date strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+.evt-dcard__date em {
+  display: block;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--grey);
+  margin-top: 3px;
+}
+.evt-dcard__body h3 {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 9px;
+}
+.evt-dcard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+.evt-dcard__faces {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  color: var(--grey);
+}
+.evt-dcard__faces i {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--brand-tint-strong);
+  border: 2px solid #fff;
+  display: block;
+}
+.evt-dcard__faces i + i {
+  margin-left: -8px;
+}
+.evt-dcard__faces i:last-of-type {
+  margin-right: 8px;
+}
+.evt-dcard__cta {
+  padding: 7px 15px;
+  border-radius: var(--r-sm);
+  background: var(--brand);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.evt-srow {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: #fff;
+}
+.evt-srow__art {
+  height: 52px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.evt-srow strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.evt-srow span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--grey);
+  margin-top: 3px;
+}
+.evt-srow__right {
+  text-align: right;
+}
+.evt-srow__right em {
+  display: block;
+  font-style: normal;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--green);
+  margin-top: 8px;
+}
+
+.evt-mcard {
+  max-width: 280px;
+}
+.evt-mcard__media {
+  position: relative;
+  height: 120px;
+}
+.evt-mcard__body {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px;
+}
+.evt-mcard__body .evt-dcard__date {
+  width: 46px;
+  margin-top: -30px;
+}
+.evt-mcard__body h3 {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.evt-mcard__body span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--grey);
+  margin-top: 3px;
+}
+.evt-mcard__body em {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  margin-top: 6px;
+}
+
+.evt-final__previewhead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.evt-final__previewbtns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.evt-share__block {
+  margin-top: 18px;
+}
+.evt-share__block strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+.evt-share__block > span {
+  display: block;
+  font-size: 12px;
+  color: var(--grey);
+  margin-top: 3px;
+}
+.evt-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.evt-socials button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.evt-socials button:hover {
+  border-color: var(--brand-border);
+  background: var(--brand-tint);
+}
+
+/* ============ Narrower consoles ============ */
+
+/* Beside the preview column these panels are ~460px — too narrow for two
+   halves, so the share block and its social card stack. */
+@media (max-width: 1600px) {
+  .evt-share {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .evt-social {
+    grid-template-columns: 120px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1400px) {
+  .evt-brand,
+  .evt-brandrow,
+  .evt-hostgrid,
+  .evt-lettered,
+  .evt-final,
+  .evt-share {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .evt-ticket__row {
+    grid-template-columns: 44px minmax(0, 1fr) auto auto;
+    row-gap: 12px;
+  }
+  .evt-ticket__stat {
+    border-left: 0;
+    padding-left: 0;
+  }
+  .evt-ticket__stat:nth-of-type(1) {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .evt-ticket__row {
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+  }
+  .evt-ticket__stat {
+    grid-column: 2 !important;
+  }
+  .evt-publishwhen,
+  .evt-social,
+  .evt-dcard__body,
+  .evt-srow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .evt-dcard__date,
+  .evt-mcard__body .evt-dcard__date {
+    margin-top: 0;
+  }
+  .evt-asset__row {
+    flex-direction: column;
+  }
+  .evt-asset__banner {
+    width: 100%;
+    align-self: stretch;
+  }
+}

@@ -1,0 +1,258 @@
+/* Hoople motion language — reveal, lift, sweep, ripple, halo, float, confetti. */
+
+@keyframes hp-rise {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.99);
+    filter: blur(7px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes hp-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(14px);
+  }
+  60% {
+    transform: scale(1.02) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hp-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(240%) skewX(-18deg);
+  }
+}
+
+@keyframes hp-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes hp-halo {
+  0% {
+    box-shadow: 0 0 0 0 rgba(109, 40, 255, 0.34);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(109, 40, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(109, 40, 255, 0);
+  }
+}
+
+@keyframes hp-ripple {
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes hp-fall {
+  to {
+    transform: translate3d(var(--dx), 340px, 0) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+@keyframes hp-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+.reveal.is-visible {
+  animation: hp-rise 0.78s var(--ease-out) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* ---------- Scroll progress + nav shadow ---------- */
+
+.scroll-progress {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  z-index: 200;
+  background: linear-gradient(90deg, var(--brand), #a78bfa);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--progress, 0));
+  transition: transform 0.12s linear;
+  pointer-events: none;
+}
+
+.nav.is-scrolled {
+  box-shadow: var(--sh-nav);
+}
+
+/* ---------- Card lift + photo zoom ---------- */
+
+.lift {
+  transition:
+    transform 0.38s var(--ease-out),
+    box-shadow 0.38s ease;
+}
+.lift:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--sh-card-hover);
+}
+.lift .zoom > * {
+  transition: transform 0.6s var(--ease-out);
+}
+.lift:hover .zoom > * {
+  transform: scale(1.07);
+}
+.zoom {
+  overflow: hidden;
+}
+
+/* ---------- Button sweep + ripple + halo ---------- */
+
+.sweep {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.sweep__glint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.42) 50%, transparent 80%);
+  opacity: 0;
+}
+.sweep:hover .sweep__glint {
+  opacity: 1;
+  animation: hp-sweep 0.85s ease;
+}
+.sweep--ink .sweep__glint {
+  background: linear-gradient(100deg, transparent 20%, rgba(109, 40, 255, 0.16) 50%, transparent 80%);
+}
+
+.ripple {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  transform: scale(0);
+  animation: hp-ripple 0.62s ease-out forwards;
+  pointer-events: none;
+}
+.sweep--ink .ripple {
+  background: rgba(109, 40, 255, 0.22);
+}
+
+.halo {
+  animation: hp-halo 3.4s ease-in-out 1.2s infinite;
+}
+
+/* ---------- Heart ---------- */
+
+.heart {
+  transition:
+    transform 0.28s var(--ease-spring),
+    background 0.2s ease;
+  cursor: pointer;
+}
+.heart:hover {
+  transform: scale(1.16) rotate(-8deg);
+}
+.heart:hover svg {
+  stroke: var(--danger);
+}
+.heart.is-on svg {
+  stroke: var(--danger);
+  fill: var(--danger);
+}
+
+/* ---------- Chips ---------- */
+
+.chip-motion {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+.chip-motion:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Floating illustrations ---------- */
+
+.float {
+  animation: hp-float 5.5s ease-in-out infinite;
+}
+
+/* ---------- Modal ---------- */
+
+.modal-backdrop {
+  animation: hp-fade-in 0.2s ease both;
+}
+.modal-card {
+  animation: hp-pop 0.24s ease both;
+}
+
+/* ---------- Confetti ---------- */
+
+.confetti-bit {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  z-index: 210;
+  pointer-events: none;
+  animation: hp-fall 1.5s cubic-bezier(0.2, 0.6, 0.4, 1) forwards;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+  }
+  .lift:hover,
+  .lift:hover .zoom > * {
+    transform: none;
+  }
+  .confetti-bit,
+  .sweep__glint,
+  .ripple {
+    display: none;
+  }
+}

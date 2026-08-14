@@ -1,0 +1,58 @@
+import { useState } from 'react';
+import { ImageSlot } from '@/components/ui/ImageSlot';
+import { Button } from '@/components/ui/Button';
+
+interface NewsletterProps {
+  /** Unique slot id so each page's envelope art is independent. */
+  slotId: string;
+  title?: string;
+  body?: string;
+}
+
+/** "Stay in the loop" banner. Subscribing confirms inline — no backend here. */
+export function Newsletter({
+  slotId,
+  title = 'Stay in the loop',
+  body = 'Get updates on new activities, classes, and special offers.',
+}: NewsletterProps) {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  return (
+    <form
+      className="newsletter"
+      onSubmit={(event) => {
+        event.preventDefault();
+        if (!email.trim()) return;
+        setSubscribed(true);
+        setEmail('');
+      }}
+    >
+      <div className="newsletter__art float">
+        <ImageSlot id={slotId} shape="rounded" radius={12} placeholder="Envelope 3D" />
+      </div>
+      <div>
+        <div className="newsletter__title">{title}</div>
+        <div style={{ fontSize: 13.5, color: 'var(--ink-3)' }}>{body}</div>
+      </div>
+      <div className="newsletter__form">
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="Enter your email"
+          aria-label="Email address"
+        />
+        <Button as="button" type="submit" variant="primary" style={{ height: 46, padding: '0 34px' }}>
+          Subscribe
+        </Button>
+      </div>
+      {subscribed ? (
+        <p className="newsletter__note" role="status">
+          You're on the list — we'll email you when new sessions open.
+        </p>
+      ) : null}
+    </form>
+  );
+}

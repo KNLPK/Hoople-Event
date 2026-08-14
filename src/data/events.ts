@@ -1,0 +1,436 @@
+import type { Community, EventItem } from './types';
+
+/** One-time experiences — the EVENT half of the catalogue. */
+export const EVENTS: EventItem[] = [
+  {
+    slug: 'creative-talk-build-your-brand',
+    title: 'Creative Talk: Build Your Brand',
+    host: 'Ruang Kreatif',
+    kind: 'EVENT',
+    category: 'Seminar',
+    badge: 'FEATURED',
+    date: '2026-07-25',
+    start: '18:30',
+    end: '21:00',
+    price: 150_000,
+    venueName: 'M Bloc Space',
+    area: 'Blok M, Jakarta Selatan',
+    photoHint: 'Talk on stage',
+    summary:
+      'Three founders unpack how they built an audience before they had a product. Q&A and open networking after.',
+    going: '312 going',
+    schedule: [
+      { time: '18.30', label: 'Registration & welcome coffee' },
+      { time: '19.00', label: 'Opening remarks' },
+      { time: '19.15', label: 'Talk 1 — Finding your first 1,000' },
+      { time: '19.45', label: 'Talk 2 — Brand voice on a budget' },
+      { time: '20.15', label: 'Panel discussion' },
+      { time: '20.45', label: 'Open networking' },
+      { time: '21.00', label: 'Closing' },
+    ],
+    faqs: [
+      {
+        question: "Can I get a refund if I can't attend?",
+        answer: 'Yes — full refund up to 24 hours before doors open, from My Bookings → View Details.',
+      },
+      {
+        question: 'Can I transfer my ticket to someone else?',
+        answer:
+          'Yes. Open your e-ticket and use Share E-Ticket, then tell us the new attendee name at the door.',
+      },
+      {
+        question: 'Will I get a certificate?',
+        answer: 'No certificate for this one — it is a talk, not a course. Slides are emailed the next day.',
+      },
+      {
+        question: 'Is food provided?',
+        answer: 'Coffee and light snacks are included from 18.30. Dinner is not provided.',
+      },
+    ],
+  },
+  {
+    slug: 'jakarta-coffee-week',
+    title: 'Jakarta Coffee Week 2026',
+    host: 'Kopi Karya',
+    kind: 'EVENT',
+    category: 'Market Fest',
+    badge: 'TRENDING',
+    date: '2026-08-08',
+    start: '10:00',
+    end: '21:00',
+    price: 75_000,
+    venueName: 'Senayan Park',
+    area: 'Senayan, Jakarta Pusat',
+    photoHint: 'Coffee festival',
+    summary:
+      'Sixty roasters, four brew bars, and a two-day cupping programme. Entry includes three tasting tokens.',
+    going: '4.2k going',
+    schedule: [
+      { time: '10.00', label: 'Doors open · tasting tokens issued' },
+      { time: '11.00', label: 'Brew bar demos begin' },
+      { time: '13.00', label: 'Cupping session 1' },
+      { time: '15.00', label: 'Roaster talk — sourcing in 2026' },
+      { time: '17.00', label: 'Cupping session 2' },
+      { time: '19.00', label: 'Latte art throwdown' },
+      { time: '21.00', label: 'Closing' },
+    ],
+    faqs: [
+      {
+        question: "Can I get a refund if I can't attend?",
+        answer: 'Full refund up to 24 hours before the gates open. After that the ticket stays valid but is not refundable.',
+      },
+      {
+        question: 'Can I transfer my ticket to someone else?',
+        answer: 'Yes, tickets are transferable — share the e-ticket and whoever holds the QR gets in.',
+      },
+      {
+        question: 'What do the tasting tokens cover?',
+        answer: 'Three drinks at any participating roaster. Extra tokens are Rp25.000 each on the day.',
+      },
+      {
+        question: 'Is it family friendly?',
+        answer: 'Yes. Under-12s enter free with a paying adult, and there is a shaded seating area.',
+      },
+    ],
+  },
+  {
+    slug: 'sunset-rooftop-jazz',
+    title: 'Sunset Rooftop Jazz',
+    host: 'Lantai Atas',
+    kind: 'EVENT',
+    category: 'Concert',
+    date: '2026-07-26',
+    start: '17:00',
+    end: '22:00',
+    price: 285_000,
+    venueName: 'Lantai Atas SCBD',
+    area: 'SCBD, Jakarta Selatan',
+    photoHint: 'Rooftop concert',
+    summary: 'A four-set evening of live jazz as the sun goes down over Sudirman. Seated and standing tickets.',
+    going: '780 going',
+    schedule: [
+      { time: '17.00', label: 'Doors open' },
+      { time: '17.30', label: 'Set 1 — Trio Senja' },
+      { time: '18.45', label: 'Sunset break' },
+      { time: '19.15', label: 'Set 2 — Ardhito Quartet' },
+      { time: '20.30', label: 'Set 3 — guest vocalist' },
+      { time: '21.30', label: 'Final set' },
+      { time: '22.00', label: 'Closing' },
+    ],
+    faqs: [
+      {
+        question: "Can I get a refund if I can't attend?",
+        answer: 'Full refund up to 24 hours before doors open.',
+      },
+      {
+        question: 'Can I transfer my ticket to someone else?',
+        answer: 'Yes — share the e-ticket. Only one entry per QR code.',
+      },
+      {
+        question: 'Is seating guaranteed?',
+        answer: 'Seated tickets are allocated on arrival. Standing tickets have access to the bar deck only.',
+      },
+      {
+        question: 'What happens if it rains?',
+        answer: 'The rooftop is half-covered and the show goes ahead. Only lightning cancels — you would be refunded in full.',
+      },
+    ],
+  },
+  {
+    slug: 'ux-in-practice',
+    title: 'UX in Practice: Research on a Budget',
+    host: 'Lingua Space Menteng',
+    kind: 'EVENT',
+    category: 'Workshop',
+    badge: 'NEW',
+    date: '2026-08-01',
+    start: '09:00',
+    end: '16:00',
+    price: 450_000,
+    venueName: 'Lingua Space Menteng',
+    area: 'Menteng, Jakarta Pusat',
+    photoHint: 'Workshop room',
+    summary:
+      'A full day running real interviews, with a script you leave holding. Capped at 24 seats so everyone practices.',
+    going: '21 of 24 seats',
+    schedule: [
+      { time: '09.00', label: 'Check-in & coffee' },
+      { time: '09.30', label: 'Framing the research question' },
+      { time: '10.30', label: 'Writing the script' },
+      { time: '12.00', label: 'Lunch break' },
+      { time: '13.00', label: 'Live interview practice' },
+      { time: '14.30', label: 'Synthesis clinic' },
+      { time: '15.30', label: 'Q&A and wrap-up' },
+      { time: '16.00', label: 'Closing' },
+    ],
+    faqs: [
+      {
+        question: "Can I get a refund if I can't attend?",
+        answer: 'Full refund up to 24 hours before the workshop. Seats are capped at 24, so early notice helps someone on the waitlist.',
+      },
+      {
+        question: 'Can I transfer my ticket to someone else?',
+        answer: 'Yes — email support@hoople.id with the new attendee name at least 24 hours before.',
+      },
+      {
+        question: 'Will I get a certificate?',
+        answer: 'Yes, a certificate of completion is emailed within two working days.',
+      },
+      {
+        question: 'Is lunch provided?',
+        answer: 'Yes, lunch and two coffee breaks are included. Tell us at booking about any dietary needs.',
+      },
+    ],
+  },
+  {
+    slug: 'pasar-kreatif-kemang',
+    title: 'Pasar Kreatif Kemang',
+    host: 'Waktu Luang',
+    kind: 'EVENT',
+    category: 'Market Fest',
+    date: '2026-07-26',
+    start: '11:00',
+    end: '20:00',
+    price: 0,
+    venueName: 'Waktu Luang Studio',
+    area: 'Kemang, Jakarta Selatan',
+    photoHint: 'Creative market',
+    summary:
+      'Forty makers, live tufting demos, and a clay corner for kids. Free entry, no ticket needed — just register.',
+    going: '1.6k going',
+    schedule: [
+      { time: '11.00', label: 'Market opens' },
+      { time: '12.00', label: 'Live tufting demo' },
+      { time: '14.00', label: 'Clay corner for kids' },
+      { time: '16.00', label: 'Maker talk — pricing your craft' },
+      { time: '18.00', label: 'Acoustic set' },
+      { time: '20.00', label: 'Market closes' },
+    ],
+    faqs: [
+      {
+        question: 'Do I need a ticket if entry is free?',
+        answer: 'Register anyway — it is how the studio plans stall space and how you get the map on the day.',
+      },
+      {
+        question: 'Can I transfer my registration?',
+        answer: 'No need. Free registrations are not checked by name, so anyone can come with your QR.',
+      },
+      {
+        question: 'Is there parking?',
+        answer: 'Street parking on Jl. Kemang Selatan, plus eight spots at the studio. MRT Haji Nawi is a 10 minute walk.',
+      },
+      {
+        question: 'Can I bring children?',
+        answer: 'Yes — the clay corner from 14.00 is built for them, and it is free.',
+      },
+    ],
+  },
+  {
+    slug: 'strive-hyrox-open',
+    title: 'Strive Hyrox Open Day',
+    host: 'Strive Gym SCBD',
+    kind: 'EVENT',
+    category: 'Sport',
+    date: '2026-08-15',
+    start: '07:00',
+    end: '12:00',
+    price: 120_000,
+    venueName: 'Strive Gym SCBD',
+    area: 'SCBD, Jakarta Selatan',
+    photoHint: 'Gym competition',
+    summary: 'A scaled Hyrox simulation in pairs, with judges, timing chips, and a leaderboard on the day.',
+    going: '96 going',
+    schedule: [
+      { time: '07.00', label: 'Check-in & briefing' },
+      { time: '07.30', label: 'Group warm-up' },
+      { time: '08.00', label: 'Heat 1' },
+      { time: '09.30', label: 'Heat 2' },
+      { time: '11.00', label: 'Final heat' },
+      { time: '11.45', label: 'Awards & leaderboard' },
+      { time: '12.00', label: 'Closing' },
+    ],
+    faqs: [
+      {
+        question: "Can I get a refund if I can't attend?",
+        answer: 'Full refund up to 24 hours before check-in. Timing chips are allocated the night before.',
+      },
+      {
+        question: 'Do I need a partner?',
+        answer: 'It runs in pairs, but turn up alone and the coaches will match you with someone at a similar pace.',
+      },
+      {
+        question: 'Will I get a certificate?',
+        answer: 'You get a timed result card by email, plus your place on the day leaderboard.',
+      },
+      {
+        question: 'Is it scaled for beginners?',
+        answer: 'Yes — every station has a scaled option, and Heat 1 is the beginner-friendly wave.',
+      },
+    ],
+  },
+  {
+    slug: 'greenbite-supper-club',
+    title: 'GreenBite Supper Club',
+    host: 'GreenBite Kitchen PIK',
+    kind: 'EVENT',
+    category: 'Dining',
+    badge: 'POPULAR',
+    date: '2026-08-02',
+    start: '18:00',
+    end: '21:30',
+    price: 395_000,
+    venueName: 'GreenBite Kitchen PIK',
+    area: 'PIK, Jakarta Utara',
+    photoHint: 'Supper club table',
+    summary: 'One long table, six plant-forward courses, and the chef cooking in front of you. Twenty seats only.',
+    going: '17 of 20 seats',
+    schedule: [
+      { time: '18.00', label: 'Welcome drink' },
+      { time: '18.30', label: 'Courses 1 & 2' },
+      { time: '19.15', label: "Chef's table talk" },
+      { time: '19.45', label: 'Courses 3 & 4' },
+      { time: '20.30', label: 'Courses 5 & 6' },
+      { time: '21.00', label: 'Coffee & dessert' },
+      { time: '21.30', label: 'Closing' },
+    ],
+    faqs: [
+      {
+        question: "Can I get a refund if I can't attend?",
+        answer: 'Full refund up to 48 hours before — ingredients for twenty covers are bought the day before.',
+      },
+      {
+        question: 'Can I transfer my seat to someone else?',
+        answer: 'Yes, tell us the new name and any dietary needs at least 48 hours before.',
+      },
+      {
+        question: 'Can you handle allergies?',
+        answer: 'Yes. The whole menu is plant-forward, and nut-free or gluten-free versions are prepared on request.',
+      },
+      {
+        question: 'Is alcohol served?',
+        answer: 'No — the pairing is non-alcoholic, and the kitchen is halal.',
+      },
+    ],
+  },
+  {
+    slug: 'namaste-sunrise-retreat',
+    title: 'Namaste Sunrise Retreat',
+    host: 'Namaste Studio',
+    kind: 'EVENT',
+    category: 'Wellness',
+    date: '2026-08-23',
+    start: '05:30',
+    end: '11:00',
+    price: 340_000,
+    venueName: 'Sentul Highlands',
+    area: 'Sentul, Bogor',
+    photoHint: 'Sunrise yoga retreat',
+    summary:
+      'A half-day retreat out of the city: sunrise practice, breathwork, breakfast, and a bus back by noon.',
+    going: '58 going',
+    schedule: [
+      { time: '05.30', label: 'Bus departs Jakarta (Namaste Studio)' },
+      { time: '06.45', label: 'Arrival & welcome tea' },
+      { time: '07.00', label: 'Sunrise practice' },
+      { time: '08.15', label: 'Breathwork session' },
+      { time: '09.00', label: 'Breakfast' },
+      { time: '10.00', label: 'Closing circle' },
+      { time: '11.00', label: 'Bus back to Jakarta' },
+    ],
+    faqs: [
+      {
+        question: "Can I get a refund if I can't attend?",
+        answer: 'Full refund up to 72 hours before — the bus and catering are booked on headcount.',
+      },
+      {
+        question: 'Is transport included?',
+        answer: 'Yes, return coach from Namaste Studio in Cipete. Departure is 05.30 sharp.',
+      },
+      {
+        question: 'Is breakfast provided?',
+        answer: 'Yes, a full breakfast at 09.00 is included in the ticket price.',
+      },
+      {
+        question: 'Do I need to be experienced?',
+        answer: 'No. The sunrise practice is the studio slow Hatha sequence, with props provided for everyone.',
+      },
+    ],
+  },
+];
+
+export const EVENT_BY_SLUG = new Map(EVENTS.map((item) => [item.slug, item]));
+
+export const EVENT_CATEGORIES = [
+  'All events',
+  'Concert',
+  'Seminar',
+  'Workshop',
+  'Market Fest',
+  'Sport',
+  'Dining',
+  'Free',
+] as const;
+
+/** Communities on the platform — shown on Discover and the Communities page. */
+export const COMMUNITIES: Community[] = [
+  {
+    slug: 'waktu-luang',
+    name: 'Waktu Luang',
+    focus: 'Craft studio — pottery, tufting, candles',
+    members: '4.2k members',
+    area: 'Kemang, Jakarta Selatan',
+    photoHint: 'Craft studio',
+  },
+  {
+    slug: 'flow-with-me',
+    name: 'Flow with Me',
+    focus: 'Yoga and breathwork',
+    members: '3.1k members',
+    area: 'Senopati, Jakarta Selatan',
+    photoHint: 'Yoga community',
+  },
+  {
+    slug: 'kopi-karya',
+    name: 'Kopi Karya',
+    focus: 'Coffee education and cupping',
+    members: '2.6k members',
+    area: 'Senopati, Jakarta Selatan',
+    photoHint: 'Coffee bar',
+  },
+  {
+    slug: 'strive-gym-scbd',
+    name: 'Strive Gym SCBD',
+    focus: 'Strength and conditioning',
+    members: '5.4k members',
+    area: 'SCBD, Jakarta Selatan',
+    photoHint: 'Gym floor',
+  },
+  {
+    slug: 'lingua-space-menteng',
+    name: 'Lingua Space Menteng',
+    focus: 'Language exchange',
+    members: '1.8k members',
+    area: 'Menteng, Jakarta Pusat',
+    photoHint: 'Language club',
+  },
+  {
+    slug: 'greenbite-kitchen-pik',
+    name: 'GreenBite Kitchen PIK',
+    focus: 'Plant-forward cooking',
+    members: '1.3k members',
+    area: 'PIK, Jakarta Utara',
+    photoHint: 'Kitchen studio',
+  },
+];
+
+/** Category tiles on Discover. */
+export const DISCOVER_CATEGORIES = [
+  { name: 'Yoga & Wellness', count: '312 experiences' },
+  { name: 'Running Club', count: '96 experiences' },
+  { name: 'Art & Craft', count: '248 experiences' },
+  { name: 'Cooking', count: '187 experiences' },
+  { name: 'Music', count: '154 experiences' },
+  { name: 'Language', count: '73 experiences' },
+  { name: 'Business', count: '128 experiences' },
+  { name: 'Community', count: '206 experiences' },
+];

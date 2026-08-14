@@ -1,0 +1,89 @@
+/* Hoople design tokens — the single source of truth for colour, type, radius and elevation. */
+
+:root {
+  /* Brand */
+  --brand: #6d28ff;
+  --brand-deep: #5b21f5;
+  --brand-ink: #4c17d6;
+  --brand-tint: #f7f5ff;
+  --brand-tint-strong: #f1ecff;
+  --brand-tint-solid: #f3f0fe;
+  --brand-border: #c9bef5;
+  --brand-soft: #e7deff;
+
+  /* Success / ACTIVITY */
+  --green: #16a34a;
+  --green-deep: #15803d;
+  --green-tint: #eff9f1;
+  --green-panel-top: #e9f6ee;
+  --green-panel-bottom: #dff1e7;
+
+  /* Urgency */
+  --amber: #ea8c00;
+  --amber-tint: #fef6e7;
+  --amber-ink: #b45309;
+  --star: #f5b301;
+  --danger: #e11d48;
+
+  /* Ink */
+  --ink: #12121a;
+  --ink-2: #3c3a4a;
+  --ink-3: #4b4a5c;
+  --ink-muted: #5c5b6b;
+  --grey: #6b6a7b;
+  --grey-soft: #8b8a99;
+  --grey-faint: #b4b2c0;
+  --grey-ghost: #c3c1ce;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-app: #fbfafd;
+  --surface-alt: #faf9fe;
+  --surface-sunken: #f7f6fb;
+  --surface-panel: #f8f7fd;
+  --surface-chip: #f3f2f6;
+  --surface-toggle: #f3f1fa;
+  --surface-dark: #0c0b12;
+
+  /* Lines */
+  --line: #edeaf5;
+  --line-soft: #f2f0f8;
+  --line-faint: #efecf8;
+  --line-card: #eeebf6;
+  --line-input: #e4e1ee;
+  --line-strong: #e7e4f0;
+  --line-dashed: #dcd8ea;
+
+  /* Type */
+  --font-heading: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-script: 'Caveat', cursive;
+
+  /* Radius */
+  --r-sm: 7px;
+  --r-md: 10px;
+  --r-lg: 12px;
+  --r-xl: 14px;
+  --r-2xl: 16px;
+  --r-3xl: 18px;
+  --r-4xl: 20px;
+  --r-pill: 999px;
+
+  /* Elevation */
+  --sh-card: 0 2px 10px rgba(20, 10, 60, 0.06);
+  --sh-card-hover: 0 14px 32px rgba(20, 10, 60, 0.15);
+  --sh-panel: 0 8px 30px rgba(20, 10, 60, 0.06);
+  --sh-float: 0 4px 14px rgba(20, 10, 60, 0.18);
+  --sh-search: 0 18px 44px rgba(20, 10, 60, 0.18);
+  --sh-modal: 0 24px 60px rgba(20, 10, 60, 0.35);
+  --sh-nav: 0 6px 24px rgba(20, 10, 60, 0.1);
+
+  /* Layout */
+  --container: 1360px;
+  --gutter: 32px;
+  --nav-h: 76px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.25, 1);
+  --ease-spring: cubic-bezier(0.2, 1.4, 0.4, 1);
+}
