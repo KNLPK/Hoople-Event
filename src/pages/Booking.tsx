@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { ImageSlot } from '@/components/ui/ImageSlot';
 import { Modal } from '@/components/ui/Modal';
@@ -7,6 +7,8 @@ import { Reveal } from '@/components/ui/Reveal';
 import { SectionHead } from '@/components/ui/SectionHead';
 import { MiniCard } from '@/components/cards/MiniCard';
 import { useToast } from '@/components/ui/Toast';
+import { useSession } from '@/store/session';
+import { readCheckoutDraft, clearCheckoutDraft, writeCheckoutDraft } from '@/store/checkout';
 import {
   ArrowRight,
   Bolt,
@@ -122,6 +124,31 @@ export function Booking() {
   const [confirmed, setConfirmed] = useState<BookingRecord | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
 
+  const { isSignedIn } = useSession();
+  const navigate = useNavigate();
+
+  /*
+   * Coming back from the sign-in gate: everything typed before was parked in
+   * the checkout draft, so restore it and open the payment sheet straight
+   * away. Nobody should have to fill the form twice to pay for one seat.
+   */
+  useEffect(() => {
+    if (params.get('resume') !== '1' || !isSignedIn) return;
+    const saved = readCheckoutDraft();
+    if (saved) {
+      setBuyer(saved.buyer);
+      setBuyerIsParticipant(saved.buyerIsParticipant);
+      setExtraParticipants(saved.extraParticipants);
+      setConsentMedia(saved.consentMedia);
+      setConsentTerms(saved.consentTerms);
+    }
+    clearCheckoutDraft();
+    setPayScreen('methods');
+    setSecondsLeft(COUNTDOWN_SECONDS);
+    setPayOpen(true);
+    setStep(2);
+  }, [params, isSignedIn]);
+
   const participants: Participant[] = buyerIsParticipant
     ? [buyer, ...extraParticipants]
     : extraParticipants.length
@@ -173,6 +200,30 @@ export function Booking() {
     setPayOpen(false);
     setStep(3);
     window.scrollTo(0, 0);
+  }
+
+  /**
+   * Paying needs an account, browsing does not. If they are not signed in we
+   * park the form and send them to the gate with a `next` that returns here
+   * and resumes — see the resume effect above.
+   */
+  function goToPayment() {
+    if (!isSignedIn) {
+      writeCheckoutDraft({
+        buyer,
+        buyerIsParticipant,
+        extraParticipants,
+        consentMedia,
+        consentTerms,
+      });
+      const back = `/booking?${params.toString()}${params.toString() ? '&' : ''}resume=1`;
+      navigate(`/auth?next=${encodeURIComponent(back)}`);
+      return;
+    }
+    setPayScreen('methods');
+    setSecondsLeft(COUNTDOWN_SECONDS);
+    setPayOpen(true);
+    setStep(2);
   }
 
   const canContinue =
@@ -441,12 +492,7 @@ export function Booking() {
                       size="xl"
                       halo
                       disabled={!canContinue}
-                      onClick={() => {
-                        setPayScreen('methods');
-                        setSecondsLeft(COUNTDOWN_SECONDS);
-                        setPayOpen(true);
-                        setStep(2);
-                      }}
+                      onClick={goToPayment}
                       style={{ width: 280 }}
                     >
                       Continue to Payment

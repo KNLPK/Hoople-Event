@@ -5,9 +5,11 @@ body[data-surface='console'] {
   background: #ffffff;
 }
 
+/* The rail is fluid so it does not eat a fifth of a zoomed-out window, and it
+   never falls below a comfortable reading width. */
 .org {
   display: grid;
-  grid-template-columns: 296px 1fr;
+  grid-template-columns: clamp(248px, 19vw, 296px) minmax(0, 1fr);
   min-height: 100vh;
 }
 .org__main {
@@ -22,25 +24,55 @@ body[data-surface='console'] {
 
 /* ============ Sidebar ============ */
 
+/*
+ * Two regions in a fixed-height rail: the navigation scrolls, and the upgrade
+ * card and Help Center stay pinned to the bottom. Letting the whole rail grow
+ * pushed those two below the fold on a short window — or at a zoomed-out size,
+ * where the viewport gets taller in CSS pixels but the content does not shrink
+ * with it.
+ */
 .org-side {
   background: #fff;
   border-right: 1px solid var(--line);
   position: sticky;
   top: 0;
-  align-self: start;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  /* Sized to sit inside 100vh, so nothing falls below the fold while pinned. */
   padding: 18px 16px 16px;
   gap: 14px;
+  overflow: hidden;
 }
-/* Too short to hold the whole sidebar — let it ride the page instead of
-   growing a scrollbar of its own. */
-@media (max-height: 780px) {
-  .org-side {
-    position: static;
-    min-height: 100%;
+.org-side__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  /* Room for the scrollbar without shifting the links. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+.org-side__scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.org-side__scroll::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: var(--r-pill);
+}
+.org-side__foot {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+/* On a short window the upgrade card sheds its art and blurb before anything
+   is allowed to disappear. */
+@media (max-height: 820px) {
+  .org-upgrade__art,
+  .org-upgrade p {
+    display: none;
   }
 }
 .org-side__brand {
@@ -167,7 +199,6 @@ body[data-surface='console'] {
 }
 
 .org-upgrade {
-  margin-top: auto;
   background: linear-gradient(180deg, #f6f2ff 0%, #efe8ff 100%);
   border-radius: var(--r-xl);
   padding: 16px;
@@ -190,6 +221,14 @@ body[data-surface='console'] {
 .org-upgrade__art {
   height: 62px;
   margin-bottom: 12px;
+}
+@media (max-height: 760px) {
+  .org-upgrade__art {
+    display: none;
+  }
+  .org-upgrade p {
+    display: none;
+  }
 }
 .org-upgrade .btn {
   background: #fff;
@@ -1083,6 +1122,19 @@ body[data-surface='console'] {
   font-size: 11.5px;
   color: var(--grey);
 }
+/* Anchors the row's action menu. */
+.org-xp-row__menu {
+  position: relative;
+}
+.org-rowmenu {
+  top: 34px;
+  right: 0;
+  left: auto;
+  min-width: 178px;
+}
+.org-rowmenu .nav-user__item {
+  width: 100%;
+}
 .org-xp-row__more {
   width: 36px;
   height: 36px;
@@ -1739,51 +1791,56 @@ body[data-surface='console'] {
 }
 
 /* The step being edited stretches to list what it still wants filled in. */
-/* Centred under the rail, in the same place whichever step is open. */
+/*
+ * A tab strip rather than three floating labels. Centred under the rail, on a
+ * tinted track so it reads as one control instead of orphaned text.
+ */
 .wiz-subs {
   grid-column: 1;
   grid-row: 2;
-  display: flex;
+  justify-self: center;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 18px;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--r-pill);
+  background: var(--surface-toggle);
   white-space: nowrap;
+  max-width: 100%;
 }
 .wiz-sub {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
+  height: 32px;
+  padding: 0 15px;
   border: 0;
+  border-radius: var(--r-pill);
   background: none;
-  padding: 0;
   font-family: inherit;
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--grey);
   cursor: pointer;
   white-space: nowrap;
-  position: relative;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
 }
 .wiz-sub:hover {
-  color: var(--brand);
+  color: var(--brand-deep);
 }
 .wiz-sub__num {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--grey-faint);
 }
+/* The open part is a raised pill — the row reads as one control rather than
+   three labels with a stray underline. */
 .wiz-sub.is-on {
-  color: var(--brand);
+  background: #fff;
+  color: var(--brand-deep);
   font-weight: 600;
-}
-.wiz-sub.is-on::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--brand);
+  box-shadow: var(--sh-card);
 }
 .wiz-sub.is-on .wiz-sub__num {
   color: var(--brand);

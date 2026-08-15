@@ -8,8 +8,10 @@ button works and the whole booking loop holds together, but authentication and
 payment are deliberately not verified — see [Prototype
 boundaries](#prototype-boundaries).
 
-Hoople is two products against one platform, and both are served from this one
-build so a reviewer only needs a single link:
+**Live:** https://hoople-event.vercel.app/
+
+Hoople is two products against one platform, and both are served from that one
+link:
 
 - **Participant site** (`/`) — discover and book experiences.
 - **Organizer console** (`/organizer`) — run them. Reachable from the
@@ -114,6 +116,19 @@ cancelled booking, then persists to `localStorage`. Checkout writes into it and
 My Bookings / the e-ticket read back out, so a booking made in the demo
 survives a reload.
 
+### Who has to sign in, and when
+
+The two halves gate differently, on purpose:
+
+- **Participant site** — browsing, searching and filling the checkout form need
+  no account. The gate is at **payment**: `Continue to Payment` parks the form
+  in `src/store/checkout.ts`, sends you to `/auth?next=…&resume=1`, and on the
+  way back restores every field and opens the payment sheet. Nobody fills the
+  form twice.
+- **Organizer console** — gated at the door by `<RequireAuth>`. `/organizer`
+  redirects to `/auth` carrying `next`, so signing in lands on the page that
+  was asked for.
+
 ### Signed-out vs signed-in
 
 The navigation has two states, driven by `src/store/session.tsx`:
@@ -133,12 +148,28 @@ Every heart in the app writes to `src/store/saved.tsx` under a namespaced key
 event can never collide on the same slug. `/saved` reads that list back and
 renders the saved activities and events in their normal cards.
 
+### The console's data is writable
+
+`src/store/experiences.tsx` is the experience ledger. The catalogue used to be
+a frozen array, so publishing had nowhere to go; now every list, tile and count
+reads from this store and the builders write into it:
+
+- **Save as Draft** writes a Draft row and keeps the builder payload with it.
+- **Edit** on a row reopens `/organizer/create/{activity,event}?id=…` with the
+  draft rehydrated, so unfinished work can be picked up.
+- **Publish** flips the row to Upcoming; a scheduled publish stays a Draft.
+- **Duplicate** copies a row as a fresh draft; **Delete** removes it;
+  **Cancel/Restore** moves it between Cancelled and Upcoming.
+
+It persists to `localStorage`, so a demo survives a reload. Cover images are
+not stored on the draft — `ImageSlot` already keeps those under its own key.
+
 ### Console counts are derived
 
-`ORG_EXPERIENCES` holds 24 experiences — 8 events and 16 activities, matching
-the dashboard KPIs. Every count tile on the Experiences page
-(`countExperiences`) is computed from that array, so the tiles, the list, and
-"Showing 1-5 of 24" can never drift apart.
+`ORG_EXPERIENCES` seeds 24 experiences — 8 events and 16 activities, matching
+the dashboard KPIs. Every count tile on the Experiences page is computed from
+the live store, so the tiles, the list, and "Showing 1-5 of 24" can never drift
+apart — including after you add or delete one.
 
 Each experience carries two independent axes: `publishState`
 (Published / Draft / Cancelled — is it visible to participants?) and

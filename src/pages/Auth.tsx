@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { ImageSlot } from '@/components/ui/ImageSlot';
 import {
@@ -61,12 +61,16 @@ export function Auth() {
   const [register, setRegister] = useState({ first: '', last: '', email: '', password: '' });
   const [login, setLogin] = useState({ email: '', password: '' });
   const navigate = useNavigate();
+  const [params] = useSearchParams();
+
+  /* Whoever sent us here says where to go back to; otherwise start browsing. */
+  const next = params.get('next') ?? '/activities';
   const toast = useToast();
   const { signIn } = useSession();
 
-  function goTo(next: AuthStep) {
+  function goTo(target: AuthStep) {
     window.scrollTo(0, 0);
-    setStep(next);
+    setStep(target);
   }
 
   const passwordStrong = register.password.length >= 8 && /[^A-Za-z]/.test(register.password);
@@ -353,7 +357,7 @@ export function Auth() {
             onSubmit={(event) => {
               event.preventDefault();
               signIn(login.email.trim() ? { email: login.email.trim() } : undefined);
-              navigate('/activities');
+              navigate(next, { replace: true });
             }}
           >
             <div className="auth-card__head">

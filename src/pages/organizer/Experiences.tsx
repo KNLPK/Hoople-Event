@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { ImageSlot } from '@/components/ui/ImageSlot';
 import { Reveal } from '@/components/ui/Reveal';
@@ -14,7 +14,10 @@ import {
   ChevronRight,
   Clock,
   Close,
+  Copy,
   Grid,
+  Pencil,
+  Trash,
   Layers,
   MapPin,
   Plus,
@@ -22,14 +25,8 @@ import {
   Sliders,
   Star,
 } from '@/components/ui/icons';
-import {
-  countExperiences,
-  EXPERIENCE_CATEGORIES,
-  EXPERIENCE_TILES,
-  ORG_EXPERIENCES,
-  type ExperienceTileKey,
-  type OrgExperience,
-} from '@/data/organizer';
+import { EXPERIENCE_TILES, type ExperienceTileKey } from '@/data/organizer';
+import { useExperiences, type StoredExperience } from '@/store/experiences';
 import { compactDate, rupiah } from '@/lib/format';
 
 export type ExperienceScope = 'all' | 'events' | 'activities' | 'drafts';
@@ -50,6 +47,21 @@ const TILE_ICON: Record<ExperienceTileKey, typeof Layers> = {
   cancelled: Close,
 };
 
+/* A scoped list knows what it makes, so it skips the event-or-activity fork. */
+const CREATE_TO: Record<ExperienceScope, string> = {
+  all: '/organizer/create',
+  events: '/organizer/create/event',
+  activities: '/organizer/create/activity',
+  drafts: '/organizer/create',
+};
+
+const CREATE_LABEL: Record<ExperienceScope, string> = {
+  all: 'Create Experience',
+  events: 'Create Event',
+  activities: 'Create Activity',
+  drafts: 'Create Experience',
+};
+
 const TYPES = ['All Types', 'Event', 'Activity'] as const;
 const STATUSES = ['All Status', 'Upcoming', 'Completed', 'Draft', 'Cancelled'] as const;
 const DATES = ['All Dates', 'This month', 'Next 30 days', 'Past'] as const;
@@ -58,6 +70,7 @@ const PAGE_SIZE = 5;
 export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
   const toast = useToast();
   const copy = SCOPE_COPY[scope];
+  const { experiences, categories, count, remove, duplicate, setLifecycle } = useExperiences();
 
   const [query, setQuery] = useState('');
   const [type, setType] = useState<string>(TYPES[0]);
@@ -68,10 +81,11 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
   const [view, setView] = useState<'card' | 'table'>('card');
   const [tile, setTile] = useState<ExperienceTileKey>('all');
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   const rows = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    return ORG_EXPERIENCES.filter((item) => {
+    return experiences.filter((item) => {
       if (scope === 'events' && item.kind !== 'EVENT') return false;
       if (scope === 'activities' && item.kind !== 'ACTIVITY') return false;
       if (scope === 'drafts' && item.lifecycle !== 'Draft') return false;
@@ -95,12 +109,21 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
       }
       return true;
     });
-  }, [scope, query, type, status, dateRange, category, tile]);
+  }, [experiences, scope, query, type, status, dateRange, category, tile]);
 
   const pageCount = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
   const currentPage = Math.min(page, pageCount);
   const shown = rows.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
   const firstIndex = rows.length === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1;
+
+  /** Reopen a row in the builder that made it, carrying its id. */
+  function editExperience(experience: StoredExperience) {
+    const path =
+      experience.draft?.kind === 'event' || experience.kind === 'EVENT'
+        ? '/organizer/create/event'
+        : '/organizer/create/activity';
+    navigate(`${path}?id=${experience.id}`);
+  }
 
   function resetPage<T>(setter: (value: T) => void) {
     return (value: T) => {
@@ -121,9 +144,9 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
           <ImageSlot id="org-experiences-art" shape="rounded" radius={14} placeholder="Mascot + checklist" />
         </div>
         <div className="org-split-btn">
-          <Button as="link" to="/organizer/create" variant="primary">
+          <Button as="link" to={CREATE_TO[scope]} variant="primary">
             <Plus size={16} strokeWidth={2} />
-            Create Experience
+            {CREATE_LABEL[scope]}
           </Button>
           <button
             type="button"
@@ -190,7 +213,7 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
             <span className="field__label" style={{ marginBottom: 0 }}>
               Category
             </span>
-            {['All categories', ...EXPERIENCE_CATEGORIES].map((option) => (
+            {['All categories', ...categories].map((option) => (
               <button
                 key={option}
                 type="button"
@@ -226,7 +249,7 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
             </span>
             <span>
               <span className="org-tile__label">{item.label}</span>
-              <span className="org-tile__value">{countExperiences(item.key)}</span>
+              <span className="org-tile__value">{count(item.key)}</span>
             </span>
           </button>
         ))}
@@ -256,7 +279,24 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
           </div>
         ) : view === 'card' ? (
           shown.map((experience) => (
-            <ExperienceCardRow key={experience.id} experience={experience} onAction={toast} />
+            <ExperienceCardRow
+              key={experience.id}
+              experience={experience}
+              onEdit={() => editExperience(experience)}
+              onDuplicate={() => {
+                duplicate(experience.id);
+                toast(`Duplicated "${experience.title}" as a draft`);
+              }}
+              onDelete={() => {
+                remove(experience.id);
+                toast(`"${experience.title}" deleted`);
+              }}
+              onCancel={() => {
+                const next = experience.lifecycle === 'Cancelled' ? 'Upcoming' : 'Cancelled';
+                setLifecycle(experience.id, next);
+                toast(next === 'Cancelled' ? 'Experience cancelled' : 'Experience restored');
+              }}
+            />
           ))
         ) : (
           <div className="org-table-wrap">
@@ -361,13 +401,37 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
 
 function ExperienceCardRow({
   experience,
-  onAction,
+  onEdit,
+  onDuplicate,
+  onDelete,
+  onCancel,
 }: {
-  experience: OrgExperience;
-  onAction: (message: string) => void;
+  experience: StoredExperience;
+  onEdit: () => void;
+  onDuplicate: () => void;
+  onDelete: () => void;
+  onCancel: () => void;
 }) {
   const fill = experience.capacity ? experience.registered / experience.capacity : 0;
   const percent = Math.round(fill * 100);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function onPointerDown(event: MouseEvent) {
+      if (!menuRef.current?.contains(event.target as Node)) setMenuOpen(false);
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') setMenuOpen(false);
+    }
+    document.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [menuOpen]);
 
   return (
     <div className="org-xp-row">
@@ -438,14 +502,44 @@ function ExperienceCardRow({
         <span className="org-xp-row__note">{experience.note}</span>
       </div>
 
-      <button
-        type="button"
-        className="org-xp-row__more"
-        onClick={() => onAction(`Edit, duplicate or unpublish "${experience.title}"`)}
-        aria-label={`More actions for ${experience.title}`}
-      >
-        •••
-      </button>
+      <div className="org-xp-row__menu" ref={menuRef}>
+        <button
+          type="button"
+          className="org-xp-row__more"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-expanded={menuOpen}
+          aria-haspopup="menu"
+          aria-label={`More actions for ${experience.title}`}
+        >
+          •••
+        </button>
+
+        {menuOpen ? (
+          <div className="nav-user__menu org-rowmenu" role="menu">
+            <button type="button" role="menuitem" className="nav-user__item" onClick={onEdit}>
+              <Pencil size={15} color="#5C5B6B" strokeWidth={1.9} />
+              Edit
+            </button>
+            <button type="button" role="menuitem" className="nav-user__item" onClick={onDuplicate}>
+              <Copy size={15} color="#5C5B6B" strokeWidth={1.9} />
+              Duplicate
+            </button>
+            <button type="button" role="menuitem" className="nav-user__item" onClick={onCancel}>
+              <Close size={15} color="#5C5B6B" strokeWidth={1.9} />
+              {experience.lifecycle === 'Cancelled' ? 'Restore' : 'Cancel'}
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              className="nav-user__item nav-user__item--danger"
+              onClick={onDelete}
+            >
+              <Trash size={15} color="#E11D48" strokeWidth={1.9} />
+              Delete
+            </button>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

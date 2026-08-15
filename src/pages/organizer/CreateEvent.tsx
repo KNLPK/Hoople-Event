@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { EventPreview } from '@/components/organizer/EventPreview';
 import { WizardStepper } from '@/components/organizer/WizardStepper';
 import { EventBenefits } from '@/components/organizer/event/Benefits';
@@ -20,6 +20,7 @@ import { useToast } from '@/components/ui/Toast';
 import { ArrowLeft, ArrowRight, Rocket } from '@/components/ui/icons';
 import { EVENT_DRAFT_SEED, eventSteps, type EventDraft } from '@/data/eventBuilder';
 import { fireConfetti } from '@/lib/motion';
+import { useExperiences } from '@/store/experiences';
 
 /** Which component owns each sub-section, keyed `step.substep`. */
 const SECTIONS: Record<string, (props: EventSectionProps) => JSX.Element> = {
@@ -51,7 +52,15 @@ export function OrgCreateEvent() {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const [draft, setDraft] = useState<EventDraft>(EVENT_DRAFT_SEED);
+  const [params] = useSearchParams();
+  const { get, saveEvent } = useExperiences();
+
+  /* `?id=` reopens a saved draft — see the activity builder for the reasoning. */
+  const editingId = params.get('id') ?? undefined;
+  const [draft, setDraft] = useState<EventDraft>(() => {
+    const stored = editingId ? get(editingId) : undefined;
+    return stored?.draft?.kind === 'event' ? stored.draft.payload : EVENT_DRAFT_SEED;
+  });
   const [step, setStep] = useState(1);
   const [substep, setSubstep] = useState(0);
 
@@ -113,11 +122,16 @@ export function OrgCreateEvent() {
   const Section = SECTIONS[key];
 
   function saveDraft() {
+    saveEvent(draft, { id: editingId, lifecycle: 'Draft' });
     toast('Draft saved \u2014 pick it up any time from Experiences \u2192 Drafts');
     navigate('/organizer/drafts');
   }
 
   function publish(event: React.MouseEvent<HTMLButtonElement>) {
+    saveEvent(draft, {
+      id: editingId,
+      lifecycle: draft.registrationStatus === 'draft' ? 'Draft' : 'Upcoming',
+    });
     fireConfetti(event.currentTarget);
     toast(
       draft.registrationStatus === 'scheduled'

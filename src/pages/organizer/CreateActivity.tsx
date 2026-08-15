@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ActivityPreview } from '@/components/organizer/ActivityPreview';
 import { WizardStepper } from '@/components/organizer/WizardStepper';
 import { StepDetails } from '@/components/organizer/StepDetails';
@@ -23,6 +23,7 @@ import { ArrowLeft, ArrowRight, Send } from '@/components/ui/icons';
 import { DRAFT_SEED, WIZARD_STEPS, type ActivityDraft } from '@/data/builder';
 import { compactDate } from '@/lib/format';
 import { fireConfetti } from '@/lib/motion';
+import { useExperiences } from '@/store/experiences';
 
 export type DraftSetter = <K extends keyof ActivityDraft>(
   key: K,
@@ -65,7 +66,19 @@ export function OrgCreateActivity() {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const [draft, setDraft] = useState<ActivityDraft>(DRAFT_SEED);
+  const [params] = useSearchParams();
+  const { get, saveActivity } = useExperiences();
+
+  /*
+   * `?id=` reopens a saved draft. Reading it once as the initial state means
+   * the form starts on the organizer's own work rather than flashing the seed
+   * and replacing it a frame later.
+   */
+  const editingId = params.get('id') ?? undefined;
+  const [draft, setDraft] = useState<ActivityDraft>(() => {
+    const stored = editingId ? get(editingId) : undefined;
+    return stored?.draft?.kind === 'activity' ? stored.draft.payload : DRAFT_SEED;
+  });
   const [step, setStep] = useState(1);
   const [substep, setSubstep] = useState(0);
 
@@ -126,6 +139,10 @@ export function OrgCreateActivity() {
   const Section = SECTIONS[key];
 
   function publish(event: React.MouseEvent<HTMLButtonElement>) {
+    saveActivity(draft, {
+      id: editingId,
+      lifecycle: draft.publishWhen === 'now' ? 'Upcoming' : 'Draft',
+    });
     fireConfetti(event.currentTarget);
     toast(
       draft.publishWhen === 'now'
@@ -148,6 +165,7 @@ export function OrgCreateActivity() {
             as="button"
             variant="outline"
             onClick={() => {
+              saveActivity(draft, { id: editingId, lifecycle: 'Draft' });
               toast('Draft saved — pick it up any time from Experiences → Drafts');
               navigate('/organizer/drafts');
             }}
