@@ -36,7 +36,7 @@ export function Navbar({ onOpenMenu }: { onOpenMenu?: () => void }) {
     <header className={`nav-shell ${scrolled ? 'is-scrolled' : ''}`.trim()}>
       <div className="container">
         <nav className="nav">
-          <Link to="/" className="nav__brand" aria-label="Hoople home">
+          <Link to="/home" className="nav__brand" aria-label="Hoople home">
             <Logo size={26} color="#12121A" />
             <span>hoople</span>
           </Link>

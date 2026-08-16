@@ -7,6 +7,7 @@ import { SessionProvider } from "@/store/session";
 import { ExperiencesProvider } from "@/store/experiences";
 import { RequireAuth } from "@/components/layout/RequireAuth";
 
+import { Entry } from "@/pages/Entry";
 import { Landing } from "@/pages/Landing";
 import { Discover } from "@/pages/Discover";
 import { Events } from "@/pages/Events";
@@ -37,6 +38,18 @@ import { OrgAnalytics } from "@/pages/organizer/Analytics";
 import { OrgPayouts, OrgTransactions } from "@/pages/organizer/Payments";
 import { OrgSettings } from "@/pages/organizer/Settings";
 
+import { TeamsLayout } from "@/components/teams/TeamsLayout";
+import { TeamsDashboard } from "@/pages/teams/Dashboard";
+import { TeamsExperiences } from "@/pages/teams/Experiences";
+import { TeamsRegistrations } from "@/pages/teams/Registrations";
+import { TeamsSessions } from "@/pages/teams/Sessions";
+import { TeamsCheckIn } from "@/pages/teams/CheckIn";
+import { TeamsAnalytics } from "@/pages/teams/Analytics";
+import { TeamsOrders } from "@/pages/teams/Orders";
+import { TeamsPayments } from "@/pages/teams/Payments";
+import { TeamsSettings } from "@/pages/teams/Settings";
+import { TeamsProfile } from "@/pages/teams/Profile";
+
 export function App() {
   return (
     <SessionProvider>
@@ -47,6 +60,33 @@ export function App() {
               <Routes>
                 {/* Authentication has its own minimal chrome — no nav, no footer. */}
                 <Route path="/auth" element={<Auth />} />
+
+                {/* The front door. Hoople is three surfaces, and which one you
+                    want is the first question — not a link in a footer. */}
+                <Route path="/" element={<Entry />} />
+
+                {/* Hoople for Teams — internal events, members only. Signed in
+                    at the door like the organizer console: there is nothing
+                    here a non-member is allowed to see. */}
+                <Route
+                  path="/teams"
+                  element={
+                    <RequireAuth>
+                      <TeamsLayout />
+                    </RequireAuth>
+                  }
+                >
+                  <Route index element={<TeamsDashboard />} />
+                  <Route path="experiences" element={<TeamsExperiences />} />
+                  <Route path="registrations" element={<TeamsRegistrations />} />
+                  <Route path="sessions" element={<TeamsSessions />} />
+                  <Route path="check-in" element={<TeamsCheckIn />} />
+                  <Route path="analytics" element={<TeamsAnalytics />} />
+                  <Route path="orders" element={<TeamsOrders />} />
+                  <Route path="payments" element={<TeamsPayments />} />
+                  <Route path="settings" element={<TeamsSettings />} />
+                  <Route path="profile" element={<TeamsProfile />} />
+                </Route>
 
                 {/* The organizer console — the other half of the platform. */}
                 <Route
@@ -93,7 +133,9 @@ export function App() {
                 </Route>
 
                 <Route element={<Layout />}>
-                  <Route index element={<Landing />} />
+                  {/* The participant site now starts at /home, since / is the
+                      chooser. Its nav and footer link here. */}
+                  <Route path="home" element={<Landing />} />
                   <Route path="discover" element={<Discover />} />
 
                   <Route path="events" element={<Events />} />
@@ -118,7 +160,7 @@ export function App() {
                   <Route path="pricing" element={<Pricing />} />
                   <Route path="help" element={<Help />} />
 
-                  <Route path="*" element={<Navigate to="/" replace />} />
+                  <Route path="*" element={<Navigate to="/home" replace />} />
                 </Route>
               </Routes>
             </ToastProvider>

@@ -14,6 +14,8 @@ import './styles/pages.css';
 import './styles/organizer.css';
 import './styles/eventbuilder.css';
 import './styles/eventpublish.css';
+import './styles/teams.css';
+import './styles/entry.css';
 import './styles/responsive.css';
 
 const container = document.getElementById('root');

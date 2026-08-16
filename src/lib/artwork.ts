@@ -750,7 +750,7 @@ const THEME_RULES: [RegExp, Theme][] = [
   [/yoga|namaste|hatha|pilates|meditat|wellness|flow-with-me/, 'yoga'],
   [/latte|coffee|kopi|cafe|barista|espresso|brew/, 'coffee'],
   [/dance|kpop|k-pop|choreo|move-studio|ballet/, 'dance'],
-  [/gym|strength|hyrox|fitness|strive|workout|training-floor/, 'gym'],
+  [/gym|strength|hyrox|fitness|strive|workout|padel|futsal|court|badminton|tennis/, 'gym'],
   [/\brun\b|running|marathon|jog|sprint/, 'running'],
   [/language|conversation|english|lingua|debate/, 'language'],
   [/supper|dinner|banquet|feast/, 'supper'],
@@ -1023,6 +1023,7 @@ const ID_INITIALS: Record<string, string> = {
   'org-workspace-logo': 'WL',
   'event-logo': 'WL',
   'event-host-logo': 'WL',
+  'tm-org-logo': 'SN',
 };
 
 function initialsFor(id: string, placeholder: string): string {

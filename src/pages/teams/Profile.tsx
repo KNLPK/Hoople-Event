@@ -1,0 +1,192 @@
+import { useOutletContext } from 'react-router-dom';
+import { Button } from '@/components/ui/Button';
+import { ImageSlot } from '@/components/ui/ImageSlot';
+import { Reveal } from '@/components/ui/Reveal';
+import { useToast } from '@/components/ui/Toast';
+import { Calendar, Check, Lock, Mail, MapPin, Phone, Users } from '@/components/ui/icons';
+import { statusTone } from '@/components/teams/EventContext';
+import { DEPARTMENTS, ORGANIZATION, ORG_ADMIN, TEAM_EVENTS, type TeamEvent } from '@/data/teams';
+import { compactDate } from '@/lib/format';
+
+/**
+ * What a member sees when they open an invite: who is running this, and what
+ * else the organization has on. It is the closest thing this console has to a
+ * public page -- except it is not public, only visible inside the directory.
+ */
+export function TeamsProfile() {
+  const event = useOutletContext<TeamEvent>();
+  const toast = useToast();
+
+  const upcoming = TEAM_EVENTS.filter((item) => item.status === 'Published' || item.status === 'Ongoing').slice(0, 4);
+
+  return (
+    <div className="tm-cols">
+      <div className="stack" style={{ gap: 18 }}>
+        <Reveal className="org-card">
+          <div className="tm-profile__cover">
+            <ImageSlot id="tm-profile-hero" shape="rect" placeholder="Company town hall on stage" />
+          </div>
+          <div className="tm-profile__head">
+            <span className="tm-profile__logo">
+              <ImageSlot id="tm-org-logo" shape="rounded" radius={18} placeholder="Logo" />
+            </span>
+            <div className="tm-profile__id">
+              <h2>{ORGANIZATION.name}</h2>
+              <p className="tm-muted">
+                {ORGANIZATION.legalName} · {ORGANIZATION.city}
+              </p>
+              <span className="tm-private" style={{ marginTop: 8 }}>
+                <Lock size={12} color="#5B21F5" strokeWidth={2} />
+                Visible to {ORGANIZATION.members} members only
+              </span>
+            </div>
+            <Button as="button" variant="outline" size="sm" onClick={() => toast('Preview opens the member view')}>
+              Preview as a member
+            </Button>
+          </div>
+        </Reveal>
+
+        <Reveal className="org-card" delay={60}>
+          <div className="org-card__head">
+            <h2 className="org-card__title">About</h2>
+          </div>
+          <div className="org-card__body org-form">
+            <label className="field field--full">
+              <span className="field__label">What your members see</span>
+              <textarea
+                className="input textarea"
+                rows={4}
+                defaultValue={`People Ops runs the company calendar at ${ORGANIZATION.name}: the kick-off, quarterly town halls, onboarding for every new batch, and the standing Friday padel booking. Everything here is for colleagues only.`}
+              />
+            </label>
+            <label className="field">
+              <span className="field__label">Contact email</span>
+              <input className="input" defaultValue={ORG_ADMIN.email} />
+            </label>
+            <label className="field">
+              <span className="field__label">Contact number</span>
+              <input className="input" defaultValue={ORG_ADMIN.phone} />
+            </label>
+          </div>
+          <div className="org-card__foot">
+            <Button as="button" variant="primary" onClick={() => toast('Profile saved')}>
+              <Check size={16} strokeWidth={2.2} />
+              Save profile
+            </Button>
+          </div>
+        </Reveal>
+
+        <Reveal className="org-card" delay={120}>
+          <div className="org-card__head">
+            <h2 className="org-card__title">What is on</h2>
+            <span className="tm-muted">As members see it</span>
+          </div>
+          <div className="tm-sesslist">
+            {upcoming.map((item) => (
+              <div key={item.id} className="tm-sessrow">
+                <span className="tm-sessrow__thumb">
+                  <ImageSlot
+                    id={`tm-cover-${item.id}`}
+                    shape="rounded"
+                    radius={10}
+                    placeholder={item.photoHint}
+                    interactive={false}
+                  />
+                </span>
+                <span className="tm-sessrow__body">
+                  <span className="tm-sessrow__title">
+                    {item.title}
+                    {item.id === event.id ? <em className="tm-openflag">Open in console</em> : null}
+                  </span>
+                  <span className="tm-ctx__meta">
+                    <span>
+                      <Calendar size={14} color="#6B6A7B" strokeWidth={1.9} />
+                      {item.dateLabel}
+                    </span>
+                    <span>
+                      <MapPin size={14} color="#6B6A7B" strokeWidth={1.9} />
+                      {item.venue}
+                    </span>
+                  </span>
+                </span>
+                <span className={`org-pill org-pill--${statusTone(item.status)}`}>{item.status}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+
+      <aside className="stack tm-rail" style={{ gap: 18 }}>
+        <Reveal className="org-card">
+          <div className="org-card__head">
+            <h2 className="org-card__title">Owner</h2>
+          </div>
+          <div className="org-card__body">
+            <div className="tm-person" style={{ marginBottom: 12 }}>
+              <span className="tm-person__avatar tm-person__avatar--lg">
+                <ImageSlot id="tm-admin-avatar" shape="circle" placeholder="" interactive={false} />
+              </span>
+              <span>
+                <span className="org-table__title">{ORG_ADMIN.name}</span>
+                <span className="org-table__sub">{ORG_ADMIN.role}</span>
+              </span>
+            </div>
+            <div className="tm-aside__line">
+              <Mail size={13} color="#8B8A99" strokeWidth={1.9} />
+              {ORG_ADMIN.email}
+            </div>
+            <div className="tm-aside__line">
+              <Phone size={13} color="#8B8A99" strokeWidth={1.9} />
+              {ORG_ADMIN.phone}
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal className="org-card" delay={60}>
+          <div className="org-card__head">
+            <h2 className="org-card__title">Directory</h2>
+            <span className="tm-muted">{ORGANIZATION.members} members</span>
+          </div>
+          <div className="org-card__body">
+            {DEPARTMENTS.map((department) => (
+              <div key={department.name} className="tm-arow">
+                <span>
+                  <Users size={14} color="#8B8A99" strokeWidth={1.9} /> {department.name}
+                </span>
+                <strong>{department.headcount}</strong>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal className="org-card" delay={120}>
+          <div className="org-card__head">
+            <h2 className="org-card__title">Workspace</h2>
+          </div>
+          <div className="org-card__body">
+            <div className="tm-arow">
+              <span>Plan</span>
+              <strong>{ORGANIZATION.plan}</strong>
+            </div>
+            <div className="tm-arow">
+              <span>Handle</span>
+              <strong>hoople.id/w/{ORGANIZATION.handle}</strong>
+            </div>
+            <div className="tm-arow">
+              <span>Sign-in domain</span>
+              <strong>@{ORGANIZATION.domain}</strong>
+            </div>
+            <div className="tm-arow">
+              <span>Events run</span>
+              <strong>{TEAM_EVENTS.length}</strong>
+            </div>
+            <div className="tm-arow">
+              <span>Since</span>
+              <strong>{compactDate('2025-02-03')}</strong>
+            </div>
+          </div>
+        </Reveal>
+      </aside>
+    </div>
+  );
+}

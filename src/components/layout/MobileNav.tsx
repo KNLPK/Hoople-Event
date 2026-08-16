@@ -108,7 +108,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
 
       <div className="drawer__panel">
         <div className="drawer__head">
-          <Link to="/" className="nav__brand" onClick={onClose}>
+          <Link to="/home" className="nav__brand" onClick={onClose}>
             <Logo size={24} color="#12121A" />
             <span>hoople</span>
           </Link>

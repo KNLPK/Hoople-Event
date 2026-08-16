@@ -62,7 +62,7 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer__grid">
         <div>
-          <Link to="/" className="footer__brand" aria-label="Hoople home">
+          <Link to="/home" className="footer__brand" aria-label="Hoople home">
             <Logo size={24} color="#5B21F5" />
             <span>hoople</span>
           </Link>
@@ -120,19 +120,23 @@ export function Footer() {
           </div>
         </div>
       </div>
+      {/* Surfaces are chosen at the front door rather than swapped from down
+          here — the footer is the worst place to find out a whole other site
+          exists. This points back to that choice instead of jumping straight in. */}
       <div className="container">
-        <Link to="/organizer" className="footer__console">
+        <Link to="/" className="footer__console">
           <span className="footer__console-icon">
             <Chart size={20} color="#6D28FF" strokeWidth={1.8} />
           </span>
           <span className="footer__console-text">
-            <strong>Organizer Console</strong>
+            <strong>Hosting instead of joining?</strong>
             <span>
-              Hosting instead of joining? Manage your experiences, registrations, check-in and payouts.
+              Hoople also runs public experiences for communities, and private ones inside companies. Pick a side at
+              the front door.
             </span>
           </span>
           <span className="footer__console-cta">
-            Open console
+            See all three
             <ArrowRight size={15} strokeWidth={2} />
           </span>
         </Link>

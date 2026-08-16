@@ -78,7 +78,7 @@ export function Auth() {
   return (
     <div className="auth-page">
       <div className="auth-topbar">
-        <Link to="/" className="nav__brand" aria-label="Hoople home">
+        <Link to="/home" className="nav__brand" aria-label="Hoople home">
           <Logo size={26} color="#6D28FF" />
           <span>hoople</span>
         </Link>

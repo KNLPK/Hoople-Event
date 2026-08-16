@@ -10,12 +10,19 @@ boundaries](#prototype-boundaries).
 
 **Live:** https://hoople-event.vercel.app/
 
-Hoople is two products against one platform, and both are served from that one
-link:
+Hoople is **three surfaces against one platform**, all served from that one
+link. Opening it lands on a chooser rather than any one of them:
 
-- **Participant site** (`/`) — discover and book experiences.
-- **Organizer console** (`/organizer`) — run them. Reachable from the
-  **Organizer Console** card at the bottom of every footer.
+- **Hoople** (`/home`) — the participant site. Discover and book experiences.
+- **Hoople for Organizers** (`/organizer`) — communities and studios selling to
+  the public: listings, ticket sales, the door, payouts.
+- **Hoople for Teams** (`/teams`) — a company running events for its own staff:
+  the kick-off, the town hall, onboarding, Friday padel. Members only, never
+  published.
+
+They share a design system and nothing else — different navigation, different
+data, different rules about who may see what. Which one you want is the first
+question the product asks, at `/`; it is not a link buried in a footer.
 
 ## Running it
 
@@ -50,7 +57,8 @@ real page — there are no `href="#"` dead ends.
 
 | Path | Page |
 | --- | --- |
-| `/` | Landing |
+| `/` | The front door — choose participant, organizer or teams |
+| `/home` | Landing |
 | `/discover` | Discover — search, filters, stacked recommendation rails |
 | `/events`, `/events/:slug` | Events index and event detail |
 | `/activities`, `/activities/:slug` | Activities index and activity detail |
@@ -78,6 +86,25 @@ real page — there are no `href="#"` dead ends.
 | `/organizer/payments`, `/organizer/payments/transactions` | Payouts (H+1, net of fees) and the payments behind them |
 | `/organizer/settings` | Workspace, payouts and fee handling, plan |
 
+### Hoople for Teams
+
+The internal-events console works **one event at a time**. The open event is
+held in `?e=<id>`, so every link in the rail carries it and a reload or a shared
+link lands where you left off. `/teams/experiences` is where you switch.
+
+| Path | Page |
+| --- | --- |
+| `/teams` | Experience Dashboard — the open event's cover, four KPIs, quick actions, member link, status, trend, sessions, activity |
+| `/teams/experiences` | Every internal event, filterable by status; click one to open it in the console |
+| `/teams/registrations` | Members who registered, with a detail drawer: pass, payment, attendance timeline, QR |
+| `/teams/sessions` | The running order, fill per session, and a panel for the selected one |
+| `/teams/check-in` | Live scanner, check-in curve, recent check-ins, attendance by session |
+| `/teams/analytics` | Invite funnel, passes taken, internal channels, response by department, event score |
+| `/teams/orders` | Contributions collected, with an order drawer and fee breakdown |
+| `/teams/payments` | Collections, fees, settlement, payout progress |
+| `/teams/settings` | Who counts as a member, departments, collections |
+| `/teams/profile` | How the organization appears to its own members |
+
 `/booking` accepts `?activity=<slug>&session=<id>&date=<iso>` for an activity
 session, or `?event=<slug>` for a one-time event.
 
@@ -87,16 +114,19 @@ session, or `?event=<slug>` for a one-time event.
 src/
   components/
     layout/    Navbar, MobileNav, BookBar, Footer, Layout, DarkHero
+    teams/     TeamsLayout, TeamsSidebar, TeamsTopbar, EventContext, charts
     ui/        Button, Modal, ImageSlot, Rail, FilterBar, FilterPanel, …
     cards/     ActivityCard, SessionCard, RecurringRow, EventCard, MiniCard
     organizer/ OrgLayout, OrgSidebar, OrgTopbar, Step* (activity builder)
                event/     (event builder sections)
-  data/        Catalogue, schedule maths, pricing, organizer data, domain types
+  data/        Catalogue, schedule maths, pricing, organizer data, internal
+               events (teams.ts), domain types
   lib/         format.ts (Rupiah + dates), motion.ts (reveal, ripple, confetti)
   pages/       One file per route
   store/       bookings.tsx — the booking ledger
   styles/      tokens → base → motion → components → layout → cards → … →
-               organizer → eventbuilder → eventpublish → responsive
+               organizer → eventbuilder → eventpublish → teams → entry →
+               responsive
 ```
 
 ### Sessions are derived, not hard-coded
@@ -118,7 +148,7 @@ survives a reload.
 
 ### Who has to sign in, and when
 
-The two halves gate differently, on purpose:
+The three surfaces gate differently, on purpose:
 
 - **Participant site** — browsing, searching and filling the checkout form need
   no account. The gate is at **payment**: `Continue to Payment` parks the form
@@ -128,6 +158,37 @@ The two halves gate differently, on purpose:
 - **Organizer console** — gated at the door by `<RequireAuth>`. `/organizer`
   redirects to `/auth` carrying `next`, so signing in lands on the page that
   was asked for.
+- **Hoople for Teams** — gated at the door too, and for a stronger reason:
+  there is nothing in an internal workspace a non-member is allowed to see.
+
+### What "internal" changes
+
+Hoople for Teams is not the organizer console with a different logo. Being
+members-only pushes through most of the screens:
+
+- **No public page.** An event has a member link
+  (`hoople.id/w/<org>/e/<slug>`) that asks for an `@company` sign-in. There is
+  no listing, no search, no share-to-Instagram. Visibility tops out at "the
+  whole company"; there is no Public.
+- **The audience is a directory, not a market.** You invite departments out of
+  a known roll of 486 people, so the funnel counts people — invited, opened,
+  started, registered — instead of page views and conversion. "Where they came
+  from" means email, Slack, intranet or a manager nomination.
+- **Money is a whip-round, not a sale.** An internal event is company-paid,
+  free, or cost-shared (the padel court fee, split). Passes exist, but they are
+  a Full Pass, a Day Pass, a Guest +1 and a free Online Pass, and Hoople takes
+  **0%** — the Organization plan is a subscription. Charging a percentage of
+  colleagues chipping in for a court would be hard to explain to the people
+  chipping in. Only the payment gateway bills per transaction.
+- **Attendance is the deliverable.** A hybrid internal event has two doors, so
+  check-in splits into scans at the lobby and joins on the livestream, and both
+  count as present. A pass is tied to an employee ID, so it cannot be handed to
+  someone outside the company — that is what the scanner's "not on the list"
+  rejections are.
+
+The mockups this was built from showed a public page, a 15% admin fee and
+ticket sales; those three are the parts that contradict "members only, not
+published", and they are what changed.
 
 ### Signed-out vs signed-in
 
