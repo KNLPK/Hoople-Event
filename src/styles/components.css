@@ -837,6 +837,37 @@
   object-fit: cover;
   display: block;
 }
+/* A filled slot still takes a drop — this keeps the upload affordance visible
+   now that no slot is ever blank. */
+.image-slot__swap {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  background: rgba(12, 11, 18, 0.72);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  pointer-events: none;
+}
+.image-slot:hover .image-slot__swap,
+.image-slot:focus-visible .image-slot__swap,
+.image-slot.is-over .image-slot__swap {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* No room for the chip on a small slot — an avatar, a logo tile. */
+.image-slot--circle .image-slot__swap,
+.image-slot--pill .image-slot__swap {
+  display: none;
+}
 .image-slot--circle {
   border-radius: 50%;
 }

@@ -327,10 +327,30 @@ Verified by driving a real phone-sized Chromium: 26 routes at 360, 390, 768,
 
 ## Images
 
-Every photo, illustration and QR code renders through `<ImageSlot>` — a
-placeholder you fill by dragging an image file onto it (or clicking to browse).
-Filled slots persist under their `id` in `localStorage`, so real assets can be
-dropped in for a demo without touching layout. No photo is faked with SVG.
+Every photo, illustration and QR code renders through `<ImageSlot>`. Drag an
+image file onto a slot (or click to browse) and it fills, persisting under its
+`id` in `localStorage`, so real assets go in without touching layout.
+
+Until then no slot is empty. `src/lib/artwork.ts` draws each one from its own
+id: a flat-vector scene in a palette chosen for the subject, generated as an
+SVG data URI. Nothing is fetched, so the art works offline, costs no requests
+and cannot 404.
+
+- **Scenes** — 22 motifs (pottery, yoga, coffee, dance, gym, running, language,
+  cooking, supper, painting, tufting, candle, music, talk, market, workshop,
+  flower, craft, campus, photography, sunrise, community), chosen by keyword
+  from the slot's id and hint. They share one figure vocabulary, so a wall of
+  cards reads as one set rather than twenty unrelated drawings.
+- **Heroes** get a wider composition. A hero band is ~2.5:1 against a card's
+  1.6:1, and `cover` closes that gap by scaling up — at card size the figures
+  came out three times too big. The wide canvas draws the motif at its intended
+  size in the middle and dissolves its edges into open sky.
+- **Portraits, QR codes, map tiles, logos and mascots** each have their own
+  generator.
+
+The art is deterministic: the same id always yields the same picture. That is
+what keeps a builder's cover field and its preview panel showing the same thing
+without either of them storing it — they share one slot id.
 
 ## Motion
 
@@ -351,11 +371,14 @@ All of it collapses under `prefers-reduced-motion: reduce`.
   No gateway is contacted and no money moves.
 - **No backend.** The catalogue is static; bookings live in `localStorage`.
   Newsletter, support and organizer forms confirm in the UI and send nothing.
-- **Neither builder writes to the catalogue.** Its draft lives in
-  component state for the session. "Save as Draft" and "Publish Activity" both
-  confirm and return you to the experience list without adding a row to
-  `ORG_EXPERIENCES` — the catalogue is static. Gallery videos are held as object
-  URLs, so they play for this page load only.
+- **Both builders write, but only locally.** Saving or publishing adds a real
+  row to the console's ledger in `localStorage` (see "The console's data is
+  writable"), and drafts reopen where you left them. Nothing leaves the
+  browser, and another device sees none of it. Gallery videos are held as
+  object URLs, so they play for this page load only.
+- **The QR codes are pictures of QR codes.** They have the right anatomy —
+  quiet zone, three finders, timing tracks — but the payload is noise, so no
+  scanner will read one. Anything that must actually scan needs a real encoder.
 
 ## Design system
 

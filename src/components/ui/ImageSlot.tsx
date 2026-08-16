@@ -1,4 +1,5 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { artworkFor } from '@/lib/artwork';
 
 /**
  * A drop-in image placeholder.
@@ -6,6 +7,11 @@ import { useEffect, useId, useRef, useState } from 'react';
  * Every photo in the app renders through this so real assets can be added
  * later without touching layout: drag an image file onto a slot (or click to
  * browse) and it fills, persisting under its `id` so it survives a reload.
+ *
+ * Until then the slot is not empty — it shows artwork generated from its own
+ * id (see `@/lib/artwork`), so the prototype reads as a finished product. A
+ * dropped file always wins; pass `art={false}` for a slot that should stay
+ * bare.
  */
 
 const STORAGE_KEY = 'hoople.image-slots';
@@ -52,6 +58,8 @@ export interface ImageSlotProps {
    * Drag-and-drop still fills it; click-to-browse does not.
    */
   interactive?: boolean;
+  /** `false` leaves the slot empty instead of filling it with generated art. */
+  art?: boolean;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -65,6 +73,7 @@ export function ImageSlot({
   src,
   onChange,
   interactive = true,
+  art = true,
   className = '',
   style,
 }: ImageSlotProps) {
@@ -105,8 +114,20 @@ export function ImageSlot({
     shape === 'circle' ? 'image-slot--circle' : shape === 'pill' ? 'image-slot--pill' : '';
   const borderRadius = shape === 'rounded' ? radius : shape === 'rect' ? 0 : undefined;
 
-  const contents = image ? (
-    <img src={image} alt={placeholder} />
+  /* Keyed on the id, so two slots sharing one — a builder field and its
+     preview — land on the same picture without either of them storing it. */
+  const generated = useMemo(() => (art ? artworkFor(id, placeholder) : undefined), [art, id, placeholder]);
+  const shown = image ?? generated;
+
+  const contents = shown ? (
+    <>
+      <img src={shown} alt={placeholder} />
+      {interactive ? (
+        <span className="image-slot__swap" aria-hidden="true">
+          Replace
+        </span>
+      ) : null}
+    </>
   ) : placeholder === '' ? null : (
     <span className="image-slot__label" aria-hidden="true">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
@@ -120,7 +141,7 @@ export function ImageSlot({
   );
 
   const shared = {
-    className: ['image-slot', shapeClass, image ? 'is-filled' : '', isOver ? 'is-over' : '', className]
+    className: ['image-slot', shapeClass, shown ? 'is-filled' : '', isOver ? 'is-over' : '', className]
       .filter(Boolean)
       .join(' '),
     style: { borderRadius, ...style },
@@ -150,7 +171,7 @@ export function ImageSlot({
         type="button"
         {...shared}
         onClick={() => inputRef.current?.click()}
-        aria-label={image ? placeholder : `${placeholder} — click or drop an image to fill`}
+        aria-label={shown ? `${placeholder || 'Image'} — click or drop an image to replace` : `${placeholder} — click or drop an image to fill`}
       >
         {contents}
       </button>
