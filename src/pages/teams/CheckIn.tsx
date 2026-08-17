@@ -6,7 +6,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import { useToast } from '@/components/ui/Toast';
 import { Bulb, CheckCircle, Download, Gear, Monitor, ShieldCheck, Users } from '@/components/ui/icons';
 import { EventContext } from '@/components/teams/EventContext';
-import { Meter, TrendLine } from '@/components/teams/charts';
+import { Meter, TrendChart } from '@/components/ui/charts';
 import {
   CHECKIN_CURVE,
   REGISTRATIONS,
@@ -92,7 +92,11 @@ export function TeamsCheckIn() {
                 <span className="tm-muted">Today</span>
               </div>
               <div className="org-card__body">
-                <TrendLine points={CHECKIN_CURVE.map((point) => ({ label: point.hour, value: point.count }))} />
+                <TrendChart
+                  seriesLabel="Checked in"
+                  tone="green"
+                  points={CHECKIN_CURVE.map((point) => ({ label: point.hour, value: point.count }))}
+                />
               </div>
             </Reveal>
 
@@ -140,7 +144,7 @@ export function TeamsCheckIn() {
                 <tbody>
                   {sessions.map((session) => (
                     <tr key={session.id}>
-                      <td>
+                      <td className="tm-cell-main">
                         <span className="org-table__title">{session.title}</span>
                         <span className="org-table__sub">{session.room}</span>
                       </td>

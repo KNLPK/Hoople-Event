@@ -865,14 +865,21 @@ function scene(theme: Theme, seed: number): string {
 
 /* ---------- people ---------- */
 
-const SKIN = ['#f3d3ba', '#e8bd97', '#cf9f76', '#a9714a', '#7d4d2e', '#5c3520'];
-const HAIR = ['#2b1c14', '#16121f', '#4a2c1a', '#6b3f22', '#1f2a3d', '#5b2b52'];
+const SKIN = ['#f6d9c2', '#eac09b', '#d3a37a', '#b17c52', '#8a5735', '#633c22'];
+const HAIR = ['#2b1c14', '#16121f', '#4a2c1a', '#6b3f22', '#1f2a3d', '#5b2b52', '#8a7060', '#3d3a44'];
 const SHIRT = ['#6d28ff', '#16a34a', '#ea8c00', '#2c7d84', '#e2547f', '#38507e', '#8d6ae8'];
 const BACKDROP = ['#efe9ff', '#e2f2e7', '#fff0dc', '#dcf0f2', '#ffe9f0', '#e6eeff'];
 
 /**
  * A portrait for the slots that hold a face -- hosts, reviewers, attendees.
- * Features are simple on purpose: these render at 32px as often as at 120px.
+ *
+ * Layered back to front: hair mass, shoulders, head, then a fringe that only
+ * ever touches the top of the head. An earlier version drew the whole hair
+ * shape over the head, which turned half the styles into a featureless dark
+ * oval and hid the eyes on anyone with dark hair.
+ *
+ * The face is deliberately simple. These render at 32px in a table row as
+ * often as at 120px on a profile, and detail that survives one loses the other.
  */
 function avatar(seed: number): string {
   const r = rng(seed);
@@ -880,35 +887,53 @@ function avatar(seed: number): string {
   const hair = pick(r, HAIR);
   const shirt = pick(r, SHIRT);
   const back = pick(r, BACKDROP);
-  const style = Math.floor(r() * 4);
+  const style = Math.floor(r() * 5);
+  /* A darker shade of the shirt, for the collar. */
+  const smile = 0.7 + r() * 0.6;
 
-  const hairArt =
+  /* Behind the head: the mass of hair, or a scarf. */
+  const behind =
     style === 0
-      ? // bun
-        `<circle cx="120" cy="52" r="20" fill="${hair}"/>` +
-        `<path d="M74 112 q0 -46 46 -46 q46 0 46 46 q0 -70 -46 -70 q-46 0 -46 70 Z" fill="${hair}"/>`
+      ? `<circle cx="120" cy="54" r="21" fill="${hair}"/>`
+      : style === 2
+        ? `<path d="M62 118 q0 -62 58 -62 q58 0 58 62 l4 92 q-62 16 -124 0 Z" fill="${hair}"/>`
+        : style === 4
+          ? `<path d="M60 120 q0 -64 60 -64 q60 0 60 64 q0 40 -14 62 q-8 -46 -16 -60 q-14 12 -30 12 q-16 0 -30 -12 q-8 14 -16 60 q-14 -22 -14 -62 Z" fill="${hair}"/>`
+          : '';
+
+  /* In front of the head: only ever a fringe across the top. */
+  const fringe =
+    style === 3
+      ? // headscarf — one shape with the face punched out of it
+        `<path fill-rule="evenodd" fill="${hair}" d="M58 126 q0 -70 62 -70 q62 0 62 70 l5 74 q-67 18 -134 0 Z ` +
+        `M120 68 a41 47 0 1 0 0.1 0 Z"/>`
       : style === 1
-        ? // short crop
-          `<path d="M72 112 q0 -52 48 -52 q48 0 48 52 q-10 -22 -48 -22 q-38 0 -48 22 Z" fill="${hair}"/>`
-        : style === 2
-          ? // long
-            `<path d="M68 116 q0 -58 52 -58 q52 0 52 58 l0 74 q-16 -22 -18 -60 q-12 16 -34 16 q-22 0 -34 -16 q-2 38 -18 60 Z" fill="${hair}"/>`
-          : // headscarf
-            `<path d="M66 118 q0 -60 54 -60 q54 0 54 60 l6 78 q-60 16 -120 0 Z" fill="${hair}"/>` +
-            `<path d="M84 100 q10 -24 36 -24 q26 0 36 24 q-16 -8 -36 -8 q-20 0 -36 8 Z" fill="${skin}" opacity="0.25"/>`;
+        ? `<path d="M70 112 q2 -52 50 -52 q48 0 50 52 q-12 -28 -50 -28 q-38 0 -50 28 Z" fill="${hair}"/>`
+        : style === 4
+          ? `<path d="M70 110 q4 -50 50 -50 q46 0 50 50 q-14 -26 -50 -26 q-36 0 -50 26 Z" fill="${hair}"/>`
+          : // bun and long share a swept fringe
+            `<path d="M70 110 q4 -50 50 -50 q46 0 50 50 q-6 -30 -34 -30 q-30 0 -66 30 Z" fill="${hair}"/>`;
 
   const body =
     `<rect width="240" height="240" fill="${back}"/>` +
     `<circle cx="120" cy="128" r="104" fill="#ffffff" opacity="0.45"/>` +
-    // shoulders
-    `<path d="M28 240 q0 -74 92 -74 q92 0 92 74 Z" fill="${shirt}"/>` +
-    `<path d="M104 172 h32 v-24 h-32 Z" fill="${skin}"/>` +
+    // neck, then shoulders over it
+    `<path d="M104 176 h32 v-30 h-32 Z" fill="${skin}"/>` +
+    `<path d="M26 240 q0 -76 94 -76 q94 0 94 76 Z" fill="${shirt}"/>` +
+    `<path d="M104 164 q16 14 32 0 l6 8 q-22 18 -44 0 Z" fill="#ffffff" opacity="0.18"/>` +
+    behind +
     // head
     `<circle cx="120" cy="116" r="50" fill="${skin}"/>` +
-    hairArt +
-    // face
-    `<g fill="#2b2333"><circle cx="103" cy="116" r="4.6"/><circle cx="137" cy="116" r="4.6"/></g>` +
-    `<path d="M108 136 q12 11 24 0" stroke="#2b2333" stroke-width="4" stroke-linecap="round" fill="none"/>`;
+    // a little warmth on the cheeks, under the features
+    `<g fill="#e0715f" opacity="0.16"><circle cx="90" cy="132" r="11"/><circle cx="150" cy="132" r="11"/></g>` +
+    fringe +
+    // face: brows, eyes, mouth
+    `<g stroke="#2b2333" stroke-width="3.4" stroke-linecap="round" fill="none" opacity="0.75">` +
+    `<path d="M94 104 q9 -5 18 -1"/><path d="M146 104 q-9 -5 -18 -1"/></g>` +
+    `<g fill="#2b2333"><ellipse cx="103" cy="118" rx="5" ry="5.4"/><ellipse cx="137" cy="118" rx="5" ry="5.4"/></g>` +
+    `<g fill="#ffffff"><circle cx="104.6" cy="116.2" r="1.7"/><circle cx="138.6" cy="116.2" r="1.7"/></g>` +
+    `<path d="M107 139 q13 ${(9 * smile).toFixed(1)} 26 0" stroke="#2b2333" stroke-width="4" ` +
+    `stroke-linecap="round" fill="none"/>`;
   return svg(240, 240, body);
 }
 

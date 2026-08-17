@@ -41,6 +41,7 @@ import { useBookings } from '@/store/bookings';
 import { fireConfetti } from '@/lib/motion';
 import { idr, longDate, timeRange } from '@/lib/format';
 import type { Booking as BookingRecord, Participant } from '@/data/types';
+import { copyText } from '@/lib/clipboard';
 
 type Step = 1 | 2 | 3;
 type PayScreen = 'methods' | 'pay';
@@ -804,7 +805,7 @@ export function Booking() {
                 type="button"
                 className="action-tile"
                 onClick={() => {
-                  void navigator.clipboard?.writeText(window.location.origin + subject.detailPath);
+                  void copyText(window.location.origin + subject.detailPath);
                   toast('Share link copied to your clipboard');
                 }}
               >
@@ -949,7 +950,7 @@ export function Booking() {
               type="button"
               style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13.5, fontWeight: 500, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
               onClick={() => {
-                void navigator.clipboard?.writeText('HOOP-PENDING');
+                void copyText('HOOP-PENDING');
                 toast('Order ID copied');
               }}
             >

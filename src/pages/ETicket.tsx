@@ -27,6 +27,7 @@ import {
 import { ACTIVITIES, getActivity } from '@/data/activities';
 import { useBookings } from '@/store/bookings';
 import { compactDate, longDate, timeRange } from '@/lib/format';
+import { copyText } from '@/lib/clipboard';
 
 /** Full e-ticket, reached from My Bookings → View E-Ticket. */
 export function ETicket() {
@@ -65,7 +66,7 @@ export function ETicket() {
               fontFamily: 'inherit',
             }}
             onClick={() => {
-              void navigator.clipboard?.writeText(booking.orderId);
+              void copyText(booking.orderId);
               toast('Booking ID copied');
             }}
           >
@@ -323,7 +324,7 @@ export function ETicket() {
               type="button"
               className="ticket-action"
               onClick={() => {
-                void navigator.clipboard?.writeText(window.location.href);
+                void copyText(window.location.href);
                 toast('Ticket link copied to your clipboard');
               }}
             >

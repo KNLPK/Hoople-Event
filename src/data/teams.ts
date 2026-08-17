@@ -628,6 +628,64 @@ export function funnel(event: TeamEvent): FunnelStep[] {
   ];
 }
 
+/**
+ * How the registrations split across departments.
+ *
+ * Derived rather than stored, and apportioned by largest remainder, so the
+ * rows always add up to exactly the event's registration count no matter how
+ * the weights are tuned. Hard-coded percentages drifted out of step with the
+ * total the moment either changed.
+ */
+const RESPONSE_WEIGHT: Record<string, number> = {
+  Engineering: 1.15,
+  'Product & Design': 1.3,
+  'Sales & Growth': 0.8,
+  Operations: 0.9,
+  'People Ops': 1.5,
+  'Finance & Legal': 1,
+};
+
+export interface DepartmentResponse {
+  name: string;
+  headcount: number;
+  registered: number;
+  /** Percent of that department's headcount. */
+  share: number;
+}
+
+export function departmentResponse(event: TeamEvent): DepartmentResponse[] {
+  const invited = DEPARTMENTS.filter(
+    (department) => event.audience.includes('All members') || event.audience.includes(department.name),
+  );
+  const weights = invited.map((d) => d.headcount * (RESPONSE_WEIGHT[d.name] ?? 1));
+  const total = weights.reduce((sum, weight) => sum + weight, 0) || 1;
+
+  const exact = weights.map((weight) => (weight / total) * event.registered);
+  const floors = exact.map(Math.floor);
+  let left = event.registered - floors.reduce((sum, n) => sum + n, 0);
+
+  /* Hand the leftover seats to the biggest remainders first. */
+  const order = exact
+    .map((value, index) => ({ index, remainder: value - Math.floor(value) }))
+    .sort((a, b) => b.remainder - a.remainder);
+  const counts = [...floors];
+  for (const { index } of order) {
+    if (left <= 0) break;
+    counts[index] += 1;
+    left -= 1;
+  }
+
+  return invited.map((department, index) => {
+    const registered = Math.min(counts[index], department.headcount);
+    return {
+      name: department.name,
+      headcount: department.headcount,
+      registered,
+      share: Math.round((registered / department.headcount) * 100),
+    };
+  });
+}
+
 export const REGISTRATION_SOURCES = [
   { source: 'Email invite', share: 41 },
   { source: 'Slack broadcast', share: 27 },
@@ -643,15 +701,20 @@ export const DEVICE_SPLIT = [
   { label: 'Other', share: 4, tone: '#B4B2C0' },
 ];
 
-/** Registrations per day over the week before the event. */
+/**
+ * Registrations per day over the week before the event, and the contributions
+ * that came with them. `count` sums to the event's 168 registrations and
+ * `contributed` to its IDR 44.300.000 — a trend that does not add up to the
+ * total it is a trend of is worse than no trend.
+ */
 export const REGISTRATION_TREND = [
-  { day: '13 Jul', count: 18, previous: 12 },
-  { day: '14 Jul', count: 27, previous: 16 },
-  { day: '15 Jul', count: 44, previous: 22 },
-  { day: '16 Jul', count: 61, previous: 28 },
-  { day: '17 Jul', count: 82, previous: 34 },
-  { day: '18 Jul', count: 63, previous: 30 },
-  { day: '19 Jul', count: 47, previous: 25 },
+  { day: '13 Jul', count: 9, previous: 6, contributed: 2_375_000 },
+  { day: '14 Jul', count: 14, previous: 8, contributed: 3_690_000 },
+  { day: '15 Jul', count: 22, previous: 11, contributed: 5_800_000 },
+  { day: '16 Jul', count: 31, previous: 14, contributed: 8_175_000 },
+  { day: '17 Jul', count: 41, previous: 18, contributed: 10_810_000 },
+  { day: '18 Jul', count: 32, previous: 15, contributed: 8_440_000 },
+  { day: '19 Jul', count: 19, previous: 12, contributed: 5_010_000 },
 ];
 
 /** Check-ins per hour on the morning of day one. */

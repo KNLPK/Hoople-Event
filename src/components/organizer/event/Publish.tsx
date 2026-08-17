@@ -22,6 +22,7 @@ import {
   type RegistrationStatus,
 } from '@/data/eventBuilder';
 import { compactDate } from '@/lib/format';
+import { copyText } from '@/lib/clipboard';
 
 const VISIBILITY_ICON: Record<EventVisibility, React.ReactNode> = {
   Public: <Globe size={17} color="#6D28FF" strokeWidth={1.8} />,
@@ -226,7 +227,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
                   type="button"
                   className="wiz-addsession"
                   onClick={() => {
-                    navigator.clipboard?.writeText(`https://${shareLink}`);
+                    void copyText(`https://${shareLink}`);
                     toast('Link copied');
                   }}
                 >

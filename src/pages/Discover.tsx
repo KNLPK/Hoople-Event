@@ -18,7 +18,7 @@ import { COMMUNITIES, DISCOVER_CATEGORIES, EVENTS } from '@/data/events';
 import { nextSession, weekendActivities } from '@/data/schedule';
 import { longDate } from '@/lib/format';
 
-const LOCATIONS = ['Jakarta, Indonesia', 'Bandung, Indonesia', 'Bali, Indonesia', 'Anywhere'];
+const LOCATIONS = ['Jakarta', 'Bandung', 'Bali', 'Anywhere'];
 const DATES = ['Any date', 'Today', 'This weekend', 'Next 7 days'];
 const CATEGORY_FACETS = ['All categories', ...ACTIVITY_CATEGORIES.slice(1)];
 

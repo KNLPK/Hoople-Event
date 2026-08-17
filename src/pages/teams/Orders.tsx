@@ -124,7 +124,7 @@ export function TeamsOrders() {
                         className={selected?.id === row.id ? 'is-selected' : undefined}
                         onClick={() => setSelected(row)}
                       >
-                        <td>
+                        <td className="tm-cell-main">
                           <span className="org-table__title">{row.orderId}</span>
                           <span className="org-table__sub">{row.method}</span>
                         </td>

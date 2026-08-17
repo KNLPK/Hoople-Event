@@ -30,6 +30,7 @@ import {
 } from '@/data/eventBuilder';
 import { WORKSPACE, WORKSPACE_INITIALS } from '@/data/organizer';
 import { compactDate, parseISODate, rupiah, shortDate } from '@/lib/format';
+import { copyText } from '@/lib/clipboard';
 
 /** `2026-07-20` -> `['24', 'MAY']` for the date block on a discovery card. */
 function dayBlock(iso: string): [string, string] {
@@ -391,7 +392,7 @@ function FinalPreview({
             type="button"
             className="wiz-addsession"
             onClick={() => {
-              navigator.clipboard?.writeText(link);
+              void copyText(link);
               toast('Link copied');
             }}
           >
@@ -473,7 +474,7 @@ function FinalPreview({
               key={label}
               type="button"
               onClick={() => {
-                navigator.clipboard?.writeText(link);
+                void copyText(link);
                 toast(`${label} — link copied`);
               }}
               aria-label={`Share on ${label}`}

@@ -18,7 +18,7 @@ import {
   Users,
 } from '@/components/ui/icons';
 import { EventContext } from '@/components/teams/EventContext';
-import { Meter } from '@/components/teams/charts';
+import { Meter } from '@/components/ui/charts';
 import { sessionsFor, type SessionState, type TeamEvent, type TeamSession } from '@/data/teams';
 import { compactDate } from '@/lib/format';
 
@@ -130,7 +130,7 @@ export function TeamsSessions() {
                         <td className="tm-table__grip">
                           <Grip size={16} color="#C3C1CE" />
                         </td>
-                        <td>
+                        <td className="tm-cell-main">
                           <div className="tm-person">
                             <i className={`tm-dot is-${session.state === 'Ongoing' ? 'amber' : session.state === 'Ended' ? 'grey' : 'green'}`} />
                             <span>

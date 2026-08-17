@@ -98,7 +98,7 @@ export function TeamsSettings() {
               <tbody>
                 {DEPARTMENTS.map((department) => (
                   <tr key={department.name}>
-                    <td>
+                    <td className="tm-cell-main">
                       <span className="org-table__title">{department.name}</span>
                     </td>
                     <td className="org-table__num">{department.headcount}</td>

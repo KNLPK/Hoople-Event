@@ -811,8 +811,14 @@ body.is-locked {
   }
   .wiz-foot .btn {
     width: 100%;
-    padding-inline: 12px;
-    font-size: 13px;
+    height: auto;
+    min-height: 44px;
+    padding: 8px 10px;
+    font-size: 12.5px;
+    line-height: 1.3;
+    /* "Next: Experience Details" does not fit on one phone-width line, and
+       half a label is worse than two lines of it. */
+    white-space: normal;
   }
 }
 

@@ -1,24 +1,28 @@
+import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/ui/Reveal';
 import { useToast } from '@/components/ui/Toast';
 import { Download, Info } from '@/components/ui/icons';
 import { EventContext } from '@/components/teams/EventContext';
-import { Donut, Meter, TrendLine } from '@/components/teams/charts';
+import { BarList, Donut, Meter, TrendChart } from '@/components/ui/charts';
 import {
-  DEPARTMENTS,
   DEVICE_SPLIT,
   ORGANIZATION,
   REGISTRATION_SOURCES,
   REGISTRATION_TREND,
   collected,
+  departmentResponse,
   funnel,
   sessionsFor,
   type TeamEvent,
 } from '@/data/teams';
-import { rupiah } from '@/lib/format';
+import { rupiah, shortRupiah } from '@/lib/format';
 
 const PASS_TONES = ['#6D28FF', '#16A34A', '#EA8C00', '#E2547F', '#2C7D84'];
+
+type Metric = 'registrations' | 'contributions';
+
 
 /**
  * What a public event measures — page views, traffic sources, conversion — is
@@ -29,6 +33,7 @@ const PASS_TONES = ['#6D28FF', '#16A34A', '#EA8C00', '#E2547F', '#2C7D84'];
 export function TeamsAnalytics() {
   const event = useOutletContext<TeamEvent>();
   const toast = useToast();
+  const [metric, setMetric] = useState<Metric>('registrations');
 
   const steps = funnel(event);
   const invited = steps[0].count;
@@ -41,6 +46,8 @@ export function TeamsAnalytics() {
   const turnout = event.checkedIn / Math.max(event.registered, 1);
   const fill = event.registered / event.capacity;
   const score = Math.round((response * 0.3 + turnout * 0.4 + fill * 0.3) * 100);
+
+  const money = metric === 'contributions';
 
   return (
     <>
@@ -65,52 +72,88 @@ export function TeamsAnalytics() {
             <Stat label="Collected" value={rupiah(gross)} note="Member contributions" money />
           </Reveal>
 
+          <Reveal className="org-card">
+            <div className="org-card__head">
+              <h2 className="org-card__title">{money ? 'Contributions' : 'Registrations'} — last 7 days</h2>
+              <div className="tm-toggleset" role="group" aria-label="Chart metric">
+                <button
+                  type="button"
+                  className={`tm-toggleset__btn ${metric === 'registrations' ? 'is-on' : ''}`.trim()}
+                  onClick={() => setMetric('registrations')}
+                  aria-pressed={metric === 'registrations'}
+                >
+                  Registrations
+                </button>
+                <button
+                  type="button"
+                  className={`tm-toggleset__btn ${money ? 'is-on' : ''}`.trim()}
+                  onClick={() => setMetric('contributions')}
+                  aria-pressed={money}
+                >
+                  Contributions
+                </button>
+              </div>
+            </div>
+            <div className="org-card__body">
+              <TrendChart
+                key={metric}
+                seriesLabel={money ? 'Contributions' : 'Registrations'}
+                previousLabel="Previous 7 days"
+                tone={money ? 'green' : 'brand'}
+                height={230}
+                format={money ? rupiah : undefined}
+                formatAxis={money ? shortRupiah : undefined}
+                points={REGISTRATION_TREND.map((day) => ({
+                  label: day.day,
+                  value: money ? day.contributed : day.count,
+                  previous: money ? undefined : day.previous,
+                }))}
+              />
+              <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 14 }}>
+                {money
+                  ? `The seven days add up to ${rupiah(gross)} — every rupiah collected for this event.`
+                  : `The seven days add up to ${event.registered} registrations — the whole list.`}
+              </p>
+            </div>
+          </Reveal>
+
           <div className="org-panels">
             <Reveal className="org-card">
-              <div className="org-card__head">
-                <h2 className="org-card__title">Registration trend</h2>
-                <span className="tm-muted">Last 7 days</span>
-              </div>
-              <div className="org-card__body">
-                <TrendLine
-                  points={REGISTRATION_TREND.map((day) => ({
-                    label: day.day,
-                    value: day.count,
-                    previous: day.previous,
-                  }))}
-                />
-              </div>
-            </Reveal>
-
-            <Reveal className="org-card" delay={60}>
               <div className="org-card__head">
                 <h2 className="org-card__title">Invite funnel</h2>
                 <span className="tm-muted">People, not page views</span>
               </div>
               <div className="org-card__body">
                 <div className="tm-funnel">
-                  {steps.map((step) => (
-                    <div key={step.label} className="tm-funnel__row">
-                      <div className="tm-funnel__head">
-                        <span>
-                          <strong>{step.label}</strong>
-                          <em>{step.note}</em>
-                        </span>
-                        <span className="tm-funnel__count">
-                          {step.count}
-                          <i>{Math.round((step.count / invited) * 100)}%</i>
-                        </span>
+                  {steps.map((step, index) => {
+                    const previous = index === 0 ? step.count : steps[index - 1].count;
+                    const kept = Math.round((step.count / previous) * 100);
+                    return (
+                      <div key={step.label} className="tm-funnel__row">
+                        <div className="tm-funnel__head">
+                          <span>
+                            <strong>{step.label}</strong>
+                            <em>{step.note}</em>
+                          </span>
+                          <span className="tm-funnel__count">
+                            {step.count}
+                            <i>{Math.round((step.count / invited) * 100)}%</i>
+                          </span>
+                        </div>
+                        <Meter value={step.count} max={invited} />
+                        {index > 0 ? (
+                          <span className="tm-funnel__drop">
+                            {kept}% of the step above · {previous - step.count} dropped
+                          </span>
+                        ) : null}
                       </div>
-                      <Meter value={step.count} max={invited} />
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </Reveal>
-          </div>
 
-          <div className="org-panels">
-            <Reveal className="org-card">
+            <Reveal className="org-card" delay={60}>
               <div className="org-card__head">
                 <h2 className="org-card__title">Passes taken</h2>
               </div>
@@ -126,73 +169,61 @@ export function TeamsAnalytics() {
                 />
               </div>
             </Reveal>
+          </div>
 
-            <Reveal className="org-card" delay={60}>
+          <div className="org-panels">
+            <Reveal className="org-card">
               <div className="org-card__head">
                 <h2 className="org-card__title">How members registered</h2>
                 <span className="tm-muted">Internal channels</span>
               </div>
               <div className="org-card__body">
-                <div className="org-bars">
-                  {REGISTRATION_SOURCES.map((source) => (
-                    <div key={source.source}>
-                      <div className="org-bar__head">
-                        <span>{source.source}</span>
-                        <strong>{source.share}%</strong>
-                      </div>
-                      <div className="org-bar__track">
-                        <div className="org-bar__fill" style={{ width: `${source.share}%` }} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <BarList
+                  bars={REGISTRATION_SOURCES.map((source) => ({
+                    label: source.source,
+                    value: source.share,
+                    display: `${source.share}%`,
+                  }))}
+                  max={100}
+                />
                 <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 18 }}>
                   There is no search or social traffic to measure — this event has no public page. Every registration
                   came from a channel the organization already owns.
                 </p>
               </div>
             </Reveal>
-          </div>
 
-          <Reveal className="org-card" delay={120}>
-            <div className="org-card__head">
-              <h2 className="org-card__title">Response by department</h2>
-              <span className="tm-muted">Registered out of headcount</span>
-            </div>
-            <div className="org-card__body">
-              <div className="org-bars">
-                {DEPARTMENTS.map((department, index) => {
-                  /* Departments respond at different rates; seeded from the roll
-                     so the shares always add up to the registration total. */
-                  const weight = [0.42, 0.48, 0.28, 0.31, 0.55, 0.36][index] ?? 0.35;
-                  const registered = Math.round(department.headcount * weight);
-                  return (
-                    <div key={department.name}>
-                      <div className="org-bar__head">
-                        <span>{department.name}</span>
-                        <strong>
-                          {registered} / {department.headcount}
-                        </strong>
-                      </div>
-                      <div className="org-bar__track">
-                        <div
-                          className="org-bar__fill org-bar__fill--soft"
-                          style={{ width: `${Math.round(weight * 100)}%` }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
+            <Reveal className="org-card" delay={60}>
+              <div className="org-card__head">
+                <h2 className="org-card__title">Response by department</h2>
+                <span className="tm-muted">Registered of headcount</span>
               </div>
-            </div>
-          </Reveal>
+              <div className="org-card__body">
+                <BarList
+                  bars={departmentResponse(event).map((row) => ({
+                    label: row.name,
+                    value: row.share,
+                    display: `${row.registered} / ${row.headcount}`,
+                    sub: `${row.share}% responded`,
+                    tone: row.share >= 45 ? '#16A34A' : row.share >= 30 ? '#6D28FF' : '#EA8C00',
+                  }))}
+                  max={100}
+                />
+              </div>
+            </Reveal>
+          </div>
         </div>
 
         <aside className="stack tm-rail" style={{ gap: 18 }}>
           <Reveal className="org-card">
             <div className="org-card__head">
               <h2 className="org-card__title">Event score</h2>
-              <button type="button" className="org-icon-btn" onClick={() => toast('Response 30%, turnout 40%, fill 30%')} aria-label="How the score works">
+              <button
+                type="button"
+                className="org-icon-btn"
+                onClick={() => toast('Response 30%, turnout 40%, how full the room got 30%')}
+                aria-label="How the score is worked out"
+              >
                 <Info size={16} color="#8B8A99" strokeWidth={1.9} />
               </button>
             </div>
@@ -231,28 +262,16 @@ export function TeamsAnalytics() {
               <h2 className="org-card__title">Fullest sessions</h2>
             </div>
             <div className="org-card__body">
-              <div className="org-bars">
-                {topSessions.map((session, index) => (
-                  <div key={session.id}>
-                    <div className="org-bar__head">
-                      <span>
-                        <em className="tm-rank">{index + 1}</em>
-                        {session.title}
-                      </span>
-                      <strong>{Math.round((session.booked / session.capacity) * 100)}%</strong>
-                    </div>
-                    <div className="org-bar__track">
-                      <div
-                        className="org-bar__fill"
-                        style={{ width: `${Math.round((session.booked / session.capacity) * 100)}%` }}
-                      />
-                    </div>
-                    <span className="org-table__sub">
-                      {session.room} · {session.booked} / {session.capacity} booked
-                    </span>
-                  </div>
-                ))}
-              </div>
+              <BarList
+                ranked
+                max={100}
+                bars={topSessions.map((session) => ({
+                  label: session.title,
+                  value: Math.round((session.booked / session.capacity) * 100),
+                  display: `${Math.round((session.booked / session.capacity) * 100)}%`,
+                  sub: `${session.room} · ${session.booked} / ${session.capacity} booked`,
+                }))}
+              />
             </div>
           </Reveal>
 
@@ -266,10 +285,12 @@ export function TeamsAnalytics() {
                   label: device.label,
                   value: device.share,
                   tone: device.tone,
+                  display: `${device.share}%`,
                 }))}
                 total={String(event.registered)}
                 caption="registrations"
                 size={148}
+                showShare={false}
               />
             </div>
           </Reveal>

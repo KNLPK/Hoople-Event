@@ -903,7 +903,13 @@
   width: 520px;
   max-width: 100%;
 }
+/* The field takes what is left; the button keeps its own width. */
+.newsletter__form .btn {
+  flex: none;
+  white-space: nowrap;
+}
 .newsletter__form input {
+  min-width: 0;
   flex: 1;
   height: 46px;
   border: 1px solid #e0d8fa;

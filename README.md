@@ -383,8 +383,29 @@ source rather than patched per page:
 - Inline `gridTemplateColumns` beat every media query. Those are now classes
   (`.grid--2`, `.grid--3`, `.grid--split`), so breakpoints can reach them.
 
-Verified by driving a real phone-sized Chromium: 26 routes at 360, 390, 768,
-1024 and 1440px with no horizontal overflow and no console errors.
+**Console tables become cards.** Eight columns will not fit 390px, and a table
+you have to drag sideways inside a card is a poor way to read a list. Below
+720px each row becomes a block: the cell that names the row — marked
+`.tm-cell-main` rather than guessed at — takes a line of its own, and the rest
+flow underneath as chips. The pills carry their own meaning, so dropping the
+header row costs nothing.
+
+**Neither console rail shows a scrollbar.** They scroll when they must, but a
+second bar beside the page's own reads as a bug rather than an affordance. The
+rails are also sized to clear a 900px window without scrolling at all, and the
+Teams rail sheds its support illustration before anything can slide out of
+reach.
+
+**Scroll reveal cannot strand content.** The reveal observer uses `threshold:
+0`, since a card taller than the viewport can never show a given percentage of
+itself, and every scroll also sweeps whatever has passed the fold and reveals
+it outright. Anything the observer misses during a fast flick would otherwise
+sit at opacity 0 with no second chance.
+
+Verified on the production build across six widths — 390, 768, 1280, 1440,
+1600 and 1920px (the last two standing in for a 1440 window at 90% and 75%
+zoom) — over 45 routes: no horizontal overflow, no console errors, no visible
+rail scrollbars, and the rail footer on screen at every size.
 
 ## Images
 
@@ -412,6 +433,29 @@ and cannot 404.
 The art is deterministic: the same id always yields the same picture. That is
 what keeps a builder's cover field and its preview panel showing the same thing
 without either of them storing it — they share one slot id.
+
+## Charts
+
+`src/components/ui/charts.tsx` holds the three shapes both consoles use, drawn
+in plain SVG — no chart library for three shapes.
+
+- **`TrendChart`** — a line with an optional ghost line for the period before.
+  Pointer, touch and keyboard (`←` `→` `Home` `End`) all move a read-out: a
+  guide line, an enlarged point, and a tooltip with the value and the change
+  against the previous period. The pointer snaps to the nearest point rather
+  than making anyone hit a 9px dot, and the tooltip flips below the point when
+  it is too near the top to have room above.
+- **`Donut`** — hovering a slice or its legend row pulls that slice forward,
+  dims the rest, and swaps the centre to show it.
+- **`BarList`** — a ranked list with an optional sub-line.
+
+Axis tops round up to a number a person would choose (20, 50, 500). Money
+charts pass `shortRupiah` so an axis reads `5jt / 10jt / 15jt`.
+
+Both Analytics pages carry a segmented control that swaps the series —
+registrations against revenue in the organizer console, registrations against
+contributions in Teams — and the chart re-scales, re-formats and re-colours
+with it.
 
 ## Motion
 

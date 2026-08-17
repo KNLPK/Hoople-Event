@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import { Reveal } from '@/components/ui/Reveal';
+import { BarList, Donut, TrendChart } from '@/components/ui/charts';
 import { ANALYTICS_MONTHS, ORG_STATS, TOP_EXPERIENCES, TRAFFIC_SOURCES } from '@/data/organizer';
-import { rupiah } from '@/lib/format';
+import { rupiah, shortRupiah } from '@/lib/format';
 
 type Metric = 'registrations' | 'revenue';
 
+
+const SOURCE_TONES = ['#6D28FF', '#E2547F', '#16A34A', '#EA8C00'];
+
 export function OrgAnalytics() {
   const [metric, setMetric] = useState<Metric>('registrations');
+  const money = metric === 'revenue';
 
-  const peak = Math.max(...ANALYTICS_MONTHS.map((month) => month[metric]));
   const headline = ORG_STATS.filter((stat) =>
     ['registrations', 'revenue', 'experiences', 'sessions'].includes(stat.key),
   );
+  const totalRegistrations = ANALYTICS_MONTHS.reduce((sum, month) => sum + month.registrations, 0);
+  const totalRevenue = ANALYTICS_MONTHS.reduce((sum, month) => sum + month.revenue, 0);
 
   return (
     <>
@@ -20,10 +26,10 @@ export function OrgAnalytics() {
           <h1>Analytics</h1>
           <p>Where your registrations come from, and what they are worth.</p>
         </div>
-        <div className="org-filters" style={{ margin: 0 }}>
+        <div className="tm-toggleset" role="group" aria-label="Chart metric">
           <button
             type="button"
-            className={`chip chip-motion ${metric === 'registrations' ? 'is-active' : ''}`.trim()}
+            className={`tm-toggleset__btn ${metric === 'registrations' ? 'is-on' : ''}`.trim()}
             onClick={() => setMetric('registrations')}
             aria-pressed={metric === 'registrations'}
           >
@@ -31,9 +37,9 @@ export function OrgAnalytics() {
           </button>
           <button
             type="button"
-            className={`chip chip-motion ${metric === 'revenue' ? 'is-active' : ''}`.trim()}
+            className={`tm-toggleset__btn ${money ? 'is-on' : ''}`.trim()}
             onClick={() => setMetric('revenue')}
-            aria-pressed={metric === 'revenue'}
+            aria-pressed={money}
           >
             Revenue
           </button>
@@ -59,28 +65,27 @@ export function OrgAnalytics() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">
-              {metric === 'registrations' ? 'Registrations' : 'Revenue'} — last 6 months
-            </h2>
-            <span style={{ fontSize: 13, color: 'var(--grey)' }}>Feb – Jul 2026</span>
+            <h2 className="org-card__title">{money ? 'Revenue' : 'Registrations'} — last 6 months</h2>
+            <span className="tm-muted">Feb – Jul 2026</span>
           </div>
           <div className="org-card__body">
-            <div className="org-chart">
-              {ANALYTICS_MONTHS.map((month) => (
-                <div key={month.month} className="org-chart__col">
-                  <span className="org-chart__value">
-                    {metric === 'revenue'
-                      ? `${Math.round(month.revenue / 1_000_000)}jt`
-                      : month.registrations}
-                  </span>
-                  <div
-                    className="org-chart__bar"
-                    style={{ height: `${Math.round((month[metric] / peak) * 100)}%` }}
-                  />
-                  <span className="org-chart__label">{month.month}</span>
-                </div>
-              ))}
-            </div>
+            <TrendChart
+              key={metric}
+              seriesLabel={money ? 'Revenue' : 'Registrations'}
+              tone={money ? 'green' : 'brand'}
+              height={240}
+              format={money ? rupiah : undefined}
+              formatAxis={money ? shortRupiah : undefined}
+              points={ANALYTICS_MONTHS.map((month) => ({
+                label: month.month,
+                value: money ? month.revenue : month.registrations,
+              }))}
+            />
+            <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 14 }}>
+              {money
+                ? `${rupiah(totalRevenue)} across the half year, peaking in June.`
+                : `${totalRegistrations.toLocaleString('id-ID')} registrations across the half year, and July is still running.`}
+            </p>
           </div>
         </Reveal>
 
@@ -88,48 +93,40 @@ export function OrgAnalytics() {
           <Reveal className="org-card" delay={120}>
             <div className="org-card__head">
               <h2 className="org-card__title">Top experiences</h2>
-              <span style={{ fontSize: 13, color: 'var(--grey)' }}>By registrations</span>
+              <span className="tm-muted">By registrations</span>
             </div>
             <div className="org-card__body">
-              <div className="org-bars">
-                {TOP_EXPERIENCES.map((experience) => (
-                  <div key={experience.title}>
-                    <div className="org-bar__head">
-                      <span>{experience.title}</span>
-                      <strong>{experience.registrations}</strong>
-                    </div>
-                    <div className="org-bar__track">
-                      <div className="org-bar__fill" style={{ width: `${experience.share}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <BarList
+                ranked
+                bars={TOP_EXPERIENCES.map((experience) => ({
+                  label: experience.title,
+                  value: experience.registrations,
+                  display: experience.registrations.toLocaleString('id-ID'),
+                }))}
+              />
             </div>
           </Reveal>
 
           <Reveal className="org-card" delay={180}>
             <div className="org-card__head">
               <h2 className="org-card__title">Where people find you</h2>
-              <span style={{ fontSize: 13, color: 'var(--grey)' }}>Share of registrations</span>
+              <span className="tm-muted">Share of registrations</span>
             </div>
             <div className="org-card__body">
-              <div className="org-bars">
-                {TRAFFIC_SOURCES.map((source) => (
-                  <div key={source.source}>
-                    <div className="org-bar__head">
-                      <span>{source.source}</span>
-                      <strong>{source.share}%</strong>
-                    </div>
-                    <div className="org-bar__track">
-                      <div className="org-bar__fill org-bar__fill--soft" style={{ width: `${source.share}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p style={{ fontSize: 12.5, color: 'var(--grey)', lineHeight: 1.7, marginTop: 20 }}>
-                Connect (WhatsApp CRM) drives {TRAFFIC_SOURCES[2].share}% of registrations on the Pro tier —
-                the audience you already own, brought back for the next session. Highest single month so far:{' '}
-                {rupiah(Math.max(...ANALYTICS_MONTHS.map((m) => m.revenue)))}.
+              <Donut
+                slices={TRAFFIC_SOURCES.map((source, index) => ({
+                  label: source.source,
+                  value: source.share,
+                  tone: SOURCE_TONES[index % SOURCE_TONES.length],
+                  display: `${source.share}%`,
+                }))}
+                total={totalRegistrations.toLocaleString('id-ID')}
+                caption="registrations"
+                showShare={false}
+              />
+              <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 16 }}>
+                Connect (WhatsApp CRM) drives {TRAFFIC_SOURCES[2].share}% of registrations on the Pro tier — the
+                audience you already own, brought back for the next session.
               </p>
             </div>
           </Reveal>

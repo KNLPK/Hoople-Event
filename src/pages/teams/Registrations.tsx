@@ -209,7 +209,7 @@ export function TeamsRegistrations() {
                             aria-label={`Select ${row.name}`}
                           />
                         </td>
-                        <td>
+                        <td className="tm-cell-main">
                           <div className="tm-person">
                             <span className="tm-person__avatar">
                               <ImageSlot

@@ -19,7 +19,7 @@ import { dateStrip, nextSession, todaysSessions } from '@/data/schedule';
 import { longDate, rupiah } from '@/lib/format';
 import type { Activity } from '@/data/types';
 
-const LOCATIONS = ['Jakarta, Indonesia', 'Bandung, Indonesia', 'Bali, Indonesia', 'Anywhere'];
+const LOCATIONS = ['Jakarta', 'Bandung', 'Bali', 'Anywhere'];
 const DATES = ['Any date', 'Today', 'This weekend', 'Next 7 days'];
 const TIMES = ['Any time', 'Morning', 'Afternoon', 'Evening'];
 

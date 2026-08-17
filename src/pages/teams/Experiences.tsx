@@ -6,7 +6,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import { useToast } from '@/components/ui/Toast';
 import { Calendar, Lock, MapPin, Plus, Repeat, Search, Users } from '@/components/ui/icons';
 import { FormatIcon, statusTone } from '@/components/teams/EventContext';
-import { Meter } from '@/components/teams/charts';
+import { Meter } from '@/components/ui/charts';
 import { TEAM_EVENTS, collected, eventTotals, type EventStatus, type TeamEvent } from '@/data/teams';
 import { rupiah } from '@/lib/format';
 

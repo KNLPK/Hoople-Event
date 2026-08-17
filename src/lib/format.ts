@@ -27,6 +27,21 @@ const MONTHS = [
 ];
 
 /** `2026-07-20` → a local `Date` (avoids the UTC shift of `new Date(iso)`). */
+/**
+ * Money short enough for a chart axis: 24.600.000 becomes "25jt". Whole
+ * millions lose the decimal, so an axis reads 5jt / 10jt / 15jt rather than
+ * 5,0jt / 10jt / 15jt.
+ */
+export function shortRupiah(amount: number): string {
+  if (amount >= 1_000_000) {
+    const millions = amount / 1_000_000;
+    const rounded = Math.round(millions * 10) / 10;
+    return `${Number.isInteger(rounded) ? rounded : rounded.toFixed(1).replace('.', ',')}jt`;
+  }
+  if (amount >= 1_000) return `${Math.round(amount / 1_000)}rb`;
+  return String(amount);
+}
+
 export function parseISODate(iso: string): Date {
   const [year, month, day] = iso.split('-').map(Number);
   return new Date(year, month - 1, day);

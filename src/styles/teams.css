@@ -23,12 +23,36 @@
 /* Section headings inside the rail — the nav is long enough to need them. */
 .tm-navlabel {
   display: block;
-  padding: 16px 12px 6px;
+  padding: 13px 12px 5px;
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--grey-faint);
+}
+/*
+ * Ten links, two headings and a workspace card is a tall rail. Tightened just
+ * enough to clear a 900px window without a scrollbar, and it sheds the support
+ * card's art before anything is allowed to slide out of reach.
+ */
+.tm-side .org-nav__link {
+  padding: 8px 12px;
+}
+.tm-side .org-nav {
+  gap: 1px;
+}
+@media (max-height: 940px) {
+  .tm-support .org-upgrade__art {
+    display: none;
+  }
+}
+@media (max-height: 800px) {
+  .tm-support p {
+    display: none;
+  }
+  .tm-side .org-workspace {
+    padding: 8px 10px;
+  }
 }
 .tm-support {
   background: linear-gradient(160deg, #f4efff 0%, #efe9ff 100%);
@@ -1077,149 +1101,39 @@ span.tm-quick__item {
   background: var(--amber);
 }
 
-.tm-donut {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  flex-wrap: wrap;
-  padding: 8px 0 4px;
-}
-.tm-donut__ring {
-  position: relative;
-  flex: none;
-}
-.tm-donut__center {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  text-align: center;
-  padding: 0 22px;
-}
-.tm-donut__center strong {
-  font-family: var(--font-heading);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  word-break: break-word;
-}
-.tm-donut__center span {
-  font-size: 10.5px;
-  color: var(--grey);
-}
-.tm-legend {
-  list-style: none;
-  flex: 1 1 190px;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-.tm-legend li {
-  display: flex;
-  align-items: baseline;
-  gap: 9px;
-  font-size: 12.5px;
-}
-.tm-legend__dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 3px;
-  flex: none;
-}
-.tm-legend__label {
-  flex: 1;
-  min-width: 0;
-  color: var(--ink-2);
-}
-.tm-legend__value {
-  font-weight: 600;
+/* A segmented control for switching what a chart is plotting. */
+.tm-toggleset {
   display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
+  gap: 3px;
+  padding: 3px;
+  border-radius: var(--r-pill);
+  background: var(--surface-toggle);
   flex: none;
-  white-space: nowrap;
 }
-.tm-legend__value em {
-  font-style: normal;
+.tm-toggleset__btn {
+  height: 28px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: none;
+  font-family: inherit;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--grey);
-  font-size: 11.5px;
-}
-
-.tm-trendkey {
-  display: flex;
-  gap: 18px;
-  margin-bottom: 10px;
-  font-size: 12px;
-  color: var(--grey);
-}
-.tm-trendkey > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.tm-trendkey__line {
-  width: 18px;
-  height: 3px;
-  border-radius: 2px;
-  background: var(--brand);
-}
-.tm-trendkey__line.is-ghost {
-  background: repeating-linear-gradient(90deg, var(--grey-faint) 0 4px, transparent 4px 8px);
-}
-
-.tm-trend {
-  position: relative;
-  padding-bottom: 22px;
-  margin-right: 6px;
-}
-.tm-trend__svg {
-  position: absolute;
-  inset: 0 0 22px 0;
-  width: 100%;
-  height: calc(100% - 22px);
-  overflow: visible;
-}
-.tm-trend__dot {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  margin: -4.5px 0 0 -4.5px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2.5px solid var(--brand);
-  /* The dots sit in the same box as the stretched svg. */
-  transform: translateY(calc(-22px * 0));
-}
-.tm-trend__dot.is-peak {
-  background: var(--brand);
-}
-.tm-trend__flag {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 3px 8px;
-  border-radius: var(--r-sm);
-  background: var(--ink);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  font-style: normal;
+  cursor: pointer;
   white-space: nowrap;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
 }
-.tm-trend__axis {
-  position: absolute;
-  inset: auto 0 0 0;
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--grey-soft);
+.tm-toggleset__btn:hover {
+  color: var(--brand-deep);
+}
+.tm-toggleset__btn.is-on {
+  background: #fff;
+  color: var(--brand-deep);
+  font-weight: 600;
+  box-shadow: var(--sh-card);
 }
 
 .tm-funnel {
@@ -1259,6 +1173,12 @@ span.tm-quick__item {
   font-weight: 500;
   color: var(--grey);
   margin-left: 6px;
+}
+.tm-funnel__drop {
+  display: block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--grey-soft);
 }
 
 .tm-score {
@@ -1411,6 +1331,70 @@ span.tm-quick__item {
   letter-spacing: -0.025em;
 }
 
+/*
+ * Tables on a phone.
+ *
+ * Eight columns will not fit 390px, and a table you have to drag sideways
+ * inside a card is a poor way to read a list. Each row becomes a block
+ * instead: the person or the title takes a line of its own, and the rest of
+ * the cells flow underneath as chips. The pills carry their own meaning, so
+ * dropping the header row costs nothing.
+ */
+@media (max-width: 720px) {
+  .tm-table {
+    min-width: 0;
+  }
+  .tm-table thead {
+    display: none;
+  }
+  .tm-table tbody,
+  .tm-table tr,
+  .tm-table td {
+    display: block;
+  }
+  .tm-table tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px 14px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line-faint);
+  }
+  .tm-table tr:last-child {
+    border-bottom: 0;
+  }
+  .tm-table td {
+    padding: 0;
+    border: 0;
+    text-align: left;
+    font-size: 12.5px;
+  }
+  /* Whoever the row is about gets the first line to itself; everything else
+     flows underneath as chips. Marked explicitly rather than guessed at, so
+     changing a column order cannot silently break the layout. */
+  .tm-table .tm-cell-main {
+    flex: 1 1 100%;
+  }
+  /* Dragging to reorder is a pointer gesture; the handle is dead weight here. */
+  .tm-table .tm-table__grip {
+    display: none;
+  }
+  .tm-table td.org-table__num {
+    text-align: left;
+  }
+  .tm-table td:last-child {
+    margin-left: auto;
+  }
+  .tm-table .tm-table__tick,
+  .tm-table .tm-table__grip {
+    flex: none;
+    width: auto;
+  }
+  .tm-table .tm-meter {
+    min-width: 120px;
+  }
+}
+
 /* ---------- Phone ---------- */
 
 @media (max-width: 900px) {
@@ -1423,9 +1407,6 @@ span.tm-quick__item {
   }
   .tm-hero__kpis {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .tm-donut {
-    justify-content: center;
   }
   .tm-expcard__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));

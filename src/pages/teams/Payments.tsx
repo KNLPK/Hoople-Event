@@ -4,7 +4,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import { useToast } from '@/components/ui/Toast';
 import { Card, Check, Doc, Download, Gear, Headset, Info, Wallet } from '@/components/ui/icons';
 import { EventContext } from '@/components/teams/EventContext';
-import { Donut } from '@/components/teams/charts';
+import { Donut } from '@/components/ui/charts';
 import {
   GATEWAY_FLAT,
   GATEWAY_RATE,
@@ -159,7 +159,7 @@ export function TeamsPayments() {
                           {compactDate(row.registeredOn)}
                           <div className="org-table__sub">{row.paidAt}</div>
                         </td>
-                        <td>
+                        <td className="tm-cell-main">
                           <span className="org-table__title">Contribution received</span>
                           <span className="org-table__sub">
                             {row.name} · {row.method}
@@ -179,7 +179,7 @@ export function TeamsPayments() {
                         {compactDate(event.startDate)}
                         <div className="org-table__sub">Rolling</div>
                       </td>
-                      <td>
+                      <td className="tm-cell-main">
                         <span className="org-table__title">Payment gateway fees</span>
                         <span className="org-table__sub">Charged per order</span>
                       </td>

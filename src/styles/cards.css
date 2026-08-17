@@ -163,6 +163,10 @@
   color: var(--grey-soft);
   margin-top: 3px;
 }
+.recurring-row .btn {
+  flex: none;
+  white-space: nowrap;
+}
 .recurring-row__price {
   font-size: 13.5px;
   font-weight: 600;
@@ -180,6 +184,21 @@
   }
   .recurring-row > :nth-child(3) {
     grid-column: 2 / -1;
+  }
+}
+@media (max-width: 640px) {
+  .recurring-row {
+    grid-template-columns: 84px minmax(0, 1fr);
+    align-items: start;
+  }
+  .recurring-row > :nth-child(3),
+  .recurring-row__price {
+    grid-column: 1 / -1;
+  }
+  /* Full width beats a column too narrow for the label. */
+  .recurring-row .btn {
+    grid-column: 1 / -1;
+    width: 100%;
   }
 }
 

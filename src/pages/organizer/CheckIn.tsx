@@ -17,16 +17,17 @@ export function OrgCheckIn() {
   const inCount = attendees.filter((r) => checkedIn.has(r.id)).length;
 
   function toggle(id: string, name: string) {
+    /* The toast has to fire out here. React runs a state updater during the
+       render phase, and telling another component to update from inside one
+       is the "Cannot update a component while rendering" warning. */
+    const wasIn = checkedIn.has(id);
     setCheckedIn((current) => {
       const next = new Set(current);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-        toast(`${name} checked in`);
-      }
+      if (wasIn) next.delete(id);
+      else next.add(id);
       return next;
     });
+    toast(wasIn ? `${name} checked out` : `${name} checked in`);
   }
 
   return (

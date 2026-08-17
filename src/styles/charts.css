@@ -1,0 +1,386 @@
+/* ============================================================
+   Charts — shared by both consoles.
+
+   Layout note: the plot's SVG is stretched with
+   preserveAspectRatio="none", so anything that must stay round (dots) or
+   readable (tooltips, axis labels) lives outside it as positioned elements.
+   ============================================================ */
+
+.chart {
+  display: block;
+}
+
+.chart__key {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  font-size: 12px;
+  color: var(--grey);
+}
+.chart__key > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.chart__swatch {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--brand);
+  flex: none;
+}
+.chart__swatch.is-green {
+  background: var(--green);
+}
+.chart__swatch.is-ghost {
+  background: repeating-linear-gradient(90deg, var(--grey-faint) 0 4px, transparent 4px 8px);
+}
+.chart__hint {
+  margin-left: auto;
+  font-size: 11.5px;
+  color: var(--grey-faint);
+}
+
+.chart__grid {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  column-gap: 10px;
+}
+
+/* Ticks are distributed top-to-bottom to match the gridlines exactly. */
+.chart__yaxis {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 10.5px;
+  color: var(--grey-faint);
+  font-variant-numeric: tabular-nums;
+  padding-block: 0;
+}
+.chart__yaxis span {
+  /* Nudged so a label sits on its line rather than under it. */
+  transform: translateY(-0.45em);
+  line-height: 1;
+}
+.chart__yaxis span:last-child {
+  transform: translateY(0);
+}
+
+.chart__plot {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  min-width: 0;
+  border-radius: var(--r-sm);
+  outline: none;
+  touch-action: pan-y;
+}
+.chart__plot:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-tint-strong);
+}
+.chart__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.chart__guide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--brand-border);
+  transform: translateX(-0.5px);
+  pointer-events: none;
+}
+
+.chart__dot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2.5px solid var(--brand);
+  pointer-events: none;
+  transition:
+    width 0.14s var(--ease-out),
+    height 0.14s var(--ease-out),
+    margin 0.14s var(--ease-out);
+}
+.chart__dot.is-active {
+  width: 15px;
+  height: 15px;
+  margin: -7.5px 0 0 -7.5px;
+  box-shadow: 0 0 0 4px rgba(109, 40, 255, 0.14);
+}
+
+.chart__tip {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, calc(-100% - 16px));
+  min-width: 128px;
+  padding: 9px 12px;
+  border-radius: var(--r-lg);
+  background: var(--ink);
+  color: #fff;
+  box-shadow: var(--sh-float);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+.chart__tip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--ink);
+  transform: translateX(-50%) rotate(45deg);
+}
+.chart__tip.is-below {
+  transform: translate(-50%, 16px);
+}
+.chart__tip.is-below::after {
+  bottom: auto;
+  top: -5px;
+}
+.chart__tip-label {
+  font-size: 11px;
+  opacity: 0.65;
+}
+.chart__tip-value {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.chart__tip-value em {
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.65;
+}
+.chart__tip-delta {
+  font-size: 11px;
+  opacity: 0.8;
+}
+.chart__tip-delta.is-up {
+  color: #6ee7a2;
+}
+.chart__tip-delta.is-down {
+  color: #ffa8ba;
+}
+
+.chart__xaxis {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 9px;
+  font-size: 11px;
+  color: var(--grey-soft);
+}
+.chart__xaxis span {
+  transition: color 0.14s ease;
+}
+.chart__xaxis span.is-active {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+/* Crowded axes on a phone: keep the ends and drop the middle labels. */
+@media (max-width: 560px) {
+  .chart__xaxis span:not(:first-child):not(:last-child):not(.is-active) {
+    opacity: 0;
+  }
+  .chart__hint {
+    display: none;
+  }
+}
+
+/* ---------- Bar list ---------- */
+
+.barlist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.barlist li {
+  transition: opacity 0.16s ease;
+}
+.barlist__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 7px;
+  font-size: 13px;
+}
+.barlist__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--ink-2);
+}
+.barlist__rank {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: 6px;
+  background: var(--brand-tint-strong);
+  color: var(--brand-ink);
+  font-style: normal;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+.barlist__head strong {
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.barlist__track {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--surface-chip);
+  overflow: hidden;
+}
+.barlist__fill {
+  height: 100%;
+  border-radius: inherit;
+  transition:
+    width 0.5s var(--ease-out),
+    filter 0.16s ease;
+}
+.barlist li.is-active .barlist__fill {
+  filter: saturate(1.15) brightness(1.06);
+}
+.barlist li.is-active .barlist__label {
+  color: var(--ink);
+  font-weight: 600;
+}
+.barlist__sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 11.5px;
+  color: var(--grey);
+}
+
+/* ---------- Donut ---------- */
+
+.donut {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  padding: 6px 0 4px;
+}
+.donut__ring {
+  position: relative;
+  flex: none;
+}
+.donut__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+  padding: 0 24px;
+  pointer-events: none;
+}
+.donut__center strong {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.donut__center span {
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: var(--grey);
+  overflow-wrap: anywhere;
+}
+
+.donut__legend {
+  list-style: none;
+  flex: 1 1 190px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.donut__row {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: none;
+  font-family: inherit;
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.16s ease;
+}
+.donut__row.is-active {
+  background: var(--surface-sunken);
+}
+.donut__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  flex: none;
+  transform: translateY(1px);
+}
+.donut__label {
+  flex: 1;
+  min-width: 0;
+  color: var(--ink-2);
+}
+.donut__value {
+  flex: none;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.donut__value em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--grey);
+  font-size: 11.5px;
+}
+
+@media (max-width: 640px) {
+  .donut {
+    justify-content: center;
+  }
+}

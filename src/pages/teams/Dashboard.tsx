@@ -23,7 +23,7 @@ import {
   Users,
 } from '@/components/ui/icons';
 import { FormatIcon, statusTone } from '@/components/teams/EventContext';
-import { Meter, TrendLine } from '@/components/teams/charts';
+import { Meter, TrendChart } from '@/components/ui/charts';
 import {
   ACTIVITY,
   ORGANIZATION,
@@ -35,6 +35,7 @@ import {
   type TeamEvent,
 } from '@/data/teams';
 import { compactDate, rupiah } from '@/lib/format';
+import { copyText } from '@/lib/clipboard';
 
 const TODAY = { registrations: 12, collected: 3_250_000, checkins: 28 };
 
@@ -156,15 +157,9 @@ export function TeamsDashboard() {
               <span className="tm-muted">Last 7 days</span>
             </div>
             <div className="org-card__body">
-              <div className="tm-trendkey">
-                <span>
-                  <i className="tm-trendkey__line" /> Registrations
-                </span>
-                <span>
-                  <i className="tm-trendkey__line is-ghost" /> Previous 7 days
-                </span>
-              </div>
-              <TrendLine
+              <TrendChart
+                seriesLabel="Registrations"
+                previousLabel="Previous 7 days"
                 points={REGISTRATION_TREND.map((day) => ({
                   label: day.day,
                   value: day.count,
@@ -316,7 +311,7 @@ export function TeamsDashboard() {
                 size="sm"
                 block
                 onClick={() => {
-                  void navigator.clipboard?.writeText(`https://${memberLink}`);
+                  void copyText(`https://${memberLink}`);
                   toast('Member link copied');
                 }}
               >

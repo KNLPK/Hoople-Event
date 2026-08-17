@@ -50,16 +50,15 @@ body[data-surface='console'] {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  /* Room for the scrollbar without shifting the links. */
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) transparent;
+  /* Scrolls when it has to, but never shows a bar — a second scrollbar beside
+     the page's own reads as a bug rather than an affordance. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .org-side__scroll::-webkit-scrollbar {
-  width: 6px;
-}
-.org-side__scroll::-webkit-scrollbar-thumb {
-  background: var(--line-strong);
-  border-radius: var(--r-pill);
+  width: 0;
+  height: 0;
+  display: none;
 }
 .org-side__foot {
   flex: none;
@@ -141,13 +140,20 @@ body[data-surface='console'] {
   padding: 3px 7px;
   border-radius: 5px;
 }
+/* Two lines beat "Community & Lifestyl…" — the card has the room. */
+.org-workspace__text {
+  min-width: 0;
+}
+/* Two lines beat "Community & Lifestyl…" — the card has the room for them. */
 .org-workspace__category {
   display: block;
   font-size: 12px;
+  line-height: 1.35;
   color: var(--grey);
   margin-top: 2px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
   white-space: nowrap;
 }
 
@@ -161,7 +167,8 @@ body[data-surface='console'] {
   align-items: center;
   gap: 12px;
   width: 100%;
-  padding: 10px 12px;
+  /* Sized so the whole rail clears a 900px window without scrolling at all. */
+  padding: 8px 12px;
   border: 0;
   border-radius: var(--r-md);
   background: transparent;
@@ -4069,12 +4076,35 @@ body[data-surface='console'] {
   margin-top: 12px;
 }
 /* Five columns in ~350px: everything stays on one line. */
+/* Five rigid columns in a 300px preview crushed the session name to 39px and
+   ellipsised it. Wrapping keeps every label whole at any panel width. */
 .wiz-pv__session {
-  display: grid;
-  grid-template-columns: 26px minmax(0, 1fr) auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  margin-top: 9px;
+  gap: 6px 10px;
+  margin-top: 10px;
+}
+.wiz-pv__tone {
+  flex: none;
+}
+.wiz-pv__slot {
+  flex: 1 1 128px;
+  min-width: 0;
+}
+.wiz-pv__slot strong,
+.wiz-pv__slot span {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+.wiz-pv__time,
+.wiz-pv__left,
+.wiz-pv__book {
+  flex: none;
+}
+.wiz-pv__left {
+  margin-left: auto;
 }
 .wiz-pv__tone {
   width: 26px;
