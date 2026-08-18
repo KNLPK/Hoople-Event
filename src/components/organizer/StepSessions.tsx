@@ -91,7 +91,6 @@ export function StepSessions({
 
   return (
     <>
-      <h2 className="wiz-section__title">2.3 Sessions</h2>
       <p className="wiz-section__lede">
         Create the sessions for your activity. Participants will choose a session when booking.
       </p>

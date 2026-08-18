@@ -56,8 +56,6 @@ export function EventPublish({ draft, set }: EventSectionProps) {
   return (
     <>
       <EventHead
-        title="5.2 Publish Settings"
-        badge="Part 2 of 3"
         lede="Choose how your event will be published and discovered."
         tip="Discovery is where most registrations come from — leave it on unless the event is private."
       />

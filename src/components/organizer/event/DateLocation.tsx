@@ -15,8 +15,6 @@ export function EventDateLocation({ draft, set }: EventSectionProps) {
   return (
     <>
       <EventHead
-        title={draft.eventType === 'Online' ? '2.1 Date & Time' : '2.1 Date & Location'}
-        badge="1 of 3"
         lede="Set when and where your event will take place."
         tip="Choosing the right date, time, and location helps maximize attendance."
       />

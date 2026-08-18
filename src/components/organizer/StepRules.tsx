@@ -29,7 +29,6 @@ export function StepRules({
 }) {
   return (
     <>
-      <h2 className="wiz-section__title">4.4 House Rules</h2>
       <p className="wiz-section__lede">
         Set what participants agree to when they join. Clear rules save awkward conversations later.
       </p>

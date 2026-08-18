@@ -734,55 +734,6 @@ export function Booking() {
               </div>
             </div>
 
-            <div className="panel panel--lg" style={{ borderRadius: 18 }}>
-              <div className="panel__title">Order Summary</div>
-              <SummaryItem
-                slotId={`done-thumb-${confirmed.id}`}
-                photoHint={confirmed.photoHint}
-                title={confirmed.title}
-                host={confirmed.host}
-                date={confirmed.date}
-                start={confirmed.start}
-                end={confirmed.end}
-                venueName={confirmed.venueName}
-                venueArea={`${confirmed.venueArea}, ${confirmed.venueCity}`}
-              />
-              <div className="divider" />
-              <div className="panel__title panel__title--sm" style={{ marginBottom: 14 }}>
-                Price Details
-              </div>
-              <PriceBreakdownRows
-                subtotal={confirmed.subtotal}
-                platformFee={confirmed.platformFee}
-                gatewayFee={confirmed.gatewayFee}
-                quantity={confirmed.participants.length}
-              />
-              <div className="divider" />
-              <div className="price-total">
-                <span>Total Payment</span>
-                <span>{idr(confirmed.total)}</span>
-              </div>
-              <div
-                style={{
-                  marginTop: 20,
-                  background: 'var(--green-tint)',
-                  borderRadius: 12,
-                  padding: '16px 18px',
-                  display: 'flex',
-                  gap: 13,
-                }}
-              >
-                <ShieldCheck size={20} color="#16A34A" strokeWidth={1.8} />
-                <div>
-                  <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--green-deep)', marginBottom: 4 }}>
-                    Secure Payment
-                  </div>
-                  <div style={{ fontSize: 12.5, color: '#4B5A50', lineHeight: 1.6 }}>
-                    This transaction is protected by Midtrans.
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <Reveal className="container section--tight">

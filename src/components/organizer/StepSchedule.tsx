@@ -21,7 +21,6 @@ export function StepSchedule({
 
   return (
     <>
-      <h2 className="wiz-section__title">2.2 Operating Schedule</h2>
       <p className="wiz-section__lede">
         Set the days and time range when your activity will be available.
       </p>

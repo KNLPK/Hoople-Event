@@ -44,7 +44,6 @@ export function StepHost({
 
   return (
     <>
-      <h2 className="wiz-section__title">4.1 Host / Instructor</h2>
       <p className="wiz-section__lede">Introduce the people behind your activity.</p>
 
       <div className="wiz-stack">

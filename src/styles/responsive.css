@@ -764,27 +764,6 @@ body.is-locked {
     background: var(--brand);
     transition: width 0.3s var(--ease-out);
   }
-  /* Row 2: the open step's parts as swipeable tabs, edge to edge. */
-  .wiz-subs {
-    grid-column: 1 / -1;
-    justify-content: flex-start;
-    gap: 20px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    border-top: 1px solid var(--line-faint);
-    margin-inline: calc(var(--gutter) * -1);
-    padding: 10px var(--gutter) 0;
-  }
-  .wiz-subs::-webkit-scrollbar {
-    display: none;
-  }
-  .wiz-sub {
-    padding-bottom: 10px;
-  }
-  .wiz-sub.is-on {
-    margin-bottom: 0;
-    padding-bottom: 8px;
-  }
   /* Save as Draft is secondary here — it keeps its place beside the rail but
      shrinks so the numbered steps get the width. */
   .wiz-bar > .btn {

@@ -73,7 +73,6 @@ export function StepSummary({
 
   return (
     <>
-      <h2 className="wiz-section__title">5.1 Summary</h2>
       <p className="wiz-section__lede">Review your activity details before publishing.</p>
 
       <div className="wiz-stack">

@@ -44,7 +44,6 @@ export function StepVenue({
 
   return (
     <>
-      <h2 className="wiz-section__title">2.1 Venue</h2>
       <p className="wiz-section__lede">Add the venue details where your activity will take place.</p>
 
       <div className="org-card wiz-card">

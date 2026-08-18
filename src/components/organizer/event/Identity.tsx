@@ -27,8 +27,6 @@ export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSet
   return (
     <>
       <EventHead
-        title="1.1 Identity"
-        badge="1 of 3"
         lede="Tell us the basic identity of your event."
         tip="A clear title and cover image will attract more participants!"
       />

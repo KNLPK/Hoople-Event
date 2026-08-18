@@ -12,27 +12,17 @@ export interface EventSectionProps {
 }
 
 /**
- * Every event section opens the same way: a numbered title with a progress
- * badge on the left and a tip beside the mascot on the right.
+ * Every event section opens the same way: what this part is for on the left,
+ * and a tip beside the mascot on the right.
+ *
+ * It carries no title. The accordion header above it already states the
+ * number and the name, and printing them twice made every panel look like it
+ * had started over.
  */
-export function EventHead({
-  title,
-  badge,
-  lede,
-  tip,
-}: {
-  title: string;
-  badge: string;
-  lede: string;
-  tip: string;
-}) {
+export function EventHead({ lede, tip }: { lede: string; tip: string }) {
   return (
     <div className="evt-head">
       <div>
-        <h2 className="wiz-section__title">
-          {title}
-          <span className="evt-head__badge">{badge}</span>
-        </h2>
         <p className="wiz-section__lede">{lede}</p>
       </div>
 

@@ -64,8 +64,6 @@ export function EventBenefits({ draft, set }: { draft: EventDraft; set: EventSet
   return (
     <>
       <EventHead
-        title="1.3 Benefits"
-        badge="3 of 3"
         lede="Highlight what participants will get and why your event is worth joining."
         tip="Clear benefits help increase interest and encourage more people to register!"
       />

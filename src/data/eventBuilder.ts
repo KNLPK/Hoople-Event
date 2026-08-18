@@ -154,6 +154,9 @@ export function eventSteps(type: EventType): WizardStep[] {
       ready: true,
       substeps: [
         { id: 'identity', label: 'Identity' },
+        /* Branding and the host sat in a step of their own, three screens
+           away from the name and category they belong with. */
+        { id: 'brand', label: 'Brand & Host' },
         { id: 'experience', label: 'Experience Details' },
         { id: 'benefits', label: 'Benefits' },
       ],
@@ -169,9 +172,8 @@ export function eventSteps(type: EventType): WizardStep[] {
       ],
     },
     { id: 3, label: 'Ticket Setup', ready: true, substeps: [] },
-    { id: 4, label: 'Brand & Host', ready: true, substeps: [] },
     {
-      id: 5,
+      id: 4,
       label: 'Review & Publish',
       ready: true,
       substeps: [

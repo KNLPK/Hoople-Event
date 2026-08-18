@@ -79,8 +79,6 @@ export function EventTickets({ draft, set }: EventSectionProps) {
   return (
     <>
       <EventHead
-        title="3. Ticket Setup"
-        badge="Step 3 of 5"
         lede={LEDE[draft.eventType]}
         tip="Give each ticket a clear name and say what it includes — it is the first thing people compare."
       />

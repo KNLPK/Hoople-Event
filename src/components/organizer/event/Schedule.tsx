@@ -106,8 +106,6 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
   return (
     <>
       <EventHead
-        title="2.3 Event Schedule"
-        badge="3 of 3"
         lede="Build your event timeline. Add sessions, breaks, and activities."
         tip={
           hybrid

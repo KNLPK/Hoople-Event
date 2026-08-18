@@ -1797,62 +1797,6 @@ body[data-surface='console'] {
   color: var(--grey-faint);
 }
 
-/* The step being edited stretches to list what it still wants filled in. */
-/*
- * A tab strip rather than three floating labels. Centred under the rail, on a
- * tinted track so it reads as one control instead of orphaned text.
- */
-.wiz-subs {
-  grid-column: 1;
-  grid-row: 2;
-  justify-self: center;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px;
-  border-radius: var(--r-pill);
-  background: var(--surface-toggle);
-  white-space: nowrap;
-  max-width: 100%;
-}
-.wiz-sub {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  height: 32px;
-  padding: 0 15px;
-  border: 0;
-  border-radius: var(--r-pill);
-  background: none;
-  font-family: inherit;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--grey);
-  cursor: pointer;
-  white-space: nowrap;
-  transition:
-    background 0.18s ease,
-    color 0.18s ease;
-}
-.wiz-sub:hover {
-  color: var(--brand-deep);
-}
-.wiz-sub__num {
-  font-weight: 700;
-  color: var(--grey-faint);
-}
-/* The open part is a raised pill — the row reads as one control rather than
-   three labels with a stray underline. */
-.wiz-sub.is-on {
-  background: #fff;
-  color: var(--brand-deep);
-  font-weight: 600;
-  box-shadow: var(--sh-card);
-}
-.wiz-sub.is-on .wiz-sub__num {
-  color: var(--brand);
-}
-
 /* Below this the rail needs the whole row to itself. */
 @media (max-width: 1200px) {
   .wiz-bar {
@@ -1865,6 +1809,151 @@ body[data-surface='console'] {
   }
 }
 /* Phones get their own rail treatment — see responsive.css. */
+
+/* ============ Builder: the step's parts, as an accordion ============ */
+
+/*
+ * These used to be a tab strip under the rail, which meant two navigations for
+ * one wizard. The whole step is one page now, with only the part being filled
+ * in expanded, so the page never grows past the work in front of you.
+ */
+.wiz-acc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wiz-acc {
+  border: 1px solid var(--line-card);
+  border-radius: var(--r-2xl);
+  background: #fff;
+  overflow: hidden;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.wiz-acc.is-open {
+  border-color: var(--brand-border);
+  box-shadow: var(--sh-card);
+}
+
+.wiz-acc__head {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.wiz-acc__toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 16px 20px;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background 0.16s ease;
+}
+.wiz-acc__toggle:hover:not(:disabled) {
+  background: var(--brand-tint);
+}
+.wiz-acc__toggle:disabled {
+  cursor: default;
+}
+
+.wiz-acc__num {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-toggle);
+  color: var(--grey);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.wiz-acc.is-open .wiz-acc__num {
+  background: var(--brand);
+  color: #fff;
+}
+/* A finished part keeps the tick even while another one is open. */
+.wiz-acc.is-done .wiz-acc__num {
+  background: var(--green);
+  color: #fff;
+}
+
+.wiz-acc__label {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-heading);
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.wiz-acc.is-open .wiz-acc__label {
+  color: var(--brand-ink);
+}
+
+.wiz-acc__chev {
+  flex: none;
+  display: flex;
+  transition: transform 0.22s ease;
+}
+.wiz-acc.is-open .wiz-acc__chev {
+  transform: rotate(180deg);
+}
+
+.wiz-acc__body {
+  padding: 4px 20px 20px;
+  border-top: 1px solid var(--line-faint);
+  animation: wiz-acc-in 0.24s ease both;
+}
+@keyframes wiz-acc-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wiz-acc__body { animation: none; }
+}
+
+.wiz-acc__foot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line-faint);
+}
+.wiz-acc__next {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 20px;
+  border: 1.5px solid var(--brand);
+  border-radius: var(--r-pill);
+  background: var(--brand-tint);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--brand-deep);
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+.wiz-acc__next:hover {
+  background: var(--brand);
+  color: #fff;
+}
+
+@media (max-width: 620px) {
+  .wiz-acc__toggle { padding: 14px 15px; gap: 11px; }
+  .wiz-acc__label { font-size: 14.5px; }
+  .wiz-acc__body { padding: 4px 15px 18px; }
+  .wiz-acc__next { width: 100%; justify-content: center; }
+}
 
 /* ============ Builder: form column ============ */
 
@@ -2054,14 +2143,19 @@ body[data-surface='console'] {
   font-weight: 700;
 }
 
+/* The counter sits under the box, not inside it. Floating over the text meant
+   that as soon as the content outgrew the visible rows, a scrolled line ran
+   straight behind "178 / 500". */
 .wiz-area {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 .wiz-area textarea {
   width: 100%;
   border: 1px solid var(--line-input);
   border-radius: var(--r-md);
-  padding: 13px 14px 30px;
+  padding: 13px 14px;
   font-family: inherit;
   font-size: 13.5px;
   line-height: 1.6;
@@ -2078,9 +2172,7 @@ body[data-surface='console'] {
   box-shadow: 0 0 0 4px rgba(109, 40, 255, 0.12);
 }
 .wiz-area__count {
-  position: absolute;
-  right: 13px;
-  bottom: 11px;
+  align-self: flex-end;
   font-size: 11.5px;
   color: var(--grey-faint);
   pointer-events: none;

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { EventPreview } from '@/components/organizer/EventPreview';
 import { WizardStepper } from '@/components/organizer/WizardStepper';
+import { WizardAccordion, type AccordionPanel } from '@/components/organizer/WizardAccordion';
 import { EventBenefits } from '@/components/organizer/event/Benefits';
 import { EventDateLocation } from '@/components/organizer/event/DateLocation';
 import { EventExperience } from '@/components/organizer/event/Experience';
@@ -22,25 +23,25 @@ import { EVENT_DRAFT_SEED, eventSteps, type EventDraft } from '@/data/eventBuild
 import { fireConfetti } from '@/lib/motion';
 import { useExperiences } from '@/store/experiences';
 
-/** Which component owns each sub-section, keyed `step.substep`. */
+/** Which component owns each part, keyed `step.index`. */
 const SECTIONS: Record<string, (props: EventSectionProps) => JSX.Element> = {
   '1.0': EventIdentity,
-  '1.1': EventExperience,
-  '1.2': EventBenefits,
+  '1.1': EventBrand,
+  '1.2': EventExperience,
+  '1.3': EventBenefits,
   '2.0': EventDateLocation,
   '2.1': EventPlace,
   '2.2': EventSchedule,
   '3.0': EventTickets,
-  '4.0': EventBrand,
-  '5.0': EventReview,
-  '5.1': EventPublish,
-  '5.2': EventFinalPublish,
+  '4.0': EventReview,
+  '4.1': EventPublish,
+  '4.2': EventFinalPublish,
 };
 
-/** 5.2 and 5.3 swap the live page preview for listing and share previews. */
+/** The last two parts swap the live page preview for listing and share previews. */
 const PREVIEW_VARIANT: Record<string, 'discover' | 'final'> = {
-  '5.1': 'discover',
-  '5.2': 'final',
+  '4.1': 'discover',
+  '4.2': 'final',
 };
 
 /**
@@ -62,7 +63,10 @@ export function OrgCreateEvent() {
     return stored?.draft?.kind === 'event' ? stored.draft.payload : EVENT_DRAFT_SEED;
   });
   const [step, setStep] = useState(1);
-  const [substep, setSubstep] = useState(0);
+  /* Which part of the open step is expanded, and which have been finished.
+     Done is keyed `step.index` so progress survives moving between steps. */
+  const [openSub, setOpenSub] = useState(0);
+  const [done, setDone] = useState<ReadonlySet<string>>(new Set());
 
   const set = useMemo(
     () =>
@@ -74,32 +78,22 @@ export function OrgCreateEvent() {
 
   const steps = useMemo(() => eventSteps(draft.eventType), [draft.eventType]);
 
-  /** Every sub-section of every built step, in order — Prev/Next walk this. */
-  const trail = useMemo(
-    () =>
-      steps
-        .filter((item) => item.ready)
-        .flatMap((item) =>
-          item.substeps.length === 0
-            ? [{ step: item.id, stepLabel: item.label, index: 0, label: item.label }]
-            : item.substeps.map((sub, index) => ({
-                step: item.id,
-                stepLabel: item.label,
-                index,
-                label: sub.label,
-              })),
-        ),
-    [steps],
-  );
+  /* Prev/Next in the footer move between steps now; the parts of a step are
+     all on this page, so walking them one page-load at a time made no sense. */
+  const reachable = useMemo(() => steps.filter((item) => item.ready), [steps]);
+  const at = reachable.findIndex((item) => item.id === step);
+  const previous = at > 0 ? reachable[at - 1] : undefined;
+  const next = reachable[at + 1];
 
-  const at = trail.findIndex((entry) => entry.step === step && entry.index === substep);
-  const previous = at > 0 ? trail[at - 1] : undefined;
-  const next = trail[at + 1];
-  const lockedNext = steps[step];
+  const open = steps.find((item) => item.id === step);
+  const parts = open?.substeps ?? [];
+
+  /** `1.2`, or just `3` when a step has no parts. */
+  const numberFor = (index: number) => (parts.length ? `${step}.${index + 1}` : `${step}`);
 
   function goTo(nextStep: number, nextSub: number) {
     setStep(nextStep);
-    setSubstep(nextSub);
+    setOpenSub(nextSub);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -112,14 +106,33 @@ export function OrgCreateEvent() {
     goTo(id, 0);
   }
 
-  const previousLabel = previous
-    ? previous.step === step
-      ? previous.label
-      : previous.stepLabel
-    : '';
+  /** Finishing a part closes it and opens the one after — the point of this. */
+  function continueFrom(index: number) {
+    setDone((current) => new Set(current).add(`${step}.${index}`));
+    setOpenSub(index + 1);
+  }
 
-  const key = `${step}.${substep}`;
-  const Section = SECTIONS[key];
+  const panels: AccordionPanel[] = (parts.length ? parts : [{ id: 'only', label: open?.label ?? '' }]).map(
+    (part, index) => {
+      const Section = SECTIONS[`${step}.${index}`];
+      return {
+        id: part.id,
+        number: numberFor(index),
+        label: part.label,
+        body: Section ? <Section draft={draft} set={set} goTo={goTo} /> : null,
+      };
+    },
+  );
+
+  const doneHere = useMemo(() => {
+    const local = new Set<number>();
+    panels.forEach((_, index) => {
+      if (done.has(`${step}.${index}`)) local.add(index);
+    });
+    return local;
+  }, [done, step, panels.length]);
+
+  const key = `${step}.${openSub}`;
 
   function saveDraft() {
     saveEvent(draft, { id: editingId, lifecycle: 'Draft' });
@@ -143,25 +156,25 @@ export function OrgCreateEvent() {
 
   return (
     <div className="wiz">
-      <WizardStepper
-        steps={steps}
-        step={step}
-        substep={substep}
-        onStep={goStep}
-        onSubstep={(index) => goTo(step, index)}
-      />
+      <WizardStepper steps={steps} step={step} onStep={goStep} />
 
       <div className="wiz-grid">
         <div className="wiz-form">
-          <Reveal className="wiz-section" key={`${step}.${substep}.${draft.eventType}`}>
-            <Section draft={draft} set={set} goTo={goTo} />
+          <Reveal className="wiz-section" key={`${step}.${draft.eventType}`}>
+            <WizardAccordion
+              panels={panels}
+              open={openSub}
+              done={doneHere}
+              onOpen={setOpenSub}
+              onContinue={continueFrom}
+            />
           </Reveal>
 
           <div className="wiz-foot">
             {previous ? (
-              <Button as="button" variant="neutral" onClick={() => goTo(previous.step, previous.index)}>
+              <Button as="button" variant="neutral" onClick={() => goTo(previous.id, 0)}>
                 <ArrowLeft size={15} strokeWidth={2} />
-                Previous: {previousLabel}
+                Previous: {previous.label}
               </Button>
             ) : (
               <Button as="link" to="/organizer/create" variant="neutral">
@@ -174,18 +187,8 @@ export function OrgCreateEvent() {
             </Button>
 
             {next ? (
-              <Button
-                as="button"
-                variant="primary"
-                size="lg"
-                onClick={() => goTo(next.step, next.index)}
-              >
-                Next: {next.step === step ? next.label : next.stepLabel}
-                <ArrowRight size={16} strokeWidth={2} />
-              </Button>
-            ) : lockedNext ? (
-              <Button as="button" variant="primary" size="lg" onClick={() => goStep(step + 1)}>
-                Next: {lockedNext.label}
+              <Button as="button" variant="primary" size="lg" onClick={() => goTo(next.id, 0)}>
+                Next: {next.label}
                 <ArrowRight size={16} strokeWidth={2} />
               </Button>
             ) : (

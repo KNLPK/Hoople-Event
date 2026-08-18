@@ -21,7 +21,6 @@ export function StepIdentity({
 }) {
   return (
     <>
-      <h2 className="wiz-section__title">1.1 Identity</h2>
       <p className="wiz-section__lede">Tell us the basic information about your activity.</p>
 
       <div className="org-card wiz-card">

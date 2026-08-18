@@ -29,7 +29,6 @@ export function StepPricing({
 
   return (
     <>
-      <h2 className="wiz-section__title">3. Pricing &amp; Booking</h2>
       <p className="wiz-section__lede">Set the price for each session and manage how bookings work.</p>
 
       <div className="wiz-stack">

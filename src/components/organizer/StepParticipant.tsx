@@ -17,7 +17,6 @@ export function StepParticipant({
 }) {
   return (
     <>
-      <h2 className="wiz-section__title">1.3 Participant Information</h2>
       <p className="wiz-section__lede">
         Share what participants will get and need to know before joining.
       </p>

@@ -32,7 +32,6 @@ export function StepDetails({
 }) {
   return (
     <>
-      <h2 className="wiz-section__title">1.2 Activity Details</h2>
       <p className="wiz-section__lede">
         Add key details to help participants understand your activity better.
       </p>

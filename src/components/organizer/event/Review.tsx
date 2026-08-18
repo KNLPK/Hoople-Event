@@ -30,8 +30,6 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
   return (
     <>
       <EventHead
-        title="5.1 Review Summary"
-        badge="Part 1 of 3"
         lede="Please review all the information below. You can go back and edit any section if needed."
         tip="Read it as a participant would. Anything unclear here will be unclear on the event page."
       />
@@ -41,7 +39,7 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
           <button
             type="button"
             className="wiz-addsession"
-            onClick={() => goTo(5, 2)}
+            onClick={() => goTo(4, 2)}
           >
             <Eye size={14} color="#6D28FF" strokeWidth={1.9} />
             Preview as Attendee
@@ -133,7 +131,7 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
             Icon={Users}
             tone="pink"
             title="Brand & Host"
-            onEdit={() => goTo(4, 0)}
+            onEdit={() => goTo(1, 1)}
             fields={[
               { label: 'Host', value: `${draft.hostName}\n${draft.hostType}` },
               { label: 'Brand Colors', value: '' },

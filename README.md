@@ -53,6 +53,10 @@ The success screen goes straight to the ticket you just bought rather than to
 the list — that QR is what gets scanned at the door, and hunting for it in a
 list is a poor reward for having just paid. My Bookings is one tap on.
 
+It carries no order summary either. A receipt for something you have already
+paid for competes with the one thing you still need, so the page is the
+confirmation, the e-ticket, and what to do next.
+
 Also wired: nav **My Tickets** → My Bookings, **Log in** → Authentication,
 Authentication **Login** → Activities. Every nav and footer link resolves to a
 real page — there are no `href="#"` dead ends.
@@ -324,15 +328,13 @@ preview — and differs where an event genuinely differs.
 
 | Step | Sub-sections |
 | --- | --- |
-| 1 Basic Information | 1.1 Identity · 1.2 Experience Details · 1.3 Benefits |
+| 1 Basic Information | 1.1 Identity · 1.2 Brand & Host · 1.3 Experience Details · 1.4 Benefits |
 | 2 Date & Location | 2.1 when · 2.2 where · 2.3 Event Schedule |
-| 3 Ticket Setup | one screen — ticket types, sales window, payment methods |
-| 4 Brand & Host | one screen — logo, banner, colours, host profile |
-| 5 Review & Publish | 5.1 Review Summary · 5.2 Publish Settings · 5.3 Final Publish |
+| 3 Ticket Setup | one panel — ticket types, sales window, payment methods |
+| 4 Review & Publish | 4.1 Review Summary · 4.2 Publish Settings · 4.3 Final Publish |
 
 **Step 2 changes shape with the event type.** `eventSteps(type)` derives the
-map from the draft, so the rail, the Previous/Next trail and the section
-registry can never disagree about what step 2 contains:
+map from the draft, so the rail and the section registry can never disagree about what step 2 contains:
 
 | Type | 2.1 | 2.2 |
 | --- | --- | --- |
@@ -577,6 +579,46 @@ phone.
 
 The event shown is real data, not a mock. It used to label an *activity* as an
 EVENT, which is the one thing the two halves of the catalogue must never blur.
+
+## One step, one page
+
+Both builders used to carry two navigations: the numbered rail across the top,
+and a second strip of tabs under it for the parts of the open step. You had to
+read `2.3` in a tab bar to work out where you were inside a step you had
+already chosen, and each part was its own page load.
+
+A step is now a single page, with its parts stacked as an accordion and only
+one open at a time. Finishing a part collapses it and expands the next, and the
+newly opened header scrolls to the top — otherwise collapsing a tall panel
+above it throws the page backwards. Anything already finished keeps a green
+tick and can be reopened by clicking its header.
+
+A step with no parts is the same component with one panel, always open and not
+clickable, so nothing special-cases it.
+
+The footer's Previous/Next move between *steps* only. There is nothing left for
+them to walk inside one.
+
+`WizardAccordion` is shared by both builders, so the event and activity flows
+cannot drift apart.
+
+### What moved
+
+**Brand & Host** was a step of its own — step 4 of 5 — three screens away from
+the name and category it belongs with. It is now `1.2`, inside Basic
+Information:
+
+| | Before | After |
+| --- | --- | --- |
+| 1 | Basic Information — Identity, Experience Details, Benefits | Basic Information — **Identity, Brand & Host, Experience Details, Benefits** |
+| 2 | Date & Location | Date & Location |
+| 3 | Ticket Setup | Ticket Setup |
+| 4 | Brand & Host | Review & Publish |
+| 5 | Review & Publish | — |
+
+Every section also lost its own `1.1 Identity` heading. The accordion header
+states the number and the name, and printing both twice made each panel look
+like it had started over.
 
 ## Prototype boundaries
 

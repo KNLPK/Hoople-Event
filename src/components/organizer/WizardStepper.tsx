@@ -6,31 +6,20 @@ interface WizardStepperProps {
   steps: WizardStep[];
   /** Step currently being edited, by its 1-based id. */
   step: number;
-  /** Index of the open sub-section within that step. */
-  substep: number;
   onStep: (id: number) => void;
-  onSubstep: (index: number) => void;
   /** Sits at the far right of the bar — "Save as Draft". */
   action?: React.ReactNode;
 }
 
 /**
- * The five-step rail, with the open step's parts on a row of their own.
+ * The step rail, and nothing else.
  *
- * That row is a sibling of the rail rather than a child of the active step:
- * it belongs to the whole bar, it never widens a step, and it can be centred
- * on a wide screen or stacked as tabs on a narrow one without moving markup.
+ * The open step's parts used to sit here as a second row of tabs, which gave
+ * one wizard two navigations. They are now an accordion inside the page — see
+ * WizardAccordion — so this bar answers exactly one question: which step.
  */
-export function WizardStepper({
-  steps,
-  step,
-  substep,
-  onStep,
-  onSubstep,
-  action,
-}: WizardStepperProps) {
+export function WizardStepper({ steps, step, onStep, action }: WizardStepperProps) {
   const open = steps.find((item) => item.id === step);
-  const substeps = open?.substeps ?? [];
 
   return (
     <div className="wiz-bar">
@@ -84,26 +73,6 @@ export function WizardStepper({
           );
         })}
       </ol>
-
-      {substeps.length > 0 ? (
-        <div className="wiz-subs" role="tablist" aria-label={`${open?.label} sections`}>
-          {substeps.map((sub, index) => (
-            <button
-              key={sub.id}
-              type="button"
-              role="tab"
-              className={`wiz-sub ${index === substep ? 'is-on' : ''}`.trim()}
-              onClick={() => onSubstep(index)}
-              aria-selected={index === substep}
-            >
-              <span className="wiz-sub__num">
-                {step}.{index + 1}
-              </span>
-              {sub.label}
-            </button>
-          ))}
-        </div>
-      ) : null}
 
       {action}
     </div>

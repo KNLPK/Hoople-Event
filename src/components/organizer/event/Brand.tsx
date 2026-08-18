@@ -28,8 +28,6 @@ export function EventBrand({ draft, set }: EventSectionProps) {
   return (
     <>
       <EventHead
-        title="4. Brand & Host"
-        badge="Step 4 of 5"
         lede="Customize your event branding and add host information."
         tip="A logo and a short host bio make an event page feel like a real organisation, not a listing."
       />

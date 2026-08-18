@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import {
   AppleMark,
-  ArrowRight,
-  Chart,
   Instagram,
   LinkedIn,
   Logo,
@@ -120,28 +118,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-      {/* Surfaces are chosen at the front door rather than swapped from down
-          here — the footer is the worst place to find out a whole other site
-          exists. This points back to that choice instead of jumping straight in. */}
-      <div className="container">
-        <Link to="/" className="footer__console">
-          <span className="footer__console-icon">
-            <Chart size={20} color="#6D28FF" strokeWidth={1.8} />
-          </span>
-          <span className="footer__console-text">
-            <strong>Hosting instead of joining?</strong>
-            <span>
-              Hoople also runs public experiences for communities, and private ones inside companies. Pick a side at
-              the front door.
-            </span>
-          </span>
-          <span className="footer__console-cta">
-            See all three
-            <ArrowRight size={15} strokeWidth={2} />
-          </span>
-        </Link>
-      </div>
-
       <div className="footer__legal">© 2026 Hoople. All rights reserved.</div>
     </footer>
   );

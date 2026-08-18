@@ -12,8 +12,6 @@ export function EventPlace({ draft, set, goTo }: EventSectionProps) {
     return (
       <>
         <EventHead
-          title="2.2 Virtual Event Setup"
-          badge="2 of 3"
           lede="Set up your online event details so participants can join smoothly."
           tip="Provide clear instructions and test your meeting link before publishing."
         />
@@ -44,8 +42,6 @@ export function EventPlace({ draft, set, goTo }: EventSectionProps) {
     return (
       <>
         <EventHead
-          title="2.2 Venue Setup"
-          badge="2 of 3"
           lede="Set up both physical and virtual venues for your hybrid event."
           tip="Provide both venue and online details to make it easy for all participants to join—wherever they are."
         />
@@ -93,8 +89,6 @@ export function EventPlace({ draft, set, goTo }: EventSectionProps) {
   return (
     <>
       <EventHead
-        title="2.2 Venue Details"
-        badge="2 of 3"
         lede="Tell us where your event will take place."
         tip="Add a clear venue location and details to help participants find and plan their visit easily."
       />

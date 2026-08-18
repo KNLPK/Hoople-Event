@@ -34,7 +34,6 @@ export function StepPublish({
 
   return (
     <>
-      <h2 className="wiz-section__title">5.3 Publish Settings</h2>
       <p className="wiz-section__lede">Choose how and when your activity will be published.</p>
 
       <div className="wiz-stack">

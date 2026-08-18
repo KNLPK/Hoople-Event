@@ -33,8 +33,6 @@ export function EventExperience({ draft, set }: { draft: EventDraft; set: EventS
   return (
     <>
       <EventHead
-        title="1.2 Experience Details"
-        badge="2 of 3"
         lede="Add details to help people find and understand your event better."
         tip="The more details you provide, the easier it is for the right participants to discover your event."
       />

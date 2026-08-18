@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ActivityPreview } from '@/components/organizer/ActivityPreview';
 import { WizardStepper } from '@/components/organizer/WizardStepper';
+import { WizardAccordion, type AccordionPanel } from '@/components/organizer/WizardAccordion';
 import { StepDetails } from '@/components/organizer/StepDetails';
 import { StepIdentity } from '@/components/organizer/StepIdentity';
 import { StepParticipant } from '@/components/organizer/StepParticipant';
@@ -58,9 +59,9 @@ const SECTIONS: Record<string, (props: SectionProps) => JSX.Element> = {
 const PHONE_SECTIONS = new Set(['5.1', '5.2']);
 
 /**
- * The activity builder. Each step is split into sub-sections shown one at a
- * time; the preview on the right follows the scroll so the participant's view
- * is never more than a glance away.
+ * The activity builder. A step's parts are stacked on one page as an
+ * accordion, one open at a time; the preview on the right follows whichever
+ * part is expanded, so the participant's view is never more than a glance away.
  */
 export function OrgCreateActivity() {
   const navigate = useNavigate();
@@ -80,7 +81,10 @@ export function OrgCreateActivity() {
     return stored?.draft?.kind === 'activity' ? stored.draft.payload : DRAFT_SEED;
   });
   const [step, setStep] = useState(1);
-  const [substep, setSubstep] = useState(0);
+  /* Which part of the open step is expanded, and which have been finished.
+     Done is keyed `step.index` so progress survives moving between steps. */
+  const [openSub, setOpenSub] = useState(0);
+  const [done, setDone] = useState<ReadonlySet<string>>(new Set());
 
   /** One setter for every field, so each section stays declarative. */
   const set = useMemo<DraftSetter>(
@@ -88,34 +92,19 @@ export function OrgCreateActivity() {
     [],
   );
 
-  /**
-   * Every sub-section of every built step, in order. Prev/Next walk this so
-   * they cross step boundaries without either end knowing about the other.
-   */
-  const trail = useMemo(
-    () =>
-      WIZARD_STEPS.filter((item) => item.ready).flatMap((item) =>
-        /* A step with no sub-sections is one screen — it still gets one entry. */
-        item.substeps.length === 0
-          ? [{ step: item.id, stepLabel: item.label, index: 0, label: item.label }]
-          : item.substeps.map((sub, index) => ({
-              step: item.id,
-              stepLabel: item.label,
-              index,
-              label: sub.label,
-            })),
-      ),
-    [],
-  );
+  /* Prev/Next in the footer move between steps; a step's parts all live on
+     this page now, so there is nothing left for them to walk inside one. */
+  const reachable = useMemo(() => WIZARD_STEPS.filter((item) => item.ready), []);
+  const at = reachable.findIndex((item) => item.id === step);
+  const previous = at > 0 ? reachable[at - 1] : undefined;
+  const next = reachable[at + 1];
 
-  const at = trail.findIndex((entry) => entry.step === step && entry.index === substep);
-  const previous = at > 0 ? trail[at - 1] : undefined;
-  const next = trail[at + 1];
-  const lockedNext = WIZARD_STEPS[step];
+  const open = WIZARD_STEPS.find((item) => item.id === step);
+  const parts = open?.substeps ?? [];
 
   function goTo(entry: { step: number; index: number }) {
     setStep(entry.step);
-    setSubstep(entry.index);
+    setOpenSub(entry.index);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -128,15 +117,36 @@ export function OrgCreateActivity() {
     goTo({ step: id, index: 0 });
   }
 
-  /** Crossing into another step names the step; moving inside one names the part. */
-  const previousLabel = previous
-    ? previous.step === step
-      ? previous.label
-      : previous.stepLabel
-    : '';
+  /** Finishing a part closes it and opens the one after — the point of this. */
+  function continueFrom(index: number) {
+    setDone((current) => new Set(current).add(`${step}.${index}`));
+    setOpenSub(index + 1);
+  }
 
-  const key = `${step}.${substep}`;
-  const Section = SECTIONS[key];
+  const panels: AccordionPanel[] = (parts.length ? parts : [{ id: 'only', label: open?.label ?? '' }]).map(
+    (part, index) => {
+      const Section = SECTIONS[`${step}.${index}`];
+      return {
+        id: part.id,
+        /** `2.3`, or just `3` when a step has no parts. */
+        number: parts.length ? `${step}.${index + 1}` : `${step}`,
+        label: part.label,
+        body: Section ? (
+          <Section draft={draft} set={set} onEdit={() => goTo({ step: 1, index: 0 })} />
+        ) : null,
+      };
+    },
+  );
+
+  const doneHere = useMemo(() => {
+    const local = new Set<number>();
+    panels.forEach((_, index) => {
+      if (done.has(`${step}.${index}`)) local.add(index);
+    });
+    return local;
+  }, [done, step, panels.length]);
+
+  const key = `${step}.${openSub}`;
 
   function publish(event: React.MouseEvent<HTMLButtonElement>) {
     saveActivity(draft, {
@@ -157,9 +167,7 @@ export function OrgCreateActivity() {
       <WizardStepper
         steps={WIZARD_STEPS}
         step={step}
-        substep={substep}
         onStep={goStep}
-        onSubstep={(index) => goTo({ step, index })}
         action={
           <Button
             as="button"
@@ -177,15 +185,21 @@ export function OrgCreateActivity() {
 
       <div className="wiz-grid">
         <div className="wiz-form">
-          <Reveal className="wiz-section" key={key}>
-            <Section draft={draft} set={set} onEdit={() => goTo(trail[0])} />
+          <Reveal className="wiz-section" key={String(step)}>
+            <WizardAccordion
+              panels={panels}
+              open={openSub}
+              done={doneHere}
+              onOpen={setOpenSub}
+              onContinue={continueFrom}
+            />
           </Reveal>
 
           <div className="wiz-foot">
             {previous ? (
-              <Button as="button" variant="neutral" onClick={() => goTo(previous)}>
+              <Button as="button" variant="neutral" onClick={() => goTo({ step: previous.id, index: 0 })}>
                 <ArrowLeft size={15} strokeWidth={2} />
-                Previous: {previousLabel}
+                Previous: {previous.label}
               </Button>
             ) : (
               <Button as="link" to="/organizer/create" variant="neutral">
@@ -194,13 +208,8 @@ export function OrgCreateActivity() {
             )}
 
             {next ? (
-              <Button as="button" variant="primary" size="lg" onClick={() => goTo(next)}>
-                Next: {next.step === step ? next.label : next.stepLabel}
-                <ArrowRight size={16} strokeWidth={2} />
-              </Button>
-            ) : lockedNext ? (
-              <Button as="button" variant="primary" size="lg" onClick={() => goStep(step + 1)}>
-                Next: {lockedNext.label}
+              <Button as="button" variant="primary" size="lg" onClick={() => goTo({ step: next.id, index: 0 })}>
+                Next: {next.label}
                 <ArrowRight size={16} strokeWidth={2} />
               </Button>
             ) : (

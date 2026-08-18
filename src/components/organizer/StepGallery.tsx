@@ -52,7 +52,6 @@ export function StepGallery({
 
   return (
     <>
-      <h2 className="wiz-section__title">4.2 Gallery</h2>
       <p className="wiz-section__lede">
         Showcase your activity with photos and videos. Great visuals help participants feel excited to
         join!

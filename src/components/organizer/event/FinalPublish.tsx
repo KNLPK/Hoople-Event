@@ -68,8 +68,6 @@ export function EventFinalPublish({ draft }: EventSectionProps) {
   return (
     <>
       <EventHead
-        title="5.3 Final Publish"
-        badge="Part 3 of 3"
         lede={
           ready
             ? 'Everything looks good! Your event is ready to go live.'

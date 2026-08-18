@@ -64,7 +64,6 @@ export function StepFacilities({
 
   return (
     <>
-      <h2 className="wiz-section__title">4.3 Facilities &amp; Equipment</h2>
       <p className="wiz-section__lede">List the facilities and equipment available for your activity.</p>
 
       <div className="wiz-stack">

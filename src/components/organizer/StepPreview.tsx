@@ -38,7 +38,6 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
 
   return (
     <>
-      <h2 className="wiz-section__title">5.2 Preview</h2>
       <p className="wiz-section__lede">Review how your activity will appear to participants.</p>
 
       <div className="wiz-viewtabs" role="group" aria-label="Preview surface">
