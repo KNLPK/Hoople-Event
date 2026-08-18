@@ -38,8 +38,9 @@ npm run dev        # http://localhost:5173
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run preview` | Serve the production build |
 
-**Stack:** React 18 · TypeScript (strict) · Vite · React Router 6. No UI
-framework — the design system is hand-built CSS driven by tokens.
+**Stack:** React 18 · TypeScript (strict) · Vite · React Router 7 · Tailwind
+CSS v4. No component library — the design system is this project's own tokens
+and components, with Tailwind as the engine underneath. See [Tailwind](#tailwind).
 
 ## The flow to demo
 
@@ -133,11 +134,13 @@ src/
                title.ts (what the browser tab says), clipboard.ts, artwork.ts
   pages/       One file per route
   store/       bookings.tsx — the booking ledger
-  styles/      tokens → base → motion → components → layout → cards → … →
-               organizer → eventbuilder → eventpublish → teams → entry →
-               responsive
+  styles/      index.css is the single entry — it pulls in Tailwind, the
+               @theme, the breakpoint variants, then every stylesheet in
+               cascade order: base → motion → components → layout → cards →
+               … → eventpublish → teams → entry → responsive
 public/        favicon, touch icon, share card, robots.txt, sitemap.xml
 scripts/       brand-assets.mjs — regenerates the rasters in public/
+               ui-diff/         screenshot + computed-style comparison
 ```
 
 ### Sessions are derived, not hard-coded
@@ -536,6 +539,99 @@ directory, and committing a stale one is the surest way to reproduce the
   through `media="print"` and swaps in on load; every family in `tokens.css`
   has a system fallback, so the page paints immediately either way.
 
+## Tailwind
+
+Tailwind v4 is the styling engine, wired through `@tailwindcss/vite`. Two
+decisions shape how it sits in an app that already had a design system.
+
+**The tokens are the theme.** `src/styles/tokens.css` is a `@theme` block, so
+each of the 67 values does double duty: Tailwind emits it as a real custom
+property, which is what the hand-written rules read, and generates a utility
+from it. `--color-brand` and `bg-brand` are the same purple by construction, not
+by agreement. The namespace prefixes are load-bearing — `--color-`, `--radius-`,
+`--shadow-`, `--spacing-` are what tell Tailwind which family to build.
+`--font-*` and `--ease-*` already sat in the right namespace and kept their
+names.
+
+**Preflight is not imported.** Tailwind's reset restyles headings, buttons,
+borders and lists, and `base.css` has been this app's considered reset since
+before Tailwind arrived. Loading both would flatten every `h1`–`h4` on the site.
+`theme.css` and `utilities.css` are imported on their own, which is the
+supported way to opt out in v4.
+
+Everything hand-written lands in one `components` layer. Layer order decides who
+wins *between* layers, so keeping the whole existing design system in a single
+layer leaves its internal cascade — source order, specificity, the few
+`!important` rules — exactly as it was, while a utility in `utilities` can still
+override a component class.
+
+### Breakpoints
+
+Tailwind's built-in `max-[900px]:` compiles to `not all and (min-width:900px)`,
+which is `width < 900`. The stylesheets say `max-width: 900px`, which includes
+900. The two disagree on one pixel column — invisible until someone's window
+sits exactly on a breakpoint. So every breakpoint the design uses is declared as
+a `@custom-variant` in `index.css` that emits the query verbatim, and the markup
+says `to-900:` rather than `max-[900px]:`.
+
+### What is a utility and what is still CSS
+
+About 450 rules moved into the markup; roughly 1,600 lines of CSS went with
+them. What is left is what component CSS is for: descendant selectors, hover and
+focus states, keyframes, and the handful of genuinely intricate grids. A rule
+like `.wiz-pv__session` — four columns that restructure into three with the Book
+button dropping to its own row — is clearer as CSS than as forty classes on a
+div, and Tailwind's own guidance agrees.
+
+The move was done by an analyzer rather than by hand, because the risk is not
+translation, it is the cascade. Shifting a declaration into the markup also
+shifts it from the `components` layer to `utilities`, and a later layer wins
+regardless of specificity, so a rule that used to lose starts winning. A rule
+only converted when its class was a bare selector mentioned nowhere else, no
+`[class*=…]` matched it by substring, no script touched it, no class sharing the
+same element set any of the same properties, no utility it produced was itself a
+class the CSS selects on, and every declaration mapped to a utility emitting
+identical CSS.
+
+Four separate hazards only showed up in screenshots, never in a build:
+
+- Tailwind ships its own `container` utility. In a later layer it silently
+  widened every page from 1360px to 1536px.
+- A class inside a template literal containing a quote —
+  `` `wiz-pv__media ${type === 'Hybrid' ? … }` `` — looks rewritable and is not.
+  Converting it deleted the rule and put nothing back.
+- A class can be assembled at runtime. `` `org-pill--${kind.toLowerCase()}` ``
+  appears nowhere in the source, so nothing reachable by interpolation converts.
+- A utility is also a class name. Turning `display: grid` into the `grid`
+  utility enrolled elements in `.grid > *` from `responsive.css`, which zeroes
+  child min-widths, and the footer reflowed.
+
+### Proving the design did not move
+
+The rule for this migration was that the UI must not change, so it is checked
+rather than asserted. `scripts/ui-diff/` captures every route at several widths
+and compares the images pixel by pixel:
+
+```bash
+npm run build && npx vite preview --port 4173
+node scripts/ui-diff/shots.mjs shots/before http://localhost:4173
+node scripts/ui-diff/diff.mjs shots/before shots/after
+```
+
+`shots.mjs` pins everything that would otherwise drift — `Math.random`,
+animations, transitions, the caret, the signed-in session — so two runs of the
+same commit produce the same pixels. `styles.mjs` is the follow-up when the
+images do differ: it walks two builds of the same page in parallel and reports
+the exact property, which turns a red blob into `borderTopWidth: 1px -> 0px`.
+
+Every commit in the migration was gated on 126 shots across 42 routes at
+390/1280/1920, plus checks at the breakpoint boundaries. All of them landed at
+zero differing pixels.
+
+Like `brand-assets.mjs`, these need `playwright`, `pixelmatch` and `pngjs`,
+which are deliberately not dependencies — install them with `--no-save` when you
+need to run a comparison.
+
 ## Weight
 
 The two consoles are `React.lazy` boundaries. Someone opening the participant
@@ -750,15 +846,18 @@ what makes the redirect safe, and the upgrade is what clears the advisory.
 
 ## Design system
 
-Colours, type, radius and elevation live in `src/styles/tokens.css`.
+Colours, type, radius and elevation live in `src/styles/tokens.css` as a
+Tailwind `@theme`, so every row below is reachable both as a variable and as a
+utility — see [Tailwind](#tailwind).
 
-| Token | Value | Used for |
-| --- | --- | --- |
-| `--brand` / `--brand-deep` | `#6D28FF` / `#5B21F5` | CTAs, links, EVENT badges |
-| `--green` | `#16A34A` | ACTIVITY badges, Confirmed, "Join now" |
-| `--amber` | `#EA8C00` | Urgency — "2 slots remaining!" |
-| `--ink` / `--grey` | `#12121A` / `#6B6A7B` | Text, secondary text |
-| `--container` | `1360px` | Centred content width |
+| Token | Utility | Value | Used for |
+| --- | --- | --- | --- |
+| `--color-brand` / `--color-brand-deep` | `bg-brand` | `#6D28FF` / `#5B21F5` | CTAs, links, EVENT badges |
+| `--color-green` | `text-green` | `#16A34A` | ACTIVITY badges, Confirmed, "Join now" |
+| `--color-amber` | `text-amber` | `#EA8C00` | Urgency — "2 slots remaining!" |
+| `--color-ink` / `--color-grey` | `text-ink` | `#12121A` / `#6B6A7B` | Text, secondary text |
+| `--container-page` | `max-w-page` | `1360px` | Centred content width |
+| `--spacing-gutter` | `px-gutter` | `32px` | Page gutter, narrows on small screens |
 
 Poppins for headings, Inter for body, Caveat for the one script accent per
 hero. Desktop-first at 1360px; the phone build starts at 900px — see

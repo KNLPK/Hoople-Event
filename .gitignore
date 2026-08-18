@@ -6,8 +6,3 @@ dist
 .DS_Store
 .vercel
 
-# Verification scripts for the Tailwind migration (dev-only, not shipped)
-/tw-*.mjs
-dist-base
-plan.json
-preview-*.log
