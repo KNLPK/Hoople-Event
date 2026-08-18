@@ -21,10 +21,10 @@ export function TeamsSettings() {
     <div className="tm-cols">
       <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-card">
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Organization</h2>
           </div>
-          <div className="org-card__body org-form">
+          <div className="pt-2 px-5 pb-3 org-form">
             <label className="field">
               <span className="field__label">Organization name</span>
               <input className="input" defaultValue={ORGANIZATION.name} />
@@ -45,11 +45,11 @@ export function TeamsSettings() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Who counts as a member</h2>
             <span className="text-[12.5px] text-grey">{ORGANIZATION.members} members</span>
           </div>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             <Toggle
               on={domainLock}
               onChange={setDomainLock}
@@ -82,7 +82,7 @@ export function TeamsSettings() {
         </Reveal>
 
         <Reveal className="org-card" delay={120}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Departments</h2>
             <span className="text-[12.5px] text-grey">Used to pick an audience</span>
           </div>
@@ -113,17 +113,17 @@ export function TeamsSettings() {
         </Reveal>
 
         <Reveal className="org-card" delay={180}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Collections</h2>
           </div>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             <Row label="Bank account" value={`${PAYOUT_ACCOUNT.bank} ${PAYOUT_ACCOUNT.masked}`} />
             <Row label="Account holder" value={PAYOUT_ACCOUNT.holder} />
             <Row label="Disbursement" value={PAYOUT_ACCOUNT.method} />
             <Row label="Platform fee" value="0% — included in the Organization plan" />
             <Row label="Payout schedule" value="H+1 after each event ends" />
           </div>
-          <div className="org-card__foot">
+          <div className="pt-3.5 px-5 pb-[18px]">
             <Button as="button" variant="primary" onClick={() => toast('Organization settings saved')}>
               <Check size={16} strokeWidth={2.2} />
               Save changes
@@ -134,7 +134,7 @@ export function TeamsSettings() {
 
       <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
         <Reveal className="org-card">
-          <div className="org-card__body" style={{ textAlign: 'center', paddingTop: 22 }}>
+          <div className="pt-2 px-5 pb-3" style={{ textAlign: 'center', paddingTop: 22 }}>
             <span className="inline-block w-[76px] h-[76px] rounded-[18px] overflow-hidden">
               <ImageSlot id="tm-org-logo" shape="rounded" radius={18} placeholder="Logo" />
             </span>
@@ -148,7 +148,7 @@ export function TeamsSettings() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Admins</h2>
           </div>
           <div className="tm-quick">
@@ -172,7 +172,7 @@ export function TeamsSettings() {
         </Reveal>
 
         <Reveal className="org-card tm-tip" delay={120}>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             <div className="flex items-center" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
               <Globe size={16} color="#6D28FF" strokeWidth={1.9} />
               Not on the public site

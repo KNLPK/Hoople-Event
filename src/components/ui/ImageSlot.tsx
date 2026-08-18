@@ -136,7 +136,7 @@ export function ImageSlot({
         <path d="m4 17 5-4.5 4.5 4 3-2.5L20 18" strokeLinejoin="round" />
       </svg>
       {placeholder}
-      {hint ? <span className="image-slot__hint">{hint}</span> : null}
+      {hint ? <span className="text-[11px] font-normal text-grey opacity-[0.9]">{hint}</span> : null}
     </span>
   );
 

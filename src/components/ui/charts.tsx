@@ -137,7 +137,7 @@ export function TrendChart({
           onFocus={() => setActive((current) => current ?? points.length - 1)}
           onKeyDown={onKeyDown}
         >
-          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="chart__svg" aria-hidden="true">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full overflow-visible" aria-hidden="true">
             <defs>
               <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stopColor={stroke} stopOpacity="0.26" />
@@ -200,7 +200,7 @@ export function TrendChart({
               style={{ left: `${clamp(x(active ?? 0), 8, 92)}%`, top: `${y(point.value)}%` }}
               role="status"
             >
-              <span className="chart__tip-label">{point.label}</span>
+              <span className="text-[11px] opacity-[0.65]">{point.label}</span>
               <span className="chart__tip-value">
                 {format(point.value)}
                 <em>{seriesLabel.toLowerCase()}</em>

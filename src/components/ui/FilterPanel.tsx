@@ -67,7 +67,7 @@ export function FilterPanel({ filters, onChange, onApply, onReset }: FilterPanel
           </fieldset>
         ))}
       </div>
-      <div className="filter-panel__actions">
+      <div className="flex justify-end gap-3 mt-6 pt-5 border-t border-t-line-faint">
         <Button as="button" variant="neutral" onClick={onReset}>
           Reset
         </Button>

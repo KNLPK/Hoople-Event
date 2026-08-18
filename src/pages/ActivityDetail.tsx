@@ -203,7 +203,7 @@ function ActivityDetailPage() {
         </div>
       </DarkHero>
 
-      <div className="subnav">
+      <div className="border-b border-b-[#edebf4] bg-[#fff] sticky top-0 z-30">
         <div className="mx-auto w-full max-w-page px-gutter subnav__inner">
           {TABS.map((item) => (
             <button
@@ -393,9 +393,9 @@ function ActivityDetailPage() {
           {activity.bring.map((item, index) => {
             const Icon = BRING_ICONS[index % BRING_ICONS.length];
             return (
-              <div key={item.title} className="bring-card">
+              <div key={item.title} className="border border-[#eae7f3] rounded-xl py-[22px] px-5 bg-[#fff]">
                 <Icon size={26} color="#5B21F5" strokeWidth={1.6} />
-                <div className="bring-card__title">{item.title}</div>
+                <div className="text-[14.5px] font-semibold mt-3.5 mx-0 mb-[26px] leading-[1.4]">{item.title}</div>
                 <div className="text-[13px] text-grey">{item.detail}</div>
               </div>
             );
@@ -431,7 +431,7 @@ function ActivityDetailPage() {
 
               <div>
                 {session.popular ? <span className="tag tag--caps">POPULAR</span> : null}
-                <div className="session-row__name">{session.name}</div>
+                <div className="font-heading text-[19px] font-semibold mt-[11px] mx-0 mb-[5px]">{session.name}</div>
                 <div className="text-[13.5px] text-ink-muted mb-[18px]">
                   {sessionWindow(session.start, session.end, session.durationMin)}
                 </div>
@@ -519,7 +519,7 @@ function ActivityDetailPage() {
         <div className="detail-split">
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>Location</h2>
-            <div className="map-card">
+            <div className="border border-[#eae7f3] rounded-xl overflow-hidden bg-[#fff]">
               <div className="h-[170px]">
                 <ImageSlot id={`map-${activity.slug}`} shape="rect" placeholder="Map screenshot" />
               </div>
@@ -586,7 +586,7 @@ function ActivityDetailPage() {
                   <span className="text-star text-[14px] tracking-[2px]">{'★'.repeat(review.stars)}</span>
                   <span style={{ fontSize: 12.5, color: 'var(--color-grey-soft)' }}>{review.when}</span>
                 </div>
-                <p className="review-card__body">{review.body}</p>
+                <p className="text-[14px] leading-[1.75] text-ink-2 mt-3 mx-0 mb-4">{review.body}</p>
                 <div className="flex items-center" style={{ gap: 11 }}>
                   <div style={{ width: 32, height: 32, borderRadius: '50%', overflow: 'hidden', flex: 'none' }}>
                     <ImageSlot id={`reviewer-${activity.slug}-${review.author}`} shape="circle" placeholder="" />
@@ -688,7 +688,7 @@ function ActivityDetailPage() {
           </button>
         </div>
 
-        <div className="cal-nav">
+        <div className="pt-5 px-6 pb-2 flex items-center justify-between">
           <button type="button" className="cal-nav__btn" onClick={() => stepMonth(-1)} aria-label="Previous month">
             <ChevronLeft size={16} color="#3C3A4A" />
           </button>
@@ -700,7 +700,7 @@ function ActivityDetailPage() {
           </button>
         </div>
 
-        <div className="cal-dow">
+        <div className="pt-3.5 px-6 pb-0 grid grid-cols-[repeat(7,_1fr)] gap-1.5 text-[11.5px] font-semibold text-grey-soft text-center">
           {WEEKDAY_LABELS.map((day) => (
             <div key={day}>{day}</div>
           ))}
@@ -741,7 +741,7 @@ function ActivityDetailPage() {
           </span>
         </div>
 
-        <div className="cal-foot">
+        <div className="pt-4 px-6 pb-[22px] border-t border-t-line-faint flex items-center justify-between gap-4 bg-[#fbfafe] flex-wrap">
           <div>
             <div style={{ fontSize: 12, color: 'var(--color-grey-soft)' }}>Selected date</div>
             <div style={{ fontFamily: 'var(--font-heading)', fontSize: 15, fontWeight: 600, marginTop: 3 }}>

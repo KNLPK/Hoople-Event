@@ -20,7 +20,7 @@ export function DarkHero({ slotId, photoHint, children, overlap }: DarkHeroProps
         <ImageSlot id={slotId} shape="rect" placeholder={photoHint} />
       </div>
       <div className="dark-hero__scrim" aria-hidden="true" />
-      <div className="mx-auto w-full max-w-page px-gutter dark-hero__body">{children}</div>
+      <div className="mx-auto w-full max-w-page px-gutter relative z-20">{children}</div>
       {overlap ? <div className="dark-hero__overlap mx-auto w-full max-w-page px-gutter">{overlap}</div> : null}
     </div>
   );

@@ -98,7 +98,7 @@ export function Auth() {
 
   return (
     <div className="auth-page">
-      <div className="auth-topbar">
+      <div className="max-w-[1240px] my-0 mx-auto pt-[26px] px-gutter pb-0 flex items-center justify-between gap-4">
         <Link to="/home" className="nav__brand" aria-label="Hoople home">
           <Logo size={26} color="#6D28FF" />
           <span>hoople</span>
@@ -165,7 +165,7 @@ export function Auth() {
         })}
       </div>
 
-      <div className="auth-card-wrap">
+      <div className="flex justify-center pt-8 px-gutter pb-0">
         {step === 1 ? (
           <form
             className="auth-card"
@@ -455,7 +455,7 @@ export function Auth() {
               <ImageSlot id="login-art" shape="rounded" radius={12} placeholder="Illustration" />
             </div>
 
-            <div className="auth-trust">
+            <div className="border-t border-t-line-faint pt-[22px] grid grid-cols-[repeat(3,_1fr)] gap-4 text-center">
               {[
                 {
                   Icon: Shield,

@@ -102,7 +102,7 @@ export function WizardAccordion({ panels, open, done, onOpen, onContinue }: Wiza
               <div className="wiz-acc__body" id={`panel-${panel.id}`}>
                 {panel.body}
                 {next ? (
-                  <div className="wiz-acc__foot">
+                  <div className="flex justify-end mt-5 pt-[18px] border-t border-t-line-faint">
                     <button type="button" className="wiz-acc__next" onClick={() => onContinue(index)}>
                       Continue to {next.number} {next.label}
                       <ChevronDown size={16} color="currentColor" strokeWidth={2.2} />

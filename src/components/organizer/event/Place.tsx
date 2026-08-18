@@ -76,7 +76,7 @@ export function EventPlace({ draft, set, goTo }: EventSectionProps) {
                 </div>
               </div>
               <VirtualFields draft={draft} set={set} compact />
-              <div className="evt-recording">
+              <div className="flex flex-col gap-4 pt-4 border-t border-t-line-faint">
                 <RecordingFields draft={draft} set={set} />
               </div>
             </section>

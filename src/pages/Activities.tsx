@@ -299,7 +299,7 @@ export function Activities() {
               <aside className="routine-panel">
                 <h3>Build your routine</h3>
                 <p>Consistency is the key. Find activities you love and show up for yourself.</p>
-                <div className="routine-panel__art float">
+                <div className="mt-[18px] mx-0 mb-[22px] h-[150px] float">
                   <ImageSlot
                     id="routine-art"
                     shape="rounded"

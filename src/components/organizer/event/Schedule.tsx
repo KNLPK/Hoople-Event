@@ -172,7 +172,7 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
               return (
                 <div key={session.id} className="evt-tl">
                   <div className="evt-tl__when">
-                    <span className="evt-tl__dot" aria-hidden="true" />
+                    <span className="absolute left-0 top-[5px] w-2 h-2 rounded-[50%] bg-brand" aria-hidden="true" />
                     <strong>{session.start}</strong>
                     <em>{session.end}</em>
                   </div>

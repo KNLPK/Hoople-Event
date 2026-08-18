@@ -87,11 +87,11 @@ export function TeamsCheckIn() {
 
           <div className="org-panels">
             <Reveal className="org-card">
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Check-in activity</h2>
                 <span className="text-[12.5px] text-grey">Today</span>
               </div>
-              <div className="org-card__body">
+              <div className="pt-2 px-5 pb-3">
                 <TrendChart
                   seriesLabel="Checked in"
                   tone="green"
@@ -101,7 +101,7 @@ export function TeamsCheckIn() {
             </Reveal>
 
             <Reveal className="org-card" delay={60}>
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Recent check-ins</h2>
                 <span className="text-[12.5px] text-grey">{recent.length} shown</span>
               </div>
@@ -126,7 +126,7 @@ export function TeamsCheckIn() {
           </div>
 
           <Reveal className="org-card" delay={120}>
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">Check-in by session</h2>
               <span className="text-[12.5px] text-grey">Attendance is reported per session</span>
             </div>
@@ -172,7 +172,7 @@ export function TeamsCheckIn() {
         </div>
 
         <aside className="tm-aside tm-aside--static">
-          <div className="tm-aside__body">
+          <div className="pt-[18px] px-5 pb-[22px]">
             <div className="tm-asection__head" style={{ marginBottom: 12 }}>
               <h3>Live QR scanner</h3>
               <span className="tm-dot is-green" />
@@ -233,7 +233,7 @@ export function TeamsCheckIn() {
 
 function Stat({ icon, label, value, note }: { icon: React.ReactNode; label: string; value: string; note: string }) {
   return (
-    <div className="org-stat">
+    <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
       <div className="org-stat__head">
         <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">{icon}</span>
         <span className="text-[12.5px] text-grey font-medium leading-[1.35]">{label}</span>

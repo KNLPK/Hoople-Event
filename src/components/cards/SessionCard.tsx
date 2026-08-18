@@ -15,16 +15,16 @@ export function SessionCard({ activity, session }: DatedSession) {
           shape="rect"
           placeholder={activity.photoHint}
         />
-        <span className="badge badge--white session-card__time">{session.start.replace(':', '.')}</span>
+        <span className="badge badge--white absolute top-[11px] left-[11px] pointer-events-none z-2">{session.start.replace(':', '.')}</span>
         <HeartButton
           kind="activity"
           slug={activity.slug}
           label={`${activity.title} at ${session.start}`}
-          className="session-card__heart"
+          className="absolute top-[11px] right-[11px] z-2"
         />
       </div>
 
-      <div className="session-card__body">
+      <div className="pt-[15px] px-[15px] pb-4 flex flex-col flex-1">
         <Link to={`/activities/${activity.slug}`} className="session-card__title">
           {activity.title}
         </Link>
@@ -32,7 +32,7 @@ export function SessionCard({ activity, session }: DatedSession) {
           {activity.venue.name}, {activity.venue.area}
         </div>
 
-        <div className="session-card__facts">
+        <div className="flex items-center gap-3.5 mt-3 mx-0 mb-3.5 mt-auto pt-3 text-[12px] text-grey">
           <span className="meta meta--sm">
             <Clock size={13} color="#8B8A99" strokeWidth={2} />
             {session.durationMin} min

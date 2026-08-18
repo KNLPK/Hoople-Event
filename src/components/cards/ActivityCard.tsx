@@ -28,11 +28,11 @@ export function ActivityCard({ activity }: { activity: Activity }) {
           kind="activity"
           slug={activity.slug}
           label={activity.title}
-          className="activity-card__heart"
+          className="absolute top-[11px] right-[11px] z-2"
         />
       </div>
 
-      <div className="activity-card__body">
+      <div className="pt-4 px-4 pb-3.5 flex flex-col flex-1">
         <Link to={`/activities/${activity.slug}`} className="activity-card__title">
           {activity.title}
         </Link>
@@ -57,7 +57,7 @@ export function ActivityCard({ activity }: { activity: Activity }) {
           ) : null}
         </div>
 
-        <div className="activity-card__price">
+        <div className="text-[15px] font-bold mt-[15px] mx-0 mb-[13px] mt-auto pt-[15px]">
           {activity.priceFrom === 0 ? 'Free' : `From ${rupiah(activity.priceFrom)}`}
         </div>
 

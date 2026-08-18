@@ -80,7 +80,7 @@ export function VenueFields({
           rows={2}
         />
 
-        <div className="evt-map">
+        <div className="relative h-[190px] mt-3 border border-line-input rounded-lg overflow-hidden">
           <ImageSlot
             id="event-map"
             interactive={false}
@@ -96,7 +96,7 @@ export function VenueFields({
           </span>
 
           <a
-            className="evt-map__action"
+            className="absolute left-2.5 bottom-2.5 inline-flex items-center gap-1.5 py-1.5 px-[11px] rounded-sm bg-[#fff] shadow-card text-[12px] font-semibold text-brand"
             href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
             target="_blank"
             rel="noreferrer"
@@ -330,14 +330,14 @@ export function VirtualFields({
             <button type="button" onClick={() => wrap('_')} aria-label="Italic">
               <TextItalic size={14} color="#3C3A4A" />
             </button>
-            <span className="evt-rich__divider" />
+            <span className="w-px h-4 bg-line-strong my-0 mx-[5px]" />
             <button type="button" onClick={() => prefixLines('•')} aria-label="Bulleted list">
               <ListBullets size={14} color="#3C3A4A" />
             </button>
             <button type="button" onClick={() => prefixLines('1.')} aria-label="Numbered list">
               <ListNumbers size={14} color="#3C3A4A" />
             </button>
-            <span className="evt-rich__divider" />
+            <span className="w-px h-4 bg-line-strong my-0 mx-[5px]" />
             <button type="button" onClick={() => wrap('[', '](https://)')} aria-label="Link">
               <LinkChain size={14} color="#3C3A4A" />
             </button>
@@ -360,7 +360,7 @@ export function VirtualFields({
               placeholder="Please join 15 minutes before the event starts."
               onChange={(event) => set('joinInstructions')(event.target.value)}
             />
-            <span className="wiz-area__count">
+            <span className="self-end text-[11.5px] text-grey-faint pointer-events-none">
               {draft.joinInstructions.length} / {JOIN_INSTRUCTIONS_LIMIT}
             </span>
           </div>

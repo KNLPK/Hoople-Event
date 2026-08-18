@@ -149,7 +149,7 @@ export function TeamsRegistrations() {
           </div>
 
           {ticked.size ? (
-            <div className="tm-bulk">
+            <div className="flex items-center gap-2.5 flex-wrap py-3 px-4 border border-brand-border rounded-xl bg-brand-tint text-[13.5px]">
               <strong>{ticked.size} selected</strong>
               <Button as="button" variant="neutral" size="sm" onClick={() => toast(`${ticked.size} marked as checked in`)}>
                 <CheckCircle size={15} strokeWidth={1.9} />
@@ -319,7 +319,7 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
         <Close size={17} color="#5C5B6B" />
       </button>
 
-      <div className="tm-aside__head">
+      <div className="flex gap-[13px] pt-5 px-5 pb-4 border-b border-b-line-faint">
         <span className="w-[54px] h-[54px] flex-none rounded-[50%] overflow-hidden bg-brand-tint-strong">
           <ImageSlot id={`tm-member-avatar-${row.id}`} shape="circle" placeholder="" interactive={false} />
         </span>
@@ -347,7 +347,7 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
         </div>
       </div>
 
-      <div className="tm-tabs">
+      <div className="flex gap-1 pt-2.5 px-4 pb-0 border-b border-b-line-faint">
         {(['overview', 'pass', 'activity'] as const).map((option) => (
           <button
             key={option}
@@ -361,7 +361,7 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
       </div>
 
       {tab === 'overview' ? (
-        <div className="tm-aside__body">
+        <div className="pt-[18px] px-5 pb-[22px]">
           <Section title="Pass" aside={<span className="inline-block py-[3px] px-[9px] rounded-pill bg-brand-tint-strong text-brand-ink text-[11.5px] font-semibold">{pass?.name}</span>}>
             <Row label="Order ID" value={row.orderId || 'No order — free pass'} />
             <Row label="Quantity" value={`${row.quantity} ${row.quantity === 1 ? 'seat' : 'seats'}`} />
@@ -390,7 +390,7 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
           </Section>
         </div>
       ) : tab === 'pass' ? (
-        <div className="tm-aside__body">
+        <div className="pt-[18px] px-5 pb-[22px]">
           <div className="tm-qr">
             <ImageSlot id={`tm-pass-qr-${row.id}`} shape="rounded" radius={12} placeholder="QR code" />
           </div>
@@ -400,7 +400,7 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
           </p>
         </div>
       ) : (
-        <div className="tm-aside__body">
+        <div className="pt-[18px] px-5 pb-[22px]">
           <ol className="tm-timeline">
             {timeline.map((step) => (
               <li key={step.label} className={step.done ? 'is-done' : ''}>
@@ -441,7 +441,7 @@ function Row({ label, value }: { label: string; value: string }) {
 
 function Stat({ label, value, note, up }: { label: string; value: string; note: string; up?: boolean }) {
   return (
-    <div className="org-stat">
+    <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
       <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
         {label}
       </div>

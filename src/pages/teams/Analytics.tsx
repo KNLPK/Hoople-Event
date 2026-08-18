@@ -73,7 +73,7 @@ export function TeamsAnalytics() {
           </Reveal>
 
           <Reveal className="org-card">
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">{money ? 'Contributions' : 'Registrations'} — last 7 days</h2>
               <div className="tm-toggleset" role="group" aria-label="Chart metric">
                 <button
@@ -94,7 +94,7 @@ export function TeamsAnalytics() {
                 </button>
               </div>
             </div>
-            <div className="org-card__body">
+            <div className="pt-2 px-5 pb-3">
               <TrendChart
                 key={metric}
                 seriesLabel={money ? 'Contributions' : 'Registrations'}
@@ -119,12 +119,12 @@ export function TeamsAnalytics() {
 
           <div className="org-panels">
             <Reveal className="org-card">
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Invite funnel</h2>
                 <span className="text-[12.5px] text-grey">People, not page views</span>
               </div>
-              <div className="org-card__body">
-                <div className="tm-funnel">
+              <div className="pt-2 px-5 pb-3">
+                <div className="flex flex-col gap-4 pt-1 px-0 pb-2">
                   {steps.map((step, index) => {
                     const previous = index === 0 ? step.count : steps[index - 1].count;
                     const kept = Math.round((step.count / previous) * 100);
@@ -154,10 +154,10 @@ export function TeamsAnalytics() {
             </Reveal>
 
             <Reveal className="org-card" delay={60}>
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Passes taken</h2>
               </div>
-              <div className="org-card__body">
+              <div className="pt-2 px-5 pb-3">
                 <Donut
                   slices={event.passes.map((pass, index) => ({
                     label: pass.name,
@@ -173,11 +173,11 @@ export function TeamsAnalytics() {
 
           <div className="org-panels">
             <Reveal className="org-card">
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">How members registered</h2>
                 <span className="text-[12.5px] text-grey">Internal channels</span>
               </div>
-              <div className="org-card__body">
+              <div className="pt-2 px-5 pb-3">
                 <BarList
                   bars={REGISTRATION_SOURCES.map((source) => ({
                     label: source.source,
@@ -194,11 +194,11 @@ export function TeamsAnalytics() {
             </Reveal>
 
             <Reveal className="org-card" delay={60}>
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Response by department</h2>
                 <span className="text-[12.5px] text-grey">Registered of headcount</span>
               </div>
-              <div className="org-card__body">
+              <div className="pt-2 px-5 pb-3">
                 <BarList
                   bars={departmentResponse(event).map((row) => ({
                     label: row.name,
@@ -216,7 +216,7 @@ export function TeamsAnalytics() {
 
         <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
           <Reveal className="org-card">
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">Event score</h2>
               <button
                 type="button"
@@ -227,7 +227,7 @@ export function TeamsAnalytics() {
                 <Info size={16} color="#8B8A99" strokeWidth={1.9} />
               </button>
             </div>
-            <div className="org-card__body">
+            <div className="pt-2 px-5 pb-3">
               <div className="tm-score">
                 <svg viewBox="0 0 120 120" width="120" height="120" role="img" aria-label={`Score ${score} out of 100`}>
                   <circle cx="60" cy="60" r="50" fill="none" stroke="var(--color-line)" strokeWidth="12" />
@@ -258,10 +258,10 @@ export function TeamsAnalytics() {
           </Reveal>
 
           <Reveal className="org-card" delay={60}>
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">Fullest sessions</h2>
             </div>
-            <div className="org-card__body">
+            <div className="pt-2 px-5 pb-3">
               <BarList
                 ranked
                 max={100}
@@ -276,10 +276,10 @@ export function TeamsAnalytics() {
           </Reveal>
 
           <Reveal className="org-card" delay={120}>
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">Devices used</h2>
             </div>
-            <div className="org-card__body">
+            <div className="pt-2 px-5 pb-3">
               <Donut
                 slices={DEVICE_SPLIT.map((device) => ({
                   label: device.label,
@@ -302,7 +302,7 @@ export function TeamsAnalytics() {
 
 function Stat({ label, value, note, up, money }: { label: string; value: string; note: string; up?: boolean; money?: boolean }) {
   return (
-    <div className="org-stat">
+    <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
       <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
         {label}
       </div>

@@ -95,7 +95,7 @@ export function StepSummary({
                 shape="rect"
                 placeholder="Activity cover"
               />
-              <span className="wiz-pv__category">{draft.category || PREVIEW_FALLBACK.category}</span>
+              <span className="absolute top-3 left-3 py-[5px] px-3 rounded-pill bg-green text-[#fff] text-[11.5px] font-semibold">{draft.category || PREVIEW_FALLBACK.category}</span>
             </div>
 
             <div>
@@ -118,7 +118,7 @@ export function StepSummary({
                   {badge}
                 </li>
               </ul>
-              <div className="wiz-pv__host">
+              <div className="flex items-center gap-2 text-[12.5px] text-grey mt-[7px] mx-0 mb-[11px]">
                 <span className="wiz-pv__avatar">{WORKSPACE_INITIALS}</span>
                 by {draft.hostedAs}
               </div>

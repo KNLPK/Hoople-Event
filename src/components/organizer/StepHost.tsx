@@ -54,7 +54,7 @@ export function StepHost({
           />
           <div className="wiz-host">
             <div className="wiz-host__avatar">
-              <span className="wiz-host__initials">{WORKSPACE_INITIALS}</span>
+              <span className="absolute inset-0 flex items-center justify-center font-heading text-[30px] font-bold text-[#fff]">{WORKSPACE_INITIALS}</span>
               <ImageSlot id="builder-host-avatar" shape="rounded" radius={12} placeholder="" />
             </div>
 

@@ -67,9 +67,9 @@ export function EventPreview({
   return (
     <aside className="wiz-preview">
       <h2 className="font-heading text-[15px] font-semibold">Live Preview</h2>
-      <p className="wiz-preview__lede">This is how your event page will look.</p>
+      <p className="text-[12px] text-grey mt-1 mx-0 mb-3">This is how your event page will look.</p>
 
-      <div className="wiz-pv">
+      <div className="bg-[#fff] border border-line rounded-xl overflow-hidden shadow-card">
         <div className={`wiz-pv__media ${draft.eventType === 'Hybrid' ? 'is-split' : ''}`.trim()}>
           <ImageSlot
             id="event-cover"
@@ -85,15 +85,15 @@ export function EventPreview({
           </span>
           {draft.eventType === 'Hybrid' ? (
             <>
-              <span className="evt-pv__mode evt-pv__mode--left">In-Person</span>
-              <span className="evt-pv__mode evt-pv__mode--right">Online</span>
+              <span className="evt-pv__mode left-2.5">In-Person</span>
+              <span className="evt-pv__mode right-2.5">Online</span>
             </>
           ) : null}
         </div>
 
-        <div className="wiz-pv__body">
+        <div className="pt-3.5 px-4 pb-4">
           <h3 className="font-heading text-[19px] font-bold tracking-[-0.025em] leading-[1.25]">{draft.title || 'Your Event Title'}</h3>
-          <p className="evt-pv__lede">
+          <p className="text-[12.5px] leading-[1.6] text-ink-3 mt-2 mx-0 mb-3.5">
             {draft.summary ||
               'Short description of your event will appear here. This is a preview of how your event might look to the participants.'}
           </p>
@@ -135,7 +135,7 @@ export function EventPreview({
 
           {draft.audience || draft.language ? (
             <>
-              <div className="evt-pv__head">Who should join</div>
+              <div className="text-[12.5px] font-semibold text-ink mt-4 mx-0 mb-2.5">Who should join</div>
               <ul className="wiz-pv__meta">
                 <li>
                   <Users size={14} color="#6D28FF" strokeWidth={1.9} />
@@ -152,8 +152,8 @@ export function EventPreview({
             </>
           ) : null}
 
-          <div className="evt-pv__host">
-            <div className="evt-pv__head">Hosted by</div>
+          <div className="pt-3.5 mt-3.5 border-t border-t-line-faint">
+            <div className="text-[12.5px] font-semibold text-ink mt-4 mx-0 mb-2.5">Hosted by</div>
             <div className="evt-pv__hostrow">
               <span className="wiz-pv__avatar evt-pv__avatar">{WORKSPACE_INITIALS}</span>
               <div>
@@ -184,7 +184,7 @@ export function EventPreview({
                   </li>
                 ))}
                 {schedule.length > shown.length ? (
-                  <li className="evt-pv__more">and more…</li>
+                  <li className="text-grey italic">and more…</li>
                 ) : null}
               </ul>
             </>
@@ -228,10 +228,10 @@ function DiscoverPreviews({
   return (
     <aside className="wiz-preview">
       <h2 className="font-heading text-[15px] font-semibold">How your page will appear in Discover</h2>
-      <p className="wiz-preview__lede">This is a preview of your event listing.</p>
+      <p className="text-[12px] text-grey mt-1 mx-0 mb-3">This is a preview of your event listing.</p>
 
       <span className="evt-dp__label">Discover Card (Desktop)</span>
-      <div className="evt-dcard">
+      <div className="border border-line rounded-xl overflow-hidden bg-[#fff] shadow-card">
         <div className="relative h-[150px]">
           <ImageSlot
             id="event-cover"
@@ -299,7 +299,7 @@ function DiscoverPreviews({
 
       <span className="evt-dp__label">Mobile Card Preview</span>
       <div className="wiz-phone evt-mcard">
-        <div className="wiz-phone__status">
+        <div className="flex items-center justify-between pt-2.5 px-4 pb-1 text-[12px] font-semibold">
           <span>9:41</span>
           <span className="flex items-center gap-[5px]" aria-hidden="true">
             <i className="wiz-phone__bars" />
@@ -371,7 +371,7 @@ function FinalPreview({
       <div className="flex items-start justify-between gap-3 mb-3.5 flex-wrap">
         <div>
           <h2 className="font-heading text-[15px] font-semibold">Final Event Preview</h2>
-          <p className="wiz-preview__lede">This is exactly how participants will see your event.</p>
+          <p className="text-[12px] text-grey mt-1 mx-0 mb-3">This is exactly how participants will see your event.</p>
         </div>
         <div className="flex gap-2 flex-wrap">
           <button type="button" className="wiz-addsession" onClick={() => toast('Opens once published')}>
@@ -392,7 +392,7 @@ function FinalPreview({
         </div>
       </div>
 
-      <div className="evt-dcard">
+      <div className="border border-line rounded-xl overflow-hidden bg-[#fff] shadow-card">
         <div className="relative h-[150px]">
           <ImageSlot
             id="event-cover"
@@ -415,7 +415,7 @@ function FinalPreview({
           </span>
           <div>
             <h3>{draft.title || 'Your Event Title'}</h3>
-            <p className="evt-pv__lede">{draft.summary || 'Your short description appears here.'}</p>
+            <p className="text-[12.5px] leading-[1.6] text-ink-3 mt-2 mx-0 mb-3.5">{draft.summary || 'Your short description appears here.'}</p>
             <ul className="wiz-pv__meta">
               <li>
                 <Calendar size={13} color="#6D28FF" strokeWidth={1.9} />

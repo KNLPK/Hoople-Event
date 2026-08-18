@@ -118,7 +118,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="footer__legal">© 2026 Hoople. All rights reserved.</div>
+      <div className="border-t border-t-line-faint py-[18px] px-gutter text-center text-[12.5px] text-grey-soft">© 2026 Hoople. All rights reserved.</div>
     </footer>
   );
 }

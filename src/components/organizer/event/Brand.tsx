@@ -47,7 +47,7 @@ export function EventBrand({ draft, set }: EventSectionProps) {
                   <ImageSlot id="event-logo" radius={10} placeholder="Logo" />
                 </div>
                 <div>
-                  <span className="evt-asset__btn">Change Logo</span>
+                  <span className="inline-flex items-center h-[34px] py-0 px-3.5 border border-line-input rounded-md bg-[#fff] text-[12.5px] font-semibold text-ink mb-2.5 pointer-events-none">Change Logo</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">PNG, JPG or SVG</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">Max. 2MB</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">Recommended size: 512 x 512px</span>
@@ -71,7 +71,7 @@ export function EventBrand({ draft, set }: EventSectionProps) {
                   />
                 </div>
                 <div>
-                  <span className="evt-asset__btn">Change Banner</span>
+                  <span className="inline-flex items-center h-[34px] py-0 px-3.5 border border-line-input rounded-md bg-[#fff] text-[12.5px] font-semibold text-ink mb-2.5 pointer-events-none">Change Banner</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">PNG or JPG</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">Max. 5MB</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">Recommended size: 1920 x 1080px</span>
@@ -173,7 +173,7 @@ export function EventBrand({ draft, set }: EventSectionProps) {
                       <Icon size={14} color="#3C3A4A" />
                     </button>
                   ))}
-                  <span className="evt-rich__divider" />
+                  <span className="w-px h-4 bg-line-strong my-0 mx-[5px]" />
                   {[ListBullets, ListNumbers, LinkChain, Emoji].map((Icon, index) => (
                     <button
                       key={index}
@@ -203,10 +203,10 @@ export function EventBrand({ draft, set }: EventSectionProps) {
               <div className="evt-asset__row">
                 <div className="relative w-[96px] h-[96px] flex-none rounded-md overflow-hidden evt-asset__square--brand">
                   <ImageSlot id="event-host-logo" radius={10} placeholder="" />
-                  <span className="evt-asset__initials">WL</span>
+                  <span className="absolute inset-0 flex items-center justify-center font-heading text-[30px] font-bold text-[#fff] pointer-events-none">WL</span>
                 </div>
                 <div>
-                  <span className="evt-asset__btn">Change Logo</span>
+                  <span className="inline-flex items-center h-[34px] py-0 px-3.5 border border-line-input rounded-md bg-[#fff] text-[12.5px] font-semibold text-ink mb-2.5 pointer-events-none">Change Logo</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">PNG, JPG or SVG</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">Max. 2MB</span>
                   <span className="block text-[11.5px] text-grey leading-[1.6]">Recommended size: 512 x 512px</span>

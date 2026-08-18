@@ -670,7 +670,7 @@ export function Booking() {
                 A confirmation email has been sent with your e-ticket(s) and booking details.
               </p>
 
-              <div className="eticket">
+              <div className="border border-[#eae7f3] rounded-2xl p-6">
                 <div className="flex items-center justify-between" style={{ marginBottom: 20, alignItems: 'flex-start' }}>
                   <div>
                     <div style={{ fontFamily: 'var(--font-heading)', fontSize: 19, fontWeight: 600 }}>
@@ -991,14 +991,14 @@ export function Booking() {
               <Clock size={14} strokeWidth={2} />
               Complete payment in {countdown}
             </div>
-            <div className="pay-qr">
+            <div className="border border-[#eae7f3] rounded-2xl p-[22px] flex flex-col items-center">
               <div style={{ fontSize: 14.5, fontWeight: 600, marginBottom: 4 }}>
                 Scan with any {method} app
               </div>
               <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 18 }}>
                 GoPay, OVO, DANA, ShopeePay, mobile banking
               </div>
-              <div className="pay-qr__code">
+              <div className="w-[220px] h-[220px] max-w-[100%] border border-line-faint rounded-lg overflow-hidden">
                 <ImageSlot id="payment-qr" shape="rounded" radius={12} placeholder="QR code" />
               </div>
               <div style={{ fontFamily: 'var(--font-heading)', fontSize: 20, fontWeight: 700, marginTop: 18 }}>
@@ -1133,7 +1133,7 @@ function PhoneField({
         {label} {required ? <span className="text-danger">*</span> : null}
       </span>
       <span style={{ display: 'flex', gap: 10 }}>
-        <span className="phone-prefix">
+        <span className="flex items-center gap-2 h-[46px] py-0 px-3 border border-line-input rounded-md bg-[#fff] flex-none">
           <span className="flag-id" />
           <ChevronDown size={14} color="#8B8A99" />
         </span>
@@ -1207,7 +1207,7 @@ function SummaryItem({
   venueArea: string;
 }) {
   return (
-    <div className="summary-item">
+    <div className="grid grid-cols-[112px_1fr] gap-[18px]">
       <div className="h-[112px] rounded-lg overflow-hidden">
         <ImageSlot id={slotId} shape="rounded" radius={12} placeholder={photoHint} />
       </div>

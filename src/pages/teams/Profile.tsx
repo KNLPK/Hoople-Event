@@ -26,8 +26,8 @@ export function TeamsProfile() {
           <div className="h-[150px] relative overflow-hidden">
             <ImageSlot id="tm-profile-hero" shape="rect" placeholder="Company town hall on stage" />
           </div>
-          <div className="tm-profile__head">
-            <span className="tm-profile__logo">
+          <div className="flex items-end gap-4 flex-wrap pt-0 px-5 pb-5 mt-[-34px] relative">
+            <span className="w-[84px] h-[84px] flex-none rounded-[20px] overflow-hidden border-4 border-[#fff] bg-[#fff] shadow-card">
               <ImageSlot id="tm-org-logo" shape="rounded" radius={18} placeholder="Logo" />
             </span>
             <div className="tm-profile__id">
@@ -47,10 +47,10 @@ export function TeamsProfile() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">About</h2>
           </div>
-          <div className="org-card__body org-form">
+          <div className="pt-2 px-5 pb-3 org-form">
             <label className="field field--full">
               <span className="field__label">What your members see</span>
               <textarea
@@ -68,7 +68,7 @@ export function TeamsProfile() {
               <input className="input" defaultValue={ORG_ADMIN.phone} />
             </label>
           </div>
-          <div className="org-card__foot">
+          <div className="pt-3.5 px-5 pb-[18px]">
             <Button as="button" variant="primary" onClick={() => toast('Profile saved')}>
               <Check size={16} strokeWidth={2.2} />
               Save profile
@@ -77,7 +77,7 @@ export function TeamsProfile() {
         </Reveal>
 
         <Reveal className="org-card" delay={120}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">What is on</h2>
             <span className="text-[12.5px] text-grey">As members see it</span>
           </div>
@@ -96,7 +96,7 @@ export function TeamsProfile() {
                 <span className="flex-1 min-w-0 flex flex-col gap-[3px]">
                   <span className="flex items-center gap-2 flex-wrap text-[14px] font-semibold">
                     {item.title}
-                    {item.id === event.id ? <em className="tm-openflag">Open in console</em> : null}
+                    {item.id === event.id ? <em className="py-[3px] px-[9px] rounded-pill bg-green-tint text-green-deep text-[11px] font-bold not-italic">Open in console</em> : null}
                   </span>
                   <span className="tm-ctx__meta">
                     <span>
@@ -118,10 +118,10 @@ export function TeamsProfile() {
 
       <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
         <Reveal className="org-card">
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Owner</h2>
           </div>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             <div className="tm-person" style={{ marginBottom: 12 }}>
               <span className="tm-person__avatar tm-person__avatar--lg">
                 <ImageSlot id="tm-admin-avatar" shape="circle" placeholder="" interactive={false} />
@@ -143,11 +143,11 @@ export function TeamsProfile() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Directory</h2>
             <span className="text-[12.5px] text-grey">{ORGANIZATION.members} members</span>
           </div>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             {DEPARTMENTS.map((department) => (
               <div key={department.name} className="tm-arow">
                 <span>
@@ -160,10 +160,10 @@ export function TeamsProfile() {
         </Reveal>
 
         <Reveal className="org-card" delay={120}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Workspace</h2>
           </div>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             <div className="tm-arow">
               <span>Plan</span>
               <strong>{ORGANIZATION.plan}</strong>

@@ -126,7 +126,7 @@ export function EventDetail() {
 
           <Reveal className="panel panel--lg" delay={120}>
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>Location</h2>
-            <div className="map-card">
+            <div className="border border-[#eae7f3] rounded-xl overflow-hidden bg-[#fff]">
               <div className="h-[170px]">
                 <ImageSlot id={`event-map-${event.slug}`} shape="rect" placeholder="Map screenshot" />
               </div>

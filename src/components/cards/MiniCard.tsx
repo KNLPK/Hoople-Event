@@ -18,7 +18,7 @@ interface MiniCardProps {
 export function MiniCard({ to, slotId, photoHint, kicker, title, date, area, price }: MiniCardProps) {
   return (
     <Link to={to} className="mini-card lift">
-      <div className="mini-card__media zoom">
+      <div className="min-h-[100%] zoom">
         <ImageSlot id={slotId} shape="rect" placeholder={photoHint} />
       </div>
       <div className="py-3.5 px-4">

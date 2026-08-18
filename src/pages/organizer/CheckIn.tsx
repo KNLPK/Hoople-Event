@@ -45,7 +45,7 @@ export function OrgCheckIn() {
 
       <div className="org-checkin">
         <Reveal className="org-scanner">
-          <div className="org-scanner__frame">
+          <div className="w-[190px] h-[190px] mt-0 mx-auto mb-[18px] rounded-lg overflow-hidden bg-[#fff]">
             <ImageSlot id="org-scanner" shape="rounded" radius={12} placeholder="QR scanner view" />
           </div>
           <div style={{ fontSize: 14.5, fontWeight: 600, marginBottom: 6 }}>Point at a QR e-ticket</div>
@@ -71,7 +71,7 @@ export function OrgCheckIn() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Attendee list</h2>
             <span style={{ fontSize: 13, color: 'var(--color-grey)' }}>Confirmed registrations only</span>
           </div>

@@ -68,10 +68,10 @@ export function ActivityPreview({
     return (
       <aside className="wiz-preview">
         <h2 className="font-heading text-[15px] font-semibold">Activity Preview</h2>
-        <p className="wiz-preview__lede">This is how your activity will appear to participants.</p>
+        <p className="text-[12px] text-grey mt-1 mx-0 mb-3">This is how your activity will appear to participants.</p>
 
         <div className="wiz-phone">
-          <div className="wiz-phone__status">
+          <div className="flex items-center justify-between pt-2.5 px-4 pb-1 text-[12px] font-semibold">
             <span>9:41</span>
             <span className="flex items-center gap-[5px]" aria-hidden="true">
               <i className="wiz-phone__bars" />
@@ -101,13 +101,13 @@ export function ActivityPreview({
               shape="rect"
               placeholder="Activity cover"
             />
-            <span className="wiz-pv__category">{draft.category || PREVIEW_FALLBACK.category}</span>
+            <span className="absolute top-3 left-3 py-[5px] px-3 rounded-pill bg-green text-[#fff] text-[11.5px] font-semibold">{draft.category || PREVIEW_FALLBACK.category}</span>
             <span className="wiz-phone__count">1 / {draft.gallery.length + 1}</span>
           </div>
 
-          <div className="wiz-phone__body">
+          <div className="pt-[15px] px-4 pb-[18px]">
             <h3 className="font-heading text-[17px] font-semibold tracking-[-0.02em] leading-[1.3]">{draft.title || PREVIEW_FALLBACK.title}</h3>
-            <div className="wiz-pv__host">
+            <div className="flex items-center gap-2 text-[12.5px] text-grey mt-[7px] mx-0 mb-[11px]">
               <span className="wiz-pv__avatar">{WORKSPACE_INITIALS}</span>
               by {draft.hostedAs}
             </div>
@@ -160,9 +160,9 @@ export function ActivityPreview({
   return (
     <aside className="wiz-preview">
       <h2 className="font-heading text-[15px] font-semibold">Activity Preview</h2>
-      <p className="wiz-preview__lede">This is how your activity will appear to participants.</p>
+      <p className="text-[12px] text-grey mt-1 mx-0 mb-3">This is how your activity will appear to participants.</p>
 
-      <div className="wiz-pv">
+      <div className="bg-[#fff] border border-line rounded-xl overflow-hidden shadow-card">
         <div className="wiz-pv__media">
           {/* Shares the cover's slot id, so filling either fills both. */}
           <ImageSlot
@@ -173,16 +173,16 @@ export function ActivityPreview({
             shape="rect"
             placeholder="Activity cover"
           />
-          <span className="wiz-pv__category">{draft.category || PREVIEW_FALLBACK.category}</span>
+          <span className="absolute top-3 left-3 py-[5px] px-3 rounded-pill bg-green text-[#fff] text-[11.5px] font-semibold">{draft.category || PREVIEW_FALLBACK.category}</span>
           <span className="wiz-pv__heart" aria-hidden="true">
             <HeartOutlineLarge size={16} color="#fff" />
           </span>
         </div>
 
-        <div className="wiz-pv__body">
+        <div className="pt-3.5 px-4 pb-4">
           <h3 className="font-heading text-[17px] font-semibold tracking-[-0.02em] leading-[1.3]">{draft.title || PREVIEW_FALLBACK.title}</h3>
 
-          <div className="wiz-pv__host">
+          <div className="flex items-center gap-2 text-[12.5px] text-grey mt-[7px] mx-0 mb-[11px]">
             <span className="wiz-pv__avatar">{WORKSPACE_INITIALS}</span>
             by {draft.hostedAs}
           </div>

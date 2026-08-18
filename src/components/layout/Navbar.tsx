@@ -156,9 +156,9 @@ function AccountMenu() {
 
       {open ? (
         <div className="nav-user__menu" role="menu">
-          <div className="nav-user__identity">
+          <div className="pt-2.5 px-3 pb-3 border-b border-b-line-faint mb-1.5">
             <div className="text-[14px] font-semibold">{user?.name}</div>
-            <div className="nav-user__email">{user?.email}</div>
+            <div className="text-[12.5px] text-grey mt-[3px] overflow-hidden text-ellipsis">{user?.email}</div>
           </div>
 
           <Link to="/bookings" role="menuitem" className="nav-user__item" onClick={() => setOpen(false)}>

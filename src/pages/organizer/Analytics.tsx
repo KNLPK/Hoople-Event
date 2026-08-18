@@ -49,7 +49,7 @@ export function OrgAnalytics() {
       <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-stats org-stats--4">
           {headline.map((stat) => (
-            <div key={stat.key} className="org-stat">
+            <div key={stat.key} className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
               <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
                 {stat.label}
               </div>
@@ -64,11 +64,11 @@ export function OrgAnalytics() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">{money ? 'Revenue' : 'Registrations'} — last 6 months</h2>
             <span className="text-[12.5px] text-grey">Feb – Jul 2026</span>
           </div>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             <TrendChart
               key={metric}
               seriesLabel={money ? 'Revenue' : 'Registrations'}
@@ -91,11 +91,11 @@ export function OrgAnalytics() {
 
         <div className="org-panels">
           <Reveal className="org-card" delay={120}>
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">Top experiences</h2>
               <span className="text-[12.5px] text-grey">By registrations</span>
             </div>
-            <div className="org-card__body">
+            <div className="pt-2 px-5 pb-3">
               <BarList
                 ranked
                 bars={TOP_EXPERIENCES.map((experience) => ({
@@ -108,11 +108,11 @@ export function OrgAnalytics() {
           </Reveal>
 
           <Reveal className="org-card" delay={180}>
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">Where people find you</h2>
               <span className="text-[12.5px] text-grey">Share of registrations</span>
             </div>
-            <div className="org-card__body">
+            <div className="pt-2 px-5 pb-3">
               <Donut
                 slices={TRAFFIC_SOURCES.map((source, index) => ({
                   label: source.source,

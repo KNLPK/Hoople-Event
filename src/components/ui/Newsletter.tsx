@@ -49,7 +49,7 @@ export function Newsletter({
         </Button>
       </div>
       {subscribed ? (
-        <p className="newsletter__note" role="status">
+        <p className="col-[1_/_-1] text-[13px] font-semibold text-green-deep" role="status">
           You're on the list — we'll email you when new sessions open.
         </p>
       ) : null}

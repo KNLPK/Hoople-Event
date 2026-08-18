@@ -129,7 +129,7 @@ export function EventFinalPublish({ draft }: EventSectionProps) {
             <ol className="evt-next">
               {NEXT_STEPS.map(({ Icon, title, sub }) => (
                 <li key={title}>
-                  <span className="evt-next__icon">
+                  <span className="w-[38px] h-[38px] flex-none rounded-[50%] bg-brand-tint-strong flex items-center justify-center relative z-1">
                     <Icon size={17} color="#6D28FF" strokeWidth={1.8} />
                   </span>
                   <div>

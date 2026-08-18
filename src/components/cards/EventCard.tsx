@@ -13,10 +13,10 @@ export function EventCard({ event }: { event: EventItem }) {
       <div className="relative h-[150px] flex-none zoom">
         <ImageSlot id={`event-${event.slug}`} shape="rect" placeholder={event.photoHint} />
         <span className="badge activity-card__badge">{event.badge ?? 'EVENT'}</span>
-        <HeartButton kind="event" slug={event.slug} label={event.title} className="activity-card__heart" />
+        <HeartButton kind="event" slug={event.slug} label={event.title} className="absolute top-[11px] right-[11px] z-2" />
       </div>
 
-      <div className="activity-card__body">
+      <div className="pt-4 px-4 pb-3.5 flex flex-col flex-1">
         <Link to={`/events/${event.slug}`} className="activity-card__title">
           {event.title}
         </Link>
@@ -37,7 +37,7 @@ export function EventCard({ event }: { event: EventItem }) {
           </span>
         </div>
 
-        <div className="activity-card__price">
+        <div className="text-[15px] font-bold mt-[15px] mx-0 mb-[13px] mt-auto pt-[15px]">
           {event.price === 0 ? 'Free' : rupiah(event.price)}
         </div>
 

@@ -210,7 +210,7 @@ export function TeamsSessions() {
               <Close size={17} color="#5C5B6B" />
             </button>
 
-            <div className="tm-aside__body">
+            <div className="pt-[18px] px-5 pb-[22px]">
               {/* Room on the right for the close button that floats over this row. */}
               <div className="flex items-center" style={{ gap: 8, marginBottom: 12, paddingRight: 34 }}>
                 <span className={`org-pill org-pill--${stateTone(selected.state)}`}>{selected.state}</span>
@@ -306,7 +306,7 @@ function Row({ label, value }: { label: string; value: string }) {
 
 function Stat({ label, value, note }: { label: string; value: string; note: string }) {
   return (
-    <div className="org-stat">
+    <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
       <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
         {label}
       </div>

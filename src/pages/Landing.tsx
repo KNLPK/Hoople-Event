@@ -212,14 +212,14 @@ export function Landing() {
                 </span>
               ))}
 
-              <Sparkle4 className="hero-spark hero-spark--a" size={18} color="#C9BEF5" />
-              <Sparkle4 className="hero-spark hero-spark--b" size={13} color="#D8CCF8" />
-              <Sparkle4 className="hero-spark hero-spark--c" size={22} color="#C9BEF5" />
+              <Sparkle4 className="hero-spark top-2 left-[356px]" size={18} color="#C9BEF5" />
+              <Sparkle4 className="hero-spark top-[430px] left-[104px]" size={13} color="#D8CCF8" />
+              <Sparkle4 className="hero-spark top-[158px] left-2" size={22} color="#C9BEF5" />
 
               {/* The event: a photo, then the details that sell it. */}
               <div className="hero-photo hero-photo--event float">
                 <ImageSlot id="landing-card-event" shape="rect" placeholder={heroEvent.photoHint} />
-                <span className="badge hero-photo__badge">EVENT</span>
+                <span className="badge absolute top-3.5 left-3.5">EVENT</span>
               </div>
               <div className="hero-note hero-note--event float" style={{ animationDelay: '0.5s' }}>
                 <div className="hero-note__row">
@@ -264,7 +264,7 @@ export function Landing() {
               {/* The recurring half of the catalogue. */}
               <div className="hero-photo hero-photo--activity float" style={{ animationDelay: '1.5s' }}>
                 <ImageSlot id="landing-card-activity" shape="rect" placeholder={activity.photoHint} />
-                <span className="badge badge--green hero-photo__badge">ACTIVITY</span>
+                <span className="badge badge--green absolute top-3.5 left-3.5">ACTIVITY</span>
               </div>
               <div className="hero-note hero-note--activity float" style={{ animationDelay: '2s' }}>
                 <div className="font-heading text-[17px] font-bold tracking-[-0.02em]">{activity.title}</div>
@@ -345,7 +345,7 @@ export function Landing() {
                   </span>
                 ) : null}
               </div>
-              <div className="activity-card__body">
+              <div className="pt-4 px-4 pb-3.5 flex flex-col flex-1">
                 <span className="activity-card__title">{item.title}</span>
                 <span className="text-[12.5px] text-grey-soft mt-1">by {item.host}</span>
                 <div className="flex flex-col" style={{ gap: 7, marginTop: 12 }}>
@@ -358,7 +358,7 @@ export function Landing() {
                     {item.rating} ({item.reviewCount} reviews)
                   </span>
                 </div>
-                <div className="activity-card__price">
+                <div className="text-[15px] font-bold mt-[15px] mx-0 mb-[13px] mt-auto pt-[15px]">
                   {item.priceFrom === 0 ? 'Free' : `From ${rupiah(item.priceFrom)}`}
                 </div>
               </div>

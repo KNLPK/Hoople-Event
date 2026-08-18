@@ -86,7 +86,7 @@ export function OrgDashboard() {
         {ORG_STATS.map((stat) => {
           const Icon = STAT_ICON[stat.icon];
           return (
-            <div key={stat.key} className="org-stat">
+            <div key={stat.key} className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
               <div className="org-stat__head">
                 <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">
                   <Icon size={17} color="#6D28FF" strokeWidth={1.8} />
@@ -113,7 +113,7 @@ export function OrgDashboard() {
       {/* Upcoming + recent */}
       <Reveal className="org-panels" delay={120}>
         <section className="org-card">
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Upcoming Experiences</h2>
             <Link to="/organizer/sessions" className="link-more" style={{ fontSize: 13 }}>
               View all
@@ -160,7 +160,7 @@ export function OrgDashboard() {
             </Link>
           ))}
 
-          <div className="org-card__foot">
+          <div className="pt-3.5 px-5 pb-[18px]">
             <Button as="link" to="/organizer/sessions" variant="neutral" block>
               View all upcoming experiences
               <ArrowRight size={15} strokeWidth={2} />
@@ -169,7 +169,7 @@ export function OrgDashboard() {
         </section>
 
         <section className="org-card">
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Recent Registrations</h2>
             <Link to="/organizer/registrations" className="link-more" style={{ fontSize: 13 }}>
               View all
@@ -201,7 +201,7 @@ export function OrgDashboard() {
             </div>
           ))}
 
-          <div className="org-card__foot">
+          <div className="pt-3.5 px-5 pb-[18px]">
             <Button as="link" to="/organizer/registrations" variant="neutral" block>
               View all registrations
               <ArrowRight size={15} strokeWidth={2} />

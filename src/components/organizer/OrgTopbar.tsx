@@ -117,7 +117,7 @@ export function OrgTopbar({
           aria-label={`Notifications, ${NOTIFICATIONS} unread`}
         >
           <Bell size={19} color="#5C5B6B" strokeWidth={1.8} />
-          <span className="org-icon-btn__badge">{NOTIFICATIONS}</span>
+          <span className="absolute top-1 right-1 min-w-[16px] h-4 py-0 px-1 rounded-pill bg-brand text-[#fff] text-[10px] font-bold flex items-center justify-center">{NOTIFICATIONS}</span>
         </button>
 
         <div className="org-user" ref={menuRef}>
@@ -140,9 +140,9 @@ export function OrgTopbar({
 
           {menuOpen ? (
             <div className="nav-user__menu" role="menu">
-              <div className="nav-user__identity">
+              <div className="pt-2.5 px-3 pb-3 border-b border-b-line-faint mb-1.5">
                 <div className="text-[14px] font-semibold">{WORKSPACE.owner.name}</div>
-                <div className="nav-user__email">
+                <div className="text-[12.5px] text-grey mt-[3px] overflow-hidden text-ellipsis">
                   {WORKSPACE.owner.role} · {WORKSPACE.name}
                 </div>
               </div>

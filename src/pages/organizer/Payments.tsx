@@ -28,7 +28,7 @@ export function OrgPayouts() {
 
       <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-stats org-stats--3">
-          <div className="org-stat">
+          <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
             <div className="org-stat__head">
               <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">
                 <Wallet size={17} color="#6D28FF" strokeWidth={1.8} />
@@ -38,7 +38,7 @@ export function OrgPayouts() {
             <div className="org-stat__value org-stat__value--money">{rupiah(pendingTotal)}</div>
             <div className="org-stat__note">{scheduled.length} experiences awaiting settlement</div>
           </div>
-          <div className="org-stat">
+          <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
             <div className="org-stat__head">
               <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">
                 <Wallet size={17} color="#6D28FF" strokeWidth={1.8} />
@@ -48,7 +48,7 @@ export function OrgPayouts() {
             <div className="org-stat__value org-stat__value--money">{rupiah(paidTotal)}</div>
             <div className="org-stat__note">Net of platform and gateway fees</div>
           </div>
-          <div className="org-stat">
+          <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
             <div className="org-stat__head">
               <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">
                 <Info size={17} color="#6D28FF" strokeWidth={1.8} />
@@ -61,7 +61,7 @@ export function OrgPayouts() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Payout history</h2>
           </div>
           <div className="org-table-wrap">

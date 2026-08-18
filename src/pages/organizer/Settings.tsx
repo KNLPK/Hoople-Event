@@ -32,13 +32,13 @@ export function OrgSettings() {
 
       <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-card">
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Workspace</h2>
             <span className={`org-pill org-pill--${WORKSPACE.plan === 'Starter' ? 'draft' : 'confirmed'}`}>
               {WORKSPACE.plan} plan
             </span>
           </div>
-          <div className="org-card__body" style={{ padding: 20 }}>
+          <div className="pt-2 px-5 pb-3" style={{ padding: 20 }}>
             <div className="flex items-center" style={{ gap: 16, marginBottom: 24 }}>
               <span
                 style={{
@@ -94,7 +94,7 @@ export function OrgSettings() {
                 <input className="input" value={phone} onChange={(event) => setPhone(event.target.value)} />
               </label>
 
-              <label className="field org-form__full">
+              <label className="field col-[1_/_-1]">
                 <span className="field__label">Custom domain</span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <input
@@ -112,10 +112,10 @@ export function OrgSettings() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Payouts &amp; fees</h2>
           </div>
-          <div className="org-card__body" style={{ padding: 20 }}>
+          <div className="pt-2 px-5 pb-3" style={{ padding: 20 }}>
             <div className="org-form">
               <label className="field">
                 <span className="field__label">Payout account</span>
@@ -153,10 +153,10 @@ export function OrgSettings() {
         </Reveal>
 
         <Reveal className="org-card" delay={120}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Plan</h2>
           </div>
-          <div className="org-card__body" style={{ padding: 20 }}>
+          <div className="pt-2 px-5 pb-3" style={{ padding: 20 }}>
             <div className="flex items-center justify-between" style={{ gap: 20, flexWrap: 'wrap' }}>
               <div className="flex gap-[13px]">
                 <span className="icon-tile">

@@ -40,13 +40,13 @@ export function OrgCreateExperience() {
     <div className="org-create">
       <Reveal className="org-create__head">
         <div className="flex items-end justify-center gap-[26px] mb-[18px]">
-          <span className="org-create__chip org-create__chip--left">
+          <span className="w-12 h-12 rounded-[50%] bg-[#fff] border border-line shadow-card flex items-center justify-center mb-[26px] org-create__chip--left">
             <Calendar size={19} color="#DB2777" strokeWidth={1.9} />
           </span>
           <span className="block w-[150px] h-[130px] float">
             <ImageSlot id="org-create-mascot" shape="rounded" radius={14} placeholder="Mascot" />
           </span>
-          <span className="org-create__chip org-create__chip--right">
+          <span className="w-12 h-12 rounded-[50%] bg-[#fff] border border-line shadow-card flex items-center justify-center mb-[26px] org-create__chip--right">
             <Recurring size={19} color="#16A34A" strokeWidth={1.9} />
           </span>
         </div>

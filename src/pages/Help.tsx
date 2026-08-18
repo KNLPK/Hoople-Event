@@ -112,7 +112,7 @@ export function Help() {
                 {faq.question}
                 <ChevronDown size={16} color="#8B8A99" />
               </button>
-              {open === faq.question ? <div className="faq-item__a">{faq.answer}</div> : null}
+              {open === faq.question ? <div className="pt-0 px-4 pb-4 text-[13px] leading-[1.75] text-ink-3">{faq.answer}</div> : null}
             </div>
           ))}
         </Reveal>

@@ -184,7 +184,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                     </div>
 
                     {open ? (
-                      <div className="evt-ticket__edit">
+                      <div className="flex flex-col gap-3.5 pt-4 pr-4 pb-4 pl-[18px] border-t border-t-line-faint bg-surface-alt">
                         <div className="wiz-pair">
                           <div>
                             <span className="block text-[13.5px] font-semibold text-ink">Ticket name</span>
@@ -292,7 +292,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
 
                         <button
                           type="button"
-                          className="wiz-iconbtn wiz-iconbtn--danger evt-ticket__delete"
+                          className="wiz-iconbtn wiz-iconbtn--danger self-start"
                           onClick={() => {
                             set('tickets')(draft.tickets.filter((item) => item.id !== ticket.id));
                             setOpenId(null);

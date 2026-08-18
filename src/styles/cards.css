@@ -13,18 +13,6 @@
   pointer-events: none;
   z-index: 2;
 }
-.activity-card__heart {
-  position: absolute;
-  top: 11px;
-  right: 11px;
-  z-index: 2;
-}
-.activity-card__body {
-  padding: 16px 16px 14px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
 .activity-card__title {
   font-family: var(--font-heading);
   font-size: 16px;
@@ -35,38 +23,12 @@
 .activity-card__title:hover {
   color: var(--color-brand);
 }
-.activity-card__price {
-  font-size: 15px;
-  font-weight: 700;
-  margin: 15px 0 13px;
-  margin-top: auto;
-  padding-top: 15px;
-}
 
 /* ============ Session card ============ */
 
 .session-card {
   display: flex;
   flex-direction: column;
-}
-.session-card__time {
-  position: absolute;
-  top: 11px;
-  left: 11px;
-  pointer-events: none;
-  z-index: 2;
-}
-.session-card__heart {
-  position: absolute;
-  top: 11px;
-  right: 11px;
-  z-index: 2;
-}
-.session-card__body {
-  padding: 15px 15px 16px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 .session-card__title {
   font-family: var(--font-heading);
@@ -77,16 +39,6 @@
 }
 .session-card__title:hover {
   color: var(--color-brand);
-}
-.session-card__facts {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 12px 0 14px;
-  margin-top: auto;
-  padding-top: 12px;
-  font-size: 12px;
-  color: var(--color-grey);
 }
 
 /* ============ Recurring list row ============ */
@@ -187,10 +139,6 @@
   line-height: 1.65;
   color: #3c4a41;
 }
-.routine-panel__art {
-  margin: 18px 0 22px;
-  height: 150px;
-}
 
 /* ============ Mini card ============ */
 
@@ -206,9 +154,6 @@
 .mini-card:hover {
   color: var(--color-ink);
   box-shadow: var(--shadow-card-hover);
-}
-.mini-card__media {
-  min-height: 100%;
 }
 
 /* ============ Community card ============ */

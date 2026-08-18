@@ -154,7 +154,7 @@ export function ETicket() {
               <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 12 }}>
                 Scan this QR code for check-in
               </div>
-              <div className="ticket-head__qr-frame">
+              <div className="w-[200px] h-[200px] my-0 mx-auto border border-line-faint rounded-lg overflow-hidden">
                 <ImageSlot id={`eticket-qr-${booking.id}`} shape="rounded" radius={12} placeholder="QR code" />
               </div>
             </div>

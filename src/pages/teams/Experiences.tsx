@@ -115,7 +115,7 @@ export function TeamsExperiences() {
                         {event.recurring}
                       </span>
                     ) : null}
-                    {event.id === active.id ? <span className="tm-openflag">Open in console</span> : null}
+                    {event.id === active.id ? <span className="py-[3px] px-[9px] rounded-pill bg-green-tint text-green-deep text-[11px] font-bold not-italic">Open in console</span> : null}
                   </span>
 
                   <span className="font-heading text-[16.5px] font-semibold tracking-[-0.015em]">{event.title}</span>
@@ -148,7 +148,7 @@ export function TeamsExperiences() {
                   <span className="tm-expstat">
                     <em>Cost</em>
                     <strong>{event.costModel === 'Free' ? 'Free' : event.costModel}</strong>
-                    <i className="tm-expstat__sub">
+                    <i className="not-italic text-[11.5px] text-grey">
                       {collected(event) > 0 ? rupiah(collected(event)) : 'No contribution'}
                     </i>
                   </span>

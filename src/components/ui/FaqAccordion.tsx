@@ -25,7 +25,7 @@ export function FaqAccordion({ items, initialOpen = 0 }: FaqAccordionProps) {
             {faq.question}
             <ChevronDown size={16} color="#8B8A99" />
           </button>
-          {open === index ? <div className="faq-item__a">{faq.answer}</div> : null}
+          {open === index ? <div className="pt-0 px-4 pb-4 text-[13px] leading-[1.75] text-ink-3">{faq.answer}</div> : null}
         </div>
       ))}
     </div>

@@ -63,7 +63,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
 
       {view === 'participant' ? (
         <div className="wiz-stack">
-          <div className="wiz-face">
+          <div className="border border-line rounded-2xl overflow-hidden bg-[#fff] shadow-card">
             <div className="relative h-[210px]">
               <ImageSlot
                 id="builder-cover"
@@ -72,7 +72,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
                 shape="rect"
                 placeholder="Activity cover"
               />
-              <span className="wiz-pv__category">{draft.category || PREVIEW_FALLBACK.category}</span>
+              <span className="absolute top-3 left-3 py-[5px] px-3 rounded-pill bg-green text-[#fff] text-[11.5px] font-semibold">{draft.category || PREVIEW_FALLBACK.category}</span>
               <span className="wiz-face__actions" aria-hidden="true">
                 <span>
                   <HeartOutlineLarge size={16} color="#fff" />
@@ -83,9 +83,9 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
               </span>
             </div>
 
-            <div className="wiz-face__body">
+            <div className="pt-[18px] px-5 pb-5">
               <h3 className="font-heading text-[19px] font-semibold tracking-[-0.02em] mb-[11px]">{draft.title || PREVIEW_FALLBACK.title}</h3>
-              <div className="wiz-pv__host">
+              <div className="flex items-center gap-2 text-[12.5px] text-grey mt-[7px] mx-0 mb-[11px]">
                 <span className="wiz-pv__avatar">{WORKSPACE_INITIALS}</span>
                 by {draft.hostedAs}
               </div>
@@ -114,7 +114,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
           <div className="wiz-pair">
             <section className="org-card wiz-panel">
               <span className="block text-[13.5px] font-semibold text-ink">Price per Session</span>
-              <div className="wiz-face__price">{rupiah(draft.price)}</div>
+              <div className="font-heading text-[24px] font-bold tracking-[-0.02em] mt-2 mx-0 mb-1.5">{rupiah(draft.price)}</div>
               <span className="wiz-field__hint">This price will be applied to all sessions.</span>
             </section>
 
@@ -168,7 +168,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
               This is the row you will manage it from once it is published.
             </span>
 
-            <div className="org-xp-row wiz-hostrow">
+            <div className="org-xp-row border border-line rounded-lg mt-3.5">
               <div className="org-xp-row__media zoom">
                 <ImageSlot
                   id="builder-cover"

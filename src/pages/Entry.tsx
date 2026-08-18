@@ -65,7 +65,7 @@ const SURFACES = [
 export function Entry() {
   return (
     <main className="entry">
-      <div className="entry__inner">
+      <div className="w-full max-w-[1220px] my-0 mx-auto">
         <Reveal className="entry__head">
           <span className="inline-flex items-center gap-2 font-heading text-[24px] font-bold tracking-[-0.03em] mb-[22px]" aria-hidden="true">
             <Logo size={28} color="#6D28FF" />
@@ -93,7 +93,7 @@ export function Entry() {
                   />
                 </span>
 
-                <span className="entry-card__body">
+                <span className="flex flex-col flex-1 pt-5 px-[22px] pb-[22px]">
                   <span className="flex items-center gap-2 text-[11.5px] font-bold tracking-[0.07em] uppercase text-grey mb-3">
                     {surface.icon}
                     {surface.eyebrow}

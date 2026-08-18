@@ -193,7 +193,7 @@ export function TeamsOrders() {
               <Close size={17} color="#5C5B6B" />
             </button>
 
-            <div className="tm-aside__body">
+            <div className="pt-[18px] px-5 pb-[22px]">
               <div className="flex items-center" style={{ gap: 8, marginBottom: 14 }}>
                 <strong style={{ fontSize: 15 }}>{selected.orderId}</strong>
                 <span className={`org-pill org-pill--${tone(selected.payment)}`}>{selected.payment}</span>
@@ -302,7 +302,7 @@ function Row({ label, value }: { label: string; value: string }) {
 
 function Stat({ label, value, note, up }: { label: string; value: string; note: string; up?: boolean }) {
   return (
-    <div className="org-stat">
+    <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
       <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
         {label}
       </div>

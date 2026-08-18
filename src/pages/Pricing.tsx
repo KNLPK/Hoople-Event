@@ -52,9 +52,9 @@ export function Pricing() {
                 </span>
               ) : null}
               <h3>{tier.name}</h3>
-              <div className="pricing-card__tagline">{tier.tagline}</div>
+              <div className="text-[13px] text-grey mt-1.5 mx-0 mb-5">{tier.tagline}</div>
               <div className="font-heading text-[26px] font-bold tracking-[-0.02em]">{tier.price}</div>
-              <div className="pricing-card__fee">{tier.fee}</div>
+              <div className="text-[12.5px] text-grey mt-1.5 mx-0 mb-[22px]">{tier.fee}</div>
               <ul>
                 {tier.features.map((feature) => (
                   <li key={feature}>
@@ -90,7 +90,7 @@ export function Pricing() {
                 <div className="faq-item__q" style={{ cursor: 'default' }}>
                   {faq.question}
                 </div>
-                <div className="faq-item__a">{faq.answer}</div>
+                <div className="pt-0 px-4 pb-4 text-[13px] leading-[1.75] text-ink-3">{faq.answer}</div>
               </div>
             ))}
           </div>

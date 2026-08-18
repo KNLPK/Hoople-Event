@@ -75,7 +75,7 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
               { label: 'Host Contact', value: '' },
             ]}
           >
-            <div className="evt-review__brand">
+            <div className="grid grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] gap-[18px] mt-4">
               <div>
                 <span className="block text-[11.5px] text-grey mb-[5px]">Brand Colors</span>
                 <span className="evt-swatches evt-swatches--read">

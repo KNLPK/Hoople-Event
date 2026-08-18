@@ -92,10 +92,10 @@ export function TeamsPayments() {
 
             <div className="org-panels">
               <Reveal className="org-card">
-                <div className="org-card__head">
+                <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                   <h2 className="font-heading text-[15.5px] font-semibold">Where the money goes</h2>
                 </div>
-                <div className="org-card__body">
+                <div className="pt-2 px-5 pb-3">
                   <Donut
                     slices={[
                       {
@@ -118,10 +118,10 @@ export function TeamsPayments() {
               </Reveal>
 
               <Reveal className="org-card" delay={60}>
-                <div className="org-card__head">
+                <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                   <h2 className="font-heading text-[15.5px] font-semibold">Fee configuration</h2>
                 </div>
-                <div className="org-card__body">
+                <div className="pt-2 px-5 pb-3">
                   <Row label="Plan" value={`${ORGANIZATION.plan} — flat subscription`} />
                   <Row label="Platform fee" value="0% of collections" />
                   <Row label="Who pays the gateway fee" value="The member, at checkout" />
@@ -137,7 +137,7 @@ export function TeamsPayments() {
             </div>
 
             <Reveal className="org-card" delay={120}>
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Recent transactions</h2>
                 <span className="text-[12.5px] text-grey">{sum.orders} in total</span>
               </div>
@@ -199,10 +199,10 @@ export function TeamsPayments() {
 
           <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
             <Reveal className="org-card">
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Payout summary</h2>
               </div>
-              <div className="org-card__body">
+              <div className="pt-2 px-5 pb-3">
                 <Row label="Event ends" value={`${compactDate(event.endDate)}, 12:00`} />
                 <Row label="Eligible for payout" value={event.status === 'Ended' ? 'Yes' : 'After the event'} />
                 <Row label="Payout schedule" value="H+1 after the event ends" />
@@ -217,10 +217,10 @@ export function TeamsPayments() {
             </Reveal>
 
             <Reveal className="org-card" delay={60}>
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Payout progress</h2>
               </div>
-              <div className="org-card__body">
+              <div className="pt-2 px-5 pb-3">
                 <ol className="tm-timeline">
                   {steps.map((step, index) => (
                     <li key={step.label} className={step.state === 'done' ? 'is-done' : ''}>
@@ -244,7 +244,7 @@ export function TeamsPayments() {
             </Reveal>
 
             <Reveal className="org-card" delay={120}>
-              <div className="org-card__head">
+              <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
                 <h2 className="font-heading text-[15.5px] font-semibold">Reports</h2>
               </div>
               <div className="tm-quick">
@@ -264,7 +264,7 @@ export function TeamsPayments() {
             </Reveal>
 
             <Reveal className="org-card tm-tip" delay={180}>
-              <div className="org-card__body">
+              <div className="pt-2 px-5 pb-3">
                 <div className="flex items-center" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
                   <Headset size={16} color="#EA8C00" strokeWidth={1.9} />
                   Question about a settlement?
@@ -305,7 +305,7 @@ function Stat({
   money?: boolean;
 }) {
   return (
-    <div className="org-stat">
+    <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
       <div className="org-stat__head">
         <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">{icon}</span>
         <span className="text-[12.5px] text-grey font-medium leading-[1.35]">{label}</span>

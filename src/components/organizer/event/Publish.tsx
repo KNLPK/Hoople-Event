@@ -191,7 +191,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
                 label="Send Event Reminder"
               />
               <span className="wiz-field__hint">Send WhatsApp reminder before the event.</span>
-              <span className="evt-soon">Coming Soon</span>
+              <span className="inline-flex mt-2 mr-0 mb-0 ml-7 py-[3px] px-[9px] rounded-pill bg-brand-tint-strong text-[10.5px] font-semibold text-brand">Coming Soon</span>
             </div>
           </div>
         </Setting>

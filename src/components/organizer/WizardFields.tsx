@@ -259,7 +259,7 @@ export function CounterArea({
         aria-label={ariaLabel}
         onChange={(event) => onChange(event.target.value)}
       />
-      <span className="wiz-area__count">
+      <span className="self-end text-[11.5px] text-grey-faint pointer-events-none">
         {value.length} / {limit}
       </span>
     </div>
@@ -328,7 +328,7 @@ export function TokenList({
 
   return (
     <div className={`wiz-tokens ${open ? 'is-open' : ''}`.trim()}>
-      <div className="wiz-tokens__row">
+      <div className="flex flex-wrap items-center gap-[9px] pt-[11px] pr-[46px] pb-[11px] pl-3 relative">
         {values.map((value) => (
           <span key={value} className={`wiz-token ${ticked ? 'wiz-token--ticked' : ''}`.trim()}>
             {ticked ? <CheckCircle size={14} color="#6D28FF" strokeWidth={2} /> : null}
@@ -360,7 +360,7 @@ export function TokenList({
       </div>
 
       {open ? (
-        <div className="wiz-tokens__panel">
+        <div className="border-t border-t-line-faint py-[13px] px-3">
           <form
             className="wiz-tokens__form"
             onSubmit={(event) => {

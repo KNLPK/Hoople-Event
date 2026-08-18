@@ -134,7 +134,7 @@ export function EventBenefits({ draft, set }: { draft: EventDraft; set: EventSet
             List the key benefits or takeaways participants will get from this event.
           </span>
 
-          <div className="evt-benefits">
+          <div className="border border-line-input rounded-lg overflow-hidden">
             {draft.benefits.map((benefit) => (
               <div
                 key={benefit}

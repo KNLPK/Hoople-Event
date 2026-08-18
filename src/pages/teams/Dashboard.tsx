@@ -57,7 +57,7 @@ export function TeamsDashboard() {
         <Reveal className="org-card tm-hero">
           <div className="tm-hero__media">
             <ImageSlot id={`tm-cover-${event.id}`} shape="rounded" radius={14} placeholder={event.photoHint} />
-            <span className={`org-pill org-pill--${statusTone(event.status)} tm-hero__badge`}>{event.status}</span>
+            <span className={`org-pill org-pill--${statusTone(event.status)} absolute top-2.5 left-2.5 z-2`}>{event.status}</span>
           </div>
 
           <div className="py-[18px] px-5 min-w-0">
@@ -152,11 +152,11 @@ export function TeamsDashboard() {
 
         <div className="org-panels">
           <Reveal className="org-card">
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">Registration trend</h2>
               <span className="text-[12.5px] text-grey">Last 7 days</span>
             </div>
-            <div className="org-card__body">
+            <div className="pt-2 px-5 pb-3">
               <TrendChart
                 seriesLabel="Registrations"
                 previousLabel="Previous 7 days"
@@ -167,7 +167,7 @@ export function TeamsDashboard() {
                 }))}
               />
             </div>
-            <div className="org-card__foot">
+            <div className="pt-3.5 px-5 pb-[18px]">
               <Link to={`/teams/analytics?e=${event.id}`} className="tm-cardlink">
                 View full analytics <ArrowRight size={15} />
               </Link>
@@ -175,7 +175,7 @@ export function TeamsDashboard() {
           </Reveal>
 
           <Reveal className="org-card" delay={60}>
-            <div className="org-card__head">
+            <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
               <h2 className="font-heading text-[15.5px] font-semibold">Upcoming sessions</h2>
               <Link to={`/teams/sessions?e=${event.id}`} className="tm-cardlink">
                 View all
@@ -212,7 +212,7 @@ export function TeamsDashboard() {
                 </div>
               )}
             </div>
-            <div className="org-card__foot">
+            <div className="pt-3.5 px-5 pb-[18px]">
               <Link to={`/teams/sessions?e=${event.id}`} className="tm-cardlink">
                 Manage sessions <ArrowRight size={15} />
               </Link>
@@ -221,7 +221,7 @@ export function TeamsDashboard() {
         </div>
 
         <Reveal className="org-card" delay={120}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">
               <span className="tm-actdot">
                 <Pencil size={15} color="#6D28FF" strokeWidth={1.9} />
@@ -259,7 +259,7 @@ export function TeamsDashboard() {
 
       <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
         <Reveal className="org-card">
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Quick actions</h2>
           </div>
           <div className="tm-quick">
@@ -295,10 +295,10 @@ export function TeamsDashboard() {
         </Reveal>
 
         <Reveal className="org-card" delay={60}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Member link</h2>
           </div>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.65, marginBottom: 12 }}>
               Share this inside the company. Opening it asks for a{' '}
               <strong>@{ORGANIZATION.domain}</strong> sign-in — there is no public page for this event.
@@ -329,10 +329,10 @@ export function TeamsDashboard() {
         </Reveal>
 
         <Reveal className="org-card" delay={120}>
-          <div className="org-card__head">
+          <div className="flex items-center justify-between gap-4 py-[18px] px-5 border-b border-b-line-faint">
             <h2 className="font-heading text-[15.5px] font-semibold">Event status</h2>
           </div>
-          <div className="tm-statuslist">
+          <div className="pt-1.5 px-0 pb-2.5">
             <StatusRow label="Event status" value={event.status} pill={statusTone(event.status)} />
             <StatusRow label="Visibility" value="Members only" icon={<Lock size={13} color="#5B21F5" strokeWidth={2} />} />
             <StatusRow label="Audience" value={event.audience.join(', ')} />
@@ -344,7 +344,7 @@ export function TeamsDashboard() {
               dot="grey"
             />
           </div>
-          <div className="org-card__foot">
+          <div className="pt-3.5 px-5 pb-[18px]">
             <Link to={`/teams/payments?e=${event.id}`} className="tm-cardlink">
               View details <ArrowRight size={15} />
             </Link>
@@ -352,7 +352,7 @@ export function TeamsDashboard() {
         </Reveal>
 
         <Reveal className="org-card tm-tip" delay={180}>
-          <div className="org-card__body">
+          <div className="pt-2 px-5 pb-3">
             <div className="flex items-center" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
               <Trend size={16} color="#6D28FF" strokeWidth={1.9} />
               Response is {responseRate}%
@@ -394,7 +394,7 @@ function StatCard({
   up?: boolean;
 }) {
   return (
-    <div className="org-stat">
+    <div className="bg-[#fff] border border-line rounded-xl p-4 shadow-card flex flex-col">
       <div className="org-stat__head">
         <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">{icon}</span>
         <span className="text-[12.5px] text-grey font-medium leading-[1.35]">{label}</span>
