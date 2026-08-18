@@ -1,4 +1,4 @@
-import { SelectInput, TokenList } from '../WizardFields';
+import { SelectInput } from '../WizardFields';
 import { EventHead, type EventSetter } from './shared';
 import { Globe, LinkChain, Lock, Palette } from '@/components/ui/icons';
 import {
@@ -17,16 +17,6 @@ const VISIBILITY_ICON: Record<EventVisibility, React.ReactNode> = {
   Private: <Lock size={19} color="#5C5B6B" strokeWidth={1.8} />,
 };
 
-const TAG_SUGGESTIONS = [
-  'Leadership',
-  'AI',
-  'Seminar',
-  'Future of Work',
-  'Networking',
-  'Startup',
-  'Design',
-  'Career',
-];
 
 /** 1.2 — the details that help the right people find the event. */
 export function EventExperience({ draft, set }: { draft: EventDraft; set: EventSetter }) {
@@ -38,20 +28,6 @@ export function EventExperience({ draft, set }: { draft: EventDraft; set: EventS
       />
 
       <div className="org-card wiz-card">
-        <div className="wiz-field">
-          <span className="wiz-field__label">Tags</span>
-          <span className="wiz-field__hint">
-            Add relevant keywords to help people discover your event.
-          </span>
-          <TokenList
-            values={draft.tags}
-            onChange={set('tags')}
-            suggestions={TAG_SUGGESTIONS}
-            addLabel="Add Tag"
-            inputPlaceholder="Type a keyword and press Enter"
-          />
-        </div>
-
         <div className="wiz-field">
           <span className="wiz-field__label">Event Theme</span>
           <span className="wiz-field__hint">Choose a theme that best represents your event.</span>

@@ -1,4 +1,3 @@
-import { ImageSlot } from '@/components/ui/ImageSlot';
 import { Bulb } from '@/components/ui/icons';
 import type { EventDraft } from '@/data/eventBuilder';
 
@@ -12,32 +11,23 @@ export interface EventSectionProps {
 }
 
 /**
- * Every event section opens the same way: what this part is for on the left,
- * and a tip beside the mascot on the right.
+ * Every event section opens the same way: what this part is for, then one line
+ * of advice.
  *
- * It carries no title. The accordion header above it already states the
- * number and the name, and printing them twice made every panel look like it
- * had started over.
+ * This used to be a two-column grid with the tip in a 300px card beside a
+ * mascot. The ledes are one sentence, so the left column was mostly empty and
+ * every panel opened on a block of white. The tip is worth keeping — it is the
+ * only place the builder explains *why* a field matters — so it stays as a
+ * single slim line rather than a card competing with the form.
  */
 export function EventHead({ lede, tip }: { lede: string; tip: string }) {
   return (
     <div className="evt-head">
-      <div>
-        <p className="wiz-section__lede">{lede}</p>
-      </div>
-
-      <aside className="evt-tip">
-        <div>
-          <span className="evt-tip__label">
-            <Bulb size={14} color="#EA8C00" strokeWidth={2} />
-            Tips
-          </span>
-          <p>{tip}</p>
-        </div>
-        <span className="evt-tip__art float">
-          <ImageSlot id="event-tip-mascot" radius={10} interactive={false} placeholder="" />
-        </span>
-      </aside>
+      <p className="wiz-section__lede">{lede}</p>
+      <p className="evt-tip">
+        <Bulb size={14} color="#EA8C00" strokeWidth={2} />
+        {tip}
+      </p>
     </div>
   );
 }

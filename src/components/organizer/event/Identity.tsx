@@ -1,18 +1,15 @@
 import { ChoiceTile, CounterArea, CounterInput, SelectInput } from '../WizardFields';
 import { EventHead, type EventSetter } from './shared';
 import { ImageSlot } from '@/components/ui/ImageSlot';
-import { useToast } from '@/components/ui/Toast';
-import { Building, Camera, Monitor, Plus, Users } from '@/components/ui/icons';
+import { Building, Camera, Monitor, Users } from '@/components/ui/icons';
 import {
   EVENT_CATEGORIES,
-  EVENT_HOSTS,
   EVENT_SUMMARY_LIMIT,
   EVENT_TITLE_LIMIT,
   EVENT_TYPES,
   type EventDraft,
   type EventType,
 } from '@/data/eventBuilder';
-import { WORKSPACE_INITIALS } from '@/data/organizer';
 
 export const TYPE_ICON: Record<EventType, React.ReactNode> = {
   Offline: <Building size={18} color="#6D28FF" strokeWidth={1.8} />,
@@ -22,8 +19,6 @@ export const TYPE_ICON: Record<EventType, React.ReactNode> = {
 
 /** 1.1 — what the event is called and what it looks like on a card. */
 export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSetter }) {
-  const toast = useToast();
-
   return (
     <>
       <EventHead
@@ -70,30 +65,6 @@ export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSet
 
         <div className="wiz-field">
           <span className="wiz-field__label">
-            Hosting As<span className="field__req"> *</span>
-          </span>
-          <span className="wiz-field__hint">Choose who will be shown as the host of this event.</span>
-          <div className="evt-host">
-            <SelectInput
-              ariaLabel="Hosting as"
-              value={draft.hostedAs}
-              options={EVENT_HOSTS}
-              onChange={set('hostedAs')}
-              leading={<span className="wiz-select__avatar">{WORKSPACE_INITIALS}</span>}
-            />
-            <button
-              type="button"
-              className="wiz-addsession"
-              onClick={() => toast('Brands let you host under a second identity — coming next')}
-            >
-              <Plus size={14} color="#6D28FF" strokeWidth={2} />
-              Create Brand
-            </button>
-          </div>
-        </div>
-
-        <div className="wiz-field">
-          <span className="wiz-field__label">
             Event Title<span className="field__req"> *</span>
           </span>
           <span className="wiz-field__hint">Write a title that's clear, specific, and catchy.</span>
@@ -106,39 +77,21 @@ export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSet
           />
         </div>
 
-        <div className="wiz-pair">
-          <div>
-            <span className="wiz-field__label">
-              Event Category<span className="field__req"> *</span>
-            </span>
-            <SelectInput
-              ariaLabel="Event category"
-              value={draft.category}
-              options={EVENT_CATEGORIES}
-              placeholder="Select a category"
-              onChange={set('category')}
-            />
-          </div>
-          <div>
-            <span className="wiz-field__label">
-              Event Type<span className="field__req"> *</span>
-            </span>
-            <div className="evt-types">
-              {EVENT_TYPES.map((option) => (
-                <button
-                  key={option.value}
-                  type="button"
-                  className={`evt-type ${draft.eventType === option.value ? 'is-on' : ''}`.trim()}
-                  onClick={() => set('eventType')(option.value)}
-                  aria-pressed={draft.eventType === option.value}
-                >
-                  <span className="wiz-tile__radio" aria-hidden="true" />
-                  {TYPE_ICON[option.value]}
-                  {option.value}
-                </button>
-              ))}
-            </div>
-          </div>
+        <div className="wiz-field">
+          <span className="wiz-field__label">
+            Event Category<span className="field__req"> *</span>
+          </span>
+          <span className="wiz-field__hint">
+            How it is filed on the discovery pages. Offline, online or hybrid is asked in the next
+            section, beside the venue it decides.
+          </span>
+          <SelectInput
+            ariaLabel="Event category"
+            value={draft.category}
+            options={EVENT_CATEGORIES}
+            placeholder="Select a category"
+            onChange={set('category')}
+          />
         </div>
 
         <div className="wiz-field">

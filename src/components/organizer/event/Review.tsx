@@ -18,7 +18,13 @@ import {
 } from '@/data/eventBuilder';
 import { compactDate, rupiah } from '@/lib/format';
 
-/** 5.1 — everything the organizer built, in one glance, before it goes live. */
+/**
+ * 4.1 — everything the organizer built, in one glance, before it goes live.
+ *
+ * The rows are numbered after the part of the builder that owns them, not
+ * 01..05 of their own. An arbitrary second numbering meant "05 Brand & Host"
+ * sent you to 1.2, and a row could sit in an order the builder never had.
+ */
 export function EventReview({ draft, goTo }: EventSectionProps) {
   const toast = useToast();
 
@@ -36,11 +42,8 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
 
       <div className="wiz-stack">
         <div className="evt-review__top">
-          <button
-            type="button"
-            className="wiz-addsession"
-            onClick={() => goTo(4, 2)}
-          >
+          {/* 4.3 is where the participant-eye preview lives. */}
+          <button type="button" className="wiz-addsession" onClick={() => goTo(4, 2)}>
             <Eye size={14} color="#6D28FF" strokeWidth={1.9} />
             Preview as Attendee
           </button>
@@ -48,86 +51,20 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
 
         <section className="org-card wiz-panel evt-review">
           <ReviewRow
-            index="01"
+            index="1.1"
             Icon={Doc}
             tone="violet"
-            title="Basic Information"
+            title="Identity"
             onEdit={() => goTo(1, 0)}
             fields={[
               { label: 'Event Title', value: draft.title || 'Not set yet' },
-              { label: 'Category', value: [draft.theme, draft.category].filter(Boolean).join('\n') },
+              { label: 'Category', value: draft.category || 'Not set yet' },
               { label: 'Description', value: draft.summary || 'Not set yet' },
             ]}
           />
 
           <ReviewRow
-            index="02"
-            Icon={MapPin}
-            tone="green"
-            title={draft.eventType === 'Online' ? 'Date & Setup' : 'Date & Location'}
-            onEdit={() => goTo(2, 0)}
-            fields={[
-              { label: 'Date', value: compactDate(draft.startDate) },
-              {
-                label: 'Time',
-                value: draft.allDay ? 'All day' : `${draft.startTime} - ${draft.endTime} ${zone}`,
-              },
-              { label: 'Timezone', value: draft.timezone },
-              {
-                label: draft.eventType === 'Online' ? 'Platform' : 'Venue',
-                value:
-                  draft.eventType === 'Online'
-                    ? `${draft.platform}\n${draft.meetingUrl}`
-                    : `${draft.venueName}\n${draft.address}`,
-              },
-            ]}
-          />
-
-          <ReviewRow
-            index="03"
-            Icon={CalendarDots}
-            tone="blue"
-            title="Event Schedule"
-            onEdit={() => goTo(2, 2)}
-            action={{ label: 'View Full Schedule', onClick: () => goTo(2, 2) }}
-            fields={[
-              { label: 'Total Sessions', value: `${draft.sessions.length} Sessions` },
-              { label: 'Start Time', value: `${draft.startTime} ${zone}` },
-              { label: 'End Time', value: `${last?.end ?? draft.endTime} ${zone}` },
-            ]}
-          />
-
-          <ReviewRow
-            index="04"
-            Icon={Ticket}
-            tone="amber"
-            title="Ticket Setup"
-            onEdit={() => goTo(3, 0)}
-            action={{ label: 'View Ticket Types', onClick: () => goTo(3, 0) }}
-            fields={[
-              { label: 'Total Ticket Types', value: `${live.length} Types` },
-              {
-                label: 'Sales Period',
-                value: `${compactDate(draft.salesStart)} - ${
-                  draft.salesEnd ? compactDate(draft.salesEnd) : 'until the event'
-                }`,
-              },
-              { label: 'Currency', value: draft.currency },
-            ]}
-          >
-            <div className="evt-review__tickets">
-              {live.map((ticket) => (
-                <span key={ticket.id}>
-                  <i style={{ background: draft.brandColor }} />
-                  {ticket.name}
-                  <strong>{ticket.price === 0 ? 'Free' : rupiah(ticket.price)}</strong>
-                </span>
-              ))}
-            </div>
-          </ReviewRow>
-
-          <ReviewRow
-            index="05"
+            index="1.2"
             Icon={Users}
             tone="pink"
             title="Brand & Host"
@@ -165,6 +102,72 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
               </div>
             </div>
           </ReviewRow>
+          <ReviewRow
+            index="2.1"
+            Icon={MapPin}
+            tone="green"
+            title={draft.eventType === 'Online' ? 'Date & Setup' : 'Date & Location'}
+            onEdit={() => goTo(2, 0)}
+            fields={[
+              { label: 'Date', value: compactDate(draft.startDate) },
+              {
+                label: 'Time',
+                value: draft.allDay ? 'All day' : `${draft.startTime} - ${draft.endTime} ${zone}`,
+              },
+              { label: 'Timezone', value: draft.timezone },
+              {
+                label: draft.eventType === 'Online' ? 'Platform' : 'Venue',
+                value:
+                  draft.eventType === 'Online'
+                    ? `${draft.platform}\n${draft.meetingUrl}`
+                    : `${draft.venueName}\n${draft.address}`,
+              },
+            ]}
+          />
+
+          <ReviewRow
+            index="2.3"
+            Icon={CalendarDots}
+            tone="blue"
+            title="Event Schedule"
+            onEdit={() => goTo(2, 2)}
+            action={{ label: 'View Full Schedule', onClick: () => goTo(2, 2) }}
+            fields={[
+              { label: 'Total Sessions', value: `${draft.sessions.length} Sessions` },
+              { label: 'Start Time', value: `${draft.startTime} ${zone}` },
+              { label: 'End Time', value: `${last?.end ?? draft.endTime} ${zone}` },
+            ]}
+          />
+
+          <ReviewRow
+            index="3"
+            Icon={Ticket}
+            tone="amber"
+            title="Ticket Setup"
+            onEdit={() => goTo(3, 0)}
+            action={{ label: 'View Ticket Types', onClick: () => goTo(3, 0) }}
+            fields={[
+              { label: 'Total Ticket Types', value: `${live.length} Types` },
+              {
+                label: 'Sales Period',
+                value: `${compactDate(draft.salesStart)} - ${
+                  draft.salesEnd ? compactDate(draft.salesEnd) : 'until the event'
+                }`,
+              },
+              { label: 'Currency', value: draft.currency },
+            ]}
+          >
+            <div className="evt-review__tickets">
+              {live.map((ticket) => (
+                <span key={ticket.id}>
+                  <i style={{ background: draft.brandColor }} />
+                  {ticket.name}
+                  <strong>{ticket.price === 0 ? 'Free' : rupiah(ticket.price)}</strong>
+                </span>
+              ))}
+            </div>
+          </ReviewRow>
+
         </section>
 
         <div className="wiz-note">

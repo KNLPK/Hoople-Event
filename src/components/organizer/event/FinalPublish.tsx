@@ -4,29 +4,32 @@ import {
   CheckCircle,
   Chart,
   Globe,
-  Mail,
   MapPin,
-  Rocket,
+  ScanQr,
   ShieldCheck,
   Sparkle,
   Ticket,
+  Users,
 } from '@/components/ui/icons';
 import { eventChecklist } from '@/data/eventBuilder';
 import { compactDate } from '@/lib/format';
 
+/* Each icon is the thing itself: a page going public, people signing up, a
+   code being scanned, numbers coming back. The old set used a rocket that read
+   as a balloon, an envelope for registering, and a bank card for the door. */
 const NEXT_STEPS = [
   {
-    Icon: Rocket,
+    Icon: Globe,
     title: 'Event goes live',
     sub: 'Your event page will be published and visible to participants.',
   },
   {
-    Icon: Mail,
+    Icon: Users,
     title: 'Participants can register',
     sub: 'People can discover your event, register, and get their QR tickets.',
   },
   {
-    Icon: Card,
+    Icon: ScanQr,
     title: 'Check-in on event day',
     sub: 'Use the Hoople Check-in app to scan QR tickets.',
   },
@@ -37,7 +40,7 @@ const NEXT_STEPS = [
   },
 ];
 
-/** 5.3 — the last look before the event becomes public. */
+/** 4.3 — the last look before the event becomes public. */
 export function EventFinalPublish({ draft }: EventSectionProps) {
   const checklist = eventChecklist(draft);
   const ready = checklist.every((item) => item.done);

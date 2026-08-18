@@ -579,11 +579,13 @@
 
 /* ============ 5.3 Final Publish ============ */
 
+/* Stacked, not side by side. The checklist is a decision — is this ready —
+   and "what happens next" is the answer to it; reading them in parallel meant
+   neither column finished before the other started. */
 .evt-final {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 18px;
-  align-items: start;
 }
 .evt-final__ready {
   text-align: left;

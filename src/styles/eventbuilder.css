@@ -7,64 +7,29 @@
 
 /* ============ Section head with its tip ============ */
 
+/* One column. The tip is a line under the lede, not a card beside it — see
+   EventHead for why the two-column version left every panel opening on white. */
 .evt-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 20px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   margin-bottom: 16px;
 }
-.evt-head .wiz-section__title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.evt-head__badge {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--brand);
-  background: var(--brand-tint-strong);
-  border-radius: 6px;
-  padding: 3px 8px;
-}
 .evt-head .wiz-section__lede {
-  margin-bottom: 0;
+  margin: 0;
 }
 .evt-tip {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 14px;
-  border-radius: var(--r-lg);
-  background: var(--brand-tint);
-  overflow: hidden;
-}
-.evt-tip__label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
-}
-.evt-tip p {
-  font-size: 11.5px;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12.5px;
   line-height: 1.55;
   color: var(--ink-3);
 }
-.evt-tip__art .image-slot::after {
-  display: none;
-}
-.evt-tip__art {
-  width: 58px;
-  height: 58px;
+.evt-tip svg {
   flex: none;
-  align-self: flex-end;
-  margin-bottom: -12px;
+  transform: translateY(2px);
 }
-
 /* ============ 1.1 Identity ============ */
 
 .evt-cover {
@@ -1007,9 +972,6 @@
     grid-template-columns: minmax(0, 1fr);
   }
   .evt-when__arrow {
-    display: none;
-  }
-  .evt-tip__art {
     display: none;
   }
   .evt-row {

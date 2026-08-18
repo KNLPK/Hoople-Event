@@ -798,11 +798,25 @@ export const Emoji = (p: IconProps) => (
   </Stroke>
 );
 
+/* An actual rocket: nose, body, two fins and a flame. The old path was a
+   lozenge with a porthole, which at 17px read as a balloon. */
 export const Rocket = (p: IconProps) => (
   <Stroke {...p}>
-    <path d="M13.5 3.5c3.5 0 7 3.5 7 7-2.6 4-6 6.5-9.5 8L8 15.5 4.5 13c1.5-3.5 4-6.9 9-9.5Z" />
-    <circle cx="14.5" cy="9.5" r="1.8" />
-    <path d="M8 15.5c-1.6.6-2.6 2-3 4.5 2.5-.4 3.9-1.4 4.5-3" />
+    <path d="M12 2.5c2.6 2.2 4 5.2 4 8.7v3.6H8v-3.6c0-3.5 1.4-6.5 4-8.7Z" />
+    <circle cx="12" cy="9.6" r="1.9" />
+    <path d="M8 12.4 5.2 15a1.6 1.6 0 0 0-.45 1.1v2.3L8 16.6M16 12.4 18.8 15a1.6 1.6 0 0 1 .45 1.1v2.3L16 16.6" />
+    <path d="M10.4 18.4c.5 1.5 1 2.4 1.6 3 .6-.6 1.1-1.5 1.6-3" />
+  </Stroke>
+);
+
+/* Scanning a ticket at the door: viewfinder corners around a code. */
+export const ScanQr = (p: IconProps) => (
+  <Stroke {...p}>
+    <path d="M3.5 8.5v-3a2 2 0 0 1 2-2h3M15.5 3.5h3a2 2 0 0 1 2 2v3M20.5 15.5v3a2 2 0 0 1-2 2h-3M8.5 20.5h-3a2 2 0 0 1-2-2v-3" />
+    <rect x="8" y="8" width="3.4" height="3.4" rx="0.8" />
+    <rect x="12.6" y="12.6" width="3.4" height="3.4" rx="0.8" />
+    <path d="M14.3 8h1.7v1.7" />
+    <path d="M9.7 16h-1.7v-1.7" />
   </Stroke>
 );
 

@@ -620,6 +620,39 @@ Every section also lost its own `1.1 Identity` heading. The accordion header
 states the number and the name, and printing both twice made each panel look
 like it had started over.
 
+## Asking once
+
+Three fields were being asked for twice, and a fourth was decoration.
+
+- **Hosting As** sat in 1.1 while 1.2 Brand & Host asked for the host's name,
+  type, description, logo and contact. Removed from 1.1.
+- **Event Type** sat in 1.1 and again at the top of 2.1, where it belongs —
+  offline, online or hybrid is the question that decides whether the next field
+  is a venue or a meeting link.
+- **Tags** and the `theme · category · type` line under it were shown on four
+  previews and nowhere else. Both are gone.
+
+The review summary is numbered after the part of the builder that owns each
+row, not `01..05` of its own. A second numbering meant "05 Brand & Host" sent
+you to 1.2, and a row could sit in an order the builder never had:
+
+`1.1 Identity` · `1.2 Brand & Host` · `2.1 Date & Location` ·
+`2.3 Event Schedule` · `3 Ticket Setup`
+
+Final Publish stacks rather than splits. The checklist asks *is this ready*,
+and "what happens next" answers it — read side by side, neither column
+finished before the other started.
+
+### Tips
+
+Every event section opened with a two-column grid: one sentence on the left,
+and a 300px tip card with a mascot on the right. The ledes are one sentence, so
+the left column was mostly empty and each panel opened on a block of white.
+
+The tip is the only place the builder explains *why* a field matters, so it
+stays — as a single slim line under the lede rather than a card competing with
+the form.
+
 ## Prototype boundaries
 
 - **No authentication.** Register, Complete Profile and Login advance the flow

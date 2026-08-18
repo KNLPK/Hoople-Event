@@ -16,7 +16,6 @@ import {
   Monitor,
   Sparkle,
   Star,
-  Tag,
   Users,
   WhatsApp,
   Wifi,
@@ -132,10 +131,6 @@ export function EventPreview({
                 Join via {draft.platform}
               </li>
             ) : null}
-            <li>
-              <Tag size={14} color="#6D28FF" strokeWidth={1.9} />
-              {[draft.theme, draft.category, draft.eventType].filter(Boolean).join(' • ')}
-            </li>
           </ul>
 
           {draft.audience || draft.ageRestriction ? (
@@ -265,10 +260,6 @@ function DiscoverPreviews({
                 <Clock size={13} color="#6D28FF" strokeWidth={1.9} />
                 {when}
               </li>
-              <li>
-                <Tag size={13} color="#6D28FF" strokeWidth={1.9} />
-                {[draft.theme, draft.category].filter(Boolean).join(' • ')}
-              </li>
             </ul>
 
             <div className="evt-dcard__foot">
@@ -295,10 +286,6 @@ function DiscoverPreviews({
           <span>
             <Calendar size={12} color="#8B8A99" strokeWidth={1.9} />
             {compactDate(draft.startDate)} • {city}
-          </span>
-          <span>
-            <Tag size={12} color="#8B8A99" strokeWidth={1.9} />
-            {draft.theme}
           </span>
         </div>
         <div className="evt-srow__right">
@@ -444,10 +431,6 @@ function FinalPreview({
                     {draft.venueName}
                   </>
                 )}
-              </li>
-              <li>
-                <Tag size={13} color="#6D28FF" strokeWidth={1.9} />
-                {[draft.theme, draft.category, draft.eventType].filter(Boolean).join(' • ')}
               </li>
             </ul>
 
