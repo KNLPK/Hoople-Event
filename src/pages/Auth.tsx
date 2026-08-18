@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/icons';
 import { useToast } from '@/components/ui/Toast';
 import { useSession } from '@/store/session';
+import { safeReturnTo } from '@/lib/returnTo';
 
 /**
  * A single card per step, in the order a new member meets them:
@@ -54,8 +55,12 @@ const TIMEZONES = ['(GMT+7) Jakarta, Indonesia', '(GMT+8) Makassar, Indonesia', 
 
 export function Auth() {
   const [params] = useSearchParams();
-  /* Whoever sent us here says where to go back to; otherwise start browsing. */
-  const returnTo = params.get('next');
+  /*
+   * Whoever sent us here says where to go back to; otherwise start browsing.
+   * `next` comes off the URL bar, so it is the one untrusted value in this app
+   * that reaches navigate() — see safeReturnTo for what it is allowed to be.
+   */
+  const returnTo = params.get('next') ? safeReturnTo(params.get('next'), '') : null;
 
   /*
    * Arriving with a `next` means a gate sent you: the console door, or the
@@ -72,7 +77,7 @@ export function Auth() {
   const [login, setLogin] = useState({ email: '', password: '' });
   const navigate = useNavigate();
 
-  const next = returnTo ?? '/activities';
+  const next = returnTo || '/activities';
   const toast = useToast();
   const { signIn } = useSession();
 

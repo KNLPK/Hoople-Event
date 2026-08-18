@@ -517,6 +517,10 @@ The reasoning lives here rather than in the file because Vercel validates
 `vercel.json` against a strict schema and rejects unknown keys — including the
 `"//"` convention people use for comments in JSON.
 
+`.vercel` is git-ignored. Running the CLI locally writes a `.vercel/output`
+directory, and committing a stale one is the surest way to reproduce the
+"contains no functions or static directory" warning on a real build.
+
 ## The document
 
 - **Every route names its own tab.** `src/lib/title.ts` maps a pathname to a
@@ -692,6 +696,38 @@ the left column was mostly empty and each panel opened on a block of white.
 The tip is the only place the builder explains *why* a field matters, so it
 stays — as a single slim line under the lede rather than a card competing with
 the form.
+
+## Dependencies
+
+`npm audit` reports on this project; the reading is not the same for all of it.
+
+**Cleared.** `react-router-dom` is on 7.x. The 6.x line carried two advisories
+that never got a 6.x patch — an open redirect via backslash in `<Link>` and
+`useNavigate` (GHSA-wrjc-x8rr-h8h6), and constructor injection in
+`deserializeErrors()`. The second needs SSR, which this app does not do; the
+first reaches any `navigate()` given a value off the URL bar, which this app
+does do exactly once. Upgrading is a major bump, so all 42 routes, both
+builders and checkout were re-driven against it.
+
+**Left alone, deliberately.** The remaining two are `vite`/`esbuild`, and every
+one of them is a **development server** issue — `server.fs.deny` bypass on
+Windows, path traversal in optimized-deps `.map` handling, an NTLM disclosure
+in `launch-editor`. None of that code ships: `vite build` emits static files
+and the dev server never runs in production. Clearing them means Vite 8, a
+major bump to the build tool with no production benefit. Worth doing on a
+quiet day, not for safety.
+
+### The one untrusted input
+
+`/auth?next=…` is the only place a value from the URL bar reaches `navigate()`.
+`src/lib/returnTo.ts` allows one leading slash followed by characters a URL
+path may contain, and refuses everything else — `//host`, `/\host`, `%2f%2f`,
+absolute URLs, `javascript:`, control characters, a malformed escape. A refused
+value is treated as though no `next` was given, so the visitor lands on
+`/activities` rather than nowhere.
+
+This does not depend on the router version, which is the point: the guard is
+what makes the redirect safe, and the upgrade is what clears the advisory.
 
 ## Prototype boundaries
 
