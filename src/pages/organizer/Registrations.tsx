@@ -61,7 +61,7 @@ export function OrgRegistrations() {
             {option}
           </button>
         ))}
-        <span style={{ marginLeft: 'auto', fontSize: 13, color: 'var(--grey)' }}>
+        <span style={{ marginLeft: 'auto', fontSize: 13, color: 'var(--color-grey)' }}>
           {rows.length} of {ORG_REGISTRATIONS.length} registrations
         </span>
       </div>
@@ -92,7 +92,7 @@ export function OrgRegistrations() {
                             borderRadius: '50%',
                             overflow: 'hidden',
                             flex: 'none',
-                            background: 'var(--brand-tint-strong)',
+                            background: 'var(--color-brand-tint-strong)',
                           }}
                         >
                           <ImageSlot

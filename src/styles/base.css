@@ -12,8 +12,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--surface);
-  color: var(--ink);
+  background: var(--color-surface);
+  color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
@@ -22,7 +22,7 @@ body {
 }
 
 body[data-surface='app'] {
-  background: var(--surface-app);
+  background: var(--color-surface-app);
 }
 body[data-surface='auth'] {
   background: #f8f6fe;
@@ -35,7 +35,7 @@ svg {
 }
 
 a {
-  color: var(--brand);
+  color: var(--color-brand);
   text-decoration: none;
   transition:
     color 0.18s ease,
@@ -45,7 +45,7 @@ a {
     transform 0.16s ease;
 }
 a:hover {
-  color: var(--brand-deep);
+  color: var(--color-brand-deep);
 }
 
 button {
@@ -74,13 +74,13 @@ textarea {
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  border-color: var(--brand) !important;
+  border-color: var(--color-brand) !important;
   box-shadow: 0 0 0 4px rgba(109, 40, 255, 0.12);
   outline: none;
 }
 
 :where(a, button, [tabindex]):focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--color-brand);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -99,17 +99,6 @@ p {
 }
 
 /* ---------- Layout primitives ---------- */
-
-.container {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding-inline: var(--gutter);
-  width: 100%;
-}
-
-.container--narrow {
-  max-width: 1240px;
-}
 
 .section {
   padding-top: 46px;
@@ -164,7 +153,7 @@ p {
 }
 
 .muted {
-  color: var(--grey);
+  color: var(--color-grey);
 }
 .script {
   font-family: var(--font-script);
@@ -187,7 +176,7 @@ p {
 
 @media (max-width: 1180px) {
   :root {
-    --gutter: 24px;
+    --spacing-gutter: 24px;
   }
   .grid--5 {
     grid-template-columns: repeat(3, 1fr);
@@ -199,7 +188,7 @@ p {
 
 @media (max-width: 720px) {
   :root {
-    --gutter: 18px;
+    --spacing-gutter: 18px;
   }
   .grid--4,
   .grid--5 {

@@ -204,7 +204,7 @@ function ActivityDetailPage() {
       </DarkHero>
 
       <div className="subnav">
-        <div className="container subnav__inner">
+        <div className="mx-auto w-full max-w-page px-gutter subnav__inner">
           {TABS.map((item) => (
             <button
               key={item}
@@ -219,7 +219,7 @@ function ActivityDetailPage() {
       </div>
 
       {/* About + specs */}
-      <Reveal id="overview" className="container section">
+      <Reveal id="overview" className="mx-auto w-full max-w-page px-gutter section">
         <div className="about-grid">
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 14 }}>About this activity</h2>
@@ -227,7 +227,7 @@ function ActivityDetailPage() {
               style={{
                 fontSize: 14,
                 lineHeight: 1.85,
-                color: 'var(--ink-3)',
+                color: 'var(--color-ink-3)',
                 marginBottom: 18,
                 display: '-webkit-box',
                 WebkitBoxOrient: 'vertical',
@@ -240,7 +240,7 @@ function ActivityDetailPage() {
             <button
               type="button"
               className="link-more"
-              style={{ border: 0, background: 'none', cursor: 'pointer', color: 'var(--brand)', padding: 0 }}
+              style={{ border: 0, background: 'none', cursor: 'pointer', color: 'var(--color-brand)', padding: 0 }}
               onClick={() => setExpanded((open) => !open)}
             >
               {expanded ? 'Read less' : 'Read more'}
@@ -279,7 +279,7 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* Gallery */}
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>Gallery</h2>
         <div className="gallery">
           {activity.galleryHints.map((hint, index) => (
@@ -312,7 +312,7 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* Available dates */}
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="row row--between" style={{ marginBottom: 16, gap: 16, flexWrap: 'wrap' }}>
           <h2 style={{ fontSize: 22, fontWeight: 600 }}>Available dates</h2>
           <Button as="button" variant="outline" onClick={() => setCalendarOpen(true)} style={{ height: 42 }}>
@@ -387,7 +387,7 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* What to bring */}
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>What you'll need / bring</h2>
         <div className="bring-grid">
           {activity.bring.map((item, index) => {
@@ -404,7 +404,7 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* Sessions */}
-      <Reveal id="sessions" className="container section--loose">
+      <Reveal id="sessions" className="mx-auto w-full max-w-page px-gutter section--loose">
         <div className="row row--between" style={{ marginBottom: 20, gap: 16, flexWrap: 'wrap' }}>
           <h2 style={{ fontSize: 22, fontWeight: 600 }}>
             Available sessions for {shortDate(selectedDate)}
@@ -455,7 +455,7 @@ function ActivityDetailPage() {
                   tone="inline"
                   size={20}
                 />
-                <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--green)' }}>
+                <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-green)' }}>
                   {session.slotsLeft} slots left!
                 </div>
                 <div style={{ fontSize: 14, fontWeight: 700 }}>
@@ -464,7 +464,7 @@ function ActivityDetailPage() {
                   ) : (
                     <>
                       {rupiah(session.price)}
-                      <span style={{ color: 'var(--grey-soft)', fontWeight: 400 }}> / session</span>
+                      <span style={{ color: 'var(--color-grey-soft)', fontWeight: 400 }}> / session</span>
                     </>
                   )}
                 </div>
@@ -515,7 +515,7 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* Location + reviews */}
-      <Reveal id="host" className="container section--loose">
+      <Reveal id="host" className="mx-auto w-full max-w-page px-gutter section--loose">
         <div className="detail-split">
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>Location</h2>
@@ -527,7 +527,7 @@ function ActivityDetailPage() {
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 600, marginBottom: 6 }}>
                   {activity.venue.name}
                 </div>
-                <div style={{ fontSize: 13.5, color: 'var(--ink-muted)', marginBottom: 16 }}>
+                <div style={{ fontSize: 13.5, color: 'var(--color-ink-muted)', marginBottom: 16 }}>
                   {activity.venue.address}
                 </div>
                 <div className="stack" style={{ gap: 10, marginBottom: 20 }}>
@@ -574,7 +574,7 @@ function ActivityDetailPage() {
               <button
                 type="button"
                 className="link-more"
-                style={{ border: 0, background: 'none', color: 'var(--brand)', cursor: 'pointer' }}
+                style={{ border: 0, background: 'none', color: 'var(--color-brand)', cursor: 'pointer' }}
                 onClick={() => toast(`All ${activity.reviewCount} reviews are coming to this page soon`)}
               >
                 View all reviews →
@@ -584,7 +584,7 @@ function ActivityDetailPage() {
               <article key={review.author} className="review-card">
                 <div className="row" style={{ gap: 12, marginBottom: 12 }}>
                   <span className="review-card__stars">{'★'.repeat(review.stars)}</span>
-                  <span style={{ fontSize: 12.5, color: 'var(--grey-soft)' }}>{review.when}</span>
+                  <span style={{ fontSize: 12.5, color: 'var(--color-grey-soft)' }}>{review.when}</span>
                 </div>
                 <p className="review-card__body">{review.body}</p>
                 <div className="row" style={{ gap: 11 }}>
@@ -611,7 +611,7 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* FAQ + more like this */}
-      <Reveal id="faq" className="container section--loose">
+      <Reveal id="faq" className="mx-auto w-full max-w-page px-gutter section--loose">
         <div className="detail-split detail-split--faq">
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>FAQ</h2>
@@ -624,7 +624,7 @@ function ActivityDetailPage() {
                 marginTop: 12,
                 width: '100%',
                 border: 0,
-                background: 'var(--brand-tint-solid)',
+                background: 'var(--color-brand-tint-solid)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 13,
@@ -639,7 +639,7 @@ function ActivityDetailPage() {
                 <span style={{ display: 'block', fontSize: 13.5, fontWeight: 600 }}>
                   Still have questions?
                 </span>
-                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--brand-deep)', marginTop: 2 }}>
+                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--color-brand-deep)', marginTop: 2 }}>
                   Chat with our team
                 </span>
               </span>
@@ -663,7 +663,7 @@ function ActivityDetailPage() {
         </div>
       </Reveal>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <Newsletter slotId={`detail-mail-${activity.slug}`} />
       </Reveal>
 
@@ -674,7 +674,7 @@ function ActivityDetailPage() {
             <div style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 600 }}>
               Choose a date
             </div>
-            <div style={{ fontSize: 13, color: 'var(--grey)', marginTop: 3 }}>
+            <div style={{ fontSize: 13, color: 'var(--color-grey)', marginTop: 3 }}>
               Sessions open up to 3 months ahead
             </div>
           </div>
@@ -732,18 +732,18 @@ function ActivityDetailPage() {
 
         <div className="cal-legend">
           <span>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--green)' }} />
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--color-green)' }} />
             Sessions available
           </span>
           <span>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--line-dashed)' }} />
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--color-line-dashed)' }} />
             Fully booked / closed
           </span>
         </div>
 
         <div className="cal-foot">
           <div>
-            <div style={{ fontSize: 12, color: 'var(--grey-soft)' }}>Selected date</div>
+            <div style={{ fontSize: 12, color: 'var(--color-grey-soft)' }}>Selected date</div>
             <div style={{ fontFamily: 'var(--font-heading)', fontSize: 15, fontWeight: 600, marginTop: 3 }}>
               {longDate(selectedDate)}
             </div>

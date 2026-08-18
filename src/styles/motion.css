@@ -100,7 +100,7 @@
   top: 0;
   height: 3px;
   z-index: 200;
-  background: linear-gradient(90deg, var(--brand), #a78bfa);
+  background: linear-gradient(90deg, var(--color-brand), #a78bfa);
   transform-origin: 0 50%;
   transform: scaleX(var(--progress, 0));
   transition: transform 0.12s linear;
@@ -108,7 +108,7 @@
 }
 
 .nav.is-scrolled {
-  box-shadow: var(--sh-nav);
+  box-shadow: var(--shadow-nav);
 }
 
 /* ---------- Card lift + photo zoom ---------- */
@@ -120,7 +120,7 @@
 }
 .lift:hover {
   transform: translateY(-7px);
-  box-shadow: var(--sh-card-hover);
+  box-shadow: var(--shadow-card-hover);
 }
 .lift .zoom > * {
   transition: transform 0.6s var(--ease-out);
@@ -184,11 +184,11 @@
   transform: scale(1.16) rotate(-8deg);
 }
 .heart:hover svg {
-  stroke: var(--danger);
+  stroke: var(--color-danger);
 }
 .heart.is-on svg {
-  stroke: var(--danger);
-  fill: var(--danger);
+  stroke: var(--color-danger);
+  fill: var(--color-danger);
 }
 
 /* ---------- Chips ---------- */

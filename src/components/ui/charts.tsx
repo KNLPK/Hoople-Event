@@ -151,7 +151,7 @@ export function TrendChart({
                 y1={index * 25}
                 x2="100"
                 y2={index * 25}
-                stroke="var(--line-soft)"
+                stroke="var(--color-line-soft)"
                 strokeWidth="1"
                 vectorEffect="non-scaling-stroke"
               />
@@ -161,7 +161,7 @@ export function TrendChart({
               <path
                 d={ghost}
                 fill="none"
-                stroke="var(--grey-faint)"
+                stroke="var(--color-grey-faint)"
                 strokeWidth="1.6"
                 strokeDasharray="4 4"
                 strokeLinecap="round"
@@ -349,7 +349,7 @@ export function Donut({
     <div className="donut">
       <div className="donut__ring" style={{ width: size, height: size }}>
         <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label={caption}>
-          <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--line)" strokeWidth="22" />
+          <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--color-line)" strokeWidth="22" />
           {arcs}
         </svg>
         <div className="donut__center">

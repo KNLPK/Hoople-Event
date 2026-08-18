@@ -33,7 +33,7 @@ export function Newsletter({
       </div>
       <div>
         <div className="newsletter__title">{title}</div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink-3)' }}>{body}</div>
+        <div style={{ fontSize: 13.5, color: 'var(--color-ink-3)' }}>{body}</div>
       </div>
       <div className="newsletter__form">
         <input

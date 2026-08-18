@@ -230,7 +230,7 @@ export function TeamsAnalytics() {
             <div className="org-card__body">
               <div className="tm-score">
                 <svg viewBox="0 0 120 120" width="120" height="120" role="img" aria-label={`Score ${score} out of 100`}>
-                  <circle cx="60" cy="60" r="50" fill="none" stroke="var(--line)" strokeWidth="12" />
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="var(--color-line)" strokeWidth="12" />
                   <circle
                     cx="60"
                     cy="60"

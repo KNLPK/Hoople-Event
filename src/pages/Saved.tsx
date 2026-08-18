@@ -28,7 +28,7 @@ export function Saved() {
 
   return (
     <>
-      <div className="container page-header">
+      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
         <h1>My List</h1>
         <p>
           {count === 0
@@ -38,7 +38,7 @@ export function Saved() {
       </div>
 
       {count === 0 ? (
-        <div className="container section">
+        <div className="mx-auto w-full max-w-page px-gutter section">
           <div className="empty">
             <div className="empty__title">Your list is empty</div>
             <p className="empty__body">
@@ -57,7 +57,7 @@ export function Saved() {
       ) : null}
 
       {activities.length ? (
-        <Reveal className="container section">
+        <Reveal className="mx-auto w-full max-w-page px-gutter section">
           <SectionHead
             title="Saved activities"
             subtitle={`${activities.length} recurring ${activities.length === 1 ? 'activity' : 'activities'}`}
@@ -73,7 +73,7 @@ export function Saved() {
       ) : null}
 
       {events.length ? (
-        <Reveal className="container section" delay={60}>
+        <Reveal className="mx-auto w-full max-w-page px-gutter section" delay={60}>
           <SectionHead
             title="Saved events"
             subtitle={`${events.length} one-time ${events.length === 1 ? 'event' : 'events'}`}

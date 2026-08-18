@@ -174,7 +174,7 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
           <span className="wiz-note__icon">
             <Calendar size={16} color="#6D28FF" strokeWidth={1.9} />
           </span>
-          <p style={{ fontSize: 12.5, color: 'var(--ink-3)' }}>
+          <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>
             Every <strong>Edit</strong> here jumps straight back to the section that owns the field,
             so nothing has to be re-entered.{' '}
             <button

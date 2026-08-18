@@ -145,7 +145,7 @@ export function EventFinalPublish({ draft }: EventSectionProps) {
             <span className="wiz-note__icon">
               <ShieldCheck size={17} color="#6D28FF" strokeWidth={1.9} />
             </span>
-            <p style={{ fontSize: 12.5, color: 'var(--ink-3)' }}>
+            <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>
               You can still edit your event after publishing. Some changes may affect live
               registrations.
             </p>

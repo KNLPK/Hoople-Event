@@ -52,7 +52,7 @@ export function SessionCard({ activity, session }: DatedSession) {
           >
             Join now
           </Button>
-          <span style={{ fontSize: 12, color: 'var(--grey)' }}>{session.slotsLeft} slots left</span>
+          <span style={{ fontSize: 12, color: 'var(--color-grey)' }}>{session.slotsLeft} slots left</span>
         </div>
       </div>
     </article>

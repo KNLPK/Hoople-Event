@@ -72,11 +72,11 @@ export function EventDetail() {
         </div>
       </DarkHero>
 
-      <div className="container ticket-layout" style={{ paddingTop: 38 }}>
+      <div className="mx-auto w-full max-w-page px-gutter ticket-layout" style={{ paddingTop: 38 }}>
         <div className="stack" style={{ gap: 22 }}>
           <Reveal className="panel panel--lg">
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 14 }}>About this event</h2>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--ink-3)', marginBottom: 26 }}>
+            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--color-ink-3)', marginBottom: 26 }}>
               {event.summary} Doors open 30 minutes before the start time — bring your QR e-ticket and a photo
               ID matching the name on the booking.
             </p>
@@ -117,7 +117,7 @@ export function EventDetail() {
           <Reveal className="panel panel--lg" delay={60}>
             <div className="row row--between" style={{ marginBottom: 16, gap: 16, flexWrap: 'wrap' }}>
               <h2 style={{ fontSize: 22, fontWeight: 600 }}>Schedule</h2>
-              <span style={{ fontSize: 13, color: 'var(--grey)' }}>
+              <span style={{ fontSize: 13, color: 'var(--color-grey)' }}>
                 {timeRange(event.start, event.end)}
               </span>
             </div>
@@ -134,7 +134,7 @@ export function EventDetail() {
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 600, marginBottom: 6 }}>
                   {event.venueName}
                 </div>
-                <div style={{ fontSize: 13.5, color: 'var(--ink-muted)', marginBottom: 16 }}>{event.area}</div>
+                <div style={{ fontSize: 13.5, color: 'var(--color-ink-muted)', marginBottom: 16 }}>{event.area}</div>
                 <Button
                   as="a"
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -160,7 +160,7 @@ export function EventDetail() {
                 marginTop: 12,
                 width: '100%',
                 border: 0,
-                background: 'var(--brand-tint-solid)',
+                background: 'var(--color-brand-tint-solid)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 13,
@@ -175,7 +175,7 @@ export function EventDetail() {
                 <span style={{ display: 'block', fontSize: 13.5, fontWeight: 600 }}>
                   Still have questions?
                 </span>
-                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--brand-deep)', marginTop: 2 }}>
+                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--color-brand-deep)', marginTop: 2 }}>
                   Chat with our team
                 </span>
               </span>
@@ -224,7 +224,7 @@ export function EventDetail() {
               <ShieldCheck size={20} color="#6D28FF" strokeWidth={1.8} />
               <div>
                 <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 5 }}>Full Refund Available</div>
-                <div style={{ fontSize: 12.5, color: 'var(--grey)', lineHeight: 1.6 }}>
+                <div style={{ fontSize: 12.5, color: 'var(--color-grey)', lineHeight: 1.6 }}>
                   Refundable up to 24 hours before the event starts.
                 </div>
               </div>
@@ -233,7 +233,7 @@ export function EventDetail() {
 
           <div className="panel">
             <div className="panel__title panel__title--sm">Hosted by {event.host}</div>
-            <p style={{ fontSize: 13, color: 'var(--grey)', lineHeight: 1.7, marginBottom: 18 }}>
+            <p style={{ fontSize: 13, color: 'var(--color-grey)', lineHeight: 1.7, marginBottom: 18 }}>
               {event.host} runs experiences on Hoople every month. Follow to hear about the next one first.
             </p>
             <Button as="button" variant="ghost" block onClick={() => toast(`Following ${event.host}`)}>
@@ -243,7 +243,7 @@ export function EventDetail() {
         </aside>
       </div>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           size="sm"
           title="More events you might like"

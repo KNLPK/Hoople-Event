@@ -30,7 +30,7 @@ export function Pricing() {
 
   return (
     <>
-      <div className="container page-header">
+      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
         <h1>Pricing</h1>
         <p>
           Free to list, transparent at checkout, paid out H+1. Start with ticketing and add modules when your
@@ -38,7 +38,7 @@ export function Pricing() {
         </p>
       </div>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="pricing-grid">
           {PRICING_TIERS.map((tier, index) => (
             <Reveal
@@ -81,7 +81,7 @@ export function Pricing() {
         </div>
       </Reveal>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="detail-split">
           <div>
             <SectionHead size="sm" title="Pricing questions" />

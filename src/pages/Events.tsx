@@ -65,7 +65,7 @@ export function Events() {
         </div>
       </DarkHero>
 
-      <div className="container" style={{ paddingTop: 26 }}>
+      <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 26 }}>
         <div className="chip-row">
           {EVENT_CATEGORIES.map((option) => (
             <button
@@ -84,7 +84,7 @@ export function Events() {
         </div>
       </div>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title="Featured Events"
           subtitle="Handpicked by the Hoople team this month"
@@ -97,7 +97,7 @@ export function Events() {
         </Rail>
       </Reveal>
 
-      <Reveal className="container section" delay={60}>
+      <Reveal className="mx-auto w-full max-w-page px-gutter section" delay={60}>
         <SectionHead title="This Weekend" subtitle="Saturday and Sunday, ready to book" moreTo="/discover" />
         {weekend.length ? (
           <Rail perView={4} label="This Weekend">
@@ -116,7 +116,7 @@ export function Events() {
         )}
       </Reveal>
 
-      <Reveal className="container section" delay={120}>
+      <Reveal className="mx-auto w-full max-w-page px-gutter section" delay={120}>
         <div className="bookings-layout">
           <div>
             <SectionHead
@@ -206,7 +206,7 @@ export function Events() {
 
             <div className="panel">
               <div className="panel__title panel__title--sm">Never miss an event</div>
-              <p style={{ fontSize: 13, color: 'var(--grey)', lineHeight: 1.7, marginBottom: 18 }}>
+              <p style={{ fontSize: 13, color: 'var(--color-grey)', lineHeight: 1.7, marginBottom: 18 }}>
                 Turn on alerts and we'll message you the moment a new event opens in your categories.
               </p>
               <Button
@@ -223,7 +223,7 @@ export function Events() {
         </div>
       </Reveal>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <Newsletter slotId="events-mail" title="Stay in the loop" />
       </Reveal>
     </>

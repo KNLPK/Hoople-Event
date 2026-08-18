@@ -26,8 +26,8 @@ export function ResultToolbar({
 }: ResultToolbarProps) {
   return (
     <div className="result-toolbar">
-      <div style={{ fontSize: 14, color: 'var(--grey)' }}>
-        <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>
+      <div style={{ fontSize: 14, color: 'var(--color-grey)' }}>
+        <strong style={{ color: 'var(--color-ink)', fontWeight: 600 }}>
           {count.toLocaleString('en-US')} {noun}
         </strong>{' '}
         found in {location}

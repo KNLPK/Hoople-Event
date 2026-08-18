@@ -115,7 +115,7 @@ export function EventDateLocation({ draft, set }: EventSectionProps) {
             <span className="wiz-note__icon">
               <Info size={16} color="#6D28FF" strokeWidth={1.9} />
             </span>
-            <p style={{ fontSize: 12.5, color: 'var(--ink-3)' }}>{PLACE_NOTE[draft.eventType]}</p>
+            <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>{PLACE_NOTE[draft.eventType]}</p>
           </div>
         </div>
       </div>

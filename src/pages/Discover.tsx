@@ -93,7 +93,7 @@ export function Discover() {
 
   return (
     <>
-      <div className="container page-header">
+      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
         <h1>Discover experiences</h1>
         <p>
           Everything happening around you — one-time events and recurring activities from communities across
@@ -101,7 +101,7 @@ export function Discover() {
         </p>
       </div>
 
-      <div className="container" style={{ paddingTop: 24 }}>
+      <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 24 }}>
         <FilterBar
           query={query}
           onQueryChange={setQuery}
@@ -142,7 +142,7 @@ export function Discover() {
         ) : null}
       </div>
 
-      <div className="container" style={{ paddingTop: 20 }}>
+      <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 20 }}>
         <ResultToolbar
           count={isNarrowed ? results.length : CATALOGUE_SIZE}
           noun="experiences"
@@ -155,7 +155,7 @@ export function Discover() {
         />
       </div>
 
-      <Reveal className="container section--tight">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
         <div className="surprise">
           <div className="surprise__art float">
             <ImageSlot id="surprise-art" shape="rounded" radius={12} placeholder="Dice 3D illustration" />
@@ -172,7 +172,7 @@ export function Discover() {
       </Reveal>
 
       {isNarrowed || view === 'calendar' ? (
-        <Reveal className="container section">
+        <Reveal className="mx-auto w-full max-w-page px-gutter section">
           <SectionHead
             title={results.length ? 'Matching experiences' : 'No matches yet'}
             subtitle={
@@ -248,7 +248,7 @@ export function Discover() {
         </Reveal>
       ) : (
         <>
-          <Reveal className="container section">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section">
             <SectionHead
               title="Recommended for you"
               subtitle="Based on the interests you picked"
@@ -261,7 +261,7 @@ export function Discover() {
             </Rail>
           </Reveal>
 
-          <Reveal className="container section" delay={60}>
+          <Reveal className="mx-auto w-full max-w-page px-gutter section" delay={60}>
             <SectionHead title="Trending this week" subtitle="Filling up fast in Jakarta" moreTo="/activities" />
             <Rail perView={4} label="Trending this week">
               {ACTIVITIES.filter((activity) => activity.badge).map((activity) => (
@@ -270,7 +270,7 @@ export function Discover() {
             </Rail>
           </Reveal>
 
-          <Reveal className="container section" delay={120}>
+          <Reveal className="mx-auto w-full max-w-page px-gutter section" delay={120}>
             <SectionHead
               title="Happening this weekend"
               subtitle="Saturday and Sunday, ready to book"
@@ -283,7 +283,7 @@ export function Discover() {
             </Rail>
           </Reveal>
 
-          <Reveal className="container section">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section">
             <div className="section-head">
               <div>
                 <h2>Near you</h2>
@@ -308,7 +308,7 @@ export function Discover() {
             </Rail>
           </Reveal>
 
-          <Reveal className="container section">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section">
             <SectionHead title="Explore by category" subtitle="Pick a lane and go deep" />
             <div className="category-grid">
               {DISCOVER_CATEGORIES.map((category) => (
@@ -330,7 +330,7 @@ export function Discover() {
             </div>
           </Reveal>
 
-          <Reveal className="container section">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section">
             <SectionHead title="New on Hoople" subtitle="Just listed by our communities" moreTo="/events" />
             <div className="grid grid--4">
               {EVENTS.slice(0, 4).map((event) => (
@@ -339,7 +339,7 @@ export function Discover() {
             </div>
           </Reveal>
 
-          <Reveal className="container section">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section">
             <SectionHead
               title="Communities you may like"
               subtitle="Follow a host and never miss their next session"
@@ -354,7 +354,7 @@ export function Discover() {
         </>
       )}
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <Newsletter
           slotId="discover-mail"
           title="Never miss what's next"
@@ -362,7 +362,7 @@ export function Discover() {
         />
       </Reveal>
 
-      <div className="container section--tight" style={{ paddingBottom: 8 }}>
+      <div className="mx-auto w-full max-w-page px-gutter section--tight" style={{ paddingBottom: 8 }}>
         <Link to="/events" className="link-more">
           Browse one-time events instead
           <ArrowRight size={15} strokeWidth={2} />

@@ -103,7 +103,7 @@ export function Auth() {
           <Logo size={26} color="#6D28FF" />
           <span>hoople</span>
         </Link>
-        <div style={{ fontSize: 13.5, color: 'var(--ink-muted)' }}>
+        <div style={{ fontSize: 13.5, color: 'var(--color-ink-muted)' }}>
           {step === 3 ? "Don't have an account? " : 'Already have an account? '}
           <button
             type="button"
@@ -115,7 +115,7 @@ export function Auth() {
               fontFamily: 'inherit',
               fontSize: 'inherit',
               fontWeight: 600,
-              color: 'var(--brand)',
+              color: 'var(--color-brand)',
               cursor: 'pointer',
             }}
           >
@@ -126,9 +126,9 @@ export function Auth() {
 
       <div className="auth-intro">
         <h1>
-          Welcome to <span style={{ color: 'var(--brand)' }}>Hoople!</span>
+          Welcome to <span style={{ color: 'var(--color-brand)' }}>Hoople!</span>
         </h1>
-        <p style={{ fontSize: 14.5, color: 'var(--ink-muted)' }}>
+        <p style={{ fontSize: 14.5, color: 'var(--color-ink-muted)' }}>
           Join a community of people discovering and creating amazing experiences.
         </p>
       </div>
@@ -151,12 +151,12 @@ export function Auth() {
                     style={{
                       fontSize: 14,
                       fontWeight: 600,
-                      color: number === step ? 'var(--brand)' : 'var(--ink)',
+                      color: number === step ? 'var(--color-brand)' : 'var(--color-ink)',
                     }}
                   >
                     {item.title}
                   </div>
-                  <div style={{ fontSize: 12.5, color: 'var(--grey)', marginTop: 2 }}>{item.sub}</div>
+                  <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginTop: 2 }}>{item.sub}</div>
                 </div>
               </button>
               {number < 3 ? <span className="auth-steps__line" /> : null}
@@ -234,7 +234,7 @@ export function Auth() {
             <div
               style={{
                 fontSize: 12,
-                color: passwordStrong ? 'var(--green)' : 'var(--grey-soft)',
+                color: passwordStrong ? 'var(--color-green)' : 'var(--color-grey-soft)',
                 marginBottom: 22,
               }}
             >
@@ -249,22 +249,22 @@ export function Auth() {
 
             <SocialBlock onPick={(provider) => toast(`${provider} sign-in is stubbed in this prototype`)} />
 
-            <div style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--ink-muted)', margin: '22px 0' }}>
+            <div style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--color-ink-muted)', margin: '22px 0' }}>
               Already have an account?{' '}
               <button
                 type="button"
                 onClick={() => goTo(3)}
-                style={{ border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 'inherit', fontWeight: 600, color: 'var(--brand)', cursor: 'pointer' }}
+                style={{ border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 'inherit', fontWeight: 600, color: 'var(--color-brand)', cursor: 'pointer' }}
               >
                 Login
               </button>
             </div>
 
-            <div style={{ borderTop: '1px solid var(--line-faint)', paddingTop: 20, display: 'flex', gap: 13 }}>
+            <div style={{ borderTop: '1px solid var(--color-line-faint)', paddingTop: 20, display: 'flex', gap: 13 }}>
               <span className="icon-tile" style={{ width: 30, height: 30, borderRadius: 9 }}>
                 <Shield size={16} color="#6D28FF" strokeWidth={1.8} />
               </span>
-              <div style={{ fontSize: 12.5, color: 'var(--ink-muted)', lineHeight: 1.7 }}>
+              <div style={{ fontSize: 12.5, color: 'var(--color-ink-muted)', lineHeight: 1.7 }}>
                 By signing up, you agree to Hoople's <Link to="/help">Terms of Service</Link> and{' '}
                 <Link to="/help">Privacy Policy</Link>.
               </div>
@@ -288,7 +288,7 @@ export function Auth() {
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 23, fontWeight: 700, letterSpacing: '-0.02em' }}>
                   Almost there! 🎉
                 </div>
-                <div style={{ fontSize: 13.5, color: 'var(--ink-muted)', lineHeight: 1.65, marginTop: 8 }}>
+                <div style={{ fontSize: 13.5, color: 'var(--color-ink-muted)', lineHeight: 1.65, marginTop: 8 }}>
                   Tell us about your interests so we can recommend the best experiences for you.
                 </div>
               </div>
@@ -298,7 +298,7 @@ export function Auth() {
             </div>
 
             <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>1. What are you interested in?</div>
-            <div style={{ fontSize: 12.5, color: 'var(--grey)', marginBottom: 14 }}>Select all that apply</div>
+            <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 14 }}>Select all that apply</div>
             <div className="interest-grid">
               {INTERESTS.map(([name, icon]) => {
                 const on = picked.includes(name);
@@ -327,7 +327,7 @@ export function Auth() {
             </div>
 
             <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>2. Preferred language</div>
-            <div style={{ fontSize: 12.5, color: 'var(--grey)', marginBottom: 12 }}>
+            <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 12 }}>
               This helps us show content in your preferred language.
             </div>
             <button
@@ -342,7 +342,7 @@ export function Auth() {
             </button>
 
             <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>3. Timezone</div>
-            <div style={{ fontSize: 12.5, color: 'var(--grey)', marginBottom: 12 }}>
+            <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 12 }}>
               We'll use this to show event times in your local time.
             </div>
             <button
@@ -364,7 +364,7 @@ export function Auth() {
               <button
                 type="button"
                 onClick={() => goTo(3)}
-                style={{ border: 0, background: 'none', fontFamily: 'inherit', fontSize: 13.5, fontWeight: 600, color: 'var(--brand)', cursor: 'pointer' }}
+                style={{ border: 0, background: 'none', fontFamily: 'inherit', fontSize: 13.5, fontWeight: 600, color: 'var(--color-brand)', cursor: 'pointer' }}
               >
                 Skip for now
               </button>
@@ -405,7 +405,7 @@ export function Auth() {
                 <button
                   type="button"
                   onClick={() => toast('Password reset link sent — check your inbox')}
-                  style={{ border: 0, background: 'none', fontFamily: 'inherit', fontSize: 12.5, fontWeight: 600, color: 'var(--brand)', cursor: 'pointer' }}
+                  style={{ border: 0, background: 'none', fontFamily: 'inherit', fontSize: 12.5, fontWeight: 600, color: 'var(--color-brand)', cursor: 'pointer' }}
                 >
                   Forgot password?
                 </button>
@@ -440,12 +440,12 @@ export function Auth() {
 
             <SocialBlock onPick={(provider) => toast(`${provider} sign-in is stubbed in this prototype`)} />
 
-            <div style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--ink-muted)', margin: '22px 0' }}>
+            <div style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--color-ink-muted)', margin: '22px 0' }}>
               Don't have an account?{' '}
               <button
                 type="button"
                 onClick={() => goTo(1)}
-                style={{ border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 'inherit', fontWeight: 600, color: 'var(--brand)', cursor: 'pointer' }}
+                style={{ border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 'inherit', fontWeight: 600, color: 'var(--color-brand)', cursor: 'pointer' }}
               >
                 Register now
               </button>
@@ -478,7 +478,7 @@ export function Auth() {
                     <Icon size={17} color="#6D28FF" strokeWidth={1.8} />
                   </span>
                   <div style={{ fontSize: 12.5, fontWeight: 600, marginBottom: 5 }}>{title}</div>
-                  <div style={{ fontSize: 11.5, color: 'var(--grey)', lineHeight: 1.6 }}>{body}</div>
+                  <div style={{ fontSize: 11.5, color: 'var(--color-grey)', lineHeight: 1.6 }}>{body}</div>
                 </div>
               ))}
             </div>

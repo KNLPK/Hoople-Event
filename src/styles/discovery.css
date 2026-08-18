@@ -9,8 +9,8 @@
   grid-template-columns: 1.45fr 1.25fr 0.95fr 0.85fr 1.05fr auto;
   align-items: center;
   background: #fff;
-  border-radius: var(--r-3xl);
-  box-shadow: var(--sh-search);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-search);
   padding: 14px 16px;
 }
 
@@ -24,7 +24,7 @@
   border: 0;
   outline: 0;
   font-size: 14.5px;
-  color: var(--ink);
+  color: var(--color-ink);
   width: 100%;
   background: transparent;
 }
@@ -44,7 +44,7 @@
   border-radius: 8px;
 }
 .filter-bar__facet:hover {
-  background: var(--brand-tint);
+  background: var(--color-brand-tint);
 }
 .filter-bar__facet-text {
   flex: 1;
@@ -53,13 +53,13 @@
 .filter-bar__facet-label {
   display: block;
   font-size: 11px;
-  color: var(--grey-soft);
+  color: var(--color-grey-soft);
 }
 .filter-bar__facet-value {
   display: block;
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--color-ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -73,19 +73,19 @@
   height: 44px;
   padding: 0 18px;
   border: 1px solid #e4defb;
-  background: var(--brand-tint);
+  background: var(--color-brand-tint);
   border-radius: 11px;
   font-family: inherit;
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--brand-deep);
+  color: var(--color-brand-deep);
   cursor: pointer;
   white-space: nowrap;
 }
 .filter-bar__more:hover,
 .filter-bar__more.is-on {
   background: #efeaff;
-  border-color: var(--brand-border);
+  border-color: var(--color-brand-border);
 }
 
 /* Two facets to a row on a phone, tightened just enough that the longest
@@ -109,7 +109,7 @@
   }
   .filter-bar__facet {
     border-left: 0;
-    border: 1px solid var(--line-strong);
+    border: 1px solid var(--color-line-strong);
   }
   .filter-bar__more {
     grid-column: 1 / -1;
@@ -132,10 +132,10 @@
 .filter-panel {
   margin-top: 18px;
   background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2xl);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-2xl);
   padding: 24px 26px;
-  box-shadow: var(--sh-panel);
+  box-shadow: var(--shadow-panel);
   animation: hp-pop 0.22s ease both;
 }
 .filter-panel__grid {
@@ -152,7 +152,7 @@
 .filter-panel__group legend {
   font-size: 13px;
   font-weight: 600;
-  color: var(--ink-2);
+  color: var(--color-ink-2);
   padding: 0;
   margin-bottom: 10px;
 }
@@ -172,7 +172,7 @@
   gap: 12px;
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid var(--line-faint);
+  border-top: 1px solid var(--color-line-faint);
 }
 
 @media (max-width: 900px) {
@@ -195,7 +195,7 @@
   align-items: center;
   gap: 7px;
   font-size: 13.5px;
-  color: var(--ink-2);
+  color: var(--color-ink-2);
   cursor: pointer;
 }
 .result-toolbar__sort select {
@@ -204,7 +204,7 @@
   font-family: inherit;
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--color-ink);
   cursor: pointer;
   appearance: none;
   padding-right: 2px;
@@ -212,8 +212,8 @@
 
 .view-toggle {
   display: flex;
-  background: var(--surface-toggle);
-  border-radius: var(--r-md);
+  background: var(--color-surface-toggle);
+  border-radius: var(--radius-md);
   padding: 3px;
 }
 .view-toggle button {
@@ -227,21 +227,21 @@
   font-family: inherit;
   font-size: 12.5px;
   font-weight: 500;
-  color: var(--grey);
+  color: var(--color-grey);
   cursor: pointer;
 }
 .view-toggle button.is-on {
   background: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   font-weight: 600;
-  color: var(--ink);
+  color: var(--color-ink);
 }
 
 /* ============ Calendar result view ============ */
 
 .calendar-view {
-  border: 1px solid var(--line);
-  border-radius: var(--r-2xl);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-2xl);
   background: #fff;
   overflow: hidden;
 }
@@ -252,7 +252,7 @@
   padding: 18px 22px;
 }
 .calendar-view__day + .calendar-view__day {
-  border-top: 1px solid var(--line-soft);
+  border-top: 1px solid var(--color-line-soft);
 }
 .calendar-view__date {
   font-family: var(--font-heading);
@@ -261,7 +261,7 @@
 }
 .calendar-view__weekday {
   font-size: 12.5px;
-  color: var(--grey);
+  color: var(--color-grey);
   margin-top: 3px;
 }
 .calendar-view__slots {
@@ -274,16 +274,16 @@
   grid-template-columns: 84px 1fr auto auto;
   gap: 16px;
   align-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-lg);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-lg);
   padding: 12px 16px;
-  color: var(--ink);
+  color: var(--color-ink);
   background: #fff;
 }
 .calendar-slot:hover {
-  border-color: var(--brand-border);
-  background: var(--brand-tint);
-  color: var(--ink);
+  border-color: var(--color-brand-border);
+  background: var(--color-brand-tint);
+  color: var(--color-ink);
 }
 .calendar-slot__time {
   font-weight: 600;
@@ -295,12 +295,12 @@
 }
 .calendar-slot__host {
   font-size: 12.5px;
-  color: var(--grey);
+  color: var(--color-grey);
   margin-top: 2px;
 }
 .calendar-slot__slots {
   font-size: 12.5px;
-  color: var(--green);
+  color: var(--color-green);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -318,8 +318,8 @@
 /* ============ Surprise me banner ============ */
 
 .surprise {
-  background: var(--brand-tint-strong);
-  border-radius: var(--r-3xl);
+  background: var(--color-brand-tint-strong);
+  border-radius: var(--radius-3xl);
   padding: 24px 30px;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -333,12 +333,12 @@
 .surprise h3 {
   font-size: 19px;
   font-weight: 600;
-  color: var(--brand-deep);
+  color: var(--color-brand-deep);
   margin-bottom: 5px;
 }
 .surprise p {
   font-size: 13.5px;
-  color: var(--ink-3);
+  color: var(--color-ink-3);
 }
 
 @media (max-width: 820px) {

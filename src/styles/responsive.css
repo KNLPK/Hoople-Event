@@ -22,10 +22,6 @@ body.is-locked {
     padding-bottom: calc(62px + env(safe-area-inset-bottom));
   }
 
-  .container {
-    padding-inline: var(--gutter);
-  }
-
   /* Touch targets: nothing interactive lands under 40px. */
   .btn {
     min-height: 44px;
@@ -119,8 +115,8 @@ body.is-locked {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     /* Bleed to the screen edge so the last card can reach it. */
-    margin-inline: calc(var(--gutter) * -1);
-    padding-inline: var(--gutter);
+    margin-inline: calc(var(--spacing-gutter) * -1);
+    padding-inline: var(--spacing-gutter);
     padding-bottom: 4px;
   }
   .swipe::-webkit-scrollbar {
@@ -153,7 +149,7 @@ body.is-locked {
     font-size: 21px;
   }
   :root {
-    --nav-h: 60px;
+    --spacing-nav: 60px;
   }
 
   .nav__mobile {
@@ -172,11 +168,11 @@ body.is-locked {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--ink);
+    color: var(--color-ink);
     cursor: pointer;
   }
   .nav__icon-btn:active {
-    background: var(--brand-tint);
+    background: var(--color-brand-tint);
   }
   .nav__icon-dot {
     position: absolute;
@@ -185,7 +181,7 @@ body.is-locked {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--danger);
+    background: var(--color-danger);
     border: 1.5px solid #fff;
   }
 }
@@ -207,7 +203,7 @@ body.is-locked {
     grid-template-columns: repeat(5, 1fr);
     background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(12px);
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-line);
     padding-bottom: env(safe-area-inset-bottom);
   }
   .tabbar__tab {
@@ -222,11 +218,11 @@ body.is-locked {
     font-family: inherit;
     font-size: 10.5px;
     font-weight: 500;
-    color: var(--grey);
+    color: var(--color-grey);
     cursor: pointer;
   }
   .tabbar__tab.is-active {
-    color: var(--brand);
+    color: var(--color-brand);
     font-weight: 600;
   }
   .tabbar__icon {
@@ -240,7 +236,7 @@ body.is-locked {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--danger);
+    background: var(--color-danger);
     border: 1.5px solid #fff;
   }
 }
@@ -264,10 +260,10 @@ body.is-locked {
     align-items: center;
     justify-content: space-between;
     gap: 14px;
-    padding: 10px var(--gutter);
+    padding: 10px var(--spacing-gutter);
     background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(12px);
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-line);
     box-shadow: 0 -6px 20px rgba(20, 10, 60, 0.06);
   }
   .bookbar__price strong {
@@ -279,7 +275,7 @@ body.is-locked {
   }
   .bookbar__price span {
     font-size: 11.5px;
-    color: var(--grey);
+    color: var(--color-grey);
   }
   .bookbar .btn {
     flex: none;
@@ -330,7 +326,7 @@ body.is-locked {
   height: 36px;
   border: 0;
   border-radius: 50%;
-  background: var(--surface-chip);
+  background: var(--color-surface-chip);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -341,9 +337,9 @@ body.is-locked {
   align-items: center;
   gap: 12px;
   padding: 12px;
-  border-radius: var(--r-lg);
-  background: var(--brand-tint);
-  color: var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-tint);
+  color: var(--color-ink);
 }
 .drawer__avatar {
   width: 42px;
@@ -351,7 +347,7 @@ body.is-locked {
   border-radius: 50%;
   overflow: hidden;
   flex: none;
-  background: var(--brand-tint-strong);
+  background: var(--color-brand-tint-strong);
 }
 .drawer__identity strong {
   display: block;
@@ -361,17 +357,17 @@ body.is-locked {
 .drawer__identity span span {
   display: block;
   font-size: 12px;
-  color: var(--grey);
+  color: var(--color-grey);
   margin-top: 2px;
 }
 .drawer__signin {
   padding: 14px;
-  border-radius: var(--r-lg);
-  background: var(--brand-tint);
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-tint);
 }
 .drawer__signin p {
   font-size: 12.5px;
-  color: var(--ink-3);
+  color: var(--color-ink-3);
   line-height: 1.55;
   margin-bottom: 12px;
 }
@@ -385,7 +381,7 @@ body.is-locked {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--grey-soft);
+  color: var(--color-grey-soft);
   margin-bottom: 8px;
 }
 .drawer__link {
@@ -395,19 +391,19 @@ body.is-locked {
   min-height: 46px;
   padding: 0 12px;
   border: 0;
-  border-radius: var(--r-md);
+  border-radius: var(--radius-md);
   background: none;
   font-family: inherit;
   font-size: 14.5px;
   font-weight: 500;
-  color: var(--ink-2);
+  color: var(--color-ink-2);
   text-align: left;
   cursor: pointer;
 }
 .drawer__link:hover,
 .drawer__link.is-active {
-  background: var(--brand-tint);
-  color: var(--brand-deep);
+  background: var(--color-brand-tint);
+  color: var(--color-brand-deep);
 }
 .drawer__link.is-active {
   font-weight: 600;
@@ -417,8 +413,8 @@ body.is-locked {
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
-  border-radius: var(--r-pill);
-  background: var(--brand);
+  border-radius: var(--radius-pill);
+  background: var(--color-brand);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
@@ -433,7 +429,7 @@ body.is-locked {
   gap: 6px;
 }
 .drawer__link--danger {
-  color: var(--danger);
+  color: var(--color-danger);
   justify-content: center;
 }
 
@@ -526,8 +522,8 @@ body.is-locked {
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: none;
-    margin-inline: calc(var(--gutter) * -1);
-    padding-inline: var(--gutter);
+    margin-inline: calc(var(--spacing-gutter) * -1);
+    padding-inline: var(--spacing-gutter);
   }
   .chip-row::-webkit-scrollbar,
   .subnav__links::-webkit-scrollbar,
@@ -572,7 +568,7 @@ body.is-locked {
     z-index: 90;
     width: min(300px, 86vw);
     min-height: 0;
-    border-right: 1px solid var(--line);
+    border-right: 1px solid var(--color-line);
     transform: translateX(-100%);
     transition: transform 0.26s var(--ease-out);
     overflow-y: auto;
@@ -598,7 +594,7 @@ body.is-locked {
     height: 34px;
     border: 0;
     border-radius: 50%;
-    background: var(--surface-chip);
+    background: var(--color-surface-chip);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -614,19 +610,19 @@ body.is-locked {
     flex: none;
     margin-left: -6px;
     border: 0;
-    border-radius: var(--r-md);
+    border-radius: var(--radius-md);
     background: transparent;
     cursor: pointer;
   }
   .org-burger:hover {
-    background: var(--brand-tint);
+    background: var(--color-brand-tint);
   }
 
   .org__content {
-    padding: 16px var(--gutter) 40px;
+    padding: 16px var(--spacing-gutter) 40px;
   }
   .org-top {
-    padding: 0 var(--gutter);
+    padding: 0 var(--spacing-gutter);
     gap: 10px;
   }
   /* The name and role are already in the drawer — the avatar is enough here. */
@@ -659,7 +655,7 @@ body.is-locked {
   }
   .org-greeting {
     padding: 20px;
-    border-radius: var(--r-2xl);
+    border-radius: var(--radius-2xl);
   }
   .org-greeting h1 {
     font-size: 21px;
@@ -739,7 +735,7 @@ body.is-locked {
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--brand);
+    color: var(--color-brand);
   }
   .wiz-progress__label {
     display: block;
@@ -752,8 +748,8 @@ body.is-locked {
   .wiz-progress__track {
     display: block;
     height: 4px;
-    border-radius: var(--r-pill);
-    background: var(--line-strong);
+    border-radius: var(--radius-pill);
+    background: var(--color-line-strong);
     overflow: hidden;
     margin-top: 8px;
   }
@@ -761,7 +757,7 @@ body.is-locked {
     display: block;
     height: 100%;
     border-radius: inherit;
-    background: var(--brand);
+    background: var(--color-brand);
     transition: width 0.3s var(--ease-out);
   }
   /* Save as Draft is secondary here — it keeps its place beside the rail but
@@ -872,7 +868,7 @@ body.is-locked {
     width: 100%;
     max-width: none;
     max-height: 88vh;
-    border-radius: var(--r-4xl) var(--r-4xl) 0 0;
+    border-radius: var(--radius-4xl) var(--radius-4xl) 0 0;
     padding-bottom: calc(20px + env(safe-area-inset-bottom));
   }
 }

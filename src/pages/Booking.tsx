@@ -241,30 +241,30 @@ export function Booking() {
 
   return (
     <>
-      <div className="container" style={{ paddingTop: 34 }}>
+      <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 34 }}>
         <Stepper step={step} />
       </div>
 
       {/* Step 2 keeps the form mounted behind the payment modal. */}
       {step !== 3 ? (
         <>
-          <div className="container" style={{ paddingTop: 40 }}>
+          <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 40 }}>
             <h1 style={{ fontSize: 34, fontWeight: 700, letterSpacing: '-0.03em', marginBottom: 8 }}>
               Complete Your Booking
             </h1>
-            <p style={{ fontSize: 14.5, color: 'var(--ink-muted)' }}>
+            <p style={{ fontSize: 14.5, color: 'var(--color-ink-muted)' }}>
               Please fill in your details to complete your booking.
             </p>
           </div>
 
-          <div className="container checkout-layout" style={{ paddingTop: 28 }}>
+          <div className="mx-auto w-full max-w-page px-gutter checkout-layout" style={{ paddingTop: 28 }}>
             <div className="stack" style={{ gap: 22 }}>
               {/* 1. Buyer */}
               <Reveal className="panel panel--lg">
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 17, fontWeight: 600, marginBottom: 5 }}>
                   1. Buyer Information
                 </div>
-                <div style={{ fontSize: 13, color: 'var(--grey)', marginBottom: 22 }}>
+                <div style={{ fontSize: 13, color: 'var(--color-grey)', marginBottom: 22 }}>
                   This information will be used for your order and payment.
                 </div>
                 <div className="grid grid--2" style={{ gap: '20px 24px' }}>
@@ -303,7 +303,7 @@ export function Booking() {
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 17, fontWeight: 600, marginBottom: 5 }}>
                   2. Participant Information
                 </div>
-                <div style={{ fontSize: 13, color: 'var(--grey)', marginBottom: 20 }}>
+                <div style={{ fontSize: 13, color: 'var(--color-grey)', marginBottom: 20 }}>
                   Please provide details for each participant.
                 </div>
 
@@ -412,10 +412,10 @@ export function Booking() {
                     <Plus size={18} color="#6D28FF" />
                   </span>
                   <span>
-                    <span style={{ display: 'block', fontSize: 14, fontWeight: 600, color: 'var(--brand)' }}>
+                    <span style={{ display: 'block', fontSize: 14, fontWeight: 600, color: 'var(--color-brand)' }}>
                       Add More Participants
                     </span>
-                    <span style={{ display: 'block', fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                    <span style={{ display: 'block', fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                       You can add up to {MAX_PARTICIPANTS} participants
                     </span>
                   </span>
@@ -481,7 +481,7 @@ export function Booking() {
                     </span>
                     <div>
                       <div style={{ fontSize: 14, fontWeight: 600 }}>Your data is secure and encrypted</div>
-                      <div style={{ fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                      <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                         We use industry-standard security to protect your information.
                       </div>
                     </div>
@@ -501,7 +501,7 @@ export function Booking() {
                     </Button>
                     <div
                       className="row"
-                      style={{ justifyContent: 'center', gap: 7, fontSize: 12, color: 'var(--grey-soft)', marginTop: 10 }}
+                      style={{ justifyContent: 'center', gap: 7, fontSize: 12, color: 'var(--color-grey-soft)', marginTop: 10 }}
                     >
                       <Lock size={13} color="#8B8A99" strokeWidth={2} />
                       You'll be redirected to our secure payment partner
@@ -509,7 +509,7 @@ export function Booking() {
                   </div>
                 </div>
                 {canContinue ? null : (
-                  <p style={{ marginTop: 14, fontSize: 12.5, color: 'var(--amber-ink)' }}>
+                  <p style={{ marginTop: 14, fontSize: 12.5, color: 'var(--color-amber-ink)' }}>
                     Add a name for every participant and accept the Terms &amp; Refund Policy to continue.
                   </p>
                 )}
@@ -565,7 +565,7 @@ export function Booking() {
                   <ShieldCheck size={20} color="#6D28FF" strokeWidth={1.8} />
                   <div>
                     <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 5 }}>Full Refund Available</div>
-                    <div style={{ fontSize: 12.5, color: 'var(--grey)', lineHeight: 1.6 }}>
+                    <div style={{ fontSize: 12.5, color: 'var(--color-grey)', lineHeight: 1.6 }}>
                       You can request a full refund up to 24 hours before the experience starts.
                     </div>
                   </div>
@@ -576,7 +576,7 @@ export function Booking() {
                 <div className="panel__title panel__title--sm" style={{ marginBottom: 8 }}>
                   Need Help?
                 </div>
-                <div style={{ fontSize: 13, color: 'var(--grey)', lineHeight: 1.65, marginBottom: 16 }}>
+                <div style={{ fontSize: 13, color: 'var(--color-grey)', lineHeight: 1.65, marginBottom: 16 }}>
                   If you have any questions, our support team is here to help.
                 </div>
                 <Button
@@ -592,13 +592,13 @@ export function Booking() {
             </aside>
           </div>
 
-          <Reveal className="container section--tight">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
             <div className="trust-strip">
               <div>
                 <StarOutline size={26} color="#6D28FF" strokeWidth={1.7} />
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600 }}>Trusted by thousands</div>
-                  <div style={{ fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                  <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                     4.8/5 from 2,500+ reviews
                   </div>
                 </div>
@@ -607,7 +607,7 @@ export function Booking() {
                 <Lock size={26} color="#6D28FF" strokeWidth={1.7} />
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600 }}>Secure Payment</div>
-                  <div style={{ fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                  <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                     Your payment is safe with us
                   </div>
                 </div>
@@ -616,7 +616,7 @@ export function Booking() {
                 <Bolt size={26} color="#6D28FF" strokeWidth={1.7} />
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600 }}>Instant Confirmation</div>
-                  <div style={{ fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                  <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                     Get your ticket right after payment
                   </div>
                 </div>
@@ -629,16 +629,16 @@ export function Booking() {
       {/* Step 3 — confirmation */}
       {step === 3 && confirmed ? (
         <>
-          <div className="container done-layout" style={{ paddingTop: 30 }}>
+          <div className="mx-auto w-full px-gutter done-layout" style={{ paddingTop: 30 }}>
             <div className="panel panel--lg" ref={successRef} style={{ borderRadius: 18, padding: '34px 36px' }}>
               <div style={{ textAlign: 'center' }}>
                 <div className="done-badge">
                   <Check size={30} color="#fff" />
                 </div>
                 <h2 style={{ fontSize: 29, fontWeight: 700, marginBottom: 10 }}>Payment Successful!</h2>
-                <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.7, marginBottom: 22 }}>
+                <p style={{ fontSize: 14, color: 'var(--color-ink-muted)', lineHeight: 1.7, marginBottom: 22 }}>
                   Thank you for your booking. We've sent the details to{' '}
-                  <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>{confirmed.buyer.email}</strong>
+                  <strong style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{confirmed.buyer.email}</strong>
                 </p>
               </div>
 
@@ -666,7 +666,7 @@ export function Booking() {
                 </div>
               </div>
 
-              <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--grey)', margin: '20px 0 26px' }}>
+              <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--color-grey)', margin: '20px 0 26px' }}>
                 A confirmation email has been sent with your e-ticket(s) and booking details.
               </p>
 
@@ -676,7 +676,7 @@ export function Booking() {
                     <div style={{ fontFamily: 'var(--font-heading)', fontSize: 19, fontWeight: 600 }}>
                       Your E-Ticket
                     </div>
-                    <div style={{ fontSize: 13, color: 'var(--grey)', marginTop: 4 }}>
+                    <div style={{ fontSize: 13, color: 'var(--color-grey)', marginTop: 4 }}>
                       Show this QR code at the entrance for verification.
                     </div>
                   </div>
@@ -697,27 +697,27 @@ export function Booking() {
                     <div style={{ fontFamily: 'var(--font-heading)', fontSize: 21, fontWeight: 700 }}>
                       {confirmed.title}
                     </div>
-                    <div style={{ fontSize: 13.5, color: 'var(--grey)', margin: '5px 0 16px' }}>
+                    <div style={{ fontSize: 13.5, color: 'var(--color-grey)', margin: '5px 0 16px' }}>
                       Hosted by {confirmed.host}
                     </div>
                     <TicketFacts booking={confirmed} />
                     <div
                       className="grid grid--2"
                       style={{
-                        borderTop: '1px solid var(--line-faint)',
+                        borderTop: '1px solid var(--color-line-faint)',
                         marginTop: 20,
                         paddingTop: 16,
                         gap: 20,
                       }}
                     >
                       <div>
-                        <div style={{ fontSize: 12, color: 'var(--grey-soft)' }}>Participant</div>
+                        <div style={{ fontSize: 12, color: 'var(--color-grey-soft)' }}>Participant</div>
                         <div style={{ fontSize: 13.5, fontWeight: 600, marginTop: 4 }}>
                           {confirmed.participants[0].name}
                         </div>
                       </div>
                       <div>
-                        <div style={{ fontSize: 12, color: 'var(--grey-soft)' }}>Ticket ID</div>
+                        <div style={{ fontSize: 12, color: 'var(--color-grey-soft)' }}>Ticket ID</div>
                         <div style={{ fontSize: 13.5, fontWeight: 600, marginTop: 4 }}>{confirmed.ticketId}</div>
                       </div>
                     </div>
@@ -736,7 +736,7 @@ export function Booking() {
 
           </div>
 
-          <Reveal className="container section--tight">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
             <div className="action-grid">
               <button type="button" className="action-tile" onClick={() => toast('E-ticket PDF is on its way to your inbox')}>
                 <Download size={22} color="#5B21F5" strokeWidth={1.8} />
@@ -785,7 +785,7 @@ export function Booking() {
             </div>
           </Reveal>
 
-          <Reveal className="container section--tight">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
             <SectionHead size="sm" title="You Might Also Like" moreTo="/activities" moreLabel="See All →" />
             <div className="grid grid--4">
               {suggestions.map((item) => (
@@ -804,7 +804,7 @@ export function Booking() {
             </div>
           </Reveal>
 
-          <Reveal className="container section--tight">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
             <div className="split-panels">
               <div className="whats-next">
                 <h2 style={{ fontSize: 21, fontWeight: 600, marginBottom: 20 }}>What's Next?</h2>
@@ -819,7 +819,7 @@ export function Booking() {
                         <span className="whats-next__num">{index + 1}</span>
                         <span style={{ fontSize: 14, fontWeight: 600 }}>{title}</span>
                       </div>
-                      <div style={{ fontSize: 12.5, color: 'var(--ink-muted)', lineHeight: 1.65 }}>{body}</div>
+                      <div style={{ fontSize: 12.5, color: 'var(--color-ink-muted)', lineHeight: 1.65 }}>{body}</div>
                     </div>
                   ))}
                 </div>
@@ -833,7 +833,7 @@ export function Booking() {
                   <div style={{ fontFamily: 'var(--font-heading)', fontSize: 17, fontWeight: 600, marginBottom: 8 }}>
                     Need Help?
                   </div>
-                  <div style={{ fontSize: 13, color: 'var(--ink-3)', lineHeight: 1.65, marginBottom: 18 }}>
+                  <div style={{ fontSize: 13, color: 'var(--color-ink-3)', lineHeight: 1.65, marginBottom: 18 }}>
                     If you have any questions, our support team is here to help.
                   </div>
                   <Button as="link" to="/help" variant="white">
@@ -848,12 +848,12 @@ export function Booking() {
             </div>
           </Reveal>
 
-          <div className="container section--tight" style={{ textAlign: 'center' }}>
+          <div className="mx-auto w-full max-w-page px-gutter section--tight" style={{ textAlign: 'center' }}>
             <div className="row" style={{ justifyContent: 'center', gap: 10, fontSize: 14, fontWeight: 600 }}>
               <Ticket size={17} color="#6D28FF" strokeWidth={1.9} />
               Thank you for being a part of Hoople.
             </div>
-            <div style={{ fontSize: 13, color: 'var(--grey)', marginTop: 6 }}>
+            <div style={{ fontSize: 13, color: 'var(--color-grey)', marginTop: 6 }}>
               We can't wait to see you there!
             </div>
           </div>
@@ -874,7 +874,7 @@ export function Booking() {
             <div style={{ fontFamily: 'var(--font-heading)', fontSize: 19, fontWeight: 600 }}>
               Complete Your Payment
             </div>
-            <div style={{ fontSize: 13, color: 'var(--grey)', marginTop: 4 }}>
+            <div style={{ fontSize: 13, color: 'var(--color-grey)', marginTop: 4 }}>
               All transactions are secure and encrypted
             </div>
           </div>
@@ -893,13 +893,13 @@ export function Booking() {
 
         <div style={{ padding: '20px 26px 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 }}>
           <div>
-            <div style={{ fontSize: 12.5, color: 'var(--grey)', marginBottom: 5 }}>Total Payment</div>
+            <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 5 }}>Total Payment</div>
             <div style={{ fontFamily: 'var(--font-heading)', fontSize: 23, fontWeight: 700 }}>
               {idr(money.total)}
             </div>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 12.5, color: 'var(--grey)', marginBottom: 5 }}>Order ID</div>
+            <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 5 }}>Order ID</div>
             <button
               type="button"
               style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13.5, fontWeight: 500, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
@@ -917,7 +917,7 @@ export function Booking() {
         <div style={{ padding: '14px 26px 0', display: 'flex', justifyContent: 'center' }}>
           <button
             type="button"
-            style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: 'var(--ink-muted)', border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
+            style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: 'var(--color-ink-muted)', border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
             onClick={() => setShowOrderDetails((open) => !open)}
             aria-expanded={showOrderDetails}
           >
@@ -930,7 +930,7 @@ export function Booking() {
           <div style={{ padding: '14px 26px 0' }}>
             <div className="tint-panel--soft">
               <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 10 }}>{subject.title}</div>
-              <div style={{ fontSize: 12.5, color: 'var(--grey)', marginBottom: 14 }}>
+              <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 14 }}>
                 {longDate(ticketDate)} · {timeRange(start, end)}
               </div>
               <PriceBreakdownRows
@@ -965,7 +965,7 @@ export function Booking() {
                       </span>
                     ) : null}
                   </span>
-                  <span style={{ display: 'block', fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                  <span style={{ display: 'block', fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                     {option.description}
                   </span>
                 </span>
@@ -995,7 +995,7 @@ export function Booking() {
               <div style={{ fontSize: 14.5, fontWeight: 600, marginBottom: 4 }}>
                 Scan with any {method} app
               </div>
-              <div style={{ fontSize: 12.5, color: 'var(--grey)', marginBottom: 18 }}>
+              <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 18 }}>
                 GoPay, OVO, DANA, ShopeePay, mobile banking
               </div>
               <div className="pay-qr__code">
@@ -1004,7 +1004,7 @@ export function Booking() {
               <div style={{ fontFamily: 'var(--font-heading)', fontSize: 20, fontWeight: 700, marginTop: 18 }}>
                 {idr(money.total)}
               </div>
-              <div style={{ fontSize: 12.5, color: 'var(--grey)', marginTop: 5 }}>
+              <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginTop: 5 }}>
                 {subject.title} · {longDate(ticketDate)}
               </div>
             </div>
@@ -1034,15 +1034,15 @@ export function Booking() {
           <ShieldCheck size={20} color="#6D28FF" strokeWidth={1.8} />
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 600 }}>Payments are secure and encrypted</div>
-            <div style={{ fontSize: 12, color: 'var(--grey)', marginTop: 2 }}>
+            <div style={{ fontSize: 12, color: 'var(--color-grey)', marginTop: 2 }}>
               Your payment details are protected by Midtrans
             </div>
           </div>
-          <span style={{ fontFamily: 'var(--font-heading)', fontSize: 14, fontWeight: 600, color: 'var(--ink-2)' }}>
+          <span style={{ fontFamily: 'var(--font-heading)', fontSize: 14, fontWeight: 600, color: 'var(--color-ink-2)' }}>
             midtrans
           </span>
         </div>
-        <div style={{ padding: '16px 26px 22px', textAlign: 'center', fontSize: 12, color: 'var(--grey-soft)' }}>
+        <div style={{ padding: '16px 26px 22px', textAlign: 'center', fontSize: 12, color: 'var(--color-grey-soft)' }}>
           This is a UI prototype — no payment is actually processed.
         </div>
       </Modal>
@@ -1108,7 +1108,7 @@ function TextField({
         value={value}
         disabled={disabled}
         onChange={(event) => onChange(event.target.value)}
-        style={disabled ? { background: 'var(--surface-sunken)', color: 'var(--ink-2)' } : undefined}
+        style={disabled ? { background: 'var(--color-surface-sunken)', color: 'var(--color-ink-2)' } : undefined}
       />
     </label>
   );
@@ -1143,7 +1143,7 @@ function PhoneField({
           value={value}
           disabled={disabled}
           onChange={(event) => onChange(event.target.value)}
-          style={disabled ? { background: 'var(--surface-sunken)', color: 'var(--ink-2)' } : undefined}
+          style={disabled ? { background: 'var(--color-surface-sunken)', color: 'var(--color-ink-2)' } : undefined}
         />
       </span>
     </label>
@@ -1213,7 +1213,7 @@ function SummaryItem({
       </div>
       <div>
         <div style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 600 }}>{title}</div>
-        <div style={{ fontSize: 13, color: 'var(--grey)', margin: '4px 0 12px' }}>Hosted by {host}</div>
+        <div style={{ fontSize: 13, color: 'var(--color-grey)', margin: '4px 0 12px' }}>Hosted by {host}</div>
         <div className="stack" style={{ gap: 9 }}>
           <span className="meta">
             <Calendar size={15} color="#8B8A99" strokeWidth={1.9} />
@@ -1259,7 +1259,7 @@ function TicketFacts({ booking }: { booking: BookingRecord }) {
           {booking.venueArea}, {booking.venueCity}
         </span>
       </span>
-      <span style={{ fontSize: 12, color: 'var(--grey-soft)' }}>Purchased {booking.paidAt}</span>
+      <span style={{ fontSize: 12, color: 'var(--color-grey-soft)' }}>Purchased {booking.paidAt}</span>
     </div>
   );
 }

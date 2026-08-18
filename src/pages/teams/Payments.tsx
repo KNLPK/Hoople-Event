@@ -184,7 +184,7 @@ export function TeamsPayments() {
                         <span className="org-table__sub">Charged per order</span>
                       </td>
                       <td>{paidOrders(event)} orders</td>
-                      <td className="org-table__num" style={{ fontWeight: 600, color: 'var(--danger)' }}>
+                      <td className="org-table__num" style={{ fontWeight: 600, color: 'var(--color-danger)' }}>
                         − {rupiah(sum.gatewayFee)}
                       </td>
                       <td>

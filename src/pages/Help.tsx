@@ -67,12 +67,12 @@ export function Help() {
 
   return (
     <>
-      <div className="container page-header">
+      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
         <h1>Help Center</h1>
         <p>Answers to the questions we get most, plus a direct line to a person when you need one.</p>
       </div>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="grid grid--3" style={{ gap: 22 }}>
           <button type="button" className="why-card lift" style={{ textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }} onClick={() => toast('Support replies on WhatsApp within 10 minutes')}>
             <span className="why-card__icon">
@@ -99,7 +99,7 @@ export function Help() {
       </Reveal>
 
       {TOPICS.map((topic, index) => (
-        <Reveal key={topic.title} className="container section" delay={index * 60}>
+        <Reveal key={topic.title} className="mx-auto w-full max-w-page px-gutter section" delay={index * 60}>
           <SectionHead size="sm" title={topic.title} />
           {topic.faqs.map((faq) => (
             <div key={faq.question} className={`faq-item ${open === faq.question ? 'is-open' : ''}`.trim()}>
@@ -118,13 +118,13 @@ export function Help() {
         </Reveal>
       ))}
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="explore-banner">
           <div>
             <div style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, marginBottom: 8 }}>
               Still stuck?
             </div>
-            <div style={{ fontSize: 13.5, color: 'var(--ink-3)', lineHeight: 1.65, marginBottom: 20 }}>
+            <div style={{ fontSize: 13.5, color: 'var(--color-ink-3)', lineHeight: 1.65, marginBottom: 20 }}>
               Send us your booking ID and we'll take it from there.
             </div>
             <Button as="button" variant="primary" onClick={() => toast('Support ticket opened — check your email')}>
@@ -134,7 +134,7 @@ export function Help() {
           </div>
           <div className="tint-panel--soft" style={{ padding: '20px 24px' }}>
             <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 8 }}>Prototype notice</div>
-            <div style={{ fontSize: 12.5, color: 'var(--grey)', lineHeight: 1.7 }}>
+            <div style={{ fontSize: 12.5, color: 'var(--color-grey)', lineHeight: 1.7 }}>
               This build is a clickable prototype for stakeholder review. Authentication and payment are not
               verified, and no message sent from these forms reaches a real inbox.
             </div>

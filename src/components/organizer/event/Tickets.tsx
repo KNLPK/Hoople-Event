@@ -415,7 +415,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
           <span className="wiz-note__icon">
             <Info size={16} color="#6D28FF" strokeWidth={1.9} />
           </span>
-          <p style={{ fontSize: 12.5, color: 'var(--ink-3)' }}>
+          <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>
             Hoople adds its 3% platform fee and the 1.8% gateway fee at checkout — the price above is
             what the participant sees for the ticket itself.
           </p>

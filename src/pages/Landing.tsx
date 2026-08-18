@@ -140,7 +140,7 @@ export function Landing() {
     <>
       {/* Hero */}
       <section className="landing-hero">
-        <div className="container landing-hero__grid">
+        <div className="mx-auto w-full max-w-page px-gutter landing-hero__grid">
           <div className="landing-hero__copy">
             <span className="hero-eyebrow">
               <Sparkle4 size={14} color="#6D28FF" />
@@ -195,7 +195,7 @@ export function Landing() {
               <svg className="hero-thread" viewBox="0 0 620 540" fill="none" aria-hidden="true">
                 <path
                   d="M310 18c160 0 290 113 290 252S470 522 310 522 20 409 20 270 150 18 310 18Z"
-                  stroke="var(--brand-border)"
+                  stroke="var(--color-brand-border)"
                   strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeDasharray="1 8"
@@ -296,7 +296,7 @@ export function Landing() {
       </section>
 
       {/* Trusted by — centred under the hero, the way a proof line reads best. */}
-      <Reveal className="container trust">
+      <Reveal className="mx-auto w-full max-w-page px-gutter trust">
         <p className="trust__cap">Trusted by community builders and organizers across Indonesia</p>
         <div className="trust__row">
           {TRUSTED_BY.map((name) => (
@@ -309,7 +309,7 @@ export function Landing() {
       </Reveal>
 
       {/* Why Hoople */}
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title="Why choose Hoople"
           subtitle="Four connected modules — Event, Quest, Play, Connect — behind one simple flow."
@@ -328,7 +328,7 @@ export function Landing() {
       </Reveal>
 
       {/* Popular right now */}
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title="Popular right now"
           subtitle="What people in Jakarta are booking this week"
@@ -368,7 +368,7 @@ export function Landing() {
       </Reveal>
 
       {/* Personas */}
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title="Built for every kind of community"
           subtitle="From a running club of forty to a brand activation of four thousand."
@@ -392,7 +392,7 @@ export function Landing() {
       </Reveal>
 
       {/* Value flow */}
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title="How the flow works"
           subtitle="Organize → Engage → Capture → Retain"
@@ -414,7 +414,7 @@ export function Landing() {
       </Reveal>
 
       {/* Closing CTA */}
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="cta-banner">
           <div>
             <h2>Ready to run your next experience?</h2>

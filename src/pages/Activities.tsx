@@ -165,7 +165,7 @@ export function Activities() {
 
       <div style={{ height: 66 }} />
 
-      <div className="container" style={{ paddingTop: 26 }}>
+      <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 26 }}>
         <div className="chip-row">
           {ACTIVITY_CATEGORIES.map((category) => (
             <button
@@ -196,7 +196,7 @@ export function Activities() {
         ) : null}
       </div>
 
-      <div className="container" style={{ paddingTop: 20 }}>
+      <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 20 }}>
         <ResultToolbar
           count={isNarrowed ? results.length : CATALOGUE_SIZE}
           noun="activities"
@@ -210,12 +210,12 @@ export function Activities() {
       </div>
 
       {view === 'calendar' ? (
-        <Reveal className="container section">
+        <Reveal className="mx-auto w-full max-w-page px-gutter section">
           <SectionHead title="Next 7 days" subtitle="Every session in your filters, day by day" />
           <CalendarResults activities={results} />
         </Reveal>
       ) : isNarrowed ? (
-        <Reveal className="container section">
+        <Reveal className="mx-auto w-full max-w-page px-gutter section">
           <SectionHead
             title={results.length ? 'Matching activities' : 'No matches yet'}
             subtitle={
@@ -255,7 +255,7 @@ export function Activities() {
         </Reveal>
       ) : (
         <>
-          <Reveal className="container section">
+          <Reveal className="mx-auto w-full max-w-page px-gutter section">
             <SectionHead
               title="Popular Activities"
               subtitle="Handpicked activities you'll love"
@@ -268,7 +268,7 @@ export function Activities() {
             </Rail>
           </Reveal>
 
-          <Reveal className="container section" delay={60}>
+          <Reveal className="mx-auto w-full max-w-page px-gutter section" delay={60}>
             <SectionHead
               title="Today's Sessions"
               subtitle="Happening today, don't miss out!"
@@ -281,7 +281,7 @@ export function Activities() {
             </Rail>
           </Reveal>
 
-          <Reveal className="container section--loose container" delay={120}>
+          <Reveal className="mx-auto w-full max-w-page px-gutter section--loose mx-auto w-full max-w-page px-gutter" delay={120}>
             <SectionHead
               size="sm"
               icon={<Recurring size={22} color="#6D28FF" strokeWidth={2.2} />}
@@ -321,7 +321,7 @@ export function Activities() {
         </>
       )}
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <Newsletter slotId="activities-mail" />
       </Reveal>
     </>

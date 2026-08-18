@@ -78,7 +78,7 @@ export function TeamsExperiences() {
             {option}
           </button>
         ))}
-        <span style={{ marginLeft: 'auto', fontSize: 13, color: 'var(--grey)' }}>
+        <span style={{ marginLeft: 'auto', fontSize: 13, color: 'var(--color-grey)' }}>
           {rows.length} of {TEAM_EVENTS.length}
         </span>
       </div>

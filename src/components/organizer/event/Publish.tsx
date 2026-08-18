@@ -257,7 +257,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
           <span className="wiz-note__icon">
             <Info size={16} color="#6D28FF" strokeWidth={1.9} />
           </span>
-          <p style={{ fontSize: 12.5, color: 'var(--ink-3)' }}>
+          <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>
             The previews on the right are rendered from this draft — change the title, cover or venue
             and the Discover card changes with it.
           </p>

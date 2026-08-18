@@ -48,7 +48,7 @@ export function Organizers() {
 
   return (
     <>
-      <div className="container page-header">
+      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
         <h1>Run your experience on Hoople</h1>
         <p>
           List free, sell tickets with transparent fees, check people in with a QR code, and keep the
@@ -67,7 +67,7 @@ export function Organizers() {
         </div>
       </div>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title="Four modules, one platform"
           subtitle="Turn them on as you grow — Organize → Engage → Capture → Retain"
@@ -87,16 +87,16 @@ export function Organizers() {
         </div>
       </Reveal>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="split-panels">
           <div className="panel panel--lg">
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 6 }}>Create an experience</h2>
-            <p style={{ fontSize: 13.5, color: 'var(--grey)', marginBottom: 24 }}>
+            <p style={{ fontSize: 13.5, color: 'var(--color-grey)', marginBottom: 24 }}>
               Tell us who you are and we'll set your organizer account up within one working day.
             </p>
 
             {submitted ? (
-              <div className="empty" style={{ border: '1px solid var(--line)' }}>
+              <div className="empty" style={{ border: '1px solid var(--color-line)' }}>
                 <div className="empty__title">Thanks, {name.split(' ')[0] || 'there'} 🎉</div>
                 <p className="empty__body">
                   We've got your details. Our team will email {email || 'you'} to finish setting up your{' '}
@@ -162,7 +162,7 @@ export function Organizers() {
                 <Button as="button" type="submit" variant="primary" size="lg" halo>
                   Create Experience
                 </Button>
-                <p style={{ fontSize: 12.5, color: 'var(--grey-soft)' }}>
+                <p style={{ fontSize: 12.5, color: 'var(--color-grey-soft)' }}>
                   This is a prototype form — nothing is sent anywhere.
                 </p>
               </form>
@@ -179,7 +179,7 @@ export function Organizers() {
                 'Session-level capacity for recurring activities',
                 'Payout to your account H+1 after the event',
               ].map((item) => (
-                <li key={item} style={{ display: 'flex', gap: 11, fontSize: 13.5, color: 'var(--ink-2)' }}>
+                <li key={item} style={{ display: 'flex', gap: 11, fontSize: 13.5, color: 'var(--color-ink-2)' }}>
                   <Check size={15} color="#16A34A" />
                   {item}
                 </li>

@@ -34,7 +34,7 @@ export function Navbar({ onOpenMenu }: { onOpenMenu?: () => void }) {
 
   return (
     <header className={`nav-shell ${scrolled ? 'is-scrolled' : ''}`.trim()}>
-      <div className="container">
+      <div className="mx-auto w-full max-w-page px-gutter">
         <nav className="nav">
           <Link to="/home" className="nav__brand" aria-label="Hoople home">
             <Logo size={26} color="#12121A" />

@@ -143,7 +143,7 @@ export function TeamsRegistrations() {
                 </option>
               ))}
             </select>
-            <span style={{ marginLeft: 'auto', fontSize: 13, color: 'var(--grey)' }}>
+            <span style={{ marginLeft: 'auto', fontSize: 13, color: 'var(--color-grey)' }}>
               {rows.length} of {REGISTRATIONS.length} shown · {counts.total} in total
             </span>
           </div>

@@ -58,7 +58,7 @@ const SOCIALS = [
 export function Footer() {
   return (
     <footer className="footer">
-      <div className="container footer__grid">
+      <div className="mx-auto w-full max-w-page px-gutter footer__grid">
         <div>
           <Link to="/home" className="footer__brand" aria-label="Hoople home">
             <Logo size={24} color="#5B21F5" />

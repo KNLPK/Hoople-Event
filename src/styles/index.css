@@ -1,0 +1,48 @@
+/*
+ * The single stylesheet entry. Everything Tailwind compiles, it compiles from
+ * here, which is what lets `@apply` and the theme reach every file below.
+ *
+ * Two deliberate choices:
+ *
+ * 1. Preflight is not imported. Tailwind's reset restyles headings, buttons,
+ *    borders and lists, and this app has had its own considered reset in
+ *    base.css since before Tailwind arrived. Loading both would mean Tailwind
+ *    quietly flattening every `h1`–`h4` on the site. `theme.css` and
+ *    `utilities.css` are imported on their own instead, which is the supported
+ *    way to opt out in v4.
+ *
+ * 2. The hand-written CSS all lands in one layer. Layer order only decides who
+ *    wins *between* layers, so keeping the whole existing design system inside
+ *    `components` leaves its internal cascade — source order, specificity and
+ *    the handful of `!important` rules — exactly as it was, while still letting
+ *    a Tailwind utility in `utilities` override a component class. Splitting
+ *    base.css into its own lower layer would have flipped those `!important`
+ *    rules around, so it stays put.
+ */
+
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* `@theme` — the design tokens, and the source of every brand utility. */
+@import './tokens.css';
+
+@import './base.css' layer(components);
+@import './motion.css' layer(components);
+@import './components.css' layer(components);
+@import './layout.css' layer(components);
+@import './cards.css' layer(components);
+@import './discovery.css' layer(components);
+@import './pages.css' layer(components);
+@import './organizer.css' layer(components);
+@import './eventbuilder.css' layer(components);
+@import './eventpublish.css' layer(components);
+@import './charts.css' layer(components);
+@import './teams.css' layer(components);
+@import './entry.css' layer(components);
+@import './responsive.css' layer(components);
+
+/* Where Tailwind looks for class names. */
+@source '../../index.html';
+@source '../';

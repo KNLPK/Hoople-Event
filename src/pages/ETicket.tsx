@@ -43,14 +43,14 @@ export function ETicket() {
 
   return (
     <>
-      <div className="container" style={{ paddingTop: 28 }}>
+      <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 28 }}>
         <div className="row row--between" style={{ gap: 16, flexWrap: 'wrap' }}>
-          <div className="row" style={{ gap: 12, fontSize: 13.5, color: 'var(--grey)' }}>
+          <div className="row" style={{ gap: 12, fontSize: 13.5, color: 'var(--color-grey)' }}>
             <Link to="/bookings" style={{ fontWeight: 500 }}>
               My Bookings
             </Link>
             <ChevronRight size={14} color="#B4B2C0" strokeWidth={2} />
-            <span style={{ color: 'var(--ink)', fontWeight: 600 }}>E-Ticket Details</span>
+            <span style={{ color: 'var(--color-ink)', fontWeight: 600 }}>E-Ticket Details</span>
           </div>
           <button
             type="button"
@@ -59,7 +59,7 @@ export function ETicket() {
               alignItems: 'center',
               gap: 9,
               fontSize: 13,
-              color: 'var(--ink-muted)',
+              color: 'var(--color-ink-muted)',
               border: 0,
               background: 'none',
               cursor: 'pointer',
@@ -70,13 +70,13 @@ export function ETicket() {
               toast('Booking ID copied');
             }}
           >
-            Booking ID: <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>{booking.orderId}</strong>
+            Booking ID: <strong style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{booking.orderId}</strong>
             <Copy size={15} color="#8B8A99" strokeWidth={1.8} />
           </button>
         </div>
       </div>
 
-      <div className="container" style={{ paddingTop: 22 }}>
+      <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 22 }}>
         <h1 style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-0.03em', marginBottom: 14 }}>
           E-Ticket Details
         </h1>
@@ -84,13 +84,13 @@ export function ETicket() {
           <span className="tag tag--status" style={{ fontSize: 12.5, padding: '6px 13px' }}>
             {booking.status} <Check size={13} />
           </span>
-          <span style={{ fontSize: 13.5, color: 'var(--ink-muted)' }}>
+          <span style={{ fontSize: 13.5, color: 'var(--color-ink-muted)' }}>
             You're all set! Show this e-ticket at the entrance.
           </span>
         </div>
       </div>
 
-      <div className="container ticket-layout" style={{ paddingTop: 24 }}>
+      <div className="mx-auto w-full max-w-page px-gutter ticket-layout" style={{ paddingTop: 24 }}>
         <Reveal className="panel panel--flush">
           <div className="ticket-head">
             <div className="ticket-head__media zoom">
@@ -115,7 +115,7 @@ export function ETicket() {
               >
                 {booking.title}
               </div>
-              <div style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 18 }}>
+              <div style={{ fontSize: 14, color: 'var(--color-ink-muted)', marginBottom: 18 }}>
                 Hosted by {booking.host}
               </div>
               <div className="stack" style={{ gap: 11 }}>
@@ -151,7 +151,7 @@ export function ETicket() {
             </div>
 
             <div className="ticket-head__qr">
-              <div style={{ fontSize: 12.5, color: 'var(--grey)', marginBottom: 12 }}>
+              <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 12 }}>
                 Scan this QR code for check-in
               </div>
               <div className="ticket-head__qr-frame">
@@ -167,8 +167,8 @@ export function ETicket() {
                 className="row"
                 style={{
                   gap: 9,
-                  border: '1.5px solid var(--brand-border)',
-                  color: 'var(--brand-deep)',
+                  border: '1.5px solid var(--color-brand-border)',
+                  color: 'var(--color-brand-deep)',
                   fontSize: 13,
                   fontWeight: 600,
                   padding: '8px 15px',
@@ -250,7 +250,7 @@ export function ETicket() {
             <div className="eyebrow" style={{ marginBottom: 14 }}>
               About the {booking.kind === 'EVENT' ? 'Event' : 'Activity'}
             </div>
-            <p style={{ fontSize: 13.5, lineHeight: 1.8, color: 'var(--ink-3)', marginBottom: 22 }}>
+            <p style={{ fontSize: 13.5, lineHeight: 1.8, color: 'var(--color-ink-3)', marginBottom: 22 }}>
               {activity?.summary ??
                 'Show this QR code at the entrance and the host will check you in.'}
             </p>
@@ -302,7 +302,7 @@ export function ETicket() {
               <Calendar size={20} color="#5B21F5" strokeWidth={1.8} />
               <span>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: 600 }}>Add to Calendar</span>
-                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                   Google Calendar, iCal, Outlook
                 </span>
               </span>
@@ -315,7 +315,7 @@ export function ETicket() {
               <Download size={20} color="#5B21F5" strokeWidth={1.8} />
               <span>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: 600 }}>Download E-Ticket</span>
-                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                   Save as PDF
                 </span>
               </span>
@@ -331,7 +331,7 @@ export function ETicket() {
               <Share size={20} color="#5B21F5" strokeWidth={1.8} />
               <span>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: 600 }}>Share E-Ticket</span>
-                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                   Send to your friends
                 </span>
               </span>
@@ -340,7 +340,7 @@ export function ETicket() {
               <Card size={20} color="#5B21F5" strokeWidth={1.8} />
               <span>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: 600 }}>View Booking Details</span>
-                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                <span style={{ display: 'block', fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                   See payment and booking info
                 </span>
               </span>
@@ -366,7 +366,7 @@ export function ETicket() {
                         </span>
                       ) : null}
                     </div>
-                    <div style={{ fontSize: 12.5, color: 'var(--grey)', marginTop: 4 }}>
+                    <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginTop: 4 }}>
                       {participant.email || booking.buyer.email}
                     </div>
                   </div>
@@ -379,7 +379,7 @@ export function ETicket() {
             <div className="eyebrow" style={{ marginBottom: 12 }}>
               Need Help?
             </div>
-            <div style={{ fontSize: 13, color: 'var(--grey)', lineHeight: 1.7, marginBottom: 16 }}>
+            <div style={{ fontSize: 13, color: 'var(--color-grey)', lineHeight: 1.7, marginBottom: 16 }}>
               Visit our Help Center or contact our support team.
             </div>
             <Button as="link" to="/help" variant="ghost" block style={{ height: 46 }}>
@@ -390,7 +390,7 @@ export function ETicket() {
         </aside>
       </div>
 
-      <Reveal className="container section--tight">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
         <div className="explore-banner">
           <div>
             <div
@@ -404,7 +404,7 @@ export function ETicket() {
             >
               Explore More Amazing Experiences
             </div>
-            <div style={{ fontSize: 13.5, color: 'var(--ink-3)', lineHeight: 1.65, marginBottom: 20 }}>
+            <div style={{ fontSize: 13.5, color: 'var(--color-ink-3)', lineHeight: 1.65, marginBottom: 20 }}>
               Discover more events and activities that inspire you.
             </div>
             <Button as="link" to="/discover" variant="primary" style={{ height: 46, borderRadius: 11 }}>
@@ -430,14 +430,14 @@ export function ETicket() {
       </Reveal>
 
       <div
-        className="container section--tight"
+        className="mx-auto w-full max-w-page px-gutter section--tight"
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: 10,
           fontSize: 13,
-          color: 'var(--grey)',
+          color: 'var(--color-grey)',
         }}
       >
         <Lock size={15} color="#8B8A99" strokeWidth={1.9} />

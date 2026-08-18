@@ -49,7 +49,7 @@ export function OrgCheckIn() {
             <ImageSlot id="org-scanner" shape="rounded" radius={12} placeholder="QR scanner view" />
           </div>
           <div style={{ fontSize: 14.5, fontWeight: 600, marginBottom: 6 }}>Point at a QR e-ticket</div>
-          <p style={{ fontSize: 12.5, color: 'var(--grey)', lineHeight: 1.6, marginBottom: 18 }}>
+          <p style={{ fontSize: 12.5, color: 'var(--color-grey)', lineHeight: 1.6, marginBottom: 18 }}>
             The scanner works offline — check-ins sync as soon as you are back on a connection.
           </p>
           <Button
@@ -73,7 +73,7 @@ export function OrgCheckIn() {
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
             <h2 className="org-card__title">Attendee list</h2>
-            <span style={{ fontSize: 13, color: 'var(--grey)' }}>Confirmed registrations only</span>
+            <span style={{ fontSize: 13, color: 'var(--color-grey)' }}>Confirmed registrations only</span>
           </div>
 
           <div className="org-table-wrap">

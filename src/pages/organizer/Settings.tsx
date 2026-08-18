@@ -47,14 +47,14 @@ export function OrgSettings() {
                   borderRadius: '50%',
                   overflow: 'hidden',
                   flex: 'none',
-                  background: 'var(--brand-tint-strong)',
+                  background: 'var(--color-brand-tint-strong)',
                 }}
               >
                 <ImageSlot id="org-workspace-logo" shape="circle" placeholder="Logo" />
               </span>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 600 }}>Workspace logo</div>
-                <div style={{ fontSize: 12.5, color: 'var(--grey)', marginTop: 3 }}>
+                <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginTop: 3 }}>
                   Drop a square image — it shows on your microsite and every e-ticket.
                 </div>
               </div>
@@ -103,7 +103,7 @@ export function OrgSettings() {
                     onChange={(event) => setDomain(event.target.value)}
                     style={{ maxWidth: 260 }}
                   />
-                  <span style={{ fontSize: 13.5, color: 'var(--grey)' }}>.hoople.id</span>
+                  <span style={{ fontSize: 13.5, color: 'var(--color-grey)' }}>.hoople.id</span>
                   <span className="org-pill org-pill--draft">Enterprise only</span>
                 </span>
               </label>
@@ -135,7 +135,7 @@ export function OrgSettings() {
                   onClick={() => setAbsorbFees((value) => !value)}
                   aria-pressed={absorbFees}
                 >
-                  <span className="check-box" style={absorbFees ? { background: 'var(--brand)', borderColor: 'var(--brand)' } : undefined}>
+                  <span className="check-box" style={absorbFees ? { background: 'var(--color-brand)', borderColor: 'var(--color-brand)' } : undefined}>
                     {absorbFees ? <Check size={13} color="#fff" /> : null}
                   </span>
                   <span>

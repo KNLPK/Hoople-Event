@@ -14,7 +14,7 @@ import { COMMUNITIES } from '@/data/events';
 export function Communities() {
   return (
     <>
-      <div className="container page-header">
+      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
         <h1>Communities on Hoople</h1>
         <p>
           Studios, clubs and kitchens running experiences week after week. Follow a host and their next
@@ -22,7 +22,7 @@ export function Communities() {
         </p>
       </div>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="grid grid--4">
           {COMMUNITIES.map((community) => (
             <CommunityCard key={community.slug} community={community} />
@@ -30,7 +30,7 @@ export function Communities() {
         </div>
       </Reveal>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="cta-banner">
           <div>
             <h2>Run a community of your own?</h2>
@@ -50,7 +50,7 @@ export function Communities() {
         </div>
       </Reveal>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <Newsletter slotId="communities-mail" title="Follow the communities you love" />
       </Reveal>
     </>
@@ -71,7 +71,7 @@ export function CommunityDetail() {
 
   return (
     <>
-      <div className="container section--tight">
+      <div className="mx-auto w-full max-w-page px-gutter section--tight">
         <div className="explore-banner explore-banner--art">
           <div style={{ height: 180, borderRadius: 16, overflow: 'hidden' }}>
             <ImageSlot
@@ -85,7 +85,7 @@ export function CommunityDetail() {
             <h1 style={{ fontSize: 34, fontWeight: 700, letterSpacing: '-0.03em', marginBottom: 10 }}>
               {community.name}
             </h1>
-            <p style={{ fontSize: 15, color: 'var(--ink-3)', marginBottom: 16 }}>{community.focus}</p>
+            <p style={{ fontSize: 15, color: 'var(--color-ink-3)', marginBottom: 16 }}>{community.focus}</p>
             <div className="row" style={{ gap: 20, flexWrap: 'wrap', marginBottom: 22 }}>
               <span className="meta">
                 <Users size={16} color="#8B8A99" strokeWidth={1.9} />
@@ -112,7 +112,7 @@ export function CommunityDetail() {
         </div>
       </div>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title={`Experiences by ${community.name}`}
           subtitle={

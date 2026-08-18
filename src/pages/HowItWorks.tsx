@@ -21,7 +21,7 @@ const ORGANIZER_FLOW = [
 export function HowItWorks() {
   return (
     <>
-      <div className="container page-header">
+      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
         <h1>How Hoople works</h1>
         <p>
           One platform for the whole arc of an experience — from the first search to the message that brings
@@ -29,7 +29,7 @@ export function HowItWorks() {
         </p>
       </div>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title="If you're joining"
           subtitle="Four steps from finding something to walking through the door"
@@ -47,7 +47,7 @@ export function HowItWorks() {
         </div>
       </Reveal>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <SectionHead
           title="If you're organizing"
           subtitle="Organize → Engage → Capture → Retain, with a module behind each stage"
@@ -68,7 +68,7 @@ export function HowItWorks() {
         </div>
       </Reveal>
 
-      <Reveal className="container section">
+      <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="split-panels">
           <div className="panel panel--lg">
             <h2 style={{ fontSize: 21, fontWeight: 600, marginBottom: 16 }}>Two product types, one checkout</h2>
@@ -123,7 +123,7 @@ export function HowItWorks() {
 
           <div className="tint-panel" style={{ display: 'flex', flexDirection: 'column' }}>
             <h2 style={{ fontSize: 21, fontWeight: 600, marginBottom: 10 }}>See it end to end</h2>
-            <p style={{ fontSize: 13.5, color: 'var(--ink-3)', lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ fontSize: 13.5, color: 'var(--color-ink-3)', lineHeight: 1.7, marginBottom: 20 }}>
               The fastest way to understand Hoople is to book something. Pick an activity, choose a session,
               pay, and open the e-ticket that comes out the other side.
             </p>

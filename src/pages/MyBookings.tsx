@@ -50,7 +50,7 @@ export function MyBookings() {
   }
 
   return (
-    <div className="container bookings-layout" style={{ paddingTop: 36 }}>
+    <div className="mx-auto w-full max-w-page px-gutter bookings-layout" style={{ paddingTop: 36 }}>
       <div>
         <h1 style={{ fontSize: 30, fontWeight: 700, letterSpacing: '-0.03em', marginBottom: 18 }}>
           My Bookings
@@ -58,7 +58,7 @@ export function MyBookings() {
 
         <div
           className="row row--between"
-          style={{ borderBottom: '1px solid var(--line)', marginBottom: 22, gap: 16, flexWrap: 'wrap' }}
+          style={{ borderBottom: '1px solid var(--color-line)', marginBottom: 22, gap: 16, flexWrap: 'wrap' }}
         >
           <div className="tabs">
             {TABS.map((status) => (
@@ -94,7 +94,7 @@ export function MyBookings() {
                   zIndex: 20,
                   padding: 8,
                   width: 220,
-                  boxShadow: 'var(--sh-panel)',
+                  boxShadow: 'var(--shadow-panel)',
                   animation: 'hp-pop .2s ease both',
                 }}
               >
@@ -112,7 +112,7 @@ export function MyBookings() {
                       justifyContent: 'space-between',
                       width: '100%',
                       border: 0,
-                      background: option === sort ? 'var(--brand-tint)' : 'transparent',
+                      background: option === sort ? 'var(--color-brand-tint)' : 'transparent',
                       borderRadius: 8,
                       padding: '10px 12px',
                       fontFamily: 'inherit',
@@ -181,7 +181,7 @@ export function MyBookings() {
               <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 5 }}>
                 Need help with your booking?
               </div>
-              <div style={{ fontSize: 12.5, color: 'var(--grey)', lineHeight: 1.6 }}>
+              <div style={{ fontSize: 12.5, color: 'var(--color-grey)', lineHeight: 1.6 }}>
                 Visit our Help Center or contact our support team.
               </div>
               <Link
@@ -287,7 +287,7 @@ function BookingCard({ booking }: { booking: Booking }) {
               {booking.participants.length}{' '}
               {booking.participants.length === 1 ? 'Ticket' : 'Tickets'}
             </div>
-            <div style={{ fontSize: 12, color: 'var(--grey)', marginTop: 2 }}>{booking.ticketType}</div>
+            <div style={{ fontSize: 12, color: 'var(--color-grey)', marginTop: 2 }}>{booking.ticketType}</div>
           </div>
           <ChevronRight size={15} color="#B4B2C0" strokeWidth={2} />
         </div>
@@ -326,8 +326,8 @@ function StatusPill({ status }: { status: BookingStatus }) {
         className="tag"
         style={{
           alignSelf: 'flex-start',
-          background: 'var(--surface-chip)',
-          color: 'var(--ink-2)',
+          background: 'var(--color-surface-chip)',
+          color: 'var(--color-ink-2)',
           fontSize: 12,
           padding: '6px 12px',
         }}
