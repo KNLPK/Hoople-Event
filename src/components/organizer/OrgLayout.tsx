@@ -62,7 +62,7 @@ export function OrgLayout() {
 
       <div className="min-w-0 flex flex-col">
         <OrgTopbar {...TOPBAR_CHROME[pathname]} onOpenNav={() => setNavOpen(true)} />
-        <div className="org__content">
+        <div className="pt-[22px] px-[26px] pb-[46px] min-w-0 to-1000:pt-4 to-1000:px-gutter to-1000:pb-10">
           <Outlet />
         </div>
       </div>

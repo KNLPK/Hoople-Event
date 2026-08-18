@@ -93,7 +93,7 @@ export function Discover() {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
+      <div className="mx-auto w-full max-w-page to-900:px-gutter page-header">
         <h1>Discover experiences</h1>
         <p>
           Everything happening around you — one-time events and recurring activities from communities across

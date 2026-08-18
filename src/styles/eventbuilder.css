@@ -246,11 +246,6 @@
   color: var(--color-grey);
   margin-bottom: 6px;
 }
-.evt-when__arrow {
-  display: flex;
-  height: 44px;
-  align-items: center;
-}
 
 .wiz-toggle {
   display: flex;
@@ -809,9 +804,6 @@
   .evt-highlights,
   .evt-types {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .evt-when__arrow {
-    display: none;
   }
   .evt-row {
     grid-template-columns: minmax(0, 1fr) auto;

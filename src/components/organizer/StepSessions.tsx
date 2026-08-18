@@ -108,7 +108,7 @@ export function StepSessions({
               ))}
             </ul>
           </div>
-          <div className="wiz-about__art float">
+          <div className="h-[74px] to-1060:hidden float">
             <ImageSlot
               id="builder-sessions-art"
               radius={10}
@@ -180,7 +180,7 @@ export function StepSessions({
                       </div>
                     </div>
 
-                    <div className="wiz-sess__actions">
+                    <div className="flex items-center gap-2 to-620:col-[1_/_-1] to-620:justify-end">
                       <button
                         type="button"
                         className="wiz-iconbtn"

@@ -67,7 +67,7 @@ export function Help() {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
+      <div className="mx-auto w-full max-w-page to-900:px-gutter page-header">
         <h1>Help Center</h1>
         <p>Answers to the questions we get most, plus a direct line to a person when you need one.</p>
       </div>

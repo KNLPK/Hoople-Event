@@ -84,7 +84,7 @@ export function Entry() {
           {SURFACES.map((surface, index) => (
             <Reveal key={surface.key} delay={index * 90} className={`entry-card is-${surface.tone}`}>
               <Link to={surface.to} className="entry-card__hit">
-                <span className="entry-card__media">
+                <span className="block h-[168px] relative overflow-hidden to-1080:h-[148px]">
                   <ImageSlot
                     id={surface.slot}
                     shape="rect"

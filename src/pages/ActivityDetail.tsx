@@ -171,7 +171,7 @@ function ActivityDetailPage() {
             <span className="badge">{activity.categoryLabel}</span>
           </div>
           <h1>{activity.title}</h1>
-          <div className="detail-hero__host">by {activity.host}</div>
+          <div className="font-heading text-[24px] font-semibold mb-[18px] to-900:text-[19px]">by {activity.host}</div>
           <div className="flex items-center gap-3.5 text-[15px] font-medium mb-[26px] flex-wrap">
             <span className="flex items-center" style={{ gap: 8 }}>
               <Star size={17} />
@@ -435,7 +435,7 @@ function ActivityDetailPage() {
                 <div className="text-[13.5px] text-ink-muted mb-[18px]">
                   {sessionWindow(session.start, session.end, session.durationMin)}
                 </div>
-                <div className="session-row__facts">
+                <div className="flex gap-11 flex-wrap to-1000:gap-[22px]">
                   <Fact icon={<Users size={18} color="#8B8A99" strokeWidth={1.8} />} label="Coach" value={session.coach} />
                   <Fact icon={<Levels size={18} color="#8B8A99" strokeWidth={1.8} />} label="Level" value={session.level} />
                   <Fact icon={<Room size={18} color="#8B8A99" strokeWidth={1.8} />} label="Room" value={session.room} />
@@ -447,7 +447,7 @@ function ActivityDetailPage() {
                 </div>
               </div>
 
-              <div className="session-row__buy">
+              <div className="flex flex-col items-end gap-2 to-1000:items-stretch">
                 <HeartButton
                   kind="activity"
                   slug={activity.slug}

@@ -62,7 +62,7 @@ export function Navbar({ onOpenMenu }: { onOpenMenu?: () => void }) {
           <div className="nav__mobile">
             <Link to="/saved" className="nav__icon-btn" aria-label={`My List, ${count} saved`}>
               <Heart size={20} strokeWidth={1.9} />
-              {count > 0 ? <span className="nav__icon-dot" /> : null}
+              {count > 0 ? <span className="to-900:absolute to-900:top-[9px] to-900:right-2.5 to-900:w-2 to-900:h-2 to-900:rounded-[50%] to-900:bg-danger to-900:border-[1.5px] to-900:border-[#fff]" /> : null}
             </Link>
             <button
               type="button"

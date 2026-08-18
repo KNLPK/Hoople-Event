@@ -21,7 +21,7 @@ const ORGANIZER_FLOW = [
 export function HowItWorks() {
   return (
     <>
-      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
+      <div className="mx-auto w-full max-w-page to-900:px-gutter page-header">
         <h1>How Hoople works</h1>
         <p>
           One platform for the whole arc of an experience — from the first search to the message that brings

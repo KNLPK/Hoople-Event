@@ -71,9 +71,9 @@ export function MobileNav({ open, onOpen, onClose }: MobileNavProps) {
             end={exact}
             className={({ isActive }) => `tabbar__tab ${isActive ? 'is-active' : ''}`}
           >
-            <span className="tabbar__icon">
+            <span className="to-900:relative to-900:flex">
               <Icon size={21} strokeWidth={1.9} />
-              {label === 'Saved' && count > 0 ? <span className="tabbar__dot" /> : null}
+              {label === 'Saved' && count > 0 ? <span className="to-900:absolute to-900:top-[-1px] to-900:right-[-3px] to-900:w-[7px] to-900:h-[7px] to-900:rounded-[50%] to-900:bg-danger to-900:border-[1.5px] to-900:border-[#fff]" /> : null}
             </span>
             {label}
           </NavLink>
@@ -85,7 +85,7 @@ export function MobileNav({ open, onOpen, onClose }: MobileNavProps) {
           onClick={onOpen}
           aria-expanded={open}
         >
-          <span className="tabbar__icon">
+          <span className="to-900:relative to-900:flex">
             <Grid size={21} strokeWidth={1.9} />
           </span>
           Menu

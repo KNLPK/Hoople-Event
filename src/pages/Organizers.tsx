@@ -48,7 +48,7 @@ export function Organizers() {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
+      <div className="mx-auto w-full max-w-page to-900:px-gutter page-header">
         <h1>Run your experience on Hoople</h1>
         <p>
           List free, sell tickets with transparent fees, check people in with a QR code, and keep the

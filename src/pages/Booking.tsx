@@ -517,7 +517,7 @@ export function Booking() {
             </div>
 
             {/* Sticky summary */}
-            <aside className="checkout-aside">
+            <aside className="flex flex-col gap-[22px] sticky top-6 to-1100:static">
               <div className="panel">
                 <div className="panel__title">Booking Summary</div>
                 <SummaryItem
@@ -687,7 +687,7 @@ export function Booking() {
                 </div>
 
                 <div className="eticket__grid">
-                  <div className="eticket__qr">
+                  <div className="w-[200px] h-[200px] border border-line-faint rounded-lg overflow-hidden to-720:w-full to-720:h-[260px]">
                     <ImageSlot id={`qr-${confirmed.id}`} shape="rounded" radius={12} placeholder="QR code" />
                   </div>
                   <div>

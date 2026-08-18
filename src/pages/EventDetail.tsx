@@ -50,7 +50,7 @@ export function EventDetail() {
             <span className="badge">{event.category}</span>
           </div>
           <h1>{event.title}</h1>
-          <div className="detail-hero__host">by {event.host}</div>
+          <div className="font-heading text-[24px] font-semibold mb-[18px] to-900:text-[19px]">by {event.host}</div>
           <div className="flex items-center gap-3.5 text-[15px] font-medium mb-[26px] flex-wrap">
             <span className="flex items-center" style={{ gap: 8 }}>
               <Calendar size={17} color="#fff" strokeWidth={1.9} />
@@ -184,7 +184,7 @@ export function EventDetail() {
           </Reveal>
         </div>
 
-        <aside className="checkout-aside">
+        <aside className="flex flex-col gap-[22px] sticky top-6 to-1100:static">
           <div className="panel">
             <div className="panel__title">Ticket</div>
             <div className="price-row">

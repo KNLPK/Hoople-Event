@@ -135,24 +135,11 @@
   align-items: start;
   margin-top: 14px;
 }
-.evt-asset__row {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  margin-top: 8px;
-}
 .evt-asset__square--brand {
   background: var(--color-brand);
 }
 .evt-asset__square--brand .image-slot {
   background: transparent;
-}
-.evt-asset__banner {
-  flex: 1;
-  min-width: 0;
-  height: 132px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
 }
 
 .evt-brandrow {
@@ -803,12 +790,5 @@
   .evt-dcard__date,
   .evt-mcard__body .evt-dcard__date {
     margin-top: 0;
-  }
-  .evt-asset__row {
-    flex-direction: column;
-  }
-  .evt-asset__banner {
-    width: 100%;
-    align-self: stretch;
   }
 }

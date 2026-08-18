@@ -74,12 +74,6 @@
   color: var(--color-ink);
   text-decoration: none;
 }
-.entry-card__media {
-  display: block;
-  height: 168px;
-  position: relative;
-  overflow: hidden;
-}
 .entry-card__tagline {
   font-size: 14px;
   font-weight: 600;
@@ -174,8 +168,5 @@
   .entry {
     padding: 40px 20px 48px;
     align-items: flex-start;
-  }
-  .entry-card__media {
-    height: 148px;
   }
 }

@@ -140,7 +140,7 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
           <h1>{copy.title}</h1>
           <p>{copy.blurb}</p>
         </div>
-        <div className="org-page-hero__art float">
+        <div className="w-[210px] h-[116px] self-end mb-[-28px] to-1180:hidden to-700:hidden float">
           <ImageSlot id="org-experiences-art" shape="rounded" radius={14} placeholder="Mascot + checklist" />
         </div>
         <div className="org-split-btn">
@@ -187,7 +187,7 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
           More Filters
         </button>
 
-        <div className="view-toggle org-filterbar__view" role="group" aria-label="Result view">
+        <div className="view-toggle self-end to-1280:col-[1_/_-1]" role="group" aria-label="Result view">
           <button
             type="button"
             className={view === 'card' ? 'is-on' : ''}
@@ -444,7 +444,7 @@ function ExperienceCardRow({
         />
       </div>
 
-      <div className="org-xp-row__chips">
+      <div className="flex flex-col items-start gap-2 to-1150:flex-row">
         <span className={`org-pill org-pill--${experience.kind.toLowerCase()}`}>
           {experience.kind === 'EVENT' ? 'Event' : 'Activity'}
         </span>

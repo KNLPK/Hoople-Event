@@ -163,19 +163,6 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
-.tm-hero__media {
-  position: relative;
-  margin: 18px 0 18px 18px;
-  border-radius: 14px;
-  overflow: hidden;
-  min-height: 176px;
-}
-@media (max-width: 880px) {
-  .tm-hero__media {
-    margin: 18px 18px 0;
-    height: 180px;
-  }
-}
 .tm-hero__kpis {
   display: grid;
   /* Rupiah totals are wide; let a column claim the room it needs rather than

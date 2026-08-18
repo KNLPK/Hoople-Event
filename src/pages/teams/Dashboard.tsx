@@ -55,7 +55,7 @@ export function TeamsDashboard() {
     <div className="tm-cols">
       <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-card tm-hero">
-          <div className="tm-hero__media">
+          <div className="relative mt-[18px] mr-0 mb-[18px] ml-[18px] rounded-[14px] overflow-hidden min-h-[176px] to-880:mt-[18px] to-880:mx-[18px] to-880:mb-0 to-880:h-[180px]">
             <ImageSlot id={`tm-cover-${event.id}`} shape="rounded" radius={14} placeholder={event.photoHint} />
             <span className={`org-pill org-pill--${statusTone(event.status)} absolute top-2.5 left-2.5 z-2`}>{event.status}</span>
           </div>

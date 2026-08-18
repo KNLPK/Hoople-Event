@@ -14,7 +14,7 @@ import { COMMUNITIES } from '@/data/events';
 export function Communities() {
   return (
     <>
-      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
+      <div className="mx-auto w-full max-w-page to-900:px-gutter page-header">
         <h1>Communities on Hoople</h1>
         <p>
           Studios, clubs and kitchens running experiences week after week. Follow a host and their next

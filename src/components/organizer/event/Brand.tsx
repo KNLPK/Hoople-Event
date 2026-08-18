@@ -42,7 +42,7 @@ export function EventBrand({ draft, set }: EventSectionProps) {
               <span className="block text-[13.5px] font-semibold text-ink">
                 Event Logo<span className="text-danger"> *</span>
               </span>
-              <div className="evt-asset__row">
+              <div className="flex gap-3.5 items-start mt-2 to-900:flex-col">
                 <div className="relative w-[96px] h-[96px] flex-none rounded-md overflow-hidden">
                   <ImageSlot id="event-logo" radius={10} placeholder="Logo" />
                 </div>
@@ -59,9 +59,9 @@ export function EventBrand({ draft, set }: EventSectionProps) {
               <span className="block text-[13.5px] font-semibold text-ink">
                 Event Banner / Cover Image<span className="text-danger"> *</span>
               </span>
-              <div className="evt-asset__row">
+              <div className="flex gap-3.5 items-start mt-2 to-900:flex-col">
                 {/* The same cover 1.1 sets — one image, two places to change it. */}
-                <div className="evt-asset__banner">
+                <div className="flex-1 min-w-0 h-[132px] rounded-md overflow-hidden to-900:w-full to-900:self-stretch">
                   <ImageSlot
                     id="event-cover"
                     src={draft.cover}
@@ -200,7 +200,7 @@ export function EventBrand({ draft, set }: EventSectionProps) {
               <span className="block text-[13.5px] font-semibold text-ink">
                 Host Logo<span className="text-danger"> *</span>
               </span>
-              <div className="evt-asset__row">
+              <div className="flex gap-3.5 items-start mt-2 to-900:flex-col">
                 <div className="relative w-[96px] h-[96px] flex-none rounded-md overflow-hidden evt-asset__square--brand">
                   <ImageSlot id="event-host-logo" radius={10} placeholder="" />
                   <span className="absolute inset-0 flex items-center justify-center font-heading text-[30px] font-bold text-[#fff] pointer-events-none">WL</span>

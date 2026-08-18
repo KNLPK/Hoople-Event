@@ -28,7 +28,7 @@ export function Saved() {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-page max-[900px]:px-gutter page-header">
+      <div className="mx-auto w-full max-w-page to-900:px-gutter page-header">
         <h1>My List</h1>
         <p>
           {count === 0

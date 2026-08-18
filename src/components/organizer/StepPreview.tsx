@@ -179,7 +179,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
                 />
               </div>
 
-              <div className="org-xp-row__chips">
+              <div className="flex flex-col items-start gap-2 to-1150:flex-row">
                 <span className="org-pill org-pill--activity">Activity</span>
                 <span className="org-pill org-pill--draft">Draft</span>
               </div>

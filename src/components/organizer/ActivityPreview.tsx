@@ -253,7 +253,7 @@ export function ActivityPreview({
               const { Icon, colour } = TONE_ICON[sessionTone(session)];
               return (
                 <div key={session.id} className="wiz-pv__session">
-                  <span className={`wiz-pv__tone wiz-pv__tone--${sessionTone(session)}`}>
+                  <span className={`col-[1] row-[1_/_span_2] self-start mt-0.5 w-[26px] h-[26px] rounded-sm flex items-center justify-center wiz-pv__tone--${sessionTone(session)}`}>
                     <Icon size={14} color={colour} strokeWidth={1.9} />
                   </span>
                   <div className="wiz-pv__slot">
@@ -262,10 +262,10 @@ export function ActivityPreview({
                       {effectiveDays(session, draft.operatingDays).join(', ') || 'No days set'}
                     </span>
                   </div>
-                  <div className="wiz-pv__time">
+                  <div className="col-[3] row-[1] text-right whitespace-nowrap text-[10.5px] text-ink-3 whitespace-nowrap">
                     {session.start} – {session.end}
                   </div>
-                  <div className="wiz-pv__left">{session.slots} slots left</div>
+                  <div className="col-[3] row-[2] text-right whitespace-nowrap text-[10px] text-grey whitespace-nowrap">{session.slots} slots left</div>
                   <button
                     type="button"
                     className="wiz-pv__book"

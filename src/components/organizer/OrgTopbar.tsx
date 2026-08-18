@@ -96,7 +96,7 @@ export function OrgTopbar({
             placeholder="Search experiences by name, location, or tag..."
             aria-label="Search the console"
           />
-          <kbd className="org-search__kbd">⌘ K</kbd>
+          <kbd className="font-body text-[11px] text-grey bg-surface-toggle rounded-[5px] py-[3px] px-[7px] flex-none to-1000:hidden">⌘ K</kbd>
         </form>
       )}
 

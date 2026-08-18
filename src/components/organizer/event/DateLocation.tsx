@@ -52,7 +52,7 @@ export function EventDateLocation({ draft, set }: EventSectionProps) {
               </span>
             </label>
 
-            <span className="evt-when__arrow" aria-hidden="true">
+            <span className="flex h-11 items-center to-900:hidden" aria-hidden="true">
               <ArrowRight size={15} color="#B4B2C0" strokeWidth={2} />
             </span>
 

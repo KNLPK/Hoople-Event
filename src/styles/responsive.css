@@ -174,16 +174,6 @@ body.is-locked {
   .nav__icon-btn:active {
     background: var(--color-brand-tint);
   }
-  .nav__icon-dot {
-    position: absolute;
-    top: 9px;
-    right: 10px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-danger);
-    border: 1.5px solid #fff;
-  }
 }
 
 /* ============ Participant: bottom tab bar ============ */
@@ -224,20 +214,6 @@ body.is-locked {
   .tabbar__tab.is-active {
     color: var(--color-brand);
     font-weight: 600;
-  }
-  .tabbar__icon {
-    position: relative;
-    display: flex;
-  }
-  .tabbar__dot {
-    position: absolute;
-    top: -1px;
-    right: -3px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--color-danger);
-    border: 1.5px solid #fff;
   }
 }
 
