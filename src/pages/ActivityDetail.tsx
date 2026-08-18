@@ -44,7 +44,7 @@ import {
   Users,
 } from '@/components/ui/icons';
 import { ACTIVITIES, APP_TODAY, getActivity } from '@/data/activities';
-import { dateStrip, monthGrid, sessionsOn } from '@/data/schedule';
+import { dateStrip, monthGrid, nextSession, sessionsOn } from '@/data/schedule';
 import {
   longDate,
   monthLabel,
@@ -61,13 +61,37 @@ const TABS = ['Overview', 'Sessions', 'About Host', 'Reviews', 'FAQ'] as const;
 const BRING_ICONS = [Shirt, Bottle, Box, HeartOutlineLarge];
 const VENUE_NOTE_ICONS = [Users, Parking, Accessible];
 
+/**
+ * Remount on every slug change.
+ *
+ * This page carries a selected date, an open tab, a review position and an
+ * expanded description. React keeps all of it when only the route parameter
+ * changes, so clicking a related activity at the bottom used to open the next
+ * one already scrolled to somebody else's reviews.
+ */
 export function ActivityDetail() {
+  const { slug } = useParams();
+  return <ActivityDetailPage key={slug ?? ''} />;
+}
+
+function ActivityDetailPage() {
   const { slug } = useParams();
   const activity = getActivity(slug);
   const toast = useToast();
 
-  const [selectedDate, setSelectedDate] = useState(APP_TODAY);
-  const [stripStart, setStripStart] = useState(APP_TODAY);
+  /*
+   * Open on the first day this activity actually runs, not on today. Most of
+   * them run two or three weekdays a week, so defaulting to today greeted
+   * most visitors with "No sessions on …" — an empty page on the very screen
+   * they came to book from. The strip still starts at today when the first
+   * open day falls inside its week, so the run of dates stays honest.
+   */
+  const firstOpen = activity ? (nextSession(activity)?.date ?? APP_TODAY) : APP_TODAY;
+  const daysOut =
+    (parseISODate(firstOpen).getTime() - parseISODate(APP_TODAY).getTime()) / 86_400_000;
+
+  const [selectedDate, setSelectedDate] = useState(firstOpen);
+  const [stripStart, setStripStart] = useState(daysOut < 7 ? APP_TODAY : firstOpen);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [tab, setTab] = useState<(typeof TABS)[number]>('Overview');
   const [reviewIndex, setReviewIndex] = useState(0);

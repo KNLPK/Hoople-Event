@@ -1,0 +1,21 @@
+# Hoople — a clickable prototype. The organizer and team consoles are behind a
+# sign-in gate and hold nothing real, so keep crawlers on the public pages.
+User-agent: *
+Allow: /$
+Allow: /home
+Allow: /discover
+Allow: /events
+Allow: /activities
+Allow: /communities
+Allow: /organizers
+Allow: /how-it-works
+Allow: /pricing
+Allow: /help
+Disallow: /organizer
+Disallow: /teams
+Disallow: /auth
+Disallow: /booking
+Disallow: /bookings
+Disallow: /saved
+
+Sitemap: https://hoople-event.vercel.app/sitemap.xml

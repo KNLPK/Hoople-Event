@@ -53,7 +53,17 @@ const LANGUAGES = ['English', 'Bahasa Indonesia'];
 const TIMEZONES = ['(GMT+7) Jakarta, Indonesia', '(GMT+8) Makassar, Indonesia', '(GMT+9) Jayapura, Indonesia'];
 
 export function Auth() {
-  const [step, setStep] = useState<AuthStep>(1);
+  const [params] = useSearchParams();
+  /* Whoever sent us here says where to go back to; otherwise start browsing. */
+  const returnTo = params.get('next');
+
+  /*
+   * Arriving with a `next` means a gate sent you: the console door, or the
+   * payment step. That is a request to sign in, so open on Login. Landing on
+   * a three-step registration wizard instead made people hunt for the small
+   * "Login" link in the corner before they could get where they were going.
+   */
+  const [step, setStep] = useState<AuthStep>(returnTo ? 3 : 1);
   const [picked, setPicked] = useState<string[]>(['Sports & Fitness', 'Art & Design']);
   const [language, setLanguage] = useState(0);
   const [timezone, setTimezone] = useState(0);
@@ -61,15 +71,21 @@ export function Auth() {
   const [register, setRegister] = useState({ first: '', last: '', email: '', password: '' });
   const [login, setLogin] = useState({ email: '', password: '' });
   const navigate = useNavigate();
-  const [params] = useSearchParams();
 
-  /* Whoever sent us here says where to go back to; otherwise start browsing. */
-  const next = params.get('next') ?? '/activities';
+  const next = returnTo ?? '/activities';
   const toast = useToast();
   const { signIn } = useSession();
 
+  /*
+   * A step is finished once you have actually left it. Marking every lower
+   * number done instead would tick Register and Complete Profile for someone
+   * a gate dropped straight onto Login, who has filled in neither.
+   */
+  const [visited, setVisited] = useState<Set<AuthStep>>(new Set());
+
   function goTo(target: AuthStep) {
     window.scrollTo(0, 0);
+    setVisited((seen) => new Set(seen).add(step));
     setStep(target);
   }
 
@@ -120,7 +136,7 @@ export function Auth() {
               <button
                 type="button"
                 className={`stepper__item auth-steps__item ${number === step ? 'is-on' : ''} ${
-                  number < step ? 'is-done' : ''
+                  visited.has(number) && number !== step ? 'is-done' : ''
                 }`.trim()}
                 onClick={() => goTo(number)}
               >

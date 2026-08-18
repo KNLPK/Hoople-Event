@@ -815,16 +815,19 @@ export function Booking() {
                   <span className="action-tile__sub">Invite your friends</span>
                 </span>
               </button>
+              {/* Straight to the ticket you just bought — that QR is what gets
+                  scanned at the door, and hunting for it in a list is a poor
+                  reward for having just paid. The full list is one tap on. */}
               <Button
                 as="link"
-                to="/bookings"
+                to={`/bookings/${confirmed.id}`}
                 variant="primary"
                 className="action-tile action-tile--primary"
                 style={{ height: 'auto' }}
               >
                 <span>
-                  <span className="action-tile__title">View My Bookings</span>
-                  <span className="action-tile__sub">See all your bookings</span>
+                  <span className="action-tile__title">View My E-Ticket</span>
+                  <span className="action-tile__sub">Show this QR at the door</span>
                 </span>
                 <ArrowRight size={20} color="#fff" />
               </Button>
