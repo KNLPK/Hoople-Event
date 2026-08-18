@@ -133,7 +133,7 @@ export function EventPreview({
             ) : null}
           </ul>
 
-          {draft.audience || draft.ageRestriction ? (
+          {draft.audience || draft.language ? (
             <>
               <div className="evt-pv__head">Who should join</div>
               <ul className="wiz-pv__meta">
@@ -141,9 +141,12 @@ export function EventPreview({
                   <Users size={14} color="#6D28FF" strokeWidth={1.9} />
                   {draft.audience}
                 </li>
+                {/* The age restriction shared this line under a clock icon.
+                    Age is off the builder, so the row is the language it is
+                    run in and takes an icon that means that. */}
                 <li>
-                  <Clock size={14} color="#6D28FF" strokeWidth={1.9} />
-                  {draft.ageRestriction} • {draft.language}
+                  <Globe size={14} color="#6D28FF" strokeWidth={1.9} />
+                  {draft.language}
                 </li>
               </ul>
             </>

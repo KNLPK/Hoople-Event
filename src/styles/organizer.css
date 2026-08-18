@@ -4179,18 +4179,31 @@ body[data-surface='console'] {
 /* Five columns in ~350px: everything stays on one line. */
 /* Five rigid columns in a 300px preview crushed the session name to 39px and
    ellipsised it. Wrapping keeps every label whole at any panel width. */
+/*
+ * Two rows of a four-column grid, not a wrapping flex row.
+ *
+ * As flex-wrap the five children shared one line until they did not, and
+ * `margin-left: auto` on the slot count then threw Book onto a line of its
+ * own, hard left, under everything else. The grid gives the name the width it
+ * needs and keeps Book where a Book button belongs: at the end of its row.
+ */
 .wiz-pv__session {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto auto;
+  column-gap: 10px;
+  row-gap: 1px;
   align-items: center;
-  gap: 6px 10px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 .wiz-pv__tone {
-  flex: none;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start;
+  margin-top: 2px;
 }
 .wiz-pv__slot {
-  flex: 1 1 128px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
   min-width: 0;
 }
 .wiz-pv__slot strong,
@@ -4199,13 +4212,35 @@ body[data-surface='console'] {
   overflow: visible;
   text-overflow: clip;
 }
-.wiz-pv__time,
-.wiz-pv__left,
-.wiz-pv__book {
-  flex: none;
+.wiz-pv__time {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
+  white-space: nowrap;
 }
 .wiz-pv__left {
-  margin-left: auto;
+  grid-column: 3;
+  grid-row: 2;
+  text-align: right;
+  white-space: nowrap;
+}
+.wiz-pv__book {
+  grid-column: 4;
+  grid-row: 1 / span 2;
+}
+
+/* Where four columns stop fitting, Book takes the row under the rest rather
+   than squeezing the time out of shape. */
+@media (max-width: 1180px) {
+  .wiz-pv__session {
+    grid-template-columns: 26px minmax(0, 1fr) auto;
+    row-gap: 6px;
+  }
+  .wiz-pv__book {
+    grid-column: 2 / -1;
+    grid-row: 3;
+    justify-self: end;
+  }
 }
 .wiz-pv__tone {
   width: 26px;
@@ -4221,9 +4256,6 @@ body[data-surface='console'] {
 .wiz-pv__slot strong,
 .wiz-pv__slot span {
   display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .wiz-pv__slot strong {
   font-size: 11px;

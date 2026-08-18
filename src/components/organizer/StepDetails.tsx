@@ -82,51 +82,6 @@ export function StepDetails({
         </div>
 
         <div className="wiz-field">
-          <FieldHead
-            label="Age Requirement (Optional)"
-            hint="Set the recommended or minimum age for participants."
-          />
-          <div className="wiz-age">
-            <ChoiceTile
-              name="age"
-              checked={draft.ageRule === 'all'}
-              onSelect={() => set('ageRule')('all')}
-              title="All ages"
-              sub="Everyone is welcome"
-            />
-            <ChoiceTile
-              name="age"
-              checked={draft.ageRule === 'range'}
-              onSelect={() => set('ageRule')('range')}
-              title="Recommended age"
-              sub="Suggested age range"
-            />
-            <div className="wiz-agerange">
-              <input
-                className="wiz-input"
-                inputMode="numeric"
-                value={draft.minAge}
-                placeholder="Min age"
-                aria-label="Minimum age"
-                disabled={draft.ageRule !== 'range'}
-                onChange={(event) => set('minAge')(event.target.value.replace(/\D/g, ''))}
-              />
-              <span className="wiz-agerange__dash">–</span>
-              <input
-                className="wiz-input"
-                inputMode="numeric"
-                value={draft.maxAge}
-                placeholder="Max age"
-                aria-label="Maximum age"
-                disabled={draft.ageRule !== 'range'}
-                onChange={(event) => set('maxAge')(event.target.value.replace(/\D/g, ''))}
-              />
-              <span className="wiz-agerange__unit">years</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="wiz-field">
           <FieldHead label="Visibility" hint="Control who can see and book this activity." />
           <div className="wiz-tiles wiz-tiles--3">
             {VISIBILITY_OPTIONS.map((option) => (

@@ -657,7 +657,20 @@ be restored when they are real.
 and the two disagreed about nothing except how much room they took.
 
 **Transfer / Resell** came off Ticket Setup for the same reason as Tags —
-nothing reads it.
+nothing reads it. So did **Age Requirement**, in the activity builder and in
+the event preview's "Who should join" row, which now reads the language only.
+
+### The session row in the preview
+
+The preview's Available Sessions list was a wrapping flex row of five things:
+tone icon, name and days, time, slots left, Book. Once they stopped fitting on
+one line, `margin-left: auto` on the slot count threw Book onto a line of its
+own, hard left, under everything else.
+
+It is a four-column grid now — icon, name, a right-aligned stack of time and
+slots, then Book — so Book ends flush with its row and sits centred against the
+two lines beside it. Under 1180px the grid drops to three columns and Book
+takes a row of its own, right-aligned, rather than squeezing the time.
 
 The review summary is numbered after the part of the builder that owns each
 row, not `01..05` of its own. A second numbering meant "05 Brand & Host" sent
