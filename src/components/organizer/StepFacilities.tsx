@@ -127,16 +127,16 @@ export function StepFacilities({
           </div>
 
           {draft.equipment.length === 0 ? (
-            <p className="wiz-sessions__empty">
+            <p className="text-[13px] text-grey py-[18px] px-0">
               Nothing listed yet. Participants like knowing what they do not need to bring.
             </p>
           ) : (
-            <div className="wiz-equipment">
+            <div className="flex flex-col gap-2.5 mt-4">
               {draft.equipment.map((item) => {
                 const Icon = equipmentIcon(item.name);
                 return (
                   <div key={item.id} className="wiz-equip">
-                    <span className="wiz-equip__icon">
+                    <span className="w-10 h-10 rounded-md bg-brand-tint-strong flex items-center justify-center">
                       <Icon size={17} color="#6D28FF" strokeWidth={1.8} />
                     </span>
 

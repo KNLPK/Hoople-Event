@@ -65,7 +65,7 @@ export function TeamsSessions() {
       </EventContext>
 
       <div className={`tm-work ${selected ? 'has-aside' : ''}`.trim()}>
-        <div className="stack" style={{ gap: 18 }}>
+        <div className="flex flex-col" style={{ gap: 18 }}>
           <Reveal className="org-stats org-stats--4">
             <Stat
               label="Total sessions"
@@ -140,7 +140,7 @@ export function TeamsSessions() {
                           </div>
                         </td>
                         <td>
-                          <div className="row" style={{ gap: 6 }}>
+                          <div className="flex items-center" style={{ gap: 6 }}>
                             <Calendar size={14} color="#8B8A99" strokeWidth={1.9} />
                             {compactDate(session.date)}
                           </div>
@@ -165,7 +165,7 @@ export function TeamsSessions() {
                           <span className={`org-pill org-pill--${stateTone(session.state)}`}>{session.state}</span>
                         </td>
                         <td className="org-table__num">
-                          <div className="row" style={{ gap: 4, justifyContent: 'flex-end' }}>
+                          <div className="flex items-center" style={{ gap: 4, justifyContent: 'flex-end' }}>
                             <button
                               type="button"
                               className="org-icon-btn"
@@ -197,8 +197,8 @@ export function TeamsSessions() {
               </div>
             ) : (
               <div style={{ padding: 44, textAlign: 'center' }}>
-                <div className="empty__title">No sessions here</div>
-                <p className="empty__body">Try another tab, or add the first session of the running order.</p>
+                <div className="font-heading text-[17px] font-semibold mb-1.5">No sessions here</div>
+                <p className="text-[13.5px] text-grey mb-[18px]">Try another tab, or add the first session of the running order.</p>
               </div>
             )}
           </Reveal>
@@ -212,15 +212,15 @@ export function TeamsSessions() {
 
             <div className="tm-aside__body">
               {/* Room on the right for the close button that floats over this row. */}
-              <div className="row" style={{ gap: 8, marginBottom: 12, paddingRight: 34 }}>
+              <div className="flex items-center" style={{ gap: 8, marginBottom: 12, paddingRight: 34 }}>
                 <span className={`org-pill org-pill--${stateTone(selected.state)}`}>{selected.state}</span>
-                <span className="tm-muted" style={{ marginLeft: 'auto' }}>
+                <span className="text-[12.5px] text-grey" style={{ marginLeft: 'auto' }}>
                   {selected.state === 'Ongoing' ? 'Running now' : selected.state === 'Ended' ? 'Finished' : 'Not started'}
                 </span>
               </div>
 
-              <h3 className="tm-aside__title">{selected.title}</h3>
-              <p className="tm-muted" style={{ lineHeight: 1.65, marginBottom: 14 }}>
+              <h3 className="font-heading text-[17px] font-semibold tracking-[-0.02em] mb-1.5">{selected.title}</h3>
+              <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.65, marginBottom: 14 }}>
                 {selected.note}
               </p>
 
@@ -245,7 +245,7 @@ export function TeamsSessions() {
                 <Meter value={selected.booked} max={selected.capacity} />
               </div>
 
-              <div className="stack" style={{ gap: 8 }}>
+              <div className="flex flex-col" style={{ gap: 8 }}>
                 <Button as="button" variant="outline" size="sm" block onClick={() => toast(`Editing ${selected.title}`)}>
                   <Pencil size={15} strokeWidth={1.9} />
                   Edit session
@@ -262,7 +262,7 @@ export function TeamsSessions() {
                 </Button>
               </div>
 
-              <section className="tm-asection" style={{ marginTop: 20 }}>
+              <section className="mb-[22px]" style={{ marginTop: 20 }}>
                 <div className="tm-asection__head">
                   <h3>Session summary</h3>
                 </div>
@@ -307,7 +307,7 @@ function Row({ label, value }: { label: string; value: string }) {
 function Stat({ label, value, note }: { label: string; value: string; note: string }) {
   return (
     <div className="org-stat">
-      <div className="org-stat__label" style={{ marginBottom: 10 }}>
+      <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
         {label}
       </div>
       <div className="org-stat__value">{value}</div>

@@ -58,8 +58,8 @@ export function FilterBar({
             onClick={() => onFacetClick(facet.key)}
           >
             <Icon size={17} color="#6D28FF" strokeWidth={2} />
-            <span className="filter-bar__facet-text">
-              <span className="filter-bar__facet-label">{facet.label}</span>
+            <span className="flex-1 min-w-0">
+              <span className="block text-[11px] text-grey-soft">{facet.label}</span>
               <span className="filter-bar__facet-value">{facet.value}</span>
             </span>
             <ChevronDown size={15} color="#8B8A99" />

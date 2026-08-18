@@ -46,29 +46,29 @@ export function OrgDashboard() {
   const recent = ORG_REGISTRATIONS.slice(0, 5);
 
   return (
-    <div className="stack" style={{ gap: 18 }}>
+    <div className="flex flex-col" style={{ gap: 18 }}>
       {/* Greeting + quick actions */}
       <Reveal className="org-greeting">
         <div>
           <h1>Good morning, {WORKSPACE.name}! 👋</h1>
-          <p className="org-greeting__lede">Here's what's happening with your experiences today.</p>
+          <p className="text-[14px] text-ink-3 mb-[22px]">Here's what's happening with your experiences today.</p>
 
-          <div className="org-greeting__label">Quick Actions</div>
+          <div className="text-[13.5px] font-semibold mb-3">Quick Actions</div>
           <div className="quick-actions">
             {QUICK_ACTIONS.map(({ title, sub, to, Icon, tone, colour }) => (
               <Link key={title} to={to} className="quick-action lift">
-                <span className={`quick-action__icon ${tone}`.trim()}>
+                <span className={`w-9 h-9 rounded-md flex items-center justify-center flex-none bg-brand-tint-strong ${tone}`.trim()}>
                   <Icon size={19} color={colour} strokeWidth={1.8} />
                 </span>
                 <span>
-                  <span className="quick-action__title">{title}</span>
-                  <span className="quick-action__sub">{sub}</span>
+                  <span className="block text-[13.5px] font-semibold">{title}</span>
+                  <span className="block text-[12px] text-grey mt-[3px]">{sub}</span>
                 </span>
               </Link>
             ))}
           </div>
 
-          <div className="org-greeting__more">
+          <div className="flex justify-end mt-3.5">
             <Link to="/organizer/experiences" className="link-more">
               More Actions
               <ArrowRight size={15} strokeWidth={2} />
@@ -88,10 +88,10 @@ export function OrgDashboard() {
           return (
             <div key={stat.key} className="org-stat">
               <div className="org-stat__head">
-                <span className="org-stat__icon">
+                <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">
                   <Icon size={17} color="#6D28FF" strokeWidth={1.8} />
                 </span>
-                <span className="org-stat__label">{stat.label}</span>
+                <span className="text-[12.5px] text-grey font-medium leading-[1.35]">{stat.label}</span>
               </div>
               <div
                 className={`org-stat__value ${stat.icon === 'revenue' ? 'org-stat__value--money' : ''}`.trim()}
@@ -99,7 +99,7 @@ export function OrgDashboard() {
                 {stat.value}
               </div>
               {stat.delta ? (
-                <div className="org-stat__delta">
+                <div className="flex items-center gap-[5px] text-[12px] font-medium text-green mt-auto pt-2.5">
                   <Trend size={13} color="#16A34A" strokeWidth={2} />
                   {stat.delta}
                 </div>
@@ -114,7 +114,7 @@ export function OrgDashboard() {
       <Reveal className="org-panels" delay={120}>
         <section className="org-card">
           <div className="org-card__head">
-            <h2 className="org-card__title">Upcoming Experiences</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Upcoming Experiences</h2>
             <Link to="/organizer/sessions" className="link-more" style={{ fontSize: 13 }}>
               View all
             </Link>
@@ -136,7 +136,7 @@ export function OrgDashboard() {
               </span>
 
               <div>
-                <div className="org-exp-row__title">{experience.title}</div>
+                <div className="text-[15px] font-semibold mb-[9px]">{experience.title}</div>
                 <div className="org-exp-row__meta">
                   <span>
                     <Calendar size={13} color="#8B8A99" strokeWidth={1.9} />
@@ -170,7 +170,7 @@ export function OrgDashboard() {
 
         <section className="org-card">
           <div className="org-card__head">
-            <h2 className="org-card__title">Recent Registrations</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Recent Registrations</h2>
             <Link to="/organizer/registrations" className="link-more" style={{ fontSize: 13 }}>
               View all
             </Link>
@@ -178,7 +178,7 @@ export function OrgDashboard() {
 
           {recent.map((registration) => (
             <div key={registration.id} className="org-reg-row">
-              <span className="org-reg-row__avatar">
+              <span className="w-10 h-10 rounded-[50%] overflow-hidden flex-none bg-brand-tint-strong">
                 <ImageSlot
                   id={`org-reg-${registration.id}`}
                   shape="circle"
@@ -187,13 +187,13 @@ export function OrgDashboard() {
                 />
               </span>
               <div>
-                <div className="org-reg-row__name">{registration.name}</div>
-                <div className="org-reg-row__exp">{registration.experience}</div>
+                <div className="text-[13.5px] font-semibold">{registration.name}</div>
+                <div className="text-[12.5px] text-grey mt-[3px]">{registration.experience}</div>
               </div>
               <span className={`org-pill org-pill--${registration.status.toLowerCase()}`}>
                 {registration.status}
               </span>
-              <div className="org-reg-row__when">
+              <div className="text-right text-[12px] text-grey leading-[1.5] whitespace-nowrap">
                 {compactDate(registration.date)}
                 <br />
                 {registration.time}
@@ -217,8 +217,8 @@ export function OrgDashboard() {
             <ImageSlot id="org-reminder-art" shape="rounded" radius={12} placeholder="Mascot + calendar" />
           </div>
           <div>
-            <div className="org-reminder__title">Don't miss a session!</div>
-            <p className="org-reminder__body">
+            <div className="font-heading text-[16px] font-semibold mb-[5px]">Don't miss a session!</div>
+            <p className="text-[13px] text-ink-3 leading-[1.6] max-w-[460px]">
               Connect your calendar and get reminders for upcoming sessions and important updates.
             </p>
           </div>

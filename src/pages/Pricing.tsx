@@ -53,7 +53,7 @@ export function Pricing() {
               ) : null}
               <h3>{tier.name}</h3>
               <div className="pricing-card__tagline">{tier.tagline}</div>
-              <div className="pricing-card__price">{tier.price}</div>
+              <div className="font-heading text-[26px] font-bold tracking-[-0.02em]">{tier.price}</div>
               <div className="pricing-card__fee">{tier.fee}</div>
               <ul>
                 {tier.features.map((feature) => (
@@ -103,7 +103,7 @@ export function Pricing() {
                 need Pro yet.
               </p>
             </div>
-            <div className="cta-banner__actions">
+            <div className="flex gap-3.5 flex-wrap">
               <Button as="link" to="/organizers" variant="white" size="xl">
                 Talk to our team
               </Button>

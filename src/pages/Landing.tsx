@@ -231,7 +231,7 @@ export function Landing() {
                   <MapPin size={15} color="#6D28FF" strokeWidth={1.9} />
                   {heroEvent.venueName} · {heroEvent.area.split(', ').pop()}
                 </div>
-                <div className="hero-note__foot">
+                <div className="flex items-center gap-[9px] mt-[3px]">
                   <span className="avatar-stack avatar-stack--sm" style={{ filter: 'none' }}>
                     {[1, 2, 3].map((index) => (
                       <div key={index} style={{ borderColor: '#fff' }}>
@@ -239,7 +239,7 @@ export function Landing() {
                       </div>
                     ))}
                   </span>
-                  <span className="hero-note__going">{heroEvent.going}</span>
+                  <span className="text-[12.5px] font-semibold text-grey mr-auto whitespace-nowrap">{heroEvent.going}</span>
                   <Link to={`/events/${heroEvent.slug}`} className="hero-note__cta">
                     Get Tickets
                   </Link>
@@ -249,13 +249,13 @@ export function Landing() {
               {/* Where every booking ends up. */}
               <div className="hero-ticket float" style={{ animationDelay: '1s' }}>
                 <div className="hero-ticket__head">
-                  <span className="hero-ticket__label">Your QR Ticket</span>
+                  <span className="text-[13px] font-semibold text-ink-2">Your QR Ticket</span>
                 </div>
                 <div className="hero-ticket__body">
-                  <span className="hero-ticket__qr">
+                  <span className="block w-[84px] h-[84px] flex-none">
                     <ImageSlot id="landing-card-qr" shape="rounded" radius={8} placeholder="QR code" interactive={false} />
                   </span>
-                  <span className="tag tag--status hero-ticket__state">
+                  <span className="tag tag--status flex-none">
                     Confirmed <Check size={12} />
                   </span>
                 </div>
@@ -267,7 +267,7 @@ export function Landing() {
                 <span className="badge badge--green hero-photo__badge">ACTIVITY</span>
               </div>
               <div className="hero-note hero-note--activity float" style={{ animationDelay: '2s' }}>
-                <div className="hero-note__title">{activity.title}</div>
+                <div className="font-heading text-[17px] font-bold tracking-[-0.02em]">{activity.title}</div>
                 <div className="hero-note__row">
                   <Clock size={15} color="#6D28FF" strokeWidth={1.9} />
                   {shortDays(activity.recurrence)} · {activity.recurrenceTime}
@@ -276,7 +276,7 @@ export function Landing() {
                   <MapPin size={15} color="#6D28FF" strokeWidth={1.9} />
                   {activity.venue.name}, {activity.venue.area}
                 </div>
-                <div className="hero-note__foot">
+                <div className="flex items-center gap-[9px] mt-[3px]">
                   <span className="avatar-stack avatar-stack--sm" style={{ filter: 'none' }}>
                     {[4, 5, 6].map((index) => (
                       <div key={index} style={{ borderColor: '#fff' }}>
@@ -284,7 +284,7 @@ export function Landing() {
                       </div>
                     ))}
                   </span>
-                  <span className="hero-note__going">{activitySession?.slotsLeft ?? 12} slots left</span>
+                  <span className="text-[12.5px] font-semibold text-grey mr-auto whitespace-nowrap">{activitySession?.slotsLeft ?? 12} slots left</span>
                   <Link to={`/activities/${activity.slug}`} className="hero-note__cta hero-note__cta--green">
                     Book Session
                   </Link>
@@ -297,14 +297,14 @@ export function Landing() {
 
       {/* Trusted by — centred under the hero, the way a proof line reads best. */}
       <Reveal className="mx-auto w-full max-w-page px-gutter trust">
-        <p className="trust__cap">Trusted by community builders and organizers across Indonesia</p>
+        <p className="text-[14px] font-medium text-ink-3 mb-[22px]">Trusted by community builders and organizers across Indonesia</p>
         <div className="trust__row">
           {TRUSTED_BY.map((name) => (
             <span key={name} className="trust__mark">
               {name}
             </span>
           ))}
-          <span className="trust__more">And 500+ more</span>
+          <span className="text-[14px] text-grey-soft whitespace-nowrap">And 500+ more</span>
         </div>
       </Reveal>
 
@@ -317,7 +317,7 @@ export function Landing() {
         <div className="why-grid">
           {WHY.map(({ Icon, title, body }, index) => (
             <Reveal key={title} delay={index * 60} className="why-card lift">
-              <span className="why-card__icon">
+              <span className="w-11 h-11 rounded-lg bg-brand-tint-strong flex items-center justify-center mb-4">
                 <Icon size={22} color="#6D28FF" strokeWidth={1.8} />
               </span>
               <h3>{title}</h3>
@@ -337,7 +337,7 @@ export function Landing() {
         <div className="grid grid--4">
           {ACTIVITIES.slice(0, 4).map((item) => (
             <Link key={item.slug} to={`/activities/${item.slug}`} className="card lift activity-card">
-              <div className="activity-card__media zoom">
+              <div className="relative h-[150px] flex-none zoom">
                 <ImageSlot id={`landing-popular-${item.slug}`} shape="rect" placeholder={item.photoHint} />
                 {item.badge ? (
                   <span className={`badge activity-card__badge ${item.badge === 'TRENDING' ? 'badge--green' : ''}`}>
@@ -347,8 +347,8 @@ export function Landing() {
               </div>
               <div className="activity-card__body">
                 <span className="activity-card__title">{item.title}</span>
-                <span className="activity-card__host">by {item.host}</span>
-                <div className="stack" style={{ gap: 7, marginTop: 12 }}>
+                <span className="text-[12.5px] text-grey-soft mt-1">by {item.host}</span>
+                <div className="flex flex-col" style={{ gap: 7, marginTop: 12 }}>
                   <span className="meta meta--sm">
                     <MapPin size={14} color="#8B8A99" strokeWidth={2} />
                     {item.venue.area}, {item.venue.city}
@@ -376,10 +376,10 @@ export function Landing() {
         <div className="persona-grid">
           {PERSONAS.map((persona, index) => (
             <Reveal key={persona.slug} delay={index * 60} className="persona-card lift">
-              <div className="persona-card__media zoom">
+              <div className="h-[150px] flex-none zoom">
                 <ImageSlot id={`persona-${persona.slug}`} shape="rect" placeholder={persona.photoHint} />
               </div>
-              <div className="persona-card__body">
+              <div className="p-5 flex flex-col flex-1">
                 <h3>{persona.title}</h3>
                 <p>{persona.body}</p>
                 <Link to={persona.to} className="link-more" style={{ marginTop: 'auto' }}>
@@ -402,8 +402,8 @@ export function Landing() {
         <div className="flow-grid">
           {VALUE_FLOW.map(({ step, title, body, Icon }, index) => (
             <Reveal key={step} delay={index * 60} className="flow-card lift">
-              <div className="flow-card__step">{step}</div>
-              <span className="why-card__icon">
+              <div className="text-[11px] font-bold tracking-[0.1em] text-brand mb-3">{step}</div>
+              <span className="w-11 h-11 rounded-lg bg-brand-tint-strong flex items-center justify-center mb-4">
                 <Icon size={22} color="#6D28FF" strokeWidth={1.8} />
               </span>
               <h3>{title}</h3>
@@ -422,19 +422,19 @@ export function Landing() {
               List free, keep your fees transparent, and get paid H+1. Start with ticketing and QR check-in,
               add Connect when your community grows.
             </p>
-            <div className="row" style={{ gap: 22, marginTop: 22, flexWrap: 'wrap', fontSize: 13.5 }}>
-              <span className="row" style={{ gap: 8 }}>
+            <div className="flex items-center" style={{ gap: 22, marginTop: 22, flexWrap: 'wrap', fontSize: 13.5 }}>
+              <span className="flex items-center" style={{ gap: 8 }}>
                 <Check size={15} color="#fff" /> No listing fee
               </span>
-              <span className="row" style={{ gap: 8 }}>
+              <span className="flex items-center" style={{ gap: 8 }}>
                 <Clock size={15} color="#fff" strokeWidth={2} /> Live in under an hour
               </span>
-              <span className="row" style={{ gap: 8 }}>
+              <span className="flex items-center" style={{ gap: 8 }}>
                 <Wallet size={15} color="#fff" strokeWidth={2} /> Payout H+1
               </span>
             </div>
           </div>
-          <div className="cta-banner__actions">
+          <div className="flex gap-3.5 flex-wrap">
             <Button as="link" to="/organizers" variant="white" size="xl">
               Create Experience
             </Button>

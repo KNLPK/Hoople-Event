@@ -57,7 +57,7 @@ export function TeamsCheckIn() {
       </EventContext>
 
       <div className="tm-work has-aside">
-        <div className="stack" style={{ gap: 18 }}>
+        <div className="flex flex-col" style={{ gap: 18 }}>
           <Reveal className="org-stats org-stats--4">
             <Stat
               icon={<CheckCircle size={17} color="#16A34A" strokeWidth={1.8} />}
@@ -88,8 +88,8 @@ export function TeamsCheckIn() {
           <div className="org-panels">
             <Reveal className="org-card">
               <div className="org-card__head">
-                <h2 className="org-card__title">Check-in activity</h2>
-                <span className="tm-muted">Today</span>
+                <h2 className="font-heading text-[15.5px] font-semibold">Check-in activity</h2>
+                <span className="text-[12.5px] text-grey">Today</span>
               </div>
               <div className="org-card__body">
                 <TrendChart
@@ -102,8 +102,8 @@ export function TeamsCheckIn() {
 
             <Reveal className="org-card" delay={60}>
               <div className="org-card__head">
-                <h2 className="org-card__title">Recent check-ins</h2>
-                <span className="tm-muted">{recent.length} shown</span>
+                <h2 className="font-heading text-[15.5px] font-semibold">Recent check-ins</h2>
+                <span className="text-[12.5px] text-grey">{recent.length} shown</span>
               </div>
               <div className="tm-checklist">
                 {recent.map((row) => (
@@ -127,8 +127,8 @@ export function TeamsCheckIn() {
 
           <Reveal className="org-card" delay={120}>
             <div className="org-card__head">
-              <h2 className="org-card__title">Check-in by session</h2>
-              <span className="tm-muted">Attendance is reported per session</span>
+              <h2 className="font-heading text-[15.5px] font-semibold">Check-in by session</h2>
+              <span className="text-[12.5px] text-grey">Attendance is reported per session</span>
             </div>
             <div className="org-table-wrap">
               <table className="org-table tm-table">
@@ -191,10 +191,10 @@ export function TeamsCheckIn() {
               Simulate a scan
             </Button>
 
-            <section className="tm-asection" style={{ marginTop: 20 }}>
+            <section className="mb-[22px]" style={{ marginTop: 20 }}>
               <div className="tm-asection__head">
                 <h3>Scanner statistics</h3>
-                <span className="tm-muted">Today</span>
+                <span className="text-[12.5px] text-grey">Today</span>
               </div>
               {SCANNER_STATS.map((stat) => (
                 <div key={stat.label} className="tm-arow">
@@ -235,8 +235,8 @@ function Stat({ icon, label, value, note }: { icon: React.ReactNode; label: stri
   return (
     <div className="org-stat">
       <div className="org-stat__head">
-        <span className="org-stat__icon">{icon}</span>
-        <span className="org-stat__label">{label}</span>
+        <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">{icon}</span>
+        <span className="text-[12.5px] text-grey font-medium leading-[1.35]">{label}</span>
       </div>
       <div className="org-stat__value">{value}</div>
       <div className="org-stat__note">{note}</div>

@@ -34,9 +34,9 @@ export function StepPricing({
       <div className="wiz-stack">
         <section className="org-card wiz-panel">
           <FieldHead label="Pricing per Session" hint="This price will be applied to all sessions." />
-          <div className="wiz-field__control wiz-field__control--half">
-            <span className="wiz-field__label">
-              Price per Session<span className="field__req"> *</span>
+          <div className="wiz-field__control max-w-[320px]">
+            <span className="block text-[13.5px] font-semibold text-ink">
+              Price per Session<span className="text-danger"> *</span>
             </span>
             <AffixInput
               ariaLabel="Price per session"
@@ -44,7 +44,7 @@ export function StepPricing({
               value={draft.price.toLocaleString('id-ID')}
               onChange={(value) => set('price')(Number(value.replace(/\D/g, '')) || 0)}
             />
-            <span className="field__hint">
+            <span className="text-[12px] text-grey-soft mt-2">
               This is the amount participants will pay for each session.
             </span>
           </div>
@@ -57,8 +57,8 @@ export function StepPricing({
           />
           <div className="wiz-pair">
             <div>
-              <span className="wiz-field__label">
-                Max Capacity per Session<span className="field__req"> *</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Max Capacity per Session<span className="text-danger"> *</span>
               </span>
               <AffixInput
                 ariaLabel="Max capacity per session"
@@ -68,14 +68,14 @@ export function StepPricing({
                 onChange={(value) => set('defaultCapacity')(Number(value.replace(/\D/g, '')) || 0)}
               />
               {/* 2.3 sets capacity per session, so say what those actually are. */}
-              <span className="field__hint">
+              <span className="text-[12px] text-grey-soft mt-2">
                 Applied to new sessions. Yours currently run {actualRange} slots each — set
                 individually in 2.3.
               </span>
             </div>
             <div>
-              <span className="wiz-field__label">
-                Minimum Participants <span className="wiz-field__optional">(Optional)</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Minimum Participants <span className="font-normal text-grey">(Optional)</span>
               </span>
               <AffixInput
                 ariaLabel="Minimum participants"
@@ -84,7 +84,7 @@ export function StepPricing({
                 value={draft.minParticipants}
                 onChange={(value) => set('minParticipants')(value.replace(/\D/g, ''))}
               />
-              <span className="field__hint">Minimum number required to run the session.</span>
+              <span className="text-[12px] text-grey-soft mt-2">Minimum number required to run the session.</span>
             </div>
           </div>
         </section>
@@ -93,7 +93,7 @@ export function StepPricing({
           <FieldHead label="Booking Window" hint="Choose when participants can book your sessions." />
           <div className="wiz-triple">
             <label className="field">
-              <span className="wiz-field__label">Booking opens</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Booking opens</span>
               <SelectInput
                 ariaLabel="Booking opens"
                 value={draft.bookingOpens}
@@ -103,7 +103,7 @@ export function StepPricing({
               />
             </label>
             <label className="field">
-              <span className="wiz-field__label">Booking closes</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Booking closes</span>
               <SelectInput
                 ariaLabel="Booking closes"
                 value={draft.bookingCloses}
@@ -113,7 +113,7 @@ export function StepPricing({
               />
             </label>
             <label className="field">
-              <span className="wiz-field__label">Maximum advance booking</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Maximum advance booking</span>
               <SelectInput
                 ariaLabel="Maximum advance booking"
                 value={draft.maxAdvance}
@@ -128,7 +128,7 @@ export function StepPricing({
         <section className="org-card wiz-panel">
           <FieldHead label="Cancellation Policy" hint="Set your cancellation rules for participants." />
           <div className="wiz-policy">
-            <div className="wiz-policy__choices">
+            <div className="flex flex-col gap-3.5">
               {CANCELLATION_POLICIES.map((item) => (
                 <RadioRow
                   key={item.value}
@@ -143,7 +143,7 @@ export function StepPricing({
 
             {/* Reads straight off the selected policy, so it can never disagree. */}
             <aside className="wiz-policy__preview">
-              <div className="wiz-policy__head">Policy preview</div>
+              <div className="text-[12.5px] font-semibold text-ink mb-[11px]">Policy preview</div>
               <ul>
                 {policy?.preview.map((line) => (
                   <li key={line}>

@@ -67,13 +67,13 @@ export function ActivityPreview({
   if (variant === 'phone') {
     return (
       <aside className="wiz-preview">
-        <h2 className="wiz-preview__title">Activity Preview</h2>
+        <h2 className="font-heading text-[15px] font-semibold">Activity Preview</h2>
         <p className="wiz-preview__lede">This is how your activity will appear to participants.</p>
 
         <div className="wiz-phone">
           <div className="wiz-phone__status">
             <span>9:41</span>
-            <span className="wiz-phone__glyphs" aria-hidden="true">
+            <span className="flex items-center gap-[5px]" aria-hidden="true">
               <i className="wiz-phone__bars" />
               <Wifi size={12} color="#12121A" strokeWidth={2} />
               <i className="wiz-phone__battery" />
@@ -81,18 +81,18 @@ export function ActivityPreview({
           </div>
 
           <div className="wiz-phone__bar">
-            <span className="wiz-phone__chip">
+            <span className="w-[30px] h-[30px] rounded-[50%] bg-surface-sunken flex items-center justify-center">
               <ArrowLeft size={15} color="#12121A" strokeWidth={2} />
             </span>
-            <span className="wiz-phone__chip">
+            <span className="w-[30px] h-[30px] rounded-[50%] bg-surface-sunken flex items-center justify-center">
               <HeartOutlineLarge size={15} color="#12121A" />
             </span>
-            <span className="wiz-phone__chip">
+            <span className="w-[30px] h-[30px] rounded-[50%] bg-surface-sunken flex items-center justify-center">
               <Share size={14} color="#12121A" strokeWidth={1.9} />
             </span>
           </div>
 
-          <div className="wiz-phone__media">
+          <div className="relative h-[168px]">
             <ImageSlot
               id="builder-cover"
               src={draft.cover}
@@ -106,7 +106,7 @@ export function ActivityPreview({
           </div>
 
           <div className="wiz-phone__body">
-            <h3 className="wiz-pv__name">{draft.title || PREVIEW_FALLBACK.title}</h3>
+            <h3 className="font-heading text-[17px] font-semibold tracking-[-0.02em] leading-[1.3]">{draft.title || PREVIEW_FALLBACK.title}</h3>
             <div className="wiz-pv__host">
               <span className="wiz-pv__avatar">{WORKSPACE_INITIALS}</span>
               by {draft.hostedAs}
@@ -159,7 +159,7 @@ export function ActivityPreview({
 
   return (
     <aside className="wiz-preview">
-      <h2 className="wiz-preview__title">Activity Preview</h2>
+      <h2 className="font-heading text-[15px] font-semibold">Activity Preview</h2>
       <p className="wiz-preview__lede">This is how your activity will appear to participants.</p>
 
       <div className="wiz-pv">
@@ -180,7 +180,7 @@ export function ActivityPreview({
         </div>
 
         <div className="wiz-pv__body">
-          <h3 className="wiz-pv__name">{draft.title || PREVIEW_FALLBACK.title}</h3>
+          <h3 className="font-heading text-[17px] font-semibold tracking-[-0.02em] leading-[1.3]">{draft.title || PREVIEW_FALLBACK.title}</h3>
 
           <div className="wiz-pv__host">
             <span className="wiz-pv__avatar">{WORKSPACE_INITIALS}</span>
@@ -210,11 +210,11 @@ export function ActivityPreview({
             </li>
           </ul>
 
-          {draft.summary ? <p className="wiz-pv__summary">{draft.summary}</p> : null}
+          {draft.summary ? <p className="text-[12.5px] text-grey leading-[1.55] mt-3">{draft.summary}</p> : null}
 
           {lead ? (
             <div className="wiz-pv__instructor">
-              <span className="wiz-pv__portrait">
+              <span className="w-[38px] h-[38px] rounded-[50%] overflow-hidden bg-brand-tint-strong">
                 <ImageSlot
                   id={`builder-instructor-${lead.id}`}
                   shape="circle"
@@ -223,7 +223,7 @@ export function ActivityPreview({
                 />
               </span>
               <div className="wiz-pv__who">
-                <span className="wiz-pv__who-label">Instructor</span>
+                <span className="block text-[10px] text-grey">Instructor</span>
                 <strong>{lead.name}</strong>
                 <span>{lead.role}</span>
               </div>
@@ -247,7 +247,7 @@ export function ActivityPreview({
           </div>
 
           {live.length === 0 ? (
-            <p className="wiz-pv__none">No active sessions yet — add one in step 2.3.</p>
+            <p className="text-[12.5px] text-grey mt-3">No active sessions yet — add one in step 2.3.</p>
           ) : (
             shown.map((session) => {
               const { Icon, colour } = TONE_ICON[sessionTone(session)];
@@ -279,7 +279,7 @@ export function ActivityPreview({
           )}
 
           {hidden > 0 ? (
-            <p className="wiz-pv__none">
+            <p className="text-[12.5px] text-grey mt-3">
               +{hidden} more session{hidden > 1 ? 's' : ''}
             </p>
           ) : null}

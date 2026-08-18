@@ -32,13 +32,13 @@ export function OrgSidebar({ onClose }: { onClose?: () => void }) {
     <aside className="org-side">
       <Link
         to="/organizer"
-        className="org-side__brand"
+        className="flex items-center gap-[9px] py-0 px-2 text-ink"
         aria-label="Hoople organizer console"
       >
-        <span className="org-side__logo">
+        <span className="flex">
           <Logo size={26} color="#6D28FF" />
         </span>
-        <span className="org-side__wordmark">hoople</span>
+        <span className="font-heading font-semibold text-[22px] tracking-[-0.02em]">hoople</span>
       </Link>
 
       {/* Phone only: the drawer needs a way out that is not the scrim. */}
@@ -53,11 +53,11 @@ export function OrgSidebar({ onClose }: { onClose?: () => void }) {
 
       <div className="org-side__scroll">
         <Link to="/organizer/settings" className="org-workspace">
-          <span className="org-workspace__avatar">{WORKSPACE_INITIALS}</span>
+          <span className="w-9 h-9 rounded-md flex-none bg-brand text-[#fff] flex items-center justify-center font-heading text-[13px] font-bold tracking-[0.02em]">{WORKSPACE_INITIALS}</span>
           <span className="org-workspace__text">
-            <span className="org-workspace__name">
+            <span className="flex items-center gap-[7px] text-[14px] font-semibold">
               {WORKSPACE.name}
-              <span className="org-workspace__badge">{WORKSPACE.role}</span>
+              <span className="bg-brand-tint-strong text-brand text-[10px] font-bold py-[3px] px-[7px] rounded-[5px]">{WORKSPACE.role}</span>
             </span>
             <span className="org-workspace__category">
               {WORKSPACE.category}
@@ -157,9 +157,9 @@ export function OrgSidebar({ onClose }: { onClose?: () => void }) {
         </nav>
       </div>
 
-      <div className="org-side__foot">
+      <div className="flex-none flex flex-col gap-2">
         <div className="org-upgrade">
-          <div className="org-upgrade__head">
+          <div className="flex items-center gap-[9px] text-[13.5px] font-semibold mb-2">
             <Crown size={18} color="#6D28FF" />
             <span>Go Pro, unlock more!</span>
           </div>

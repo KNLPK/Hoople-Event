@@ -52,8 +52,8 @@ export function TeamsPayments() {
       {free ? (
         <Reveal className="org-card">
           <div style={{ padding: 48, textAlign: 'center' }}>
-            <div className="empty__title">Nothing to settle</div>
-            <p className="empty__body">
+            <div className="font-heading text-[17px] font-semibold mb-1.5">Nothing to settle</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">
               {event.title} is {event.costModel.toLowerCase()}, so no money passed through Hoople. Costs for this
               event sit with {event.organiser}.
             </p>
@@ -61,7 +61,7 @@ export function TeamsPayments() {
         </Reveal>
       ) : (
         <div className="tm-cols">
-          <div className="stack" style={{ gap: 18 }}>
+          <div className="flex flex-col" style={{ gap: 18 }}>
             <Reveal className="org-stats org-stats--4">
               <Stat
                 icon={<Wallet size={17} color="#6D28FF" strokeWidth={1.8} />}
@@ -93,7 +93,7 @@ export function TeamsPayments() {
             <div className="org-panels">
               <Reveal className="org-card">
                 <div className="org-card__head">
-                  <h2 className="org-card__title">Where the money goes</h2>
+                  <h2 className="font-heading text-[15.5px] font-semibold">Where the money goes</h2>
                 </div>
                 <div className="org-card__body">
                   <Donut
@@ -119,7 +119,7 @@ export function TeamsPayments() {
 
               <Reveal className="org-card" delay={60}>
                 <div className="org-card__head">
-                  <h2 className="org-card__title">Fee configuration</h2>
+                  <h2 className="font-heading text-[15.5px] font-semibold">Fee configuration</h2>
                 </div>
                 <div className="org-card__body">
                   <Row label="Plan" value={`${ORGANIZATION.plan} — flat subscription`} />
@@ -128,7 +128,7 @@ export function TeamsPayments() {
                   <Row label="Gateway" value="Midtrans" />
                   <Row label="Gateway fee model" value={`${(GATEWAY_RATE * 100).toFixed(2)}% + ${rupiah(GATEWAY_FLAT)} / order`} />
                   <Row label="Cost model" value={event.costModel} />
-                  <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 14 }}>
+                  <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.7, marginTop: 14 }}>
                     An internal event is a whip-round between colleagues, not a sale. Taking a percentage of it would
                     be hard to explain to the people paying, so the plan covers it instead.
                   </p>
@@ -138,8 +138,8 @@ export function TeamsPayments() {
 
             <Reveal className="org-card" delay={120}>
               <div className="org-card__head">
-                <h2 className="org-card__title">Recent transactions</h2>
-                <span className="tm-muted">{sum.orders} in total</span>
+                <h2 className="font-heading text-[15.5px] font-semibold">Recent transactions</h2>
+                <span className="text-[12.5px] text-grey">{sum.orders} in total</span>
               </div>
               <div className="org-table-wrap">
                 <table className="org-table tm-table">
@@ -197,10 +197,10 @@ export function TeamsPayments() {
             </Reveal>
           </div>
 
-          <aside className="stack tm-rail" style={{ gap: 18 }}>
+          <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
             <Reveal className="org-card">
               <div className="org-card__head">
-                <h2 className="org-card__title">Payout summary</h2>
+                <h2 className="font-heading text-[15.5px] font-semibold">Payout summary</h2>
               </div>
               <div className="org-card__body">
                 <Row label="Event ends" value={`${compactDate(event.endDate)}, 12:00`} />
@@ -218,7 +218,7 @@ export function TeamsPayments() {
 
             <Reveal className="org-card" delay={60}>
               <div className="org-card__head">
-                <h2 className="org-card__title">Payout progress</h2>
+                <h2 className="font-heading text-[15.5px] font-semibold">Payout progress</h2>
               </div>
               <div className="org-card__body">
                 <ol className="tm-timeline">
@@ -245,7 +245,7 @@ export function TeamsPayments() {
 
             <Reveal className="org-card" delay={120}>
               <div className="org-card__head">
-                <h2 className="org-card__title">Reports</h2>
+                <h2 className="font-heading text-[15.5px] font-semibold">Reports</h2>
               </div>
               <div className="tm-quick">
                 <button type="button" className="tm-quick__item" onClick={() => toast('Settlement statement downloaded')}>
@@ -265,11 +265,11 @@ export function TeamsPayments() {
 
             <Reveal className="org-card tm-tip" delay={180}>
               <div className="org-card__body">
-                <div className="row" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
+                <div className="flex items-center" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
                   <Headset size={16} color="#EA8C00" strokeWidth={1.9} />
                   Question about a settlement?
                 </div>
-                <p className="tm-muted" style={{ lineHeight: 1.65 }}>
+                <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.65 }}>
                   Finance can see this page too. Give them the event code {event.code} and they can match it against
                   the bank statement.
                 </p>
@@ -307,8 +307,8 @@ function Stat({
   return (
     <div className="org-stat">
       <div className="org-stat__head">
-        <span className="org-stat__icon">{icon}</span>
-        <span className="org-stat__label">{label}</span>
+        <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">{icon}</span>
+        <span className="text-[12.5px] text-grey font-medium leading-[1.35]">{label}</span>
       </div>
       <div className={`org-stat__value ${money ? 'org-stat__value--money' : ''}`.trim()}>{value}</div>
       <div className="org-stat__note">{note}</div>

@@ -39,11 +39,11 @@ export function OrgCreateExperience() {
   return (
     <div className="org-create">
       <Reveal className="org-create__head">
-        <div className="org-create__mascots">
+        <div className="flex items-end justify-center gap-[26px] mb-[18px]">
           <span className="org-create__chip org-create__chip--left">
             <Calendar size={19} color="#DB2777" strokeWidth={1.9} />
           </span>
-          <span className="org-create__mascot float">
+          <span className="block w-[150px] h-[130px] float">
             <ImageSlot id="org-create-mascot" shape="rounded" radius={14} placeholder="Mascot" />
           </span>
           <span className="org-create__chip org-create__chip--right">
@@ -61,13 +61,13 @@ export function OrgCreateExperience() {
       <div className="org-create__grid">
         {CHOICES.map((choice, index) => (
           <Reveal key={choice.key} className="org-choice" delay={index * 80}>
-            <div className="org-choice__head">
-              <span className={`org-choice__icon ${choice.tone}`}>
+            <div className="flex items-center gap-3.5 mb-[18px]">
+              <span className={`w-[46px] h-[46px] rounded-lg flex items-center justify-center flex-none ${choice.tone}`}>
                 <choice.Icon size={22} color={choice.colour} strokeWidth={1.9} />
               </span>
               <div>
-                <div className="org-choice__title">{choice.title}</div>
-                <div className="org-choice__sub">{choice.sub}</div>
+                <div className="font-heading text-[18px] font-bold tracking-[-0.02em]">{choice.title}</div>
+                <div className="text-[13px] text-grey mt-[3px]">{choice.sub}</div>
               </div>
             </div>
 
@@ -84,10 +84,10 @@ export function OrgCreateExperience() {
               </span>
             </div>
 
-            <p className="org-choice__body">{choice.body}</p>
+            <p className="text-[13.5px] leading-[1.7] text-ink-3 mb-[18px]">{choice.body}</p>
 
-            <div className="org-choice__label">Perfect for</div>
-            <div className="org-choice__tags">
+            <div className="text-[13px] font-semibold text-brand mb-2.5">Perfect for</div>
+            <div className="flex flex-wrap gap-2 mb-[22px]">
               {choice.perfectFor.map((tag) => (
                 <span key={tag} className="tag tag--neutral">
                   {tag}
@@ -104,11 +104,11 @@ export function OrgCreateExperience() {
       </div>
 
       <Reveal className="org-create__note" delay={180}>
-        <span className="org-create__note-icon">
+        <span className="w-11 h-11 rounded-lg bg-[#fff] flex items-center justify-center flex-none">
           <Info size={19} color="#6D28FF" strokeWidth={1.9} />
         </span>
         <div>
-          <div className="org-create__note-title">Not sure which one?</div>
+          <div className="text-[14.5px] font-semibold mb-1.5">Not sure which one?</div>
           <p>
             You can start with one type and convert it later.
             <br />

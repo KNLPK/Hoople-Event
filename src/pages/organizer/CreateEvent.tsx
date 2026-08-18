@@ -157,7 +157,7 @@ export function OrgCreateEvent() {
       <WizardStepper steps={steps} step={step} onStep={goStep} />
 
       <div className="wiz-grid">
-        <div className="wiz-form">
+        <div className="min-w-0">
           <Reveal className="wiz-section" key={`${step}.${draft.eventType}`}>
             <WizardAccordion
               panels={panels}

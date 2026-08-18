@@ -18,14 +18,14 @@ export function FieldHead({
   return (
     <div className="wiz-field__head">
       <div>
-        <span className="wiz-field__label">
+        <span className="block text-[13.5px] font-semibold text-ink">
           {label}
-          {required ? <span className="field__req"> *</span> : null}
+          {required ? <span className="text-danger"> *</span> : null}
         </span>
         {hint ? <span className="wiz-field__hint">{hint}</span> : null}
       </div>
       {saved ? (
-        <span className="wiz-saved">
+        <span className="inline-flex items-center gap-1.5 flex-none text-[12px] font-semibold text-green">
           <CheckCircle size={14} color="#16A34A" strokeWidth={2} />
           Saved
         </span>
@@ -108,7 +108,7 @@ export function AffixInput({
   return (
     <span className="wiz-affix">
       {prefix ? <span className="wiz-affix__prefix">{prefix}</span> : null}
-      {leading ? <span className="wiz-affix__lead">{leading}</span> : null}
+      {leading ? <span className="flex pl-[13px]">{leading}</span> : null}
       <input
         value={value}
         inputMode="numeric"
@@ -172,7 +172,7 @@ export function Toggle({
         <span className="wiz-toggle__knob" />
       </span>
       <span>
-        <span className="wiz-toggle__label">{label}</span>
+        <span className="block text-[13.5px] font-semibold text-ink">{label}</span>
         {hint ? <span className="wiz-field__hint">{hint}</span> : null}
       </span>
     </label>
@@ -285,11 +285,11 @@ export function ChoiceTile({
     <label className={`wiz-tile ${checked ? 'is-on' : ''}`.trim()}>
       <input type="radio" name={name} checked={checked} onChange={onSelect} className="sr-only" />
       <span className="wiz-tile__radio" aria-hidden="true" />
-      <span className="wiz-tile__text">
+      <span className="flex-1 min-w-0">
         <span className="wiz-tile__title">{title}</span>
-        <span className="wiz-tile__sub">{sub}</span>
+        <span className="block text-[12px] text-grey mt-[3px] leading-[1.45]">{sub}</span>
       </span>
-      {icon ? <span className="wiz-tile__icon">{icon}</span> : null}
+      {icon ? <span className="flex-none flex mt-px">{icon}</span> : null}
     </label>
   );
 }

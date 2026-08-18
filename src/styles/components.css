@@ -267,17 +267,6 @@
   font-size: 16px;
 }
 
-.tint-panel {
-  background: var(--color-brand-tint-strong);
-  border-radius: var(--radius-3xl);
-  padding: 26px 30px;
-}
-.tint-panel--soft {
-  background: var(--color-surface-panel);
-  border-radius: var(--radius-lg);
-  padding: 16px 18px;
-}
-
 .divider {
   height: 1px;
   background: var(--color-line-faint);
@@ -335,10 +324,6 @@
 .carousel-arrow--prev {
   right: auto;
   left: -19px;
-}
-
-.rail {
-  position: relative;
 }
 .rail__track {
   display: grid;
@@ -416,21 +401,6 @@
   background: var(--color-amber-tint);
 }
 
-.feature {
-  display: flex;
-  gap: 13px;
-}
-.feature__title {
-  font-size: 13.5px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-.feature__body {
-  font-size: 12.5px;
-  color: var(--color-grey);
-  line-height: 1.6;
-}
-
 /* ============ Forms ============ */
 
 .field {
@@ -442,14 +412,6 @@
   font-weight: 500;
   color: var(--color-ink-2);
   margin-bottom: 8px;
-}
-.field__req {
-  color: var(--color-danger);
-}
-.field__hint {
-  font-size: 12px;
-  color: var(--color-grey-soft);
-  margin-top: 8px;
 }
 
 .input {
@@ -560,15 +522,6 @@
   border: 1.8px solid var(--color-brand);
   background: #f8f5ff;
 }
-.choice__title {
-  font-size: 14px;
-  font-weight: 600;
-}
-.choice__sub {
-  font-size: 12.5px;
-  color: var(--color-grey);
-  margin-top: 3px;
-}
 
 .radio-dot {
   width: 22px;
@@ -607,22 +560,6 @@
 .check-box.is-on {
   background: var(--color-brand);
   border-color: var(--color-brand);
-}
-
-.consent {
-  display: flex;
-  gap: 14px;
-  text-align: left;
-}
-.consent__title {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-.consent__body {
-  font-size: 12.5px;
-  color: var(--color-grey);
-  line-height: 1.6;
 }
 
 /* ============ Stepper ============ */
@@ -669,11 +606,6 @@
 }
 .stepper__item.is-active .stepper__title {
   color: var(--color-brand);
-}
-.stepper__sub {
-  font-size: 13px;
-  color: var(--color-grey);
-  margin-top: 2px;
 }
 .stepper__line {
   width: 110px;
@@ -886,17 +818,6 @@
   gap: 26px;
   align-items: center;
 }
-.newsletter__art {
-  width: 104px;
-  height: 78px;
-}
-.newsletter__title {
-  font-family: var(--font-heading);
-  font-size: 19px;
-  font-weight: 600;
-  color: var(--color-brand-deep);
-  margin-bottom: 5px;
-}
 .newsletter__form {
   display: flex;
   gap: 10px;
@@ -943,17 +864,6 @@
   padding: 44px 24px;
   text-align: center;
   background: #fff;
-}
-.empty__title {
-  font-family: var(--font-heading);
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-.empty__body {
-  font-size: 13.5px;
-  color: var(--color-grey);
-  margin-bottom: 18px;
 }
 
 /* ============ Toast ============ */

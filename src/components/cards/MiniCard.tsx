@@ -21,12 +21,12 @@ export function MiniCard({ to, slotId, photoHint, kicker, title, date, area, pri
       <div className="mini-card__media zoom">
         <ImageSlot id={slotId} shape="rect" placeholder={photoHint} />
       </div>
-      <div className="mini-card__body">
-        <div className="mini-card__kicker">{kicker}</div>
-        <div className="mini-card__title">{title}</div>
-        <div className="mini-card__meta">{shortDate(date)}</div>
-        {area ? <div className="mini-card__meta">{area}</div> : null}
-        <div className="mini-card__price">{price === 0 ? 'Free' : idr(price)}</div>
+      <div className="py-3.5 px-4">
+        <div className="text-[11.5px] font-semibold text-brand mb-1.5 capitalize">{kicker}</div>
+        <div className="font-heading text-[14.5px] font-semibold leading-[1.35]">{title}</div>
+        <div className="text-[12px] text-grey mt-1.5">{shortDate(date)}</div>
+        {area ? <div className="text-[12px] text-grey mt-1.5">{area}</div> : null}
+        <div className="text-[14px] font-bold mt-2.5">{price === 0 ? 'Free' : idr(price)}</div>
       </div>
     </Link>
   );

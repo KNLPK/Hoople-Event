@@ -137,7 +137,7 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
             </button>
           </div>
 
-          <div className="evt-sched__actions">
+          <div className="flex items-center gap-2.5">
             {hybrid ? (
               <button
                 type="button"
@@ -162,11 +162,11 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
         </div>
 
         {draft.sessions.length === 0 ? (
-          <p className="wiz-sessions__empty">
+          <p className="text-[13px] text-grey py-[18px] px-0">
             No sessions yet. Add one so participants know how the day runs.
           </p>
         ) : draft.scheduleView === 'timeline' ? (
-          <div className="evt-timeline">
+          <div className="flex flex-col">
             {schedule.map((session) => {
               const { Icon, colour, tint } = sessionIcon(session);
               return (
@@ -195,11 +195,11 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
                         {DELIVERY_LABEL[session.delivery]}
                       </span>
                     ) : session.kind !== 'Break' ? (
-                      <span className="evt-kind">{session.kind}</span>
+                      <span className="inline-flex py-1 px-[11px] rounded-pill bg-brand-tint-strong text-[11.5px] font-semibold text-brand-deep">{session.kind}</span>
                     ) : null}
 
                     {session.speaker ? (
-                      <span className="evt-tl__who">
+                      <span className="flex items-center gap-[7px] text-[12.5px] text-ink-3 whitespace-nowrap">
                         <Users size={13} color="#8B8A99" strokeWidth={1.9} />
                         {session.speaker}
                       </span>
@@ -224,7 +224,7 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
             })}
           </div>
         ) : (
-          <div className="evt-rows">
+          <div className="flex flex-col gap-3">
             {schedule.map((session) => (
               <div
                 key={session.id}
@@ -236,7 +236,7 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
                 onDrop={() => reorder(session.id)}
               >
                 <div className="evt-row__time">
-                  <span className="evt-row__grip" aria-hidden="true">
+                  <span className="flex cursor-grab pt-0.5" aria-hidden="true">
                     <Grip size={14} color="#C3C1CE" />
                   </span>
                   <div>
@@ -245,11 +245,11 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
                   </div>
                 </div>
 
-                <div className="evt-row__fields">
+                <div className="flex flex-col gap-3.5 min-w-0">
                   <div className="wiz-pair">
                     <div>
-                      <span className="wiz-field__label">
-                        Session Title<span className="field__req"> *</span>
+                      <span className="block text-[13.5px] font-semibold text-ink">
+                        Session Title<span className="text-danger"> *</span>
                       </span>
                       <CounterInput
                         ariaLabel="Session title"
@@ -261,7 +261,7 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
                     </div>
                     <div className="evt-row__pair">
                       <div>
-                        <span className="wiz-field__label">Type</span>
+                        <span className="block text-[13.5px] font-semibold text-ink">Type</span>
                         <SelectInput
                           ariaLabel="Session type"
                           value={session.kind}
@@ -269,7 +269,7 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
                           onChange={(value) => update(session.id, { kind: value as SessionKind })}
                           leading={
                             <span
-                              className="evt-dot"
+                              className="w-[9px] h-[9px] rounded-[50%] flex-none"
                               style={{
                                 background: SESSION_KINDS.find((k) => k.value === session.kind)?.colour,
                               }}
@@ -278,7 +278,7 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
                         />
                       </div>
                       <div>
-                        <span className="wiz-field__label">Duration</span>
+                        <span className="block text-[13.5px] font-semibold text-ink">Duration</span>
                         <span className="wiz-affix">
                           <input
                             value={session.minutes}
@@ -298,8 +298,8 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
 
                   <div className="wiz-pair">
                     <div>
-                      <span className="wiz-field__label">
-                        Description <span className="wiz-field__optional">(Optional)</span>
+                      <span className="block text-[13.5px] font-semibold text-ink">
+                        Description <span className="font-normal text-grey">(Optional)</span>
                       </span>
                       <CounterInput
                         ariaLabel="Session description"
@@ -310,8 +310,8 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
                       />
                     </div>
                     <div>
-                      <span className="wiz-field__label">
-                        Speaker <span className="wiz-field__optional">(Optional)</span>
+                      <span className="block text-[13.5px] font-semibold text-ink">
+                        Speaker <span className="font-normal text-grey">(Optional)</span>
                       </span>
                       <CounterInput
                         ariaLabel="Speaker"
@@ -325,7 +325,7 @@ export function EventSchedule({ draft, set }: EventSectionProps) {
 
                   {hybrid ? (
                     <div>
-                      <span className="wiz-field__label">Delivery Mode</span>
+                      <span className="block text-[13.5px] font-semibold text-ink">Delivery Mode</span>
                       <div className="evt-modes">
                         {DELIVERY_MODES.map((mode) => (
                           <button

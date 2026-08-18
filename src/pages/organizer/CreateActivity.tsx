@@ -184,7 +184,7 @@ export function OrgCreateActivity() {
       />
 
       <div className="wiz-grid">
-        <div className="wiz-form">
+        <div className="min-w-0">
           <Reveal className="wiz-section" key={String(step)}>
             <WizardAccordion
               panels={panels}

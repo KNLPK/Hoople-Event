@@ -172,19 +172,19 @@ function ActivityDetailPage() {
           </div>
           <h1>{activity.title}</h1>
           <div className="detail-hero__host">by {activity.host}</div>
-          <div className="detail-hero__stats">
-            <span className="row" style={{ gap: 8 }}>
+          <div className="flex items-center gap-3.5 text-[15px] font-medium mb-[26px] flex-wrap">
+            <span className="flex items-center" style={{ gap: 8 }}>
               <Star size={17} />
               {activity.rating} ({activity.reviewCount} reviews)
             </span>
             <span style={{ opacity: 0.5 }}>•</span>
-            <span className="row" style={{ gap: 8 }}>
+            <span className="flex items-center" style={{ gap: 8 }}>
               <Users size={17} color="#fff" />
               {activity.joined}
             </span>
           </div>
           <p className="detail-hero__summary">{activity.summary}</p>
-          <div className="detail-hero__features">
+          <div className="flex gap-[34px] flex-wrap">
             {activity.highlights.map((highlight, index) => (
               <div key={highlight} className="detail-hero__feature">
                 <span>
@@ -253,24 +253,24 @@ function ActivityDetailPage() {
             </button>
           </div>
           <div className="about-grid__rule" />
-          <div className="stack" style={{ gap: 24 }}>
+          <div className="flex flex-col" style={{ gap: 24 }}>
             {specs.slice(0, 3).map(({ icon: Icon, label, value }) => (
               <div key={label} className="spec">
                 <Icon size={21} color="#5B21F5" strokeWidth={1.7} />
                 <div>
-                  <div className="spec__label">{label}</div>
-                  <div className="spec__value">{value}</div>
+                  <div className="text-[14px] font-semibold mb-1">{label}</div>
+                  <div className="text-[13.5px] text-ink-muted leading-[1.65]">{value}</div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="stack" style={{ gap: 24 }}>
+          <div className="flex flex-col" style={{ gap: 24 }}>
             {specs.slice(3).map(({ icon: Icon, label, value }) => (
               <div key={label} className="spec">
                 <Icon size={21} color="#5B21F5" strokeWidth={1.7} />
                 <div>
-                  <div className="spec__label">{label}</div>
-                  <div className="spec__value">{value}</div>
+                  <div className="text-[14px] font-semibold mb-1">{label}</div>
+                  <div className="text-[13.5px] text-ink-muted leading-[1.65]">{value}</div>
                 </div>
               </div>
             ))}
@@ -283,7 +283,7 @@ function ActivityDetailPage() {
         <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>Gallery</h2>
         <div className="gallery">
           {activity.galleryHints.map((hint, index) => (
-            <div key={hint} className="gallery__tile">
+            <div key={hint} className="h-[190px] rounded-lg overflow-hidden relative">
               <ImageSlot
                 id={`gallery-${activity.slug}-${index}`}
                 shape="rounded"
@@ -313,7 +313,7 @@ function ActivityDetailPage() {
 
       {/* Available dates */}
       <Reveal className="mx-auto w-full max-w-page px-gutter section">
-        <div className="row row--between" style={{ marginBottom: 16, gap: 16, flexWrap: 'wrap' }}>
+        <div className="flex items-center justify-between" style={{ marginBottom: 16, gap: 16, flexWrap: 'wrap' }}>
           <h2 style={{ fontSize: 22, fontWeight: 600 }}>Available dates</h2>
           <Button as="button" variant="outline" onClick={() => setCalendarOpen(true)} style={{ height: 42 }}>
             <Calendar size={17} strokeWidth={1.9} />
@@ -367,8 +367,8 @@ function ActivityDetailPage() {
         <div className="nudge">
           <CalendarDots size={30} color="#5B21F5" strokeWidth={1.7} />
           <div style={{ flex: 1, minWidth: 240 }}>
-            <div className="nudge__title">Can't find a date that works for you?</div>
-            <div className="nudge__body">
+            <div className="text-[15px] font-semibold mb-1">Can't find a date that works for you?</div>
+            <div className="text-[13.5px] text-ink-3">
               New sessions are added regularly. Follow this activity to get notified!
             </div>
           </div>
@@ -396,7 +396,7 @@ function ActivityDetailPage() {
               <div key={item.title} className="bring-card">
                 <Icon size={26} color="#5B21F5" strokeWidth={1.6} />
                 <div className="bring-card__title">{item.title}</div>
-                <div className="bring-card__detail">{item.detail}</div>
+                <div className="text-[13px] text-grey">{item.detail}</div>
               </div>
             );
           })}
@@ -404,12 +404,12 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* Sessions */}
-      <Reveal id="sessions" className="mx-auto w-full max-w-page px-gutter section--loose">
-        <div className="row row--between" style={{ marginBottom: 20, gap: 16, flexWrap: 'wrap' }}>
+      <Reveal id="sessions" className="mx-auto w-full max-w-page px-gutter pt-14">
+        <div className="flex items-center justify-between" style={{ marginBottom: 20, gap: 16, flexWrap: 'wrap' }}>
           <h2 style={{ fontSize: 22, fontWeight: 600 }}>
             Available sessions for {shortDate(selectedDate)}
           </h2>
-          <div className="row" style={{ gap: 14 }}>
+          <div className="flex items-center" style={{ gap: 14 }}>
             <Button as="button" variant="neutral" onClick={() => setCalendarOpen(true)} style={{ height: 40 }}>
               <Calendar size={17} color="#5C5B6B" strokeWidth={1.8} />
               Change date
@@ -432,7 +432,7 @@ function ActivityDetailPage() {
               <div>
                 {session.popular ? <span className="tag tag--caps">POPULAR</span> : null}
                 <div className="session-row__name">{session.name}</div>
-                <div className="session-row__time">
+                <div className="text-[13.5px] text-ink-muted mb-[18px]">
                   {sessionWindow(session.start, session.end, session.durationMin)}
                 </div>
                 <div className="session-row__facts">
@@ -482,8 +482,8 @@ function ActivityDetailPage() {
           ))
         ) : (
           <div className="empty">
-            <div className="empty__title">No sessions on {longDate(selectedDate)}</div>
-            <p className="empty__body">
+            <div className="font-heading text-[17px] font-semibold mb-1.5">No sessions on {longDate(selectedDate)}</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">
               {activity.title} runs {activity.recurrence.toLowerCase()}. Pick another date to see what's open.
             </p>
             <Button as="button" variant="primary" onClick={() => setCalendarOpen(true)}>
@@ -495,8 +495,8 @@ function ActivityDetailPage() {
         <div className="nudge">
           <Clock size={30} color="#5B21F5" strokeWidth={1.8} />
           <div style={{ flex: 1, minWidth: 240 }}>
-            <div className="nudge__title">Can't find a slot that works for you?</div>
-            <div className="nudge__body">
+            <div className="text-[15px] font-semibold mb-1">Can't find a slot that works for you?</div>
+            <div className="text-[13.5px] text-ink-3">
               New sessions are added regularly. You can follow this activity to get notified.
             </div>
           </div>
@@ -515,22 +515,22 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* Location + reviews */}
-      <Reveal id="host" className="mx-auto w-full max-w-page px-gutter section--loose">
+      <Reveal id="host" className="mx-auto w-full max-w-page px-gutter pt-14">
         <div className="detail-split">
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>Location</h2>
             <div className="map-card">
-              <div className="map-card__map">
+              <div className="h-[170px]">
                 <ImageSlot id={`map-${activity.slug}`} shape="rect" placeholder="Map screenshot" />
               </div>
-              <div className="map-card__body">
+              <div className="p-5">
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 600, marginBottom: 6 }}>
                   {activity.venue.name}
                 </div>
                 <div style={{ fontSize: 13.5, color: 'var(--color-ink-muted)', marginBottom: 16 }}>
                   {activity.venue.address}
                 </div>
-                <div className="stack" style={{ gap: 10, marginBottom: 20 }}>
+                <div className="flex flex-col" style={{ gap: 10, marginBottom: 20 }}>
                   {activity.venue.notes.map((note, index) => {
                     const Icon = VENUE_NOTE_ICONS[index % VENUE_NOTE_ICONS.length];
                     return (
@@ -541,7 +541,7 @@ function ActivityDetailPage() {
                     );
                   })}
                 </div>
-                <div className="row" style={{ gap: 14 }}>
+                <div className="flex items-center" style={{ gap: 14 }}>
                   <Button
                     as="a"
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -569,7 +569,7 @@ function ActivityDetailPage() {
           </div>
 
           <div id="reviews">
-            <div className="row row--between" style={{ marginBottom: 16 }}>
+            <div className="flex items-center justify-between" style={{ marginBottom: 16 }}>
               <h2 style={{ fontSize: 22, fontWeight: 600 }}>What people say</h2>
               <button
                 type="button"
@@ -582,12 +582,12 @@ function ActivityDetailPage() {
             </div>
             {activity.reviews.slice(reviewIndex, reviewIndex + 2).map((review) => (
               <article key={review.author} className="review-card">
-                <div className="row" style={{ gap: 12, marginBottom: 12 }}>
-                  <span className="review-card__stars">{'★'.repeat(review.stars)}</span>
+                <div className="flex items-center" style={{ gap: 12, marginBottom: 12 }}>
+                  <span className="text-star text-[14px] tracking-[2px]">{'★'.repeat(review.stars)}</span>
                   <span style={{ fontSize: 12.5, color: 'var(--color-grey-soft)' }}>{review.when}</span>
                 </div>
                 <p className="review-card__body">{review.body}</p>
-                <div className="row" style={{ gap: 11 }}>
+                <div className="flex items-center" style={{ gap: 11 }}>
                   <div style={{ width: 32, height: 32, borderRadius: '50%', overflow: 'hidden', flex: 'none' }}>
                     <ImageSlot id={`reviewer-${activity.slug}-${review.author}`} shape="circle" placeholder="" />
                   </div>
@@ -611,7 +611,7 @@ function ActivityDetailPage() {
       </Reveal>
 
       {/* FAQ + more like this */}
-      <Reveal id="faq" className="mx-auto w-full max-w-page px-gutter section--loose">
+      <Reveal id="faq" className="mx-auto w-full max-w-page px-gutter pt-14">
         <div className="detail-split detail-split--faq">
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>FAQ</h2>
@@ -619,7 +619,7 @@ function ActivityDetailPage() {
 
             <button
               type="button"
-              className="tint-panel--soft"
+              className="bg-surface-panel rounded-lg py-4 px-[18px]"
               style={{
                 marginTop: 12,
                 width: '100%',
@@ -723,7 +723,7 @@ function ActivityDetailPage() {
                   }
                 }}
               >
-                <span className="cal-day__num">{cell.day}</span>
+                <span className="text-[14px] font-semibold leading-[1]">{cell.day}</span>
                 <span className={`cal-day__dot ${cell.available ? '' : 'cal-day__dot--off'}`.trim()} />
               </button>
             ),
@@ -781,8 +781,8 @@ function Fact({ icon, label, value }: { icon: React.ReactNode; label: string; va
     <div className="session-fact">
       {icon}
       <div>
-        <div className="session-fact__label">{label}</div>
-        <div className="session-fact__value">{value}</div>
+        <div className="text-[13px] font-semibold">{label}</div>
+        <div className="text-[13px] text-grey mt-0.5">{value}</div>
       </div>
     </div>
   );

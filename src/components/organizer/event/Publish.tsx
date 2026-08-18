@@ -65,7 +65,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
                   {VISIBILITY_ICON[option.value]}
                   <span className="wiz-tile__title">{option.value}</span>
                 </span>
-                <span className="wiz-tile__sub">{option.sub}</span>
+                <span className="block text-[12px] text-grey mt-[3px] leading-[1.45]">{option.sub}</span>
               </label>
             ))}
           </div>
@@ -94,7 +94,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
                   {STATUS_ICON[option.value]}
                   <span className="wiz-tile__title">{option.title}</span>
                 </span>
-                <span className="wiz-tile__sub">{option.sub}</span>
+                <span className="block text-[12px] text-grey mt-[3px] leading-[1.45]">{option.sub}</span>
               </label>
             ))}
           </div>
@@ -143,7 +143,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
           title="Discovery"
           sub="Increase your event visibility on the Hoople platform."
         >
-          <div className="evt-discovery">
+          <div className="flex flex-col gap-4">
             <Toggle
               checked={draft.showOnDiscover}
               onChange={set('showOnDiscover')}
@@ -200,7 +200,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
         <Setting title="SEO / Share Preview" sub="Customize how your link looks when shared.">
           <div className="evt-share">
             <div>
-              <span className="wiz-field__label">Share Link</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Share Link</span>
               <div className="evt-sharelink">
                 <span className="wiz-affix">
                   <span className="wiz-affix__prefix">hoople.id/e/</span>
@@ -227,9 +227,9 @@ export function EventPublish({ draft, set }: EventSectionProps) {
             </div>
 
             <div>
-              <span className="wiz-field__label">Social Preview</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Social Preview</span>
               <div className="evt-social">
-                <div className="evt-social__art">
+                <div className="h-[70px] rounded-sm overflow-hidden">
                   <ImageSlot
                     id="event-cover"
                     src={draft.cover}
@@ -254,7 +254,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
         </Setting>
 
         <div className="wiz-note">
-          <span className="wiz-note__icon">
+          <span className="flex-none flex mt-px">
             <Info size={16} color="#6D28FF" strokeWidth={1.9} />
           </span>
           <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>

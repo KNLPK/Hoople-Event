@@ -39,7 +39,7 @@ export function Communities() {
               payout lands H+1.
             </p>
           </div>
-          <div className="cta-banner__actions">
+          <div className="flex gap-3.5 flex-wrap">
             <Button as="link" to="/organizers" variant="white" size="xl">
               Create Experience
             </Button>
@@ -71,7 +71,7 @@ export function CommunityDetail() {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-page px-gutter section--tight">
+      <div className="mx-auto w-full max-w-page px-gutter pt-[30px]">
         <div className="explore-banner explore-banner--art">
           <div style={{ height: 180, borderRadius: 16, overflow: 'hidden' }}>
             <ImageSlot
@@ -86,7 +86,7 @@ export function CommunityDetail() {
               {community.name}
             </h1>
             <p style={{ fontSize: 15, color: 'var(--color-ink-3)', marginBottom: 16 }}>{community.focus}</p>
-            <div className="row" style={{ gap: 20, flexWrap: 'wrap', marginBottom: 22 }}>
+            <div className="flex items-center" style={{ gap: 20, flexWrap: 'wrap', marginBottom: 22 }}>
               <span className="meta">
                 <Users size={16} color="#8B8A99" strokeWidth={1.9} />
                 {community.members}
@@ -100,7 +100,7 @@ export function CommunityDetail() {
                 4.9 average across {hosted.length || 1} experiences
               </span>
             </div>
-            <div className="row" style={{ gap: 14, flexWrap: 'wrap' }}>
+            <div className="flex items-center" style={{ gap: 14, flexWrap: 'wrap' }}>
               <Button as="button" variant="primary" onClick={() => toast(`Following ${community.name}`)}>
                 Follow community
               </Button>
@@ -130,8 +130,8 @@ export function CommunityDetail() {
           </div>
         ) : (
           <div className="empty">
-            <div className="empty__title">No open sessions right now</div>
-            <p className="empty__body">
+            <div className="font-heading text-[17px] font-semibold mb-1.5">No open sessions right now</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">
               Follow {community.name} and we'll message you the moment their next session opens.
             </p>
             <Button as="button" variant="primary" onClick={() => toast(`Following ${community.name}`)}>

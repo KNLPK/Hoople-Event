@@ -174,9 +174,9 @@ export function Auth() {
               goTo(2);
             }}
           >
-            <div className="auth-card__head">
-              <div className="auth-card__title">Create your account</div>
-              <div className="auth-card__sub">Let's get you started with Hoople.</div>
+            <div className="text-center mb-[26px]">
+              <div className="font-heading text-[24px] font-bold tracking-[-0.02em]">Create your account</div>
+              <div className="text-[13.5px] text-ink-muted mt-1.5">Let's get you started with Hoople.</div>
             </div>
 
             <div className="grid grid--2" style={{ gap: 16, marginBottom: 18 }}>
@@ -315,9 +315,9 @@ export function Auth() {
                     }
                   >
                     <span style={{ fontSize: 15 }}>{icon}</span>
-                    <span className="interest__name">{name}</span>
+                    <span className="text-[12.5px] font-semibold flex-1">{name}</span>
                     {on ? (
-                      <span className="interest__check">
+                      <span className="w-[18px] h-[18px] rounded-[50%] bg-brand text-[#fff] text-[10px] flex items-center justify-center flex-none">
                         <Check size={10} color="#fff" />
                       </span>
                     ) : null}
@@ -381,9 +381,9 @@ export function Auth() {
               navigate(next, { replace: true });
             }}
           >
-            <div className="auth-card__head">
-              <div className="auth-card__title">Welcome back! 👋</div>
-              <div className="auth-card__sub">Login to continue your Hoople journey.</div>
+            <div className="text-center mb-[26px]">
+              <div className="font-heading text-[24px] font-bold tracking-[-0.02em]">Welcome back! 👋</div>
+              <div className="text-[13.5px] text-ink-muted mt-1.5">Login to continue your Hoople journey.</div>
             </div>
 
             <div style={{ marginBottom: 18 }}>
@@ -398,7 +398,7 @@ export function Auth() {
             </div>
 
             <div style={{ marginBottom: 24 }}>
-              <div className="row row--between" style={{ marginBottom: 8 }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: 8 }}>
                 <span className="field__label" style={{ marginBottom: 0 }}>
                   Password
                 </span>
@@ -474,7 +474,7 @@ export function Auth() {
                 },
               ].map(({ Icon, title, body }) => (
                 <div key={title}>
-                  <span className="auth-trust__icon">
+                  <span className="w-[34px] h-[34px] rounded-md bg-brand-tint-strong inline-flex items-center justify-center mb-2.5">
                     <Icon size={17} color="#6D28FF" strokeWidth={1.8} />
                   </span>
                   <div style={{ fontSize: 12.5, fontWeight: 600, marginBottom: 5 }}>{title}</div>
@@ -497,7 +497,7 @@ function SocialBlock({ onPick }: { onPick: (provider: string) => void }) {
         or continue with
         <span />
       </div>
-      <div className="stack" style={{ gap: 12 }}>
+      <div className="flex flex-col" style={{ gap: 12 }}>
         <Button as="button" variant="neutral" block style={{ height: 48, borderRadius: 11 }} onClick={() => onPick('Google')}>
           <GoogleMark size={17} />
           Continue with Google

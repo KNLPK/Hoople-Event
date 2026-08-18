@@ -21,7 +21,7 @@ export function EventDateLocation({ draft, set }: EventSectionProps) {
 
       <div className="org-card wiz-card">
         <div className="wiz-field">
-          <span className="wiz-field__label">Date &amp; Time</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Date &amp; Time</span>
           <span className="wiz-field__hint">Choose the date and time for your event.</span>
 
           <div className="evt-when">
@@ -87,7 +87,7 @@ export function EventDateLocation({ draft, set }: EventSectionProps) {
         </div>
 
         <div className="wiz-field">
-          <span className="wiz-field__label">Time Zone</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Time Zone</span>
           <SelectInput
             ariaLabel="Time zone"
             value={draft.timezone}
@@ -106,13 +106,13 @@ export function EventDateLocation({ draft, set }: EventSectionProps) {
         </div>
 
         <div className="wiz-field wiz-field--ruled">
-          <span className="wiz-field__label">Event Type</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Event Type</span>
           <span className="wiz-field__hint">Choose how your event will be hosted.</span>
           <EventTypeTiles draft={draft} set={set} />
 
           {/* Changing the type here rewrites the next two sub-sections. */}
           <div className="wiz-note" style={{ marginTop: 16 }}>
-            <span className="wiz-note__icon">
+            <span className="flex-none flex mt-px">
               <Info size={16} color="#6D28FF" strokeWidth={1.9} />
             </span>
             <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>{PLACE_NOTE[draft.eventType]}</p>

@@ -51,8 +51,8 @@ export function VenueFields({
   return (
     <>
       <div className="wiz-field">
-        <span className="wiz-field__label">
-          Venue Name<span className="field__req"> *</span>
+        <span className="block text-[13.5px] font-semibold text-ink">
+          Venue Name<span className="text-danger"> *</span>
         </span>
         {!compact ? <span className="wiz-field__hint">Enter the name of your venue.</span> : null}
         <CounterInput
@@ -65,8 +65,8 @@ export function VenueFields({
       </div>
 
       <div className="wiz-field">
-        <span className="wiz-field__label">
-          Address<span className="field__req"> *</span>
+        <span className="block text-[13.5px] font-semibold text-ink">
+          Address<span className="text-danger"> *</span>
         </span>
         {!compact ? (
           <span className="wiz-field__hint">Search or enter the full address.</span>
@@ -119,8 +119,8 @@ export function VenueFields({
 
       <div className={compact ? 'wiz-pair' : 'wiz-triple'}>
         <div>
-          <span className="wiz-field__label">
-            Meeting Point <span className="wiz-field__optional">(Optional)</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Meeting Point <span className="font-normal text-grey">(Optional)</span>
           </span>
           {!compact ? (
             <span className="wiz-field__hint">Help participants find the check-in location.</span>
@@ -134,8 +134,8 @@ export function VenueFields({
           />
         </div>
         <div>
-          <span className="wiz-field__label">
-            Parking Information <span className="wiz-field__optional">(Optional)</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Parking Information <span className="font-normal text-grey">(Optional)</span>
           </span>
           {!compact ? (
             <span className="wiz-field__hint">Provide parking info for participants.</span>
@@ -149,8 +149,8 @@ export function VenueFields({
           />
         </div>
         <div className={compact ? 'evt-span' : ''}>
-          <span className="wiz-field__label">
-            Accessibility <span className="wiz-field__optional">(Optional)</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Accessibility <span className="font-normal text-grey">(Optional)</span>
           </span>
           {!compact ? (
             <span className="wiz-field__hint">Share accessibility information.</span>
@@ -166,14 +166,14 @@ export function VenueFields({
 
       {!compact ? (
         <div className="org-card wiz-panel evt-subpanel">
-          <span className="wiz-field__label">
-            Venue Contact <span className="wiz-field__optional">(Optional)</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Venue Contact <span className="font-normal text-grey">(Optional)</span>
           </span>
           <span className="wiz-field__hint">
             Provide a contact person or number for venue-related inquiries.
           </span>
           <span className="wiz-affix">
-            <span className="wiz-affix__lead">
+            <span className="flex pl-[13px]">
               <Phone size={15} color="#8B8A99" strokeWidth={1.9} />
             </span>
             <input
@@ -229,8 +229,8 @@ export function VirtualFields({
       {/* The URL needs the wider half — the platform is a short select. */}
       <div className="wiz-pair evt-pair--url">
         <div>
-          <span className="wiz-field__label">
-            Meeting Platform<span className="field__req"> *</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Meeting Platform<span className="text-danger"> *</span>
           </span>
           {!compact ? (
             <span className="wiz-field__hint">Choose the platform you will use.</span>
@@ -244,8 +244,8 @@ export function VirtualFields({
           />
         </div>
         <div>
-          <span className="wiz-field__label">
-            Meeting URL<span className="field__req"> *</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Meeting URL<span className="text-danger"> *</span>
           </span>
           {!compact ? (
             <span className="wiz-field__hint">Paste the permanent meeting link.</span>
@@ -279,7 +279,7 @@ export function VirtualFields({
       <div className="wiz-pair">
         {!compact ? (
           <div>
-            <span className="wiz-field__label">Meeting ID</span>
+            <span className="block text-[13.5px] font-semibold text-ink">Meeting ID</span>
             <span className="wiz-field__hint">Your {draft.platform} meeting ID (numbers only).</span>
             <input
               className="wiz-input"
@@ -291,8 +291,8 @@ export function VirtualFields({
           </div>
         ) : null}
         <div className={compact ? 'evt-span' : ''}>
-          <span className="wiz-field__label">
-            Passcode <span className="wiz-field__optional">(Optional)</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Passcode <span className="font-normal text-grey">(Optional)</span>
           </span>
           {!compact ? (
             <span className="wiz-field__hint">Enter the meeting passcode.</span>
@@ -303,7 +303,7 @@ export function VirtualFields({
 
       {!compact ? (
         <div className="wiz-field">
-          <span className="wiz-field__label">Host / Organizer Email</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Host / Organizer Email</span>
           <span className="wiz-field__hint">This email will be displayed as the host.</span>
           <input
             className="wiz-input"
@@ -317,8 +317,8 @@ export function VirtualFields({
       ) : null}
 
       <div className="wiz-field">
-        <span className="wiz-field__label">
-          Join Instructions {compact ? <span className="wiz-field__optional">(Optional)</span> : null}
+        <span className="block text-[13.5px] font-semibold text-ink">
+          Join Instructions {compact ? <span className="font-normal text-grey">(Optional)</span> : null}
         </span>
         <span className="wiz-field__hint">Add instructions for participants before they join.</span>
 
@@ -369,8 +369,8 @@ export function VirtualFields({
 
       {!compact ? (
         <div className="wiz-field">
-          <span className="wiz-field__label">
-            Support Contact <span className="wiz-field__optional">(Optional)</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Support Contact <span className="font-normal text-grey">(Optional)</span>
           </span>
           <span className="wiz-field__hint">
             Provide a contact for technical support during the event.
@@ -405,7 +405,7 @@ export function RecordingFields({ draft, set }: { draft: EventDraft; set: EventS
       />
 
       <div className="wiz-field">
-        <span className="wiz-field__label">Recording</span>
+        <span className="block text-[13.5px] font-semibold text-ink">Recording</span>
         <span className="wiz-field__hint">Will this session be recorded?</span>
         <SelectInput
           ariaLabel="Recording"
@@ -416,7 +416,7 @@ export function RecordingFields({ draft, set }: { draft: EventDraft; set: EventS
       </div>
 
       <div className="wiz-field">
-        <span className="wiz-field__label">Recording Access</span>
+        <span className="block text-[13.5px] font-semibold text-ink">Recording Access</span>
         <span className="wiz-field__hint">Who can access the recording?</span>
         <SelectInput
           ariaLabel="Recording access"
@@ -427,7 +427,7 @@ export function RecordingFields({ draft, set }: { draft: EventDraft; set: EventS
       </div>
 
       <div className="wiz-field">
-        <span className="wiz-field__label">Recording Availability</span>
+        <span className="block text-[13.5px] font-semibold text-ink">Recording Availability</span>
         <span className="wiz-field__hint">How long will the recording be available?</span>
         <SelectInput
           ariaLabel="Recording availability"

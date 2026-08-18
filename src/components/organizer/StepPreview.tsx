@@ -64,7 +64,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
       {view === 'participant' ? (
         <div className="wiz-stack">
           <div className="wiz-face">
-            <div className="wiz-face__media">
+            <div className="relative h-[210px]">
               <ImageSlot
                 id="builder-cover"
                 src={draft.cover}
@@ -84,7 +84,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
             </div>
 
             <div className="wiz-face__body">
-              <h3 className="wiz-sum__title">{draft.title || PREVIEW_FALLBACK.title}</h3>
+              <h3 className="font-heading text-[19px] font-semibold tracking-[-0.02em] mb-[11px]">{draft.title || PREVIEW_FALLBACK.title}</h3>
               <div className="wiz-pv__host">
                 <span className="wiz-pv__avatar">{WORKSPACE_INITIALS}</span>
                 by {draft.hostedAs}
@@ -113,12 +113,12 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
 
           <div className="wiz-pair">
             <section className="org-card wiz-panel">
-              <span className="wiz-field__label">Price per Session</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Price per Session</span>
               <div className="wiz-face__price">{rupiah(draft.price)}</div>
               <span className="wiz-field__hint">This price will be applied to all sessions.</span>
             </section>
 
-            <section className="org-card wiz-panel wiz-face__cta">
+            <section className="org-card wiz-panel flex flex-col justify-center gap-2.5">
               <button
                 type="button"
                 className="btn btn--primary btn--block"
@@ -137,7 +137,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
           </div>
 
           <section className="org-card wiz-panel">
-            <span className="wiz-field__label">About this activity</span>
+            <span className="block text-[13.5px] font-semibold text-ink">About this activity</span>
             <p className="wiz-face__about">
               {draft.summary || 'Add a short description in 1.1 and it will appear here.'}
             </p>
@@ -151,7 +151,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
           </section>
 
           <div className="wiz-note">
-            <span className="wiz-note__icon">
+            <span className="flex-none flex mt-px">
               <Info size={17} color="#6D28FF" strokeWidth={1.9} />
             </span>
             <div>
@@ -163,7 +163,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
       ) : (
         <div className="wiz-stack">
           <section className="org-card wiz-panel">
-            <span className="wiz-field__label">How this lands in your console</span>
+            <span className="block text-[13.5px] font-semibold text-ink">How this lands in your console</span>
             <span className="wiz-field__hint">
               This is the row you will manage it from once it is published.
             </span>
@@ -204,7 +204,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
               </div>
 
               <div className="org-xp-row__stat">
-                <span className="org-xp-row__stat-label">Capacity</span>
+                <span className="text-[12px] text-grey">Capacity</span>
                 <strong>0 / {capacity}</strong>
                 <div className="org-xp-row__progress">
                   <div className="org-meter" style={{ width: '100%', marginTop: 0 }}>
@@ -215,14 +215,14 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
               </div>
 
               <div className="org-xp-row__stat">
-                <span className="org-xp-row__stat-label">Revenue</span>
+                <span className="text-[12px] text-grey">Revenue</span>
                 <strong className="org-xp-row__revenue">{rupiah(0)}</strong>
               </div>
 
               <div className="org-xp-row__stat">
-                <span className="org-xp-row__stat-label">Status</span>
+                <span className="text-[12px] text-grey">Status</span>
                 <span className="org-pill org-pill--draft">Draft</span>
-                <span className="org-xp-row__note">
+                <span className="text-[11.5px] text-grey">
                   {draft.publishWhen === 'now'
                     ? 'Goes live when you publish'
                     : `Scheduled for ${compactDate(draft.publishDate)}`}
@@ -234,7 +234,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
           </section>
 
           <div className="wiz-note">
-            <span className="wiz-note__icon">
+            <span className="flex-none flex mt-px">
               <Info size={17} color="#6D28FF" strokeWidth={1.9} />
             </span>
             <div>

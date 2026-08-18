@@ -84,7 +84,7 @@ export function TeamsExperiences() {
       </div>
 
       {rows.length ? (
-        <div className="tm-explist">
+        <div className="flex flex-col gap-3.5">
           {rows.map((event, index) => (
             <Reveal
               key={event.id}
@@ -92,7 +92,7 @@ export function TeamsExperiences() {
               className={`org-card tm-expcard ${event.id === active.id ? 'is-open' : ''}`.trim()}
             >
               <button type="button" className="tm-expcard__hit" onClick={() => open(event)}>
-                <span className="tm-expcard__media">
+                <span className="block h-[120px] rounded-[12px] overflow-hidden bg-surface-chip">
                   <ImageSlot
                     id={`tm-cover-${event.id}`}
                     shape="rounded"
@@ -102,15 +102,15 @@ export function TeamsExperiences() {
                   />
                 </span>
 
-                <span className="tm-expcard__body">
-                  <span className="tm-expcard__top">
+                <span className="flex flex-col gap-[7px] min-w-0">
+                  <span className="flex items-center gap-2 flex-wrap">
                     <span className={`org-pill org-pill--${statusTone(event.status)}`}>{event.status}</span>
                     <span className="tm-private">
                       <Lock size={12} color="#5B21F5" strokeWidth={2} />
                       {event.audience.includes('All members') ? 'All members' : event.audience.join(' · ')}
                     </span>
                     {event.recurring ? (
-                      <span className="tm-recur">
+                      <span className="inline-flex items-center gap-[5px] py-[3px] px-[9px] rounded-pill bg-surface-chip text-ink-3 text-[11.5px] font-semibold">
                         <Repeat size={12} color="#6B6A7B" strokeWidth={2} />
                         {event.recurring}
                       </span>
@@ -118,8 +118,8 @@ export function TeamsExperiences() {
                     {event.id === active.id ? <span className="tm-openflag">Open in console</span> : null}
                   </span>
 
-                  <span className="tm-expcard__title">{event.title}</span>
-                  <span className="tm-expcard__summary">{event.summary}</span>
+                  <span className="font-heading text-[16.5px] font-semibold tracking-[-0.015em]">{event.title}</span>
+                  <span className="text-[13px] leading-[1.6] text-ink-3">{event.summary}</span>
 
                   <span className="tm-ctx__meta">
                     <span>
@@ -167,8 +167,8 @@ export function TeamsExperiences() {
       ) : (
         <Reveal className="org-card">
           <div style={{ padding: 48, textAlign: 'center' }}>
-            <div className="empty__title">Nothing matches</div>
-            <p className="empty__body">Try a different search, or clear the status filter.</p>
+            <div className="font-heading text-[17px] font-semibold mb-1.5">Nothing matches</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">Try a different search, or clear the status filter.</p>
           </div>
         </Reveal>
       )}

@@ -66,7 +66,7 @@ export function EventPreview({
 
   return (
     <aside className="wiz-preview">
-      <h2 className="wiz-preview__title">Live Preview</h2>
+      <h2 className="font-heading text-[15px] font-semibold">Live Preview</h2>
       <p className="wiz-preview__lede">This is how your event page will look.</p>
 
       <div className="wiz-pv">
@@ -92,7 +92,7 @@ export function EventPreview({
         </div>
 
         <div className="wiz-pv__body">
-          <h3 className="evt-pv__title">{draft.title || 'Your Event Title'}</h3>
+          <h3 className="font-heading text-[19px] font-bold tracking-[-0.025em] leading-[1.25]">{draft.title || 'Your Event Title'}</h3>
           <p className="evt-pv__lede">
             {draft.summary ||
               'Short description of your event will appear here. This is a preview of how your event might look to the participants.'}
@@ -227,12 +227,12 @@ function DiscoverPreviews({
 
   return (
     <aside className="wiz-preview">
-      <h2 className="wiz-preview__title">How your page will appear in Discover</h2>
+      <h2 className="font-heading text-[15px] font-semibold">How your page will appear in Discover</h2>
       <p className="wiz-preview__lede">This is a preview of your event listing.</p>
 
       <span className="evt-dp__label">Discover Card (Desktop)</span>
       <div className="evt-dcard">
-        <div className="evt-dcard__media">
+        <div className="relative h-[150px]">
           <ImageSlot
             id="event-cover"
             src={draft.cover}
@@ -265,7 +265,7 @@ function DiscoverPreviews({
               </li>
             </ul>
 
-            <div className="evt-dcard__foot">
+            <div className="flex items-center justify-between gap-3 mt-3">
               <span className="evt-dcard__faces">
                 <i />
                 <i />
@@ -273,7 +273,7 @@ function DiscoverPreviews({
                 <i />
                 128 interested
               </span>
-              <span className="evt-dcard__cta">Get Ticket</span>
+              <span className="py-[7px] px-[15px] rounded-sm bg-brand text-[#fff] text-[12px] font-semibold">Get Ticket</span>
             </div>
           </div>
         </div>
@@ -281,7 +281,7 @@ function DiscoverPreviews({
 
       <span className="evt-dp__label">Search Result Preview</span>
       <div className="evt-srow">
-        <span className="evt-srow__art">
+        <span className="h-[52px] rounded-sm overflow-hidden">
           <ImageSlot id="event-cover" src={draft.cover} interactive={false} radius={8} placeholder="" />
         </span>
         <div>
@@ -301,13 +301,13 @@ function DiscoverPreviews({
       <div className="wiz-phone evt-mcard">
         <div className="wiz-phone__status">
           <span>9:41</span>
-          <span className="wiz-phone__glyphs" aria-hidden="true">
+          <span className="flex items-center gap-[5px]" aria-hidden="true">
             <i className="wiz-phone__bars" />
             <Wifi size={11} color="#12121A" strokeWidth={2} />
             <i className="wiz-phone__battery" />
           </span>
         </div>
-        <div className="evt-mcard__media">
+        <div className="relative h-[120px]">
           <ImageSlot id="event-cover" src={draft.cover} interactive={false} shape="rect" placeholder="" />
           <span className="evt-pv__badge">{(draft.category || 'Event').toUpperCase()}</span>
           <span className="wiz-pv__heart" aria-hidden="true">
@@ -368,12 +368,12 @@ function FinalPreview({
 
   return (
     <aside className="wiz-preview">
-      <div className="evt-final__previewhead">
+      <div className="flex items-start justify-between gap-3 mb-3.5 flex-wrap">
         <div>
-          <h2 className="wiz-preview__title">Final Event Preview</h2>
+          <h2 className="font-heading text-[15px] font-semibold">Final Event Preview</h2>
           <p className="wiz-preview__lede">This is exactly how participants will see your event.</p>
         </div>
-        <div className="evt-final__previewbtns">
+        <div className="flex gap-2 flex-wrap">
           <button type="button" className="wiz-addsession" onClick={() => toast('Opens once published')}>
             <Eye size={13} color="#6D28FF" strokeWidth={1.9} />
             Preview as Participant
@@ -393,7 +393,7 @@ function FinalPreview({
       </div>
 
       <div className="evt-dcard">
-        <div className="evt-dcard__media">
+        <div className="relative h-[150px]">
           <ImageSlot
             id="event-cover"
             src={draft.cover}
@@ -437,7 +437,7 @@ function FinalPreview({
               </li>
             </ul>
 
-            <div className="evt-dcard__foot">
+            <div className="flex items-center justify-between gap-3 mt-3">
               <span className="evt-dcard__faces">
                 <i />
                 <i />
@@ -445,7 +445,7 @@ function FinalPreview({
                 <i />
                 128 interested
               </span>
-              <span className="evt-dcard__cta">Get Ticket</span>
+              <span className="py-[7px] px-[15px] rounded-sm bg-brand text-[#fff] text-[12px] font-semibold">Get Ticket</span>
             </div>
           </div>
         </div>

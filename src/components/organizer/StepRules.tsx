@@ -54,7 +54,7 @@ export function StepRules({
           <FieldHead label="Attendance" hint="Decide how you handle late arrivals and no-shows." />
           <div className="wiz-pair">
             <label className="field">
-              <span className="wiz-field__label">Late arrival</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Late arrival</span>
               <SelectInput
                 ariaLabel="Late arrival policy"
                 value={draft.lateArrival}
@@ -64,7 +64,7 @@ export function StepRules({
               />
             </label>
             <label className="field">
-              <span className="wiz-field__label">No-show</span>
+              <span className="block text-[13.5px] font-semibold text-ink">No-show</span>
               <SelectInput
                 ariaLabel="No-show policy"
                 value={draft.noShow}
@@ -113,7 +113,7 @@ export function StepRules({
         </section>
 
         <div className="wiz-note">
-          <span className="wiz-note__icon">
+          <span className="flex-none flex mt-px">
             <Info size={17} color="#6D28FF" strokeWidth={1.9} />
           </span>
           <div>

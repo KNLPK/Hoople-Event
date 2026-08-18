@@ -133,7 +133,7 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
   }
 
   return (
-    <div className="stack" style={{ gap: 18 }}>
+    <div className="flex flex-col" style={{ gap: 18 }}>
       {/* Header banner */}
       <Reveal className="org-page-hero">
         <div>
@@ -241,15 +241,15 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
             }}
             aria-pressed={tile === item.key}
           >
-            <span className={`org-tile__icon org-tile__icon--${item.tone}`}>
+            <span className={`w-[38px] h-[38px] rounded-md flex items-center justify-center flex-none org-tile__icon--${item.tone}`}>
               {(() => {
                 const Icon = TILE_ICON[item.key];
                 return <Icon size={17} strokeWidth={1.9} />;
               })()}
             </span>
             <span>
-              <span className="org-tile__label">{item.label}</span>
-              <span className="org-tile__value">{count(item.key)}</span>
+              <span className="block text-[12.5px] text-grey font-medium">{item.label}</span>
+              <span className="block font-heading text-[21px] font-bold tracking-[-0.02em] mt-0.5">{count(item.key)}</span>
             </span>
           </button>
         ))}
@@ -259,8 +259,8 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
       <Reveal className="org-card" delay={180}>
         {shown.length === 0 ? (
           <div style={{ padding: 44, textAlign: 'center' }}>
-            <div className="empty__title">No experiences match</div>
-            <p className="empty__body">Try a different search, or reset the filters.</p>
+            <div className="font-heading text-[17px] font-semibold mb-1.5">No experiences match</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">Try a different search, or reset the filters.</p>
             <Button
               as="button"
               variant="neutral"
@@ -353,7 +353,7 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
               Showing {firstIndex}-{Math.min(currentPage * PAGE_SIZE, rows.length)} of {rows.length}{' '}
               experiences
             </span>
-            <div className="org-pagination__pages">
+            <div className="flex items-center gap-[7px]">
               <button
                 type="button"
                 className="org-page-btn"
@@ -365,7 +365,7 @@ export function OrgExperiences({ scope }: { scope: ExperienceScope }) {
               </button>
               {pageNumbers(currentPage, pageCount).map((entry, index) =>
                 entry === '…' ? (
-                  <span key={`gap-${index}`} className="org-page-gap">
+                  <span key={`gap-${index}`} className="py-0 px-0.5 text-grey-faint">
                     …
                   </span>
                 ) : (
@@ -474,7 +474,7 @@ function ExperienceCardRow({
       </div>
 
       <div className="org-xp-row__stat">
-        <span className="org-xp-row__stat-label">Registrations</span>
+        <span className="text-[12px] text-grey">Registrations</span>
         <strong>
           {experience.registered} / {experience.capacity}
         </strong>
@@ -490,16 +490,16 @@ function ExperienceCardRow({
       </div>
 
       <div className="org-xp-row__stat">
-        <span className="org-xp-row__stat-label">Revenue</span>
+        <span className="text-[12px] text-grey">Revenue</span>
         <strong className="org-xp-row__revenue">{rupiah(experience.revenue)}</strong>
       </div>
 
       <div className="org-xp-row__stat">
-        <span className="org-xp-row__stat-label">Status</span>
+        <span className="text-[12px] text-grey">Status</span>
         <span className={`org-pill org-pill--${experience.lifecycle.toLowerCase()}`}>
           {experience.lifecycle}
         </span>
-        <span className="org-xp-row__note">{experience.note}</span>
+        <span className="text-[11.5px] text-grey">{experience.note}</span>
       </div>
 
       <div className="org-xp-row__menu" ref={menuRef}>

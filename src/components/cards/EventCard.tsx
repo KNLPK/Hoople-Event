@@ -10,7 +10,7 @@ import type { EventItem } from '@/data/types';
 export function EventCard({ event }: { event: EventItem }) {
   return (
     <article className="card lift activity-card">
-      <div className="activity-card__media zoom">
+      <div className="relative h-[150px] flex-none zoom">
         <ImageSlot id={`event-${event.slug}`} shape="rect" placeholder={event.photoHint} />
         <span className="badge activity-card__badge">{event.badge ?? 'EVENT'}</span>
         <HeartButton kind="event" slug={event.slug} label={event.title} className="activity-card__heart" />
@@ -20,9 +20,9 @@ export function EventCard({ event }: { event: EventItem }) {
         <Link to={`/events/${event.slug}`} className="activity-card__title">
           {event.title}
         </Link>
-        <div className="activity-card__host">by {event.host}</div>
+        <div className="text-[12.5px] text-grey-soft mt-1">by {event.host}</div>
 
-        <div className="stack" style={{ gap: 7, marginTop: 14 }}>
+        <div className="flex flex-col" style={{ gap: 7, marginTop: 14 }}>
           <span className="meta meta--sm">
             <Calendar size={14} color="#8B8A99" strokeWidth={2} />
             {shortDate(event.date)} • {event.start.replace(':', '.')}

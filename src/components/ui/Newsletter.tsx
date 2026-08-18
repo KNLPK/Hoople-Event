@@ -28,11 +28,11 @@ export function Newsletter({
         setEmail('');
       }}
     >
-      <div className="newsletter__art float">
+      <div className="w-[104px] h-[78px] float">
         <ImageSlot id={slotId} shape="rounded" radius={12} placeholder="Envelope 3D" />
       </div>
       <div>
-        <div className="newsletter__title">{title}</div>
+        <div className="font-heading text-[19px] font-semibold text-brand-deep mb-[5px]">{title}</div>
         <div style={{ fontSize: 13.5, color: 'var(--color-ink-3)' }}>{body}</div>
       </div>
       <div className="newsletter__form">

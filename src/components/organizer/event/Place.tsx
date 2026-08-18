@@ -95,7 +95,7 @@ export function EventPlace({ draft, set, goTo }: EventSectionProps) {
 
       <div className="org-card wiz-card">
         <div className="wiz-field">
-          <span className="wiz-field__label">Event Type</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Event Type</span>
           <div className="evt-typechip">
             <span>
               <Building size={15} color="#3C3A4A" strokeWidth={1.9} />

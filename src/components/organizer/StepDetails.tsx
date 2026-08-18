@@ -70,7 +70,7 @@ export function StepDetails({
 
         <div className="wiz-field">
           <FieldHead label="Language" hint="What language will be used during the activity?" />
-          <div className="wiz-field__control wiz-field__control--third">
+          <div className="wiz-field__control max-w-[290px]">
             <SelectInput
               ariaLabel="Language"
               value={draft.language}

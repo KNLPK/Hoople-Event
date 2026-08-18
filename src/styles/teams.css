@@ -14,12 +14,6 @@
   flex-direction: column;
   line-height: 1.15;
 }
-.tm-brand__sub {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--color-brand);
-}
 /* Section headings inside the rail — the nav is long enough to need them. */
 .tm-navlabel {
   display: block;
@@ -67,9 +61,6 @@
   gap: 18px;
   align-items: start;
 }
-.tm-rail {
-  min-width: 0;
-}
 @media (max-width: 1320px) {
   .tm-cols {
     grid-template-columns: minmax(0, 1fr);
@@ -90,18 +81,6 @@
   .tm-work.has-aside {
     grid-template-columns: minmax(0, 1fr);
   }
-}
-
-.tm-section {
-  font-family: var(--font-heading);
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  margin-bottom: 12px;
-}
-.tm-muted {
-  font-size: 12.5px;
-  color: var(--color-grey);
 }
 .tm-cardlink {
   display: inline-flex;
@@ -124,27 +103,6 @@
 
 .tm-ctx {
   margin-bottom: 18px;
-}
-.tm-ctx__back {
-  margin-bottom: 12px;
-}
-.tm-ctx__row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.tm-ctx__thumb {
-  width: 84px;
-  height: 56px;
-  flex: none;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--color-surface-chip);
-}
-.tm-ctx__body {
-  min-width: 0;
-  flex: 1;
 }
 .tm-ctx__title {
   display: flex;
@@ -192,17 +150,6 @@
   font-size: 11.5px;
   font-weight: 600;
 }
-.tm-recur {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 9px;
-  border-radius: var(--radius-pill);
-  background: var(--color-surface-chip);
-  color: var(--color-ink-3);
-  font-size: 11.5px;
-  font-weight: 600;
-}
 .tm-openflag {
   padding: 3px 9px;
   border-radius: var(--radius-pill);
@@ -244,15 +191,6 @@
   left: 10px;
   z-index: 2;
 }
-.tm-hero__body {
-  padding: 18px 20px;
-  min-width: 0;
-}
-.tm-hero__ids {
-  font-size: 12px;
-  color: var(--color-grey-soft);
-  margin-top: 10px;
-}
 .tm-hero__kpis {
   display: grid;
   /* Rupiah totals are wide; let a column claim the room it needs rather than
@@ -267,13 +205,6 @@
   .tm-hero__kpis {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
-.tm-kpi__label {
-  display: block;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--color-grey);
-  margin-bottom: 6px;
 }
 .tm-kpi__value {
   display: block;
@@ -404,14 +335,6 @@ span.tm-quick__item {
 .tm-sessrow:last-child {
   border-bottom: 0;
 }
-.tm-sessrow__thumb {
-  width: 64px;
-  height: 44px;
-  flex: none;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--color-surface-chip);
-}
 .tm-sessrow__time {
   flex: none;
   width: 58px;
@@ -425,25 +348,6 @@ span.tm-quick__item {
 .tm-sessrow__time em {
   font-style: normal;
   color: var(--color-grey-faint);
-}
-.tm-sessrow__body {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.tm-sessrow__title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  font-size: 14px;
-  font-weight: 600;
-}
-.tm-sessrow__room {
-  font-size: 12px;
-  color: var(--color-grey);
 }
 .tm-sessrow__fill {
   display: flex;
@@ -511,23 +415,6 @@ span.tm-quick__item {
   background: var(--color-amber-tint);
   color: var(--color-amber-ink);
 }
-.tm-activity__title {
-  display: block;
-  font-size: 13.5px;
-  font-weight: 600;
-}
-.tm-activity__detail {
-  display: block;
-  font-size: 12.5px;
-  color: var(--color-ink-3);
-  margin-top: 2px;
-}
-.tm-activity__when {
-  display: block;
-  font-size: 11.5px;
-  color: var(--color-grey-soft);
-  margin-top: 4px;
-}
 .tm-actdot {
   width: 26px;
   height: 26px;
@@ -547,11 +434,6 @@ span.tm-quick__item {
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
-}
-.tm-explist {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
 }
 .tm-expcard.is-open {
   border-color: var(--color-brand-border);
@@ -582,36 +464,6 @@ span.tm-quick__item {
   .tm-expcard__hit {
     grid-template-columns: minmax(0, 1fr);
   }
-}
-.tm-expcard__media {
-  display: block;
-  height: 120px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--color-surface-chip);
-}
-.tm-expcard__body {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  min-width: 0;
-}
-.tm-expcard__top {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.tm-expcard__title {
-  font-family: var(--font-heading);
-  font-size: 16.5px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-.tm-expcard__summary {
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--color-ink-3);
 }
 .tm-expcard__stats {
   display: grid;
@@ -725,15 +577,6 @@ span.tm-quick__item {
   width: 46px;
   height: 46px;
 }
-.tm-passchip {
-  display: inline-block;
-  padding: 3px 9px;
-  border-radius: var(--radius-pill);
-  background: var(--color-brand-tint-strong);
-  color: var(--color-brand-ink);
-  font-size: 11.5px;
-  font-weight: 600;
-}
 
 .tm-bulk {
   display: flex;
@@ -788,23 +631,6 @@ span.tm-quick__item {
   padding: 20px 20px 16px;
   border-bottom: 1px solid var(--color-line-faint);
 }
-.tm-aside__avatar {
-  width: 54px;
-  height: 54px;
-  flex: none;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--color-brand-tint-strong);
-}
-.tm-aside__name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  font-size: 15.5px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
 .tm-aside__line {
   display: flex;
   align-items: center;
@@ -816,13 +642,6 @@ span.tm-quick__item {
 }
 .tm-aside__body {
   padding: 18px 20px 22px;
-}
-.tm-aside__title {
-  font-family: var(--font-heading);
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 6px;
 }
 
 .tm-tabs {
@@ -855,10 +674,6 @@ span.tm-quick__item {
   height: 2px;
   border-radius: 2px;
   background: var(--color-brand);
-}
-
-.tm-asection {
-  margin-bottom: 22px;
 }
 .tm-asection__head {
   display: flex;
@@ -1174,12 +989,6 @@ span.tm-quick__item {
   color: var(--color-grey);
   margin-left: 6px;
 }
-.tm-funnel__drop {
-  display: block;
-  margin-top: 6px;
-  font-size: 11.5px;
-  color: var(--color-grey-soft);
-}
 
 .tm-score {
   position: relative;
@@ -1285,20 +1094,6 @@ span.tm-quick__item {
 }
 .tm-switch.is-on span {
   transform: translateX(18px);
-}
-
-.tm-logo {
-  display: inline-block;
-  width: 76px;
-  height: 76px;
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.tm-profile__cover {
-  height: 150px;
-  position: relative;
-  overflow: hidden;
 }
 .tm-profile__head {
   display: flex;

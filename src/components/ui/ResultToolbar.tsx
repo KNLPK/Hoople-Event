@@ -33,7 +33,7 @@ export function ResultToolbar({
         found in {location}
       </div>
 
-      <div className="row" style={{ gap: 14 }}>
+      <div className="flex items-center" style={{ gap: 14 }}>
         <label className="result-toolbar__sort">
           Sort by
           <select value={sort} onChange={(event) => onSortChange(event.target.value)}>

@@ -60,7 +60,7 @@ export function OrgLayout() {
         />
       ) : null}
 
-      <div className="org__main">
+      <div className="min-w-0 flex flex-col">
         <OrgTopbar {...TOPBAR_CHROME[pathname]} onOpenNav={() => setNavOpen(true)} />
         <div className="org__content">
           <Outlet />

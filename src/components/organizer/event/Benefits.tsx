@@ -70,7 +70,7 @@ export function EventBenefits({ draft, set }: { draft: EventDraft; set: EventSet
 
       <div className="org-card wiz-card">
         <div className="wiz-field">
-          <span className="wiz-field__label">Experience Highlights</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Experience Highlights</span>
           <span className="wiz-field__hint">
             Add key highlights of your event. You can add up to {HIGHLIGHT_MAX} items.
           </span>
@@ -106,7 +106,7 @@ export function EventBenefits({ draft, set }: { draft: EventDraft; set: EventSet
           </div>
 
           {picker ? (
-            <div className="wiz-tokens__suggest evt-highlights__picker">
+            <div className="wiz-tokens__suggest mt-3">
               {unused.length === 0 ? (
                 <span className="wiz-field__hint">Every highlight is already on the list.</span>
               ) : (
@@ -129,7 +129,7 @@ export function EventBenefits({ draft, set }: { draft: EventDraft; set: EventSet
         </div>
 
         <div className="wiz-field">
-          <span className="wiz-field__label">What will participants gain?</span>
+          <span className="block text-[13.5px] font-semibold text-ink">What will participants gain?</span>
           <span className="wiz-field__hint">
             List the key benefits or takeaways participants will get from this event.
           </span>
@@ -145,7 +145,7 @@ export function EventBenefits({ draft, set }: { draft: EventDraft; set: EventSet
                 onDragOver={(event) => event.preventDefault()}
                 onDrop={() => reorder(benefit)}
               >
-                <span className="evt-benefit__grip" aria-hidden="true">
+                <span className="flex cursor-grab" aria-hidden="true">
                   <Grip size={14} color="#C3C1CE" />
                 </span>
                 <input
@@ -185,7 +185,7 @@ export function EventBenefits({ draft, set }: { draft: EventDraft; set: EventSet
             </form>
           </div>
 
-          <div className="evt-benefits__count">
+          <div className="text-right text-[11.5px] text-grey-faint mt-2">
             {draft.benefits.length} / {BENEFIT_MAX}
           </div>
         </div>

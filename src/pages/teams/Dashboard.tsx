@@ -53,14 +53,14 @@ export function TeamsDashboard() {
 
   return (
     <div className="tm-cols">
-      <div className="stack" style={{ gap: 18 }}>
+      <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-card tm-hero">
           <div className="tm-hero__media">
             <ImageSlot id={`tm-cover-${event.id}`} shape="rounded" radius={14} placeholder={event.photoHint} />
             <span className={`org-pill org-pill--${statusTone(event.status)} tm-hero__badge`}>{event.status}</span>
           </div>
 
-          <div className="tm-hero__body">
+          <div className="py-[18px] px-5 min-w-0">
             <div className="tm-ctx__title">
               <h2>{event.title}</h2>
               <span className="tm-private">
@@ -84,32 +84,32 @@ export function TeamsDashboard() {
               </span>
             </div>
 
-            <div className="tm-hero__ids">
+            <div className="text-[12px] text-grey-soft mt-2.5">
               Created on {compactDate(event.createdOn)} · Event ID #{event.code} · Organised by {event.organiser}
             </div>
 
             <div className="tm-hero__kpis">
               <div>
-                <span className="tm-kpi__label">Registered</span>
+                <span className="block text-[11.5px] font-semibold text-grey mb-1.5">Registered</span>
                 <strong className="tm-kpi__value">
                   {event.registered} <em>/ {event.capacity}</em>
                 </strong>
                 <Meter value={event.registered} max={event.capacity} />
               </div>
               <div>
-                <span className="tm-kpi__label">Collected</span>
+                <span className="block text-[11.5px] font-semibold text-grey mb-1.5">Collected</span>
                 <strong className="tm-kpi__value tm-kpi__value--money">{rupiah(gross)}</strong>
                 <span className="tm-kpi__note">
                   {event.costModel === 'Company-paid' ? 'Paid by the company' : 'Contributed by members'}
                 </span>
               </div>
               <div>
-                <span className="tm-kpi__label">Checked in</span>
+                <span className="block text-[11.5px] font-semibold text-grey mb-1.5">Checked in</span>
                 <strong className="tm-kpi__value">{event.checkedIn}</strong>
                 <span className="tm-kpi__note is-up">{turnout}% turnout</span>
               </div>
               <div>
-                <span className="tm-kpi__label">Response rate</span>
+                <span className="block text-[11.5px] font-semibold text-grey mb-1.5">Response rate</span>
                 <strong className="tm-kpi__value">{responseRate}%</strong>
                 <span className="tm-kpi__note">of {invited} invited</span>
               </div>
@@ -118,7 +118,7 @@ export function TeamsDashboard() {
         </Reveal>
 
         <div>
-          <h2 className="tm-section">Overview</h2>
+          <h2 className="font-heading text-[17px] font-semibold tracking-[-0.015em] mb-3">Overview</h2>
           <Reveal className="org-stats org-stats--4">
             <StatCard
               icon={<Users size={17} color="#6D28FF" strokeWidth={1.8} />}
@@ -153,8 +153,8 @@ export function TeamsDashboard() {
         <div className="org-panels">
           <Reveal className="org-card">
             <div className="org-card__head">
-              <h2 className="org-card__title">Registration trend</h2>
-              <span className="tm-muted">Last 7 days</span>
+              <h2 className="font-heading text-[15.5px] font-semibold">Registration trend</h2>
+              <span className="text-[12.5px] text-grey">Last 7 days</span>
             </div>
             <div className="org-card__body">
               <TrendChart
@@ -176,7 +176,7 @@ export function TeamsDashboard() {
 
           <Reveal className="org-card" delay={60}>
             <div className="org-card__head">
-              <h2 className="org-card__title">Upcoming sessions</h2>
+              <h2 className="font-heading text-[15.5px] font-semibold">Upcoming sessions</h2>
               <Link to={`/teams/sessions?e=${event.id}`} className="tm-cardlink">
                 View all
               </Link>
@@ -190,9 +190,9 @@ export function TeamsDashboard() {
                       <em>–</em>
                       {session.end}
                     </span>
-                    <span className="tm-sessrow__body">
-                      <span className="tm-sessrow__title">{session.title}</span>
-                      <span className="tm-sessrow__room">{session.room}</span>
+                    <span className="flex-1 min-w-0 flex flex-col gap-[3px]">
+                      <span className="flex items-center gap-2 flex-wrap text-[14px] font-semibold">{session.title}</span>
+                      <span className="text-[12px] text-grey">{session.room}</span>
                       <span className="tm-sessrow__fill">
                         <Meter value={session.booked} max={session.capacity} />
                         <em>
@@ -207,8 +207,8 @@ export function TeamsDashboard() {
                 ))
               ) : (
                 <div style={{ padding: 32, textAlign: 'center' }}>
-                  <div className="empty__title">No sessions yet</div>
-                  <p className="empty__body">Add the running order and members can pick what to attend.</p>
+                  <div className="font-heading text-[17px] font-semibold mb-1.5">No sessions yet</div>
+                  <p className="text-[13.5px] text-grey mb-[18px]">Add the running order and members can pick what to attend.</p>
                 </div>
               )}
             </div>
@@ -222,7 +222,7 @@ export function TeamsDashboard() {
 
         <Reveal className="org-card" delay={120}>
           <div className="org-card__head">
-            <h2 className="org-card__title">
+            <h2 className="font-heading text-[15.5px] font-semibold">
               <span className="tm-actdot">
                 <Pencil size={15} color="#6D28FF" strokeWidth={1.9} />
               </span>
@@ -247,9 +247,9 @@ export function TeamsDashboard() {
                   )}
                 </span>
                 <span>
-                  <span className="tm-activity__title">{item.title}</span>
-                  <span className="tm-activity__detail">{item.detail}</span>
-                  <span className="tm-activity__when">{item.when}</span>
+                  <span className="block text-[13.5px] font-semibold">{item.title}</span>
+                  <span className="block text-[12.5px] text-ink-3 mt-0.5">{item.detail}</span>
+                  <span className="block text-[11.5px] text-grey-soft mt-1">{item.when}</span>
                 </span>
               </div>
             ))}
@@ -257,10 +257,10 @@ export function TeamsDashboard() {
         </Reveal>
       </div>
 
-      <aside className="stack tm-rail" style={{ gap: 18 }}>
+      <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
         <Reveal className="org-card">
           <div className="org-card__head">
-            <h2 className="org-card__title">Quick actions</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Quick actions</h2>
           </div>
           <div className="tm-quick">
             <Link to={`/teams/experiences?e=${event.id}`} className="tm-quick__item">
@@ -296,15 +296,15 @@ export function TeamsDashboard() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Member link</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Member link</h2>
           </div>
           <div className="org-card__body">
-            <p className="tm-muted" style={{ lineHeight: 1.65, marginBottom: 12 }}>
+            <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.65, marginBottom: 12 }}>
               Share this inside the company. Opening it asks for a{' '}
               <strong>@{ORGANIZATION.domain}</strong> sign-in — there is no public page for this event.
             </p>
             <div className="tm-link">{memberLink}</div>
-            <div className="row" style={{ gap: 8, marginTop: 10 }}>
+            <div className="flex items-center" style={{ gap: 8, marginTop: 10 }}>
               <Button
                 as="button"
                 variant="outline"
@@ -330,7 +330,7 @@ export function TeamsDashboard() {
 
         <Reveal className="org-card" delay={120}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Event status</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Event status</h2>
           </div>
           <div className="tm-statuslist">
             <StatusRow label="Event status" value={event.status} pill={statusTone(event.status)} />
@@ -353,11 +353,11 @@ export function TeamsDashboard() {
 
         <Reveal className="org-card tm-tip" delay={180}>
           <div className="org-card__body">
-            <div className="row" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
+            <div className="flex items-center" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
               <Trend size={16} color="#6D28FF" strokeWidth={1.9} />
               Response is {responseRate}%
             </div>
-            <p className="tm-muted" style={{ lineHeight: 1.65 }}>
+            <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.65 }}>
               {invited - event.registered} members have not answered yet. A reminder to the departments with the
               lowest response usually moves it more than one to everybody.
             </p>
@@ -396,8 +396,8 @@ function StatCard({
   return (
     <div className="org-stat">
       <div className="org-stat__head">
-        <span className="org-stat__icon">{icon}</span>
-        <span className="org-stat__label">{label}</span>
+        <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">{icon}</span>
+        <span className="text-[12.5px] text-grey font-medium leading-[1.35]">{label}</span>
       </div>
       <div className={`org-stat__value ${money ? 'org-stat__value--money' : ''}`.trim()}>{value}</div>
       <div className={`org-stat__note ${up ? 'is-up' : ''}`.trim()}>{note}</div>

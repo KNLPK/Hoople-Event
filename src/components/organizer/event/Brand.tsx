@@ -34,30 +34,30 @@ export function EventBrand({ draft, set }: EventSectionProps) {
 
       <div className="wiz-stack">
         <section className="org-card wiz-panel">
-          <span className="wiz-field__label">Event Branding</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Event Branding</span>
           <span className="wiz-field__hint">Add visual identity that represents your event.</span>
 
           <div className="evt-brand">
             <div className="evt-asset">
-              <span className="wiz-field__label">
-                Event Logo<span className="field__req"> *</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Event Logo<span className="text-danger"> *</span>
               </span>
               <div className="evt-asset__row">
-                <div className="evt-asset__square">
+                <div className="relative w-[96px] h-[96px] flex-none rounded-md overflow-hidden">
                   <ImageSlot id="event-logo" radius={10} placeholder="Logo" />
                 </div>
                 <div>
                   <span className="evt-asset__btn">Change Logo</span>
-                  <span className="evt-asset__hint">PNG, JPG or SVG</span>
-                  <span className="evt-asset__hint">Max. 2MB</span>
-                  <span className="evt-asset__hint">Recommended size: 512 x 512px</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">PNG, JPG or SVG</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">Max. 2MB</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">Recommended size: 512 x 512px</span>
                 </div>
               </div>
             </div>
 
             <div className="evt-asset">
-              <span className="wiz-field__label">
-                Event Banner / Cover Image<span className="field__req"> *</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Event Banner / Cover Image<span className="text-danger"> *</span>
               </span>
               <div className="evt-asset__row">
                 {/* The same cover 1.1 sets — one image, two places to change it. */}
@@ -72,9 +72,9 @@ export function EventBrand({ draft, set }: EventSectionProps) {
                 </div>
                 <div>
                   <span className="evt-asset__btn">Change Banner</span>
-                  <span className="evt-asset__hint">PNG or JPG</span>
-                  <span className="evt-asset__hint">Max. 5MB</span>
-                  <span className="evt-asset__hint">Recommended size: 1920 x 1080px</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">PNG or JPG</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">Max. 5MB</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">Recommended size: 1920 x 1080px</span>
                 </div>
               </div>
             </div>
@@ -82,8 +82,8 @@ export function EventBrand({ draft, set }: EventSectionProps) {
 
           <div className="evt-brandrow">
             <div>
-              <span className="wiz-field__label">
-                Brand Colors <span className="wiz-field__optional">(Optional)</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Brand Colors <span className="font-normal text-grey">(Optional)</span>
               </span>
               <span className="wiz-field__hint">Choose primary colors for your event page.</span>
               <div className="evt-swatches">
@@ -114,8 +114,8 @@ export function EventBrand({ draft, set }: EventSectionProps) {
             </div>
 
             <div>
-              <span className="wiz-field__label">
-                Font Style <span className="wiz-field__optional">(Optional)</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Font Style <span className="font-normal text-grey">(Optional)</span>
               </span>
               <span className="wiz-field__hint">Select the font style for your event page.</span>
               <SelectInput
@@ -123,20 +123,20 @@ export function EventBrand({ draft, set }: EventSectionProps) {
                 value={draft.fontStyle}
                 options={FONT_STYLES}
                 onChange={set('fontStyle')}
-                leading={<span className="evt-aa">Aa</span>}
+                leading={<span className="text-[12px] font-bold text-grey">Aa</span>}
               />
             </div>
           </div>
         </section>
 
         <section className="org-card wiz-panel">
-          <span className="wiz-field__label">Host Information</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Host Information</span>
           <span className="wiz-field__hint">This information will be shown as the event organizer.</span>
 
           <div className="wiz-pair" style={{ marginTop: 14 }}>
             <div>
-              <span className="wiz-field__label">
-                Host Name<span className="field__req"> *</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Host Name<span className="text-danger"> *</span>
               </span>
               <input
                 className="wiz-input"
@@ -146,7 +146,7 @@ export function EventBrand({ draft, set }: EventSectionProps) {
               />
             </div>
             <div>
-              <span className="wiz-field__label">Host Type</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Host Type</span>
               <SelectInput
                 ariaLabel="Host type"
                 value={draft.hostType}
@@ -158,8 +158,8 @@ export function EventBrand({ draft, set }: EventSectionProps) {
 
           <div className="evt-hostgrid">
             <div>
-              <span className="wiz-field__label">
-                Host Description<span className="field__req"> *</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Host Description<span className="text-danger"> *</span>
               </span>
               <div className="evt-rich">
                 <div className="evt-rich__bar">
@@ -197,19 +197,19 @@ export function EventBrand({ draft, set }: EventSectionProps) {
             </div>
 
             <div className="evt-asset">
-              <span className="wiz-field__label">
-                Host Logo<span className="field__req"> *</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Host Logo<span className="text-danger"> *</span>
               </span>
               <div className="evt-asset__row">
-                <div className="evt-asset__square evt-asset__square--brand">
+                <div className="relative w-[96px] h-[96px] flex-none rounded-md overflow-hidden evt-asset__square--brand">
                   <ImageSlot id="event-host-logo" radius={10} placeholder="" />
                   <span className="evt-asset__initials">WL</span>
                 </div>
                 <div>
                   <span className="evt-asset__btn">Change Logo</span>
-                  <span className="evt-asset__hint">PNG, JPG or SVG</span>
-                  <span className="evt-asset__hint">Max. 2MB</span>
-                  <span className="evt-asset__hint">Recommended size: 512 x 512px</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">PNG, JPG or SVG</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">Max. 2MB</span>
+                  <span className="block text-[11.5px] text-grey leading-[1.6]">Recommended size: 512 x 512px</span>
                 </div>
               </div>
             </div>
@@ -217,8 +217,8 @@ export function EventBrand({ draft, set }: EventSectionProps) {
 
           <div className="wiz-triple" style={{ marginTop: 18 }}>
             <div>
-              <span className="wiz-field__label">
-                Contact Email<span className="field__req"> *</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Contact Email<span className="text-danger"> *</span>
               </span>
               <input
                 className="wiz-input"
@@ -229,8 +229,8 @@ export function EventBrand({ draft, set }: EventSectionProps) {
               />
             </div>
             <div>
-              <span className="wiz-field__label">
-                Contact Phone <span className="wiz-field__optional">(Optional)</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Contact Phone <span className="font-normal text-grey">(Optional)</span>
               </span>
               <input
                 className="wiz-input"
@@ -240,8 +240,8 @@ export function EventBrand({ draft, set }: EventSectionProps) {
               />
             </div>
             <div>
-              <span className="wiz-field__label">
-                Website / Social <span className="wiz-field__optional">(Optional)</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Website / Social <span className="font-normal text-grey">(Optional)</span>
               </span>
               <span className="wiz-select">
                 <Globe size={16} color="#8B8A99" strokeWidth={1.9} />

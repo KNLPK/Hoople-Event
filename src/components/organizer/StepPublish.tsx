@@ -38,7 +38,7 @@ export function StepPublish({
 
       <div className="wiz-stack">
         <section className="org-card wiz-panel">
-          <span className="wiz-field__label">Visibility</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Visibility</span>
           <span className="wiz-field__hint">Control who can discover and book this activity.</span>
           <div className="wiz-vis">
             {VISIBILITY_OPTIONS.map((option) => (
@@ -58,14 +58,14 @@ export function StepPublish({
                   <span className="wiz-tile__radio" aria-hidden="true" />
                 </span>
                 <span className="wiz-tile__title">{option.value}</span>
-                <span className="wiz-tile__sub">{option.sub}</span>
+                <span className="block text-[12px] text-grey mt-[3px] leading-[1.45]">{option.sub}</span>
               </label>
             ))}
           </div>
         </section>
 
         <section className="org-card wiz-panel">
-          <span className="wiz-field__label">Publish Date &amp; Time</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Publish Date &amp; Time</span>
           <span className="wiz-field__hint">Choose when your activity goes live.</span>
           <div className="wiz-schedule">
             <div>
@@ -110,7 +110,7 @@ export function StepPublish({
         </section>
 
         <section className="org-card wiz-panel">
-          <span className="wiz-field__label">Additional Settings</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Additional Settings</span>
           <div className="wiz-extrasettings">
             <div>
               <Checkbox
@@ -134,7 +134,7 @@ export function StepPublish({
         </section>
 
         <section className="org-card wiz-panel">
-          <span className="wiz-field__label">Before you publish</span>
+          <span className="block text-[13.5px] font-semibold text-ink">Before you publish</span>
           <div className="wiz-before">
             <ul className="wiz-checklist">
               {checklist.map((item) => (
@@ -146,7 +146,7 @@ export function StepPublish({
             </ul>
 
             <aside className={`wiz-almost ${ready ? '' : 'is-waiting'}`.trim()}>
-              <span className="wiz-almost__icon">
+              <span className="flex-none flex mt-px">
                 <Sparkle size={18} color={ready ? '#16A34A' : '#EA8C00'} strokeWidth={1.9} />
               </span>
               <div>

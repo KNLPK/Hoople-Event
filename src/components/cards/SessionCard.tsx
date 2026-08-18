@@ -9,7 +9,7 @@ import type { DatedSession } from '@/data/schedule';
 export function SessionCard({ activity, session }: DatedSession) {
   return (
     <article className="card lift session-card">
-      <div className="session-card__media zoom">
+      <div className="relative h-[132px] flex-none zoom">
         <ImageSlot
           id={`session-${activity.slug}-${session.id}`}
           shape="rect"
@@ -28,7 +28,7 @@ export function SessionCard({ activity, session }: DatedSession) {
         <Link to={`/activities/${activity.slug}`} className="session-card__title">
           {activity.title}
         </Link>
-        <div className="session-card__venue">
+        <div className="text-[12.5px] text-grey-soft mt-1">
           {activity.venue.name}, {activity.venue.area}
         </div>
 
@@ -43,7 +43,7 @@ export function SessionCard({ activity, session }: DatedSession) {
           </span>
         </div>
 
-        <div className="row" style={{ gap: 12 }}>
+        <div className="flex items-center" style={{ gap: 12 }}>
           <Button
             as="link"
             to={`/booking?activity=${activity.slug}&session=${session.id}&date=${session.date}`}

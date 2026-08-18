@@ -58,10 +58,10 @@ export function StepHost({
               <ImageSlot id="builder-host-avatar" shape="rounded" radius={12} placeholder="" />
             </div>
 
-            <div className="wiz-host__fields">
+            <div className="flex flex-col gap-4">
               <div>
-                <span className="wiz-field__label">
-                  Host Name<span className="field__req"> *</span>
+                <span className="block text-[13.5px] font-semibold text-ink">
+                  Host Name<span className="text-danger"> *</span>
                 </span>
                 <input
                   className="wiz-input"
@@ -71,8 +71,8 @@ export function StepHost({
                 />
               </div>
               <div>
-                <span className="wiz-field__label">
-                  Short Bio<span className="field__req"> *</span>
+                <span className="block text-[13.5px] font-semibold text-ink">
+                  Short Bio<span className="text-danger"> *</span>
                 </span>
                 <CounterArea
                   ariaLabel="Host short bio"
@@ -100,17 +100,17 @@ export function StepHost({
           </div>
 
           {draft.instructors.length === 0 ? (
-            <p className="wiz-sessions__empty">
+            <p className="text-[13px] text-grey py-[18px] px-0">
               No instructor yet. Participants like knowing who will teach them.
             </p>
           ) : (
             draft.instructors.map((person) => (
               <div key={person.id} className="wiz-person">
-                <span className="wiz-person__grip" aria-hidden="true">
+                <span className="flex mt-2.5 cursor-grab" aria-hidden="true">
                   <Grip size={15} color="#C3C1CE" />
                 </span>
 
-                <div className="wiz-person__photo">
+                <div className="w-[92px] h-[92px]">
                   <ImageSlot
                     id={`builder-instructor-${person.id}`}
                     shape="circle"
@@ -118,11 +118,11 @@ export function StepHost({
                   />
                 </div>
 
-                <div className="wiz-person__body">
+                <div className="flex flex-col gap-3.5 min-w-0">
                   <div className="wiz-pair">
                     <div>
-                      <span className="wiz-field__label">
-                        Name<span className="field__req"> *</span>
+                      <span className="block text-[13.5px] font-semibold text-ink">
+                        Name<span className="text-danger"> *</span>
                       </span>
                       <input
                         className="wiz-input"
@@ -133,8 +133,8 @@ export function StepHost({
                       />
                     </div>
                     <div>
-                      <span className="wiz-field__label">
-                        Role / Title<span className="field__req"> *</span>
+                      <span className="block text-[13.5px] font-semibold text-ink">
+                        Role / Title<span className="text-danger"> *</span>
                       </span>
                       <input
                         className="wiz-input"
@@ -147,8 +147,8 @@ export function StepHost({
                   </div>
 
                   <div>
-                    <span className="wiz-field__label">
-                      Bio<span className="field__req"> *</span>
+                    <span className="block text-[13.5px] font-semibold text-ink">
+                      Bio<span className="text-danger"> *</span>
                     </span>
                     <CounterArea
                       ariaLabel="Instructor bio"
@@ -161,7 +161,7 @@ export function StepHost({
                   </div>
 
                   <div>
-                    <span className="wiz-field__label">Expertise / Specialization</span>
+                    <span className="block text-[13.5px] font-semibold text-ink">Expertise / Specialization</span>
                     <TokenList
                       values={person.expertise}
                       onChange={(value) => update(person.id, { expertise: value })}
@@ -196,7 +196,7 @@ export function StepHost({
           <div className="wiz-links">
             {LINKS.map(({ key, label, placeholder, Icon }) => (
               <label key={key} className="field">
-                <span className="wiz-linklabel">
+                <span className="flex items-center gap-[7px] text-[12.5px] font-medium text-ink-2 mb-2">
                   <Icon size={14} color="#8B8A99" strokeWidth={1.9} />
                   {label}
                 </span>

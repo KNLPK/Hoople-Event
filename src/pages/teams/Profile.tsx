@@ -21,9 +21,9 @@ export function TeamsProfile() {
 
   return (
     <div className="tm-cols">
-      <div className="stack" style={{ gap: 18 }}>
+      <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-card">
-          <div className="tm-profile__cover">
+          <div className="h-[150px] relative overflow-hidden">
             <ImageSlot id="tm-profile-hero" shape="rect" placeholder="Company town hall on stage" />
           </div>
           <div className="tm-profile__head">
@@ -32,7 +32,7 @@ export function TeamsProfile() {
             </span>
             <div className="tm-profile__id">
               <h2>{ORGANIZATION.name}</h2>
-              <p className="tm-muted">
+              <p className="text-[12.5px] text-grey">
                 {ORGANIZATION.legalName} · {ORGANIZATION.city}
               </p>
               <span className="tm-private" style={{ marginTop: 8 }}>
@@ -48,7 +48,7 @@ export function TeamsProfile() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">About</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">About</h2>
           </div>
           <div className="org-card__body org-form">
             <label className="field field--full">
@@ -78,13 +78,13 @@ export function TeamsProfile() {
 
         <Reveal className="org-card" delay={120}>
           <div className="org-card__head">
-            <h2 className="org-card__title">What is on</h2>
-            <span className="tm-muted">As members see it</span>
+            <h2 className="font-heading text-[15.5px] font-semibold">What is on</h2>
+            <span className="text-[12.5px] text-grey">As members see it</span>
           </div>
           <div className="tm-sesslist">
             {upcoming.map((item) => (
               <div key={item.id} className="tm-sessrow">
-                <span className="tm-sessrow__thumb">
+                <span className="w-16 h-11 flex-none rounded-[10px] overflow-hidden bg-surface-chip">
                   <ImageSlot
                     id={`tm-cover-${item.id}`}
                     shape="rounded"
@@ -93,8 +93,8 @@ export function TeamsProfile() {
                     interactive={false}
                   />
                 </span>
-                <span className="tm-sessrow__body">
-                  <span className="tm-sessrow__title">
+                <span className="flex-1 min-w-0 flex flex-col gap-[3px]">
+                  <span className="flex items-center gap-2 flex-wrap text-[14px] font-semibold">
                     {item.title}
                     {item.id === event.id ? <em className="tm-openflag">Open in console</em> : null}
                   </span>
@@ -116,10 +116,10 @@ export function TeamsProfile() {
         </Reveal>
       </div>
 
-      <aside className="stack tm-rail" style={{ gap: 18 }}>
+      <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
         <Reveal className="org-card">
           <div className="org-card__head">
-            <h2 className="org-card__title">Owner</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Owner</h2>
           </div>
           <div className="org-card__body">
             <div className="tm-person" style={{ marginBottom: 12 }}>
@@ -144,8 +144,8 @@ export function TeamsProfile() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Directory</h2>
-            <span className="tm-muted">{ORGANIZATION.members} members</span>
+            <h2 className="font-heading text-[15.5px] font-semibold">Directory</h2>
+            <span className="text-[12.5px] text-grey">{ORGANIZATION.members} members</span>
           </div>
           <div className="org-card__body">
             {DEPARTMENTS.map((department) => (
@@ -161,7 +161,7 @@ export function TeamsProfile() {
 
         <Reveal className="org-card" delay={120}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Workspace</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Workspace</h2>
           </div>
           <div className="org-card__body">
             <div className="tm-arow">

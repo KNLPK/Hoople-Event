@@ -68,7 +68,7 @@ export function Footer() {
             All-in-one platform for events, activities, and communities to discover, connect, and grow
             together.
           </p>
-          <div className="footer__socials">
+          <div className="flex gap-3">
             {SOCIALS.map(({ label, Icon }) => (
               <a
                 key={label}
@@ -86,7 +86,7 @@ export function Footer() {
 
         {COLUMNS.map((column) => (
           <div key={column.title}>
-            <div className="footer__col-title">{column.title}</div>
+            <div className="font-heading text-[14px] font-semibold mb-[15px]">{column.title}</div>
             <div className="footer__links">
               {column.links.map((link) => (
                 <Link key={link.label} to={link.to}>
@@ -98,9 +98,9 @@ export function Footer() {
         ))}
 
         <div className="footer__app">
-          <div className="footer__col-title">Get the Hoople App</div>
+          <div className="font-heading text-[14px] font-semibold mb-[15px]">Get the Hoople App</div>
           <p className="footer__blurb">Discover, join, and manage experiences on the go.</p>
-          <div className="footer__stores">
+          <div className="flex gap-2.5 flex-wrap">
             <span className="store-badge">
               <AppleMark size={17} color="#fff" />
               <span>

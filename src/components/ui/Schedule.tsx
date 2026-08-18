@@ -19,9 +19,9 @@ export function Schedule({ items, preview = 6 }: ScheduleProps) {
       <ol className="schedule__list">
         {shown.map((item) => (
           <li key={`${item.time}-${item.label}`} className="schedule__row">
-            <span className="schedule__dot" aria-hidden="true" />
+            <span className="w-2 h-2 rounded-[50%] bg-brand" aria-hidden="true" />
             <span className="schedule__time">{item.time}</span>
-            <span className="schedule__label">{item.label}</span>
+            <span className="text-[13.5px] text-ink-2 leading-[1.5]">{item.label}</span>
           </li>
         ))}
       </ol>

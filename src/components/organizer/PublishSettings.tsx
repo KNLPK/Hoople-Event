@@ -17,8 +17,8 @@ export function PublishSettings({
 }) {
   return (
     <div className={`wiz-publish ${compact ? 'is-compact' : ''}`.trim()}>
-      <div className="wiz-publish__group">
-        <span className="wiz-publish__label">Visibility</span>
+      <div className="flex flex-col gap-3">
+        <span className="text-[12.5px] font-semibold text-ink">Visibility</span>
         {VISIBILITY_OPTIONS.map((option) => (
           <RadioRow
             key={option.value}
@@ -31,8 +31,8 @@ export function PublishSettings({
         ))}
       </div>
 
-      <div className="wiz-publish__group">
-        <span className="wiz-publish__label">Publish Date</span>
+      <div className="flex flex-col gap-3">
+        <span className="text-[12.5px] font-semibold text-ink">Publish Date</span>
         <RadioRow
           name={compact ? 'when-summary' : 'when-publish'}
           checked={draft.publishWhen === 'now'}

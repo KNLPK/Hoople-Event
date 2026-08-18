@@ -46,15 +46,6 @@
 .filter-bar__facet:hover {
   background: var(--color-brand-tint);
 }
-.filter-bar__facet-text {
-  flex: 1;
-  min-width: 0;
-}
-.filter-bar__facet-label {
-  display: block;
-  font-size: 11px;
-  color: var(--color-grey-soft);
-}
 .filter-bar__facet-value {
   display: block;
   font-size: 13.5px;
@@ -254,21 +245,6 @@
 .calendar-view__day + .calendar-view__day {
   border-top: 1px solid var(--color-line-soft);
 }
-.calendar-view__date {
-  font-family: var(--font-heading);
-  font-size: 15px;
-  font-weight: 600;
-}
-.calendar-view__weekday {
-  font-size: 12.5px;
-  color: var(--color-grey);
-  margin-top: 3px;
-}
-.calendar-view__slots {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 .calendar-slot {
   display: grid;
   grid-template-columns: 84px 1fr auto auto;
@@ -284,25 +260,6 @@
   border-color: var(--color-brand-border);
   background: var(--color-brand-tint);
   color: var(--color-ink);
-}
-.calendar-slot__time {
-  font-weight: 600;
-  font-size: 13.5px;
-}
-.calendar-slot__title {
-  font-weight: 600;
-  font-size: 14px;
-}
-.calendar-slot__host {
-  font-size: 12.5px;
-  color: var(--color-grey);
-  margin-top: 2px;
-}
-.calendar-slot__slots {
-  font-size: 12.5px;
-  color: var(--color-green);
-  font-weight: 600;
-  white-space: nowrap;
 }
 
 @media (max-width: 820px) {
@@ -325,10 +282,6 @@
   grid-template-columns: auto 1fr auto;
   gap: 24px;
   align-items: center;
-}
-.surprise__art {
-  width: 92px;
-  height: 78px;
 }
 .surprise h3 {
   font-size: 19px;

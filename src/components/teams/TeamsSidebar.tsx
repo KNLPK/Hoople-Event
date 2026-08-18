@@ -31,13 +31,13 @@ export function TeamsSidebar({ eventId, onClose }: { eventId: string; onClose?: 
 
   return (
     <aside className="org-side tm-side">
-      <Link to={`/teams${qs}`} className="org-side__brand" aria-label="Hoople for Teams">
-        <span className="org-side__logo">
+      <Link to={`/teams${qs}`} className="flex items-center gap-[9px] py-0 px-2 text-ink" aria-label="Hoople for Teams">
+        <span className="flex">
           <Logo size={26} color="#6D28FF" />
         </span>
         <span className="tm-brand">
-          <span className="org-side__wordmark">hoople</span>
-          <span className="tm-brand__sub">Event Builder</span>
+          <span className="font-heading font-semibold text-[22px] tracking-[-0.02em]">hoople</span>
+          <span className="text-[11px] font-semibold tracking-[0.02em] text-brand">Event Builder</span>
         </span>
       </Link>
 
@@ -47,9 +47,9 @@ export function TeamsSidebar({ eventId, onClose }: { eventId: string; onClose?: 
 
       <div className="org-side__scroll">
         <Link to={`/teams/settings${qs}`} className="org-workspace">
-          <span className="org-workspace__avatar">{ORGANIZATION.initials}</span>
+          <span className="w-9 h-9 rounded-md flex-none bg-brand text-[#fff] flex items-center justify-center font-heading text-[13px] font-bold tracking-[0.02em]">{ORGANIZATION.initials}</span>
           <span className="org-workspace__text">
-            <span className="org-workspace__name">{ORGANIZATION.name}</span>
+            <span className="flex items-center gap-[7px] text-[14px] font-semibold">{ORGANIZATION.name}</span>
             <span className="org-workspace__category">{ORGANIZATION.plan}</span>
           </span>
           <ChevronDown size={16} color="#8B8A99" />
@@ -103,9 +103,9 @@ export function TeamsSidebar({ eventId, onClose }: { eventId: string; onClose?: 
         </nav>
       </div>
 
-      <div className="org-side__foot">
+      <div className="flex-none flex flex-col gap-2">
         <div className="org-upgrade tm-support">
-          <div className="org-upgrade__head">
+          <div className="flex items-center gap-[9px] text-[13.5px] font-semibold mb-2">
             <span>Need help?</span>
           </div>
           <p>Our support team is ready to help you 24/7.</p>

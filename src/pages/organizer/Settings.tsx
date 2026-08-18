@@ -30,16 +30,16 @@ export function OrgSettings() {
         </Button>
       </div>
 
-      <div className="stack" style={{ gap: 18 }}>
+      <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-card">
           <div className="org-card__head">
-            <h2 className="org-card__title">Workspace</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Workspace</h2>
             <span className={`org-pill org-pill--${WORKSPACE.plan === 'Starter' ? 'draft' : 'confirmed'}`}>
               {WORKSPACE.plan} plan
             </span>
           </div>
           <div className="org-card__body" style={{ padding: 20 }}>
-            <div className="row" style={{ gap: 16, marginBottom: 24 }}>
+            <div className="flex items-center" style={{ gap: 16, marginBottom: 24 }}>
               <span
                 style={{
                   width: 64,
@@ -113,7 +113,7 @@ export function OrgSettings() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Payouts &amp; fees</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Payouts &amp; fees</h2>
           </div>
           <div className="org-card__body" style={{ padding: 20 }}>
             <div className="org-form">
@@ -124,7 +124,7 @@ export function OrgSettings() {
                   value={payoutBank}
                   onChange={(event) => setPayoutBank(event.target.value)}
                 />
-                <span className="field__hint">Payout lands H+1 after each experience runs.</span>
+                <span className="text-[12px] text-grey-soft mt-2">Payout lands H+1 after each experience runs.</span>
               </label>
 
               <div className="field">
@@ -139,8 +139,8 @@ export function OrgSettings() {
                     {absorbFees ? <Check size={13} color="#fff" /> : null}
                   </span>
                   <span>
-                    <span className="choice__title">I absorb the fees</span>
-                    <span className="choice__sub">
+                    <span className="text-[14px] font-semibold">I absorb the fees</span>
+                    <span className="text-[12.5px] text-grey mt-[3px]">
                       {absorbFees
                         ? 'Buyers see one price; fees come out of your payout.'
                         : 'Buyers see the 3% platform fee and gateway fee as separate lines.'}
@@ -154,17 +154,17 @@ export function OrgSettings() {
 
         <Reveal className="org-card" delay={120}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Plan</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Plan</h2>
           </div>
           <div className="org-card__body" style={{ padding: 20 }}>
-            <div className="row row--between" style={{ gap: 20, flexWrap: 'wrap' }}>
-              <div className="feature">
+            <div className="flex items-center justify-between" style={{ gap: 20, flexWrap: 'wrap' }}>
+              <div className="flex gap-[13px]">
                 <span className="icon-tile">
                   <Crown size={17} color="#6D28FF" />
                 </span>
                 <div>
-                  <div className="feature__title">You are on {WORKSPACE.plan}</div>
-                  <div className="feature__body">
+                  <div className="text-[13.5px] font-semibold mb-[5px]">You are on {WORKSPACE.plan}</div>
+                  <div className="text-[12.5px] text-grey leading-[1.6]">
                     Ticketing and QR check-in are included. Pro adds Connect — WhatsApp CRM and retargeting —
                     plus session booking for recurring activities.
                   </div>

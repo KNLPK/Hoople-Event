@@ -128,12 +128,12 @@ export function OrgTopbar({
             aria-expanded={menuOpen}
             aria-haspopup="menu"
           >
-            <span className="org-user__avatar">
+            <span className="w-9 h-9 rounded-[50%] overflow-hidden flex-none bg-brand-tint-strong">
               <ImageSlot id="org-owner-avatar" shape="circle" placeholder="" interactive={false} />
             </span>
             <span className="org-user__text">
-              <span className="org-user__name">{WORKSPACE.owner.name}</span>
-              <span className="org-user__role">{WORKSPACE.owner.role}</span>
+              <span className="block text-[13.5px] font-semibold">{WORKSPACE.owner.name}</span>
+              <span className="block text-[12px] text-grey">{WORKSPACE.owner.role}</span>
             </span>
             <ChevronDown size={16} color="#5C5B6B" className={menuOpen ? 'is-flipped' : undefined} />
           </button>
@@ -141,7 +141,7 @@ export function OrgTopbar({
           {menuOpen ? (
             <div className="nav-user__menu" role="menu">
               <div className="nav-user__identity">
-                <div className="nav-user__name">{WORKSPACE.owner.name}</div>
+                <div className="text-[14px] font-semibold">{WORKSPACE.owner.name}</div>
                 <div className="nav-user__email">
                   {WORKSPACE.owner.role} · {WORKSPACE.name}
                 </div>

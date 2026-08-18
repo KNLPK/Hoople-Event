@@ -54,7 +54,7 @@ export function Organizers() {
           List free, sell tickets with transparent fees, check people in with a QR code, and keep the
           audience afterwards. Built for communities in Indonesia.
         </p>
-        <div className="row" style={{ gap: 22, marginTop: 22, flexWrap: 'wrap', fontSize: 13.5 }}>
+        <div className="flex items-center" style={{ gap: 22, marginTop: 22, flexWrap: 'wrap', fontSize: 13.5 }}>
           <span className="meta">
             <Check size={15} color="#16A34A" /> No listing fee
           </span>
@@ -77,7 +77,7 @@ export function Organizers() {
         <div className="flow-grid">
           {MODULES.map(({ Icon, name: moduleName, body }, index) => (
             <Reveal key={moduleName} delay={index * 60} className="flow-card lift">
-              <span className="why-card__icon">
+              <span className="w-11 h-11 rounded-lg bg-brand-tint-strong flex items-center justify-center mb-4">
                 <Icon size={22} color="#6D28FF" strokeWidth={1.8} />
               </span>
               <h3>{moduleName}</h3>
@@ -97,8 +97,8 @@ export function Organizers() {
 
             {submitted ? (
               <div className="empty" style={{ border: '1px solid var(--color-line)' }}>
-                <div className="empty__title">Thanks, {name.split(' ')[0] || 'there'} 🎉</div>
-                <p className="empty__body">
+                <div className="font-heading text-[17px] font-semibold mb-1.5">Thanks, {name.split(' ')[0] || 'there'} 🎉</div>
+                <p className="text-[13.5px] text-grey mb-[18px]">
                   We've got your details. Our team will email {email || 'you'} to finish setting up your{' '}
                   {type.toLowerCase()} account.
                 </p>
@@ -108,7 +108,7 @@ export function Organizers() {
               </div>
             ) : (
               <form
-                className="stack"
+                className="flex flex-col"
                 style={{ gap: 20 }}
                 onSubmit={(event) => {
                   event.preventDefault();
@@ -117,7 +117,7 @@ export function Organizers() {
               >
                 <label className="field">
                   <span className="field__label">
-                    Organization name <span className="field__req">*</span>
+                    Organization name <span className="text-danger">*</span>
                   </span>
                   <input
                     className="input"
@@ -130,7 +130,7 @@ export function Organizers() {
 
                 <label className="field">
                   <span className="field__label">
-                    Work email <span className="field__req">*</span>
+                    Work email <span className="text-danger">*</span>
                   </span>
                   <input
                     className="input"
@@ -169,7 +169,7 @@ export function Organizers() {
             )}
           </div>
 
-          <div className="tint-panel" style={{ display: 'flex', flexDirection: 'column' }}>
+          <div className="bg-brand-tint-strong rounded-3xl py-[26px] px-[30px]" style={{ display: 'flex', flexDirection: 'column' }}>
             <h2 style={{ fontSize: 21, fontWeight: 600, marginBottom: 10 }}>What you get on day one</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 22px', display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[

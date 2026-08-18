@@ -101,7 +101,7 @@ export function TrendChart({
       : null;
 
   return (
-    <figure className="chart">
+    <figure className="block">
       <figcaption className="chart__key">
         <span>
           <i className={`chart__swatch is-${tone}`} />
@@ -270,13 +270,13 @@ export function BarList({
             </span>
             <strong>{bar.display ?? bar.value.toLocaleString('id-ID')}</strong>
           </div>
-          <div className="barlist__track">
+          <div className="h-2 rounded-pill bg-surface-chip overflow-hidden">
             <div
               className="barlist__fill"
               style={{ width: `${Math.round((bar.value / ceiling) * 100)}%`, background: bar.tone ?? tone }}
             />
           </div>
-          {bar.sub ? <span className="barlist__sub">{bar.sub}</span> : null}
+          {bar.sub ? <span className="block mt-[5px] text-[11.5px] text-grey">{bar.sub}</span> : null}
         </li>
       ))}
     </ul>
@@ -347,7 +347,7 @@ export function Donut({
 
   return (
     <div className="donut">
-      <div className="donut__ring" style={{ width: size, height: size }}>
+      <div className="relative flex-none" style={{ width: size, height: size }}>
         <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label={caption}>
           <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--color-line)" strokeWidth="22" />
           {arcs}
@@ -370,7 +370,7 @@ export function Donut({
               onBlur={() => setActive(null)}
             >
               <span className="donut__dot" style={{ background: slice.tone }} />
-              <span className="donut__label">{slice.label}</span>
+              <span className="flex-1 min-w-0 text-ink-2">{slice.label}</span>
               <span className="donut__value">
                 {slice.display ?? slice.value.toLocaleString('id-ID')}
                 {showShare ? <em>{Math.round((slice.value / sum) * 100)}%</em> : null}

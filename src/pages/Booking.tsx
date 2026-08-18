@@ -258,7 +258,7 @@ export function Booking() {
           </div>
 
           <div className="mx-auto w-full max-w-page px-gutter checkout-layout" style={{ paddingTop: 28 }}>
-            <div className="stack" style={{ gap: 22 }}>
+            <div className="flex flex-col" style={{ gap: 22 }}>
               {/* 1. Buyer */}
               <Reveal className="panel panel--lg">
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 17, fontWeight: 600, marginBottom: 5 }}>
@@ -315,8 +315,8 @@ export function Booking() {
                   >
                     <span className="radio-dot">{buyerIsParticipant ? <span /> : null}</span>
                     <span>
-                      <span className="choice__title">Buyer is the participant</span>
-                      <span className="choice__sub">I will attend this experience</span>
+                      <span className="text-[14px] font-semibold">Buyer is the participant</span>
+                      <span className="text-[12.5px] text-grey mt-[3px]">I will attend this experience</span>
                     </span>
                   </button>
                   <button
@@ -329,8 +329,8 @@ export function Booking() {
                   >
                     <span className="radio-dot">{buyerIsParticipant ? null : <span />}</span>
                     <span>
-                      <span className="choice__title">Different participant</span>
-                      <span className="choice__sub">Someone else will attend</span>
+                      <span className="text-[14px] font-semibold">Different participant</span>
+                      <span className="text-[12.5px] text-grey mt-[3px]">Someone else will attend</span>
                     </span>
                   </button>
                 </div>
@@ -340,14 +340,14 @@ export function Booking() {
                   const extraIndex = buyerIsParticipant ? index - 1 : index;
                   return (
                     <div key={index} className="participant-card">
-                      <div className="participant-card__head">
+                      <div className="flex items-center gap-[11px] mb-5">
                         <User size={18} color="#3C3A4A" strokeWidth={1.8} />
                         <span style={{ fontSize: 14.5, fontWeight: 600 }}>Participant {index + 1}</span>
                         {index === 0 ? <span className="tag">Primary</span> : null}
                         {!isBuyer ? (
                           <button
                             type="button"
-                            className="push"
+                            className="ml-auto"
                             style={{ border: 0, background: 'none', cursor: 'pointer', display: 'flex' }}
                             onClick={() =>
                               setExtraParticipants((list) => list.filter((_, i) => i !== extraIndex))
@@ -408,7 +408,7 @@ export function Booking() {
                   disabled={participants.length >= MAX_PARTICIPANTS}
                   onClick={() => setExtraParticipants((list) => [...list, { ...EMPTY_PARTICIPANT }])}
                 >
-                  <span className="add-participant__icon">
+                  <span className="w-[34px] h-[34px] rounded-[50%] bg-brand-tint-strong flex items-center justify-center flex-none">
                     <Plus size={18} color="#6D28FF" />
                   </span>
                   <span>
@@ -427,7 +427,7 @@ export function Booking() {
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 17, fontWeight: 600, marginBottom: 20 }}>
                   3. Consent &amp; Agreement
                 </div>
-                <div className="consent" style={{ marginBottom: 20 }}>
+                <div className="flex gap-3.5 text-left" style={{ marginBottom: 20 }}>
                   <button
                     type="button"
                     className={`check-box ${consentMedia ? 'is-on' : ''}`.trim()}
@@ -438,16 +438,16 @@ export function Booking() {
                     {consentMedia ? <Check size={13} color="#fff" /> : null}
                   </button>
                   <div>
-                    <div className="consent__title">
+                    <div className="text-[14px] font-medium mb-[5px]">
                       I agree to appear in photos or videos taken during this experience
                     </div>
-                    <div className="consent__body">
+                    <div className="text-[12.5px] text-grey leading-[1.6]">
                       I understand that these may be used for documentation, promotional materials, and social
                       media by the host.
                     </div>
                   </div>
                 </div>
-                <div className="consent">
+                <div className="flex gap-3.5 text-left">
                   <button
                     type="button"
                     className={`check-box ${consentTerms ? 'is-on' : ''}`.trim()}
@@ -458,11 +458,11 @@ export function Booking() {
                     {consentTerms ? <Check size={13} color="#fff" /> : null}
                   </button>
                   <div>
-                    <div className="consent__title">
+                    <div className="text-[14px] font-medium mb-[5px]">
                       I agree to the Terms &amp; Conditions and Refund Policy{' '}
-                      <span className="field__req">*</span>
+                      <span className="text-danger">*</span>
                     </div>
-                    <div className="consent__body">
+                    <div className="text-[12.5px] text-grey leading-[1.6]">
                       By continuing, you agree to Hoople's Terms of Service and the host's Refund Policy.
                     </div>
                   </div>
@@ -472,10 +472,10 @@ export function Booking() {
               {/* Continue */}
               <Reveal className="panel panel--lg" delay={180}>
                 <div
-                  className="row row--between"
+                  className="flex items-center justify-between"
                   style={{ gap: 30, flexWrap: 'wrap' }}
                 >
-                  <div className="row" style={{ gap: 14 }}>
+                  <div className="flex items-center" style={{ gap: 14 }}>
                     <span className="icon-tile" style={{ borderRadius: '50%', width: 36, height: 36 }}>
                       <ShieldCheck size={18} color="#6D28FF" strokeWidth={1.8} />
                     </span>
@@ -500,7 +500,7 @@ export function Booking() {
                       <ArrowRight size={17} strokeWidth={2.2} />
                     </Button>
                     <div
-                      className="row"
+                      className="flex items-center"
                       style={{ justifyContent: 'center', gap: 7, fontSize: 12, color: 'var(--color-grey-soft)', marginTop: 10 }}
                     >
                       <Lock size={13} color="#8B8A99" strokeWidth={2} />
@@ -537,12 +537,12 @@ export function Booking() {
                   Your Selection
                 </div>
                 <div className="price-row">
-                  <span className="price-row__label">{subject.ticketType}</span>
-                  <span className="price-row__value">{unitPrice === 0 ? 'Free' : idr(unitPrice)}</span>
+                  <span className="flex items-center gap-[7px] text-ink-2">{subject.ticketType}</span>
+                  <span className="font-medium whitespace-nowrap">{unitPrice === 0 ? 'Free' : idr(unitPrice)}</span>
                 </div>
                 <div className="price-row">
-                  <span className="price-row__label">Quantity</span>
-                  <span className="price-row__value">{participants.length}</span>
+                  <span className="flex items-center gap-[7px] text-ink-2">Quantity</span>
+                  <span className="font-medium whitespace-nowrap">{participants.length}</span>
                 </div>
 
                 <div className="divider" />
@@ -561,7 +561,7 @@ export function Booking() {
                   <span>{idr(money.total)}</span>
                 </div>
 
-                <div className="tint-panel--soft" style={{ marginTop: 20, display: 'flex', gap: 13 }}>
+                <div className="bg-surface-panel rounded-lg py-4 px-[18px]" style={{ marginTop: 20, display: 'flex', gap: 13 }}>
                   <ShieldCheck size={20} color="#6D28FF" strokeWidth={1.8} />
                   <div>
                     <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 5 }}>Full Refund Available</div>
@@ -592,7 +592,7 @@ export function Booking() {
             </aside>
           </div>
 
-          <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
+          <Reveal className="mx-auto w-full max-w-page px-gutter pt-[30px]">
             <div className="trust-strip">
               <div>
                 <StarOutline size={26} color="#6D28FF" strokeWidth={1.7} />
@@ -632,7 +632,7 @@ export function Booking() {
           <div className="mx-auto w-full px-gutter done-layout" style={{ paddingTop: 30 }}>
             <div className="panel panel--lg" ref={successRef} style={{ borderRadius: 18, padding: '34px 36px' }}>
               <div style={{ textAlign: 'center' }}>
-                <div className="done-badge">
+                <div className="w-[66px] h-[66px] rounded-[50%] bg-green inline-flex items-center justify-center mb-5">
                   <Check size={30} color="#fff" />
                 </div>
                 <h2 style={{ fontSize: 29, fontWeight: 700, marginBottom: 10 }}>Payment Successful!</h2>
@@ -671,7 +671,7 @@ export function Booking() {
               </p>
 
               <div className="eticket">
-                <div className="row row--between" style={{ marginBottom: 20, alignItems: 'flex-start' }}>
+                <div className="flex items-center justify-between" style={{ marginBottom: 20, alignItems: 'flex-start' }}>
                   <div>
                     <div style={{ fontFamily: 'var(--font-heading)', fontSize: 19, fontWeight: 600 }}>
                       Your E-Ticket
@@ -726,7 +726,7 @@ export function Booking() {
               </div>
 
               <div
-                className="tint-panel--soft"
+                className="bg-surface-panel rounded-lg py-4 px-[18px]"
                 style={{ marginTop: 18, display: 'flex', alignItems: 'center', gap: 11, fontSize: 13 }}
               >
                 <Info size={17} color="#6D28FF" strokeWidth={1.9} />
@@ -736,19 +736,19 @@ export function Booking() {
 
           </div>
 
-          <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
+          <Reveal className="mx-auto w-full max-w-page px-gutter pt-[30px]">
             <div className="action-grid">
               <button type="button" className="action-tile" onClick={() => toast('E-ticket PDF is on its way to your inbox')}>
                 <Download size={22} color="#5B21F5" strokeWidth={1.8} />
                 <span>
-                  <span className="action-tile__title">Download Ticket</span>
+                  <span className="text-[14px] font-semibold">Download Ticket</span>
                   <span className="action-tile__sub">Save your e-ticket</span>
                 </span>
               </button>
               <button type="button" className="action-tile" onClick={() => toast('Added to your calendar')}>
                 <Calendar size={22} color="#5B21F5" strokeWidth={1.8} />
                 <span>
-                  <span className="action-tile__title">Add to Calendar</span>
+                  <span className="text-[14px] font-semibold">Add to Calendar</span>
                   <span className="action-tile__sub">Add to your schedule</span>
                 </span>
               </button>
@@ -762,7 +762,7 @@ export function Booking() {
               >
                 <Share size={22} color="#5B21F5" strokeWidth={1.8} />
                 <span>
-                  <span className="action-tile__title">Share Experience</span>
+                  <span className="text-[14px] font-semibold">Share Experience</span>
                   <span className="action-tile__sub">Invite your friends</span>
                 </span>
               </button>
@@ -777,7 +777,7 @@ export function Booking() {
                 style={{ height: 'auto' }}
               >
                 <span>
-                  <span className="action-tile__title">View My E-Ticket</span>
+                  <span className="text-[14px] font-semibold">View My E-Ticket</span>
                   <span className="action-tile__sub">Show this QR at the door</span>
                 </span>
                 <ArrowRight size={20} color="#fff" />
@@ -785,7 +785,7 @@ export function Booking() {
             </div>
           </Reveal>
 
-          <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
+          <Reveal className="mx-auto w-full max-w-page px-gutter pt-[30px]">
             <SectionHead size="sm" title="You Might Also Like" moreTo="/activities" moreLabel="See All →" />
             <div className="grid grid--4">
               {suggestions.map((item) => (
@@ -804,9 +804,9 @@ export function Booking() {
             </div>
           </Reveal>
 
-          <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
+          <Reveal className="mx-auto w-full max-w-page px-gutter pt-[30px]">
             <div className="split-panels">
-              <div className="whats-next">
+              <div className="bg-[#f6f4fd] rounded-2xl py-[26px] px-7">
                 <h2 style={{ fontSize: 21, fontWeight: 600, marginBottom: 20 }}>What's Next?</h2>
                 <div className="whats-next__grid">
                   {[
@@ -815,8 +815,8 @@ export function Booking() {
                     ['Share & Connect', 'Share your moments and connect with others.'],
                   ].map(([title, body], index) => (
                     <div key={title}>
-                      <div className="row" style={{ gap: 10, marginBottom: 8 }}>
-                        <span className="whats-next__num">{index + 1}</span>
+                      <div className="flex items-center" style={{ gap: 10, marginBottom: 8 }}>
+                        <span className="w-[26px] h-[26px] rounded-[50%] bg-[#ebe4ff] text-brand-deep flex items-center justify-center text-[12px] font-bold flex-none">{index + 1}</span>
                         <span style={{ fontSize: 14, fontWeight: 600 }}>{title}</span>
                       </div>
                       <div style={{ fontSize: 12.5, color: 'var(--color-ink-muted)', lineHeight: 1.65 }}>{body}</div>
@@ -826,7 +826,7 @@ export function Booking() {
               </div>
 
               <div
-                className="tint-panel grid grid--split-lg"
+                className="bg-brand-tint-strong rounded-3xl py-[26px] px-[30px] grid grid--split-lg"
                 style={{ gap: 20, alignItems: 'center' }}
               >
                 <div>
@@ -848,8 +848,8 @@ export function Booking() {
             </div>
           </Reveal>
 
-          <div className="mx-auto w-full max-w-page px-gutter section--tight" style={{ textAlign: 'center' }}>
-            <div className="row" style={{ justifyContent: 'center', gap: 10, fontSize: 14, fontWeight: 600 }}>
+          <div className="mx-auto w-full max-w-page px-gutter pt-[30px]" style={{ textAlign: 'center' }}>
+            <div className="flex items-center" style={{ justifyContent: 'center', gap: 10, fontSize: 14, fontWeight: 600 }}>
               <Ticket size={17} color="#6D28FF" strokeWidth={1.9} />
               Thank you for being a part of Hoople.
             </div>
@@ -928,7 +928,7 @@ export function Booking() {
 
         {showOrderDetails ? (
           <div style={{ padding: '14px 26px 0' }}>
-            <div className="tint-panel--soft">
+            <div className="bg-surface-panel rounded-lg py-4 px-[18px]">
               <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 10 }}>{subject.title}</div>
               <div style={{ fontSize: 12.5, color: 'var(--color-grey)', marginBottom: 14 }}>
                 {longDate(ticketDate)} · {timeRange(start, end)}
@@ -955,9 +955,9 @@ export function Booking() {
                 aria-pressed={method === option.name}
               >
                 <span className="pay-method__radio" />
-                <span className="pay-method__logo">{option.logo}</span>
+                <span className="w-10 h-[30px] rounded-sm bg-surface-toggle flex items-center justify-center text-[10px] font-bold text-ink-2 flex-none">{option.logo}</span>
                 <span style={{ flex: 1 }}>
-                  <span className="row" style={{ gap: 9 }}>
+                  <span className="flex items-center" style={{ gap: 9 }}>
                     <span style={{ fontSize: 14, fontWeight: 600 }}>{option.name}</span>
                     {option.recommended ? (
                       <span className="tag" style={{ fontSize: 10.5, padding: '4px 9px' }}>
@@ -987,7 +987,7 @@ export function Booking() {
           </div>
         ) : (
           <div style={{ padding: '20px 26px 0', textAlign: 'center' }}>
-            <div className="pay-countdown">
+            <div className="inline-flex items-center gap-[9px] bg-[#fef3e7] text-amber-ink text-[12.5px] font-semibold py-2 px-3.5 rounded-[8px] mb-[18px]">
               <Clock size={14} strokeWidth={2} />
               Complete payment in {countdown}
             </div>
@@ -1030,7 +1030,7 @@ export function Booking() {
           </div>
         )}
 
-        <div className="pay-secure">
+        <div className="mt-5 bg-[#f6f4fd] py-4 px-[26px] flex items-center gap-[13px]">
           <ShieldCheck size={20} color="#6D28FF" strokeWidth={1.8} />
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 600 }}>Payments are secure and encrypted</div>
@@ -1071,7 +1071,7 @@ function Stepper({ step }: { step: Step }) {
               <span className="stepper__dot">{done ? <Check size={18} color="#fff" /> : number}</span>
               <div>
                 <div className="stepper__title">{item.title}</div>
-                <div className="stepper__sub">{item.sub}</div>
+                <div className="text-[13px] text-grey mt-0.5">{item.sub}</div>
               </div>
             </div>
             {number < 3 ? <span className="stepper__line" /> : null}
@@ -1100,7 +1100,7 @@ function TextField({
   return (
     <label className="field">
       <span className="field__label">
-        {label} {required ? <span className="field__req">*</span> : null}
+        {label} {required ? <span className="text-danger">*</span> : null}
       </span>
       <input
         className="input"
@@ -1130,7 +1130,7 @@ function PhoneField({
   return (
     <label className="field">
       <span className="field__label">
-        {label} {required ? <span className="field__req">*</span> : null}
+        {label} {required ? <span className="text-danger">*</span> : null}
       </span>
       <span style={{ display: 'flex', gap: 10 }}>
         <span className="phone-prefix">
@@ -1164,22 +1164,22 @@ function PriceBreakdownRows({
   return (
     <>
       <div className="price-row">
-        <span className="price-row__label">
+        <span className="flex items-center gap-[7px] text-ink-2">
           Subtotal ({quantity} {quantity === 1 ? 'Ticket' : 'Tickets'})
         </span>
-        <span className="price-row__value">{idr(subtotal)}</span>
+        <span className="font-medium whitespace-nowrap">{idr(subtotal)}</span>
       </div>
       <div className="price-row">
-        <span className="price-row__label">
+        <span className="flex items-center gap-[7px] text-ink-2">
           Hoople Platform Fee <Info size={14} color="#B4B2C0" strokeWidth={1.9} />
         </span>
-        <span className="price-row__value">{idr(platformFee)}</span>
+        <span className="font-medium whitespace-nowrap">{idr(platformFee)}</span>
       </div>
       <div className="price-row">
-        <span className="price-row__label">
+        <span className="flex items-center gap-[7px] text-ink-2">
           Payment Gateway Fee <Info size={14} color="#B4B2C0" strokeWidth={1.9} />
         </span>
-        <span className="price-row__value">{idr(gatewayFee)}</span>
+        <span className="font-medium whitespace-nowrap">{idr(gatewayFee)}</span>
       </div>
     </>
   );
@@ -1208,13 +1208,13 @@ function SummaryItem({
 }) {
   return (
     <div className="summary-item">
-      <div className="summary-item__media">
+      <div className="h-[112px] rounded-lg overflow-hidden">
         <ImageSlot id={slotId} shape="rounded" radius={12} placeholder={photoHint} />
       </div>
       <div>
         <div style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 600 }}>{title}</div>
         <div style={{ fontSize: 13, color: 'var(--color-grey)', margin: '4px 0 12px' }}>Hosted by {host}</div>
-        <div className="stack" style={{ gap: 9 }}>
+        <div className="flex flex-col" style={{ gap: 9 }}>
           <span className="meta">
             <Calendar size={15} color="#8B8A99" strokeWidth={1.9} />
             {longDate(date)}
@@ -1242,7 +1242,7 @@ function SummaryItem({
 
 function TicketFacts({ booking }: { booking: BookingRecord }) {
   return (
-    <div className="stack" style={{ gap: 10 }}>
+    <div className="flex flex-col" style={{ gap: 10 }}>
       <span className="meta">
         <Calendar size={15} color="#8B8A99" strokeWidth={1.9} />
         {longDate(booking.date)}

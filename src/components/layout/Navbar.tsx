@@ -104,7 +104,7 @@ function SignedInActions() {
       <Button as="link" to="/saved" variant="neutral" size="nav">
         <Heart size={16} strokeWidth={2} />
         My List
-        {count > 0 ? <span className="nav__count">{count}</span> : null}
+        {count > 0 ? <span className="min-w-[18px] h-[18px] py-0 px-[5px] rounded-pill bg-brand text-[#fff] text-[11px] font-bold inline-flex items-center justify-center">{count}</span> : null}
       </Button>
       <Button as="link" to="/bookings" variant="neutral" size="nav">
         <Calendar size={16} strokeWidth={2} />
@@ -148,7 +148,7 @@ function AccountMenu() {
         aria-haspopup="menu"
         aria-label={`Account menu for ${user?.name ?? 'your account'}`}
       >
-        <span className="nav-user__avatar">
+        <span className="w-8 h-8 rounded-[50%] overflow-hidden bg-brand-tint-strong flex-none block">
           <ImageSlot id="nav-avatar" shape="circle" placeholder="" interactive={false} />
         </span>
         <ChevronDown size={15} color="#5C5B6B" className={open ? 'is-flipped' : undefined} />
@@ -157,7 +157,7 @@ function AccountMenu() {
       {open ? (
         <div className="nav-user__menu" role="menu">
           <div className="nav-user__identity">
-            <div className="nav-user__name">{user?.name}</div>
+            <div className="text-[14px] font-semibold">{user?.name}</div>
             <div className="nav-user__email">{user?.email}</div>
           </div>
 

@@ -7,13 +7,13 @@ import type { Community } from '@/data/types';
 export function CommunityCard({ community }: { community: Community }) {
   return (
     <Link to={`/communities/${community.slug}`} className="card lift community-card">
-      <div className="community-card__media zoom">
+      <div className="h-[120px] flex-none zoom">
         <ImageSlot id={`community-${community.slug}`} shape="rect" placeholder={community.photoHint} />
       </div>
-      <div className="community-card__body">
-        <div className="community-card__name">{community.name}</div>
-        <div className="community-card__focus">{community.focus}</div>
-        <div className="community-card__facts">
+      <div className="p-4">
+        <div className="font-heading text-[15.5px] font-semibold">{community.name}</div>
+        <div className="text-[12.5px] text-grey mt-[5px] leading-[1.5]">{community.focus}</div>
+        <div className="flex flex-col gap-[7px] mt-3">
           <span className="meta meta--sm">
             <Users size={13} color="#8B8A99" strokeWidth={2} />
             {community.members}

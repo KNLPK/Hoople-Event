@@ -59,7 +59,7 @@ export function TeamsAnalytics() {
       </EventContext>
 
       <div className="tm-cols">
-        <div className="stack" style={{ gap: 18 }}>
+        <div className="flex flex-col" style={{ gap: 18 }}>
           <Reveal className="org-stats org-stats--4">
             <Stat label="Invited" value={String(invited)} note={`${ORGANIZATION.name} members`} />
             <Stat
@@ -74,7 +74,7 @@ export function TeamsAnalytics() {
 
           <Reveal className="org-card">
             <div className="org-card__head">
-              <h2 className="org-card__title">{money ? 'Contributions' : 'Registrations'} — last 7 days</h2>
+              <h2 className="font-heading text-[15.5px] font-semibold">{money ? 'Contributions' : 'Registrations'} — last 7 days</h2>
               <div className="tm-toggleset" role="group" aria-label="Chart metric">
                 <button
                   type="button"
@@ -109,7 +109,7 @@ export function TeamsAnalytics() {
                   previous: money ? undefined : day.previous,
                 }))}
               />
-              <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 14 }}>
+              <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.7, marginTop: 14 }}>
                 {money
                   ? `The seven days add up to ${rupiah(gross)} — every rupiah collected for this event.`
                   : `The seven days add up to ${event.registered} registrations — the whole list.`}
@@ -120,8 +120,8 @@ export function TeamsAnalytics() {
           <div className="org-panels">
             <Reveal className="org-card">
               <div className="org-card__head">
-                <h2 className="org-card__title">Invite funnel</h2>
-                <span className="tm-muted">People, not page views</span>
+                <h2 className="font-heading text-[15.5px] font-semibold">Invite funnel</h2>
+                <span className="text-[12.5px] text-grey">People, not page views</span>
               </div>
               <div className="org-card__body">
                 <div className="tm-funnel">
@@ -142,7 +142,7 @@ export function TeamsAnalytics() {
                         </div>
                         <Meter value={step.count} max={invited} />
                         {index > 0 ? (
-                          <span className="tm-funnel__drop">
+                          <span className="block mt-1.5 text-[11.5px] text-grey-soft">
                             {kept}% of the step above · {previous - step.count} dropped
                           </span>
                         ) : null}
@@ -155,7 +155,7 @@ export function TeamsAnalytics() {
 
             <Reveal className="org-card" delay={60}>
               <div className="org-card__head">
-                <h2 className="org-card__title">Passes taken</h2>
+                <h2 className="font-heading text-[15.5px] font-semibold">Passes taken</h2>
               </div>
               <div className="org-card__body">
                 <Donut
@@ -174,8 +174,8 @@ export function TeamsAnalytics() {
           <div className="org-panels">
             <Reveal className="org-card">
               <div className="org-card__head">
-                <h2 className="org-card__title">How members registered</h2>
-                <span className="tm-muted">Internal channels</span>
+                <h2 className="font-heading text-[15.5px] font-semibold">How members registered</h2>
+                <span className="text-[12.5px] text-grey">Internal channels</span>
               </div>
               <div className="org-card__body">
                 <BarList
@@ -186,7 +186,7 @@ export function TeamsAnalytics() {
                   }))}
                   max={100}
                 />
-                <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 18 }}>
+                <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.7, marginTop: 18 }}>
                   There is no search or social traffic to measure — this event has no public page. Every registration
                   came from a channel the organization already owns.
                 </p>
@@ -195,8 +195,8 @@ export function TeamsAnalytics() {
 
             <Reveal className="org-card" delay={60}>
               <div className="org-card__head">
-                <h2 className="org-card__title">Response by department</h2>
-                <span className="tm-muted">Registered of headcount</span>
+                <h2 className="font-heading text-[15.5px] font-semibold">Response by department</h2>
+                <span className="text-[12.5px] text-grey">Registered of headcount</span>
               </div>
               <div className="org-card__body">
                 <BarList
@@ -214,10 +214,10 @@ export function TeamsAnalytics() {
           </div>
         </div>
 
-        <aside className="stack tm-rail" style={{ gap: 18 }}>
+        <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
           <Reveal className="org-card">
             <div className="org-card__head">
-              <h2 className="org-card__title">Event score</h2>
+              <h2 className="font-heading text-[15.5px] font-semibold">Event score</h2>
               <button
                 type="button"
                 className="org-icon-btn"
@@ -250,7 +250,7 @@ export function TeamsAnalytics() {
               </div>
               <div style={{ textAlign: 'center', marginTop: 10 }}>
                 <strong style={{ fontSize: 15 }}>{score >= 80 ? 'Excellent' : score >= 60 ? 'Solid' : 'Needs a push'}</strong>
-                <p className="tm-muted" style={{ lineHeight: 1.6, marginTop: 4 }}>
+                <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.6, marginTop: 4 }}>
                   Weighted from response, turnout and how full the room got.
                 </p>
               </div>
@@ -259,7 +259,7 @@ export function TeamsAnalytics() {
 
           <Reveal className="org-card" delay={60}>
             <div className="org-card__head">
-              <h2 className="org-card__title">Fullest sessions</h2>
+              <h2 className="font-heading text-[15.5px] font-semibold">Fullest sessions</h2>
             </div>
             <div className="org-card__body">
               <BarList
@@ -277,7 +277,7 @@ export function TeamsAnalytics() {
 
           <Reveal className="org-card" delay={120}>
             <div className="org-card__head">
-              <h2 className="org-card__title">Devices used</h2>
+              <h2 className="font-heading text-[15.5px] font-semibold">Devices used</h2>
             </div>
             <div className="org-card__body">
               <Donut
@@ -303,7 +303,7 @@ export function TeamsAnalytics() {
 function Stat({ label, value, note, up, money }: { label: string; value: string; note: string; up?: boolean; money?: boolean }) {
   return (
     <div className="org-stat">
-      <div className="org-stat__label" style={{ marginBottom: 10 }}>
+      <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
         {label}
       </div>
       <div className={`org-stat__value ${money ? 'org-stat__value--money' : ''}`.trim()}>{value}</div>

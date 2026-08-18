@@ -46,11 +46,11 @@ export function OrgAnalytics() {
         </div>
       </div>
 
-      <div className="stack" style={{ gap: 18 }}>
+      <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-stats org-stats--4">
           {headline.map((stat) => (
             <div key={stat.key} className="org-stat">
-              <div className="org-stat__label" style={{ marginBottom: 10 }}>
+              <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
                 {stat.label}
               </div>
               <div
@@ -65,8 +65,8 @@ export function OrgAnalytics() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">{money ? 'Revenue' : 'Registrations'} — last 6 months</h2>
-            <span className="tm-muted">Feb – Jul 2026</span>
+            <h2 className="font-heading text-[15.5px] font-semibold">{money ? 'Revenue' : 'Registrations'} — last 6 months</h2>
+            <span className="text-[12.5px] text-grey">Feb – Jul 2026</span>
           </div>
           <div className="org-card__body">
             <TrendChart
@@ -81,7 +81,7 @@ export function OrgAnalytics() {
                 value: money ? month.revenue : month.registrations,
               }))}
             />
-            <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 14 }}>
+            <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.7, marginTop: 14 }}>
               {money
                 ? `${rupiah(totalRevenue)} across the half year, peaking in June.`
                 : `${totalRegistrations.toLocaleString('id-ID')} registrations across the half year, and July is still running.`}
@@ -92,8 +92,8 @@ export function OrgAnalytics() {
         <div className="org-panels">
           <Reveal className="org-card" delay={120}>
             <div className="org-card__head">
-              <h2 className="org-card__title">Top experiences</h2>
-              <span className="tm-muted">By registrations</span>
+              <h2 className="font-heading text-[15.5px] font-semibold">Top experiences</h2>
+              <span className="text-[12.5px] text-grey">By registrations</span>
             </div>
             <div className="org-card__body">
               <BarList
@@ -109,8 +109,8 @@ export function OrgAnalytics() {
 
           <Reveal className="org-card" delay={180}>
             <div className="org-card__head">
-              <h2 className="org-card__title">Where people find you</h2>
-              <span className="tm-muted">Share of registrations</span>
+              <h2 className="font-heading text-[15.5px] font-semibold">Where people find you</h2>
+              <span className="text-[12.5px] text-grey">Share of registrations</span>
             </div>
             <div className="org-card__body">
               <Donut
@@ -124,7 +124,7 @@ export function OrgAnalytics() {
                 caption="registrations"
                 showShare={false}
               />
-              <p className="tm-muted" style={{ lineHeight: 1.7, marginTop: 16 }}>
+              <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.7, marginTop: 16 }}>
                 Connect (WhatsApp CRM) drives {TRAFFIC_SOURCES[2].share}% of registrations on the Pro tier — the
                 audience you already own, brought back for the next session.
               </p>

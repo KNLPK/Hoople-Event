@@ -39,7 +39,7 @@ export function HowItWorks() {
         <div className="flow-grid">
           {PARTICIPANT_STEPS.map((item, index) => (
             <Reveal key={item.step} delay={index * 60} className="flow-card lift">
-              <div className="flow-card__step">{item.step}</div>
+              <div className="text-[11px] font-bold tracking-[0.1em] text-brand mb-3">{item.step}</div>
               <h3>{item.title}</h3>
               <p>{item.body}</p>
             </Reveal>
@@ -57,8 +57,8 @@ export function HowItWorks() {
         <div className="flow-grid">
           {ORGANIZER_FLOW.map(({ Icon, phase, module, body }, index) => (
             <Reveal key={phase} delay={index * 60} className="flow-card lift">
-              <div className="flow-card__step">{phase}</div>
-              <span className="why-card__icon">
+              <div className="text-[11px] font-bold tracking-[0.1em] text-brand mb-3">{phase}</div>
+              <span className="w-11 h-11 rounded-lg bg-brand-tint-strong flex items-center justify-center mb-4">
                 <Icon size={22} color="#6D28FF" strokeWidth={1.8} />
               </span>
               <h3>{module}</h3>
@@ -72,48 +72,48 @@ export function HowItWorks() {
         <div className="split-panels">
           <div className="panel panel--lg">
             <h2 style={{ fontSize: 21, fontWeight: 600, marginBottom: 16 }}>Two product types, one checkout</h2>
-            <div className="stack" style={{ gap: 20 }}>
-              <div className="feature">
+            <div className="flex flex-col" style={{ gap: 20 }}>
+              <div className="flex gap-[13px]">
                 <span className="icon-tile">
                   <Ticket size={17} color="#6D28FF" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <div className="feature__title">
+                  <div className="text-[13.5px] font-semibold mb-[5px]">
                     <span className="badge" style={{ marginRight: 8 }}>
                       EVENT
                     </span>
                     One-time
                   </div>
-                  <div className="feature__body">
+                  <div className="text-[12.5px] text-grey leading-[1.6]">
                     A concert, seminar, workshop or market fest. Sold as a ticket to a single date.
                   </div>
                 </div>
               </div>
-              <div className="feature">
+              <div className="flex gap-[13px]">
                 <span className="icon-tile icon-tile--green">
                   <Calendar size={17} color="#16A34A" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <div className="feature__title">
+                  <div className="text-[13.5px] font-semibold mb-[5px]">
                     <span className="badge badge--green" style={{ marginRight: 8 }}>
                       ACTIVITY
                     </span>
                     Recurring
                   </div>
-                  <div className="feature__body">
+                  <div className="text-[12.5px] text-grey leading-[1.6]">
                     A yoga class, running club or coffee class. Sold per session, so people can dip in and out.
                   </div>
                 </div>
               </div>
             </div>
             <div className="divider" />
-            <div className="feature">
+            <div className="flex gap-[13px]">
               <span className="icon-tile">
                 <Wallet size={17} color="#6D28FF" strokeWidth={1.8} />
               </span>
               <div>
-                <div className="feature__title">Fees you can explain to a buyer</div>
-                <div className="feature__body">
+                <div className="text-[13.5px] font-semibold mb-[5px]">Fees you can explain to a buyer</div>
+                <div className="text-[12.5px] text-grey leading-[1.6]">
                   A 3% platform fee and the payment gateway fee are itemised at checkout — no surprise line at
                   the end. Payout reaches the organizer H+1.
                 </div>
@@ -121,7 +121,7 @@ export function HowItWorks() {
             </div>
           </div>
 
-          <div className="tint-panel" style={{ display: 'flex', flexDirection: 'column' }}>
+          <div className="bg-brand-tint-strong rounded-3xl py-[26px] px-[30px]" style={{ display: 'flex', flexDirection: 'column' }}>
             <h2 style={{ fontSize: 21, fontWeight: 600, marginBottom: 10 }}>See it end to end</h2>
             <p style={{ fontSize: 13.5, color: 'var(--color-ink-3)', lineHeight: 1.7, marginBottom: 20 }}>
               The fastest way to understand Hoople is to book something. Pick an activity, choose a session,
@@ -130,7 +130,7 @@ export function HowItWorks() {
             <div style={{ height: 190, marginBottom: 22 }} className="float">
               <ImageSlot id="how-art" shape="rounded" radius={14} placeholder="Flow 3D illustration" />
             </div>
-            <div className="row" style={{ gap: 12, marginTop: 'auto', flexWrap: 'wrap' }}>
+            <div className="flex items-center" style={{ gap: 12, marginTop: 'auto', flexWrap: 'wrap' }}>
               <Button as="link" to="/activities" variant="white">
                 Try the booking flow
               </Button>

@@ -44,8 +44,8 @@ export function ETicket() {
   return (
     <>
       <div className="mx-auto w-full max-w-page px-gutter" style={{ paddingTop: 28 }}>
-        <div className="row row--between" style={{ gap: 16, flexWrap: 'wrap' }}>
-          <div className="row" style={{ gap: 12, fontSize: 13.5, color: 'var(--color-grey)' }}>
+        <div className="flex items-center justify-between" style={{ gap: 16, flexWrap: 'wrap' }}>
+          <div className="flex items-center" style={{ gap: 12, fontSize: 13.5, color: 'var(--color-grey)' }}>
             <Link to="/bookings" style={{ fontWeight: 500 }}>
               My Bookings
             </Link>
@@ -80,7 +80,7 @@ export function ETicket() {
         <h1 style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-0.03em', marginBottom: 14 }}>
           E-Ticket Details
         </h1>
-        <div className="row" style={{ gap: 14, flexWrap: 'wrap' }}>
+        <div className="flex items-center" style={{ gap: 14, flexWrap: 'wrap' }}>
           <span className="tag tag--status" style={{ fontSize: 12.5, padding: '6px 13px' }}>
             {booking.status} <Check size={13} />
           </span>
@@ -118,7 +118,7 @@ export function ETicket() {
               <div style={{ fontSize: 14, color: 'var(--color-ink-muted)', marginBottom: 18 }}>
                 Hosted by {booking.host}
               </div>
-              <div className="stack" style={{ gap: 11 }}>
+              <div className="flex flex-col" style={{ gap: 11 }}>
                 <span className="meta" style={{ fontSize: 13.5 }}>
                   <Calendar size={16} color="#8B8A99" strokeWidth={1.9} />
                   {longDate(booking.date)}
@@ -161,10 +161,10 @@ export function ETicket() {
           </div>
 
           <div className="ticket-section">
-            <div className="row row--between" style={{ marginBottom: 20, gap: 16, flexWrap: 'wrap' }}>
+            <div className="flex items-center justify-between" style={{ marginBottom: 20, gap: 16, flexWrap: 'wrap' }}>
               <div className="eyebrow">Ticket Information</div>
               <span
-                className="row"
+                className="flex items-center"
                 style={{
                   gap: 9,
                   border: '1.5px solid var(--color-brand-border)',
@@ -231,7 +231,7 @@ export function ETicket() {
               </dl>
             </div>
             <div
-              className="tint-panel--soft"
+              className="bg-surface-panel rounded-lg py-4 px-[18px]"
               style={{
                 marginTop: 20,
                 background: '#F6F4FD',
@@ -255,33 +255,33 @@ export function ETicket() {
                 'Show this QR code at the entrance and the host will check you in.'}
             </p>
             <div className="grid grid--3" style={{ gap: 24 }}>
-              <div className="feature">
+              <div className="flex gap-[13px]">
                 <span className="icon-tile">
                   <Bag size={17} color="#6D28FF" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <div className="feature__title">What to Bring</div>
-                  <div className="feature__body">
+                  <div className="text-[13.5px] font-semibold mb-[5px]">What to Bring</div>
+                  <div className="text-[12.5px] text-grey leading-[1.6]">
                     {activity ? `${activity.bring[0].title} ${activity.bring[0].detail}.` : 'Just bring yourself.'}
                   </div>
                 </div>
               </div>
-              <div className="feature">
+              <div className="flex gap-[13px]">
                 <span className="icon-tile">
                   <Users size={17} color="#6D28FF" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <div className="feature__title">For Any Questions</div>
-                  <div className="feature__body">Contact the host or our support team.</div>
+                  <div className="text-[13.5px] font-semibold mb-[5px]">For Any Questions</div>
+                  <div className="text-[12.5px] text-grey leading-[1.6]">Contact the host or our support team.</div>
                 </div>
               </div>
-              <div className="feature">
+              <div className="flex gap-[13px]">
                 <span className="icon-tile">
                   <ShieldCheck size={17} color="#6D28FF" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <div className="feature__title">Refund Policy</div>
-                  <div className="feature__body">
+                  <div className="text-[13.5px] font-semibold mb-[5px]">Refund Policy</div>
+                  <div className="text-[12.5px] text-grey leading-[1.6]">
                     This ticket is refundable up to 24 hours before it starts.
                   </div>
                   <Link to="/help" style={{ display: 'inline-block', fontSize: 12.5, fontWeight: 600, marginTop: 6 }}>
@@ -293,7 +293,7 @@ export function ETicket() {
           </div>
         </Reveal>
 
-        <aside className="stack" style={{ gap: 22 }}>
+        <aside className="flex flex-col" style={{ gap: 22 }}>
           <div className="panel">
             <div className="eyebrow" style={{ marginBottom: 16 }}>
               Ticket Actions
@@ -351,14 +351,14 @@ export function ETicket() {
             <div className="eyebrow" style={{ marginBottom: 16 }}>
               Attendee ({booking.participants.length})
             </div>
-            <div className="stack" style={{ gap: 14 }}>
+            <div className="flex flex-col" style={{ gap: 14 }}>
               {booking.participants.map((participant, index) => (
-                <div key={`${participant.name}-${index}`} className="row" style={{ gap: 14 }}>
+                <div key={`${participant.name}-${index}`} className="flex items-center" style={{ gap: 14 }}>
                   <div style={{ width: 44, height: 44, borderRadius: '50%', overflow: 'hidden', flex: 'none' }}>
                     <ImageSlot id={`attendee-${booking.id}-${index}`} shape="circle" placeholder="" />
                   </div>
                   <div>
-                    <div className="row" style={{ gap: 10, flexWrap: 'wrap' }}>
+                    <div className="flex items-center" style={{ gap: 10, flexWrap: 'wrap' }}>
                       <span style={{ fontSize: 14.5, fontWeight: 600 }}>{participant.name}</span>
                       {index === 0 ? (
                         <span className="tag" style={{ fontSize: 10.5, padding: '4px 9px' }}>
@@ -390,7 +390,7 @@ export function ETicket() {
         </aside>
       </div>
 
-      <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
+      <Reveal className="mx-auto w-full max-w-page px-gutter pt-[30px]">
         <div className="explore-banner">
           <div>
             <div
@@ -430,7 +430,7 @@ export function ETicket() {
       </Reveal>
 
       <div
-        className="mx-auto w-full max-w-page px-gutter section--tight"
+        className="mx-auto w-full max-w-page px-gutter pt-[30px]"
         style={{
           display: 'flex',
           alignItems: 'center',

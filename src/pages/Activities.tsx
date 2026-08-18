@@ -148,7 +148,7 @@ export function Activities() {
             Move, learn, create, and grow. Join recurring activities that{' '}
             <span className="script">fit your lifestyle.</span>
           </p>
-          <div className="row" style={{ gap: 12 }}>
+          <div className="flex items-center" style={{ gap: 12 }}>
             <div className="avatar-stack">
               {[1, 2, 3, 4].map((index) => (
                 <div key={index}>
@@ -232,8 +232,8 @@ export function Activities() {
             </div>
           ) : (
             <div className="empty">
-              <div className="empty__title">Nothing matches those filters</div>
-              <p className="empty__body">
+              <div className="font-heading text-[17px] font-semibold mb-1.5">Nothing matches those filters</div>
+              <p className="text-[13.5px] text-grey mb-[18px]">
                 Reset the filters to see all {CATALOGUE_SIZE.toLocaleString('en-US')} activities in Jakarta.
               </p>
               <Button
@@ -281,7 +281,7 @@ export function Activities() {
             </Rail>
           </Reveal>
 
-          <Reveal className="mx-auto w-full max-w-page px-gutter section--loose mx-auto w-full max-w-page px-gutter" delay={120}>
+          <Reveal className="mx-auto w-full max-w-page px-gutter pt-14 mx-auto w-full max-w-page px-gutter" delay={120}>
             <SectionHead
               size="sm"
               icon={<Recurring size={22} color="#6D28FF" strokeWidth={2.2} />}
@@ -360,8 +360,8 @@ function CalendarResults({ activities }: { activities: Activity[] }) {
   if (!withSessions.length) {
     return (
       <div className="empty">
-        <div className="empty__title">No sessions in the next seven days</div>
-        <p className="empty__body">Widen your filters, or switch back to the grid to browse everything.</p>
+        <div className="font-heading text-[17px] font-semibold mb-1.5">No sessions in the next seven days</div>
+        <p className="text-[13.5px] text-grey mb-[18px]">Widen your filters, or switch back to the grid to browse everything.</p>
       </div>
     );
   }
@@ -371,28 +371,28 @@ function CalendarResults({ activities }: { activities: Activity[] }) {
       {withSessions.map((day) => (
         <div key={day.iso} className="calendar-view__day">
           <div>
-            <div className="calendar-view__date">{longDate(day.iso)}</div>
-            <div className="calendar-view__weekday">
+            <div className="font-heading text-[15px] font-semibold">{longDate(day.iso)}</div>
+            <div className="text-[12.5px] text-grey mt-[3px]">
               {day.sessions.length} {day.sessions.length === 1 ? 'session' : 'sessions'}
             </div>
           </div>
-          <div className="calendar-view__slots">
+          <div className="flex flex-col gap-2.5">
             {day.sessions.map((session) => (
               <Link
                 key={`${session.activity.slug}-${session.id}`}
                 to={`/booking?activity=${session.activity.slug}&session=${session.id}&date=${day.iso}`}
                 className="calendar-slot"
               >
-                <span className="calendar-slot__time">
+                <span className="font-semibold text-[13.5px]">
                   {session.start.replace(':', '.')} – {session.end.replace(':', '.')}
                 </span>
                 <span>
-                  <span className="calendar-slot__title">{session.activity.title}</span>
-                  <span className="calendar-slot__host">
+                  <span className="font-semibold text-[14px]">{session.activity.title}</span>
+                  <span className="text-[12.5px] text-grey mt-0.5">
                     {session.activity.host} · {session.activity.venue.area}
                   </span>
                 </span>
-                <span className="calendar-slot__slots">{session.slots} slots left</span>
+                <span className="text-[12.5px] text-green font-semibold whitespace-nowrap">{session.slots} slots left</span>
                 <span style={{ fontSize: 13.5, fontWeight: 700 }}>
                   {session.activity.priceFrom === 0 ? 'Free' : rupiah(session.activity.priceFrom)}
                 </span>

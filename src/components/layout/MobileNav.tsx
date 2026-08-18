@@ -107,7 +107,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
       <button type="button" className="drawer__scrim" onClick={onClose} aria-label="Close menu" />
 
       <div className="drawer__panel">
-        <div className="drawer__head">
+        <div className="flex items-center justify-between">
           <Link to="/home" className="nav__brand" onClick={onClose}>
             <Logo size={24} color="#12121A" />
             <span>hoople</span>
@@ -119,7 +119,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
 
         {isSignedIn ? (
           <Link to="/saved" className="drawer__identity" onClick={onClose}>
-            <span className="drawer__avatar">
+            <span className="w-[42px] h-[42px] rounded-[50%] overflow-hidden flex-none bg-brand-tint-strong">
               <ImageSlot id="nav-avatar" shape="circle" placeholder="" interactive={false} />
             </span>
             <span>
@@ -136,8 +136,8 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
           </div>
         )}
 
-        <div className="drawer__section">
-          <span className="drawer__label">Browse</span>
+        <div className="flex flex-col gap-0.5">
+          <span className="text-[11px] font-bold tracking-[0.08em] uppercase text-grey-soft mb-2">Browse</span>
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.to}
@@ -150,8 +150,8 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
           ))}
         </div>
 
-        <div className="drawer__section">
-          <span className="drawer__label">You</span>
+        <div className="flex flex-col gap-0.5">
+          <span className="text-[11px] font-bold tracking-[0.08em] uppercase text-grey-soft mb-2">You</span>
           <Link to="/bookings" className="drawer__link" onClick={onClose}>
             <Calendar size={17} color="#5C5B6B" strokeWidth={1.9} />
             My Tickets
@@ -159,7 +159,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
           <Link to="/saved" className="drawer__link" onClick={onClose}>
             <Heart size={17} color="#5C5B6B" strokeWidth={1.9} />
             My List
-            {count > 0 ? <span className="drawer__count">{count}</span> : null}
+            {count > 0 ? <span className="ml-auto min-w-[20px] h-5 py-0 px-1.5 rounded-pill bg-brand text-[#fff] text-[11px] font-bold flex items-center justify-center">{count}</span> : null}
           </Link>
           <Link to="/help" className="drawer__link" onClick={onClose}>
             <Headset size={17} color="#5C5B6B" strokeWidth={1.9} />
@@ -167,8 +167,8 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
           </Link>
         </div>
 
-        <div className="drawer__section">
-          <span className="drawer__label">Organizing</span>
+        <div className="flex flex-col gap-0.5">
+          <span className="text-[11px] font-bold tracking-[0.08em] uppercase text-grey-soft mb-2">Organizing</span>
           <Link to="/organizers" className="drawer__link" onClick={onClose}>
             <User size={17} color="#5C5B6B" strokeWidth={1.9} />
             For Organizers
@@ -179,7 +179,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
           </Link>
         </div>
 
-        <div className="drawer__foot">
+        <div className="mt-auto flex flex-col gap-1.5">
           <Button as="link" to="/organizers" variant="primary" block onClick={onClose}>
             Create Experience
           </Button>

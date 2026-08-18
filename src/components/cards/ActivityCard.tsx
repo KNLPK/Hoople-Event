@@ -15,7 +15,7 @@ export function ActivityCard({ activity }: { activity: Activity }) {
 
   return (
     <article className="card lift activity-card">
-      <div className="activity-card__media zoom">
+      <div className="relative h-[150px] flex-none zoom">
         <ImageSlot id={`activity-${activity.slug}`} shape="rect" placeholder={activity.photoHint} />
         {activity.badge ? (
           <span
@@ -36,9 +36,9 @@ export function ActivityCard({ activity }: { activity: Activity }) {
         <Link to={`/activities/${activity.slug}`} className="activity-card__title">
           {activity.title}
         </Link>
-        <div className="activity-card__host">by {activity.host}</div>
+        <div className="text-[12.5px] text-grey-soft mt-1">by {activity.host}</div>
 
-        <div className="stack" style={{ gap: 7, marginTop: 14 }}>
+        <div className="flex flex-col" style={{ gap: 7, marginTop: 14 }}>
           <span className="meta meta--sm">
             <Calendar size={14} color="#8B8A99" strokeWidth={2} />
             Next session
@@ -65,7 +65,7 @@ export function ActivityCard({ activity }: { activity: Activity }) {
           Book session
         </Button>
 
-        <div className="activity-card__tags">
+        <div className="flex gap-2 mt-3.5 flex-wrap">
           {activity.tags.map((tag) => (
             <span key={tag} className="tag tag--neutral">
               {tag}

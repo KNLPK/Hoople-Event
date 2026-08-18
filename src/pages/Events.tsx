@@ -54,7 +54,7 @@ export function Events() {
             Concerts, seminars, workshops and market fests across Indonesia —{' '}
             <span className="script">book once, remember it for years.</span>
           </p>
-          <div className="row" style={{ gap: 14, flexWrap: 'wrap' }}>
+          <div className="flex items-center" style={{ gap: 14, flexWrap: 'wrap' }}>
             <Button as="link" to="/discover" variant="primary" size="lg">
               Browse all events
             </Button>
@@ -107,8 +107,8 @@ export function Events() {
           </Rail>
         ) : (
           <div className="empty">
-            <div className="empty__title">Nothing on this weekend yet</div>
-            <p className="empty__body">New events go live every Tuesday. Get notified when they do.</p>
+            <div className="font-heading text-[17px] font-semibold mb-1.5">Nothing on this weekend yet</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">New events go live every Tuesday. Get notified when they do.</p>
             <Button as="button" variant="primary" onClick={() => toast("You'll be the first to know")}>
               Notify me
             </Button>
@@ -144,10 +144,10 @@ export function Events() {
                     >
                       {event.title}
                     </button>
-                    <div className="recurring-row__host">{event.host}</div>
-                    <div className="recurring-row__level">{event.category}</div>
+                    <div className="text-[12.5px] text-grey">{event.host}</div>
+                    <div className="text-[12.5px] text-grey-soft mt-[3px]">{event.category}</div>
                   </div>
-                  <div className="stack" style={{ gap: 6 }}>
+                  <div className="flex flex-col" style={{ gap: 6 }}>
                     <span className="meta meta--sm">
                       <Calendar size={14} color="#8B8A99" strokeWidth={2} />
                       {shortDate(event.date)}
@@ -176,7 +176,7 @@ export function Events() {
             </div>
 
             {visible < upcoming.length ? (
-              <div className="row" style={{ justifyContent: 'center', marginTop: 26 }}>
+              <div className="flex items-center" style={{ justifyContent: 'center', marginTop: 26 }}>
                 <Button as="button" variant="neutral" onClick={() => setVisible((count) => count + PAGE_SIZE)}>
                   Load more
                   <ChevronDown size={15} color="#8B8A99" strokeWidth={2} />
@@ -185,9 +185,9 @@ export function Events() {
             ) : null}
           </div>
 
-          <aside className="stack" style={{ gap: 22 }}>
+          <aside className="flex flex-col" style={{ gap: 22 }}>
             <div className="surprise" style={{ gridTemplateColumns: '1fr', textAlign: 'left', padding: '24px 26px' }}>
-              <div className="surprise__art float" style={{ width: 92, height: 78 }}>
+              <div className="w-[92px] h-[78px] float" style={{ width: 92, height: 78 }}>
                 <ImageSlot id="events-surprise-art" shape="rounded" radius={12} placeholder="Dice 3D" />
               </div>
               <div>

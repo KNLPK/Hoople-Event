@@ -34,17 +34,17 @@ export function FormatIcon({ format, size = 15 }: { format: EventFormat; size?: 
 export function EventContext({ event, children }: { event: TeamEvent; children?: React.ReactNode }) {
   return (
     <div className="tm-ctx">
-      <Link to={`/teams?e=${event.id}`} className="org-back tm-ctx__back">
+      <Link to={`/teams?e=${event.id}`} className="org-back mb-3">
         <ChevronLeft size={16} color="#3C3A4A" />
         Back to Dashboard
       </Link>
 
-      <div className="tm-ctx__row">
-        <span className="tm-ctx__thumb">
+      <div className="flex items-center gap-4 flex-wrap">
+        <span className="w-[84px] h-14 flex-none rounded-[10px] overflow-hidden bg-surface-chip">
           <ImageSlot id={`tm-cover-${event.id}`} shape="rounded" radius={10} placeholder={event.photoHint} />
         </span>
 
-        <div className="tm-ctx__body">
+        <div className="min-w-0 flex-1">
           <div className="tm-ctx__title">
             <h2>{event.title}</h2>
             <span className={`org-pill org-pill--${statusTone(event.status)}`}>{event.status}</span>

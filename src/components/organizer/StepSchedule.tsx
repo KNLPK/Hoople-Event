@@ -33,8 +33,8 @@ export function StepSchedule({
           />
           <div className="wiz-period">
             <label className="field">
-              <span className="wiz-field__label">
-                Start Date<span className="field__req"> *</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Start Date<span className="text-danger"> *</span>
               </span>
               <span className="wiz-date">
                 <Calendar size={16} color="#8B8A99" strokeWidth={1.9} />
@@ -48,8 +48,8 @@ export function StepSchedule({
             </label>
 
             <label className="field">
-              <span className="wiz-field__label">
-                End Date <span className="wiz-field__optional">(Optional)</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                End Date <span className="font-normal text-grey">(Optional)</span>
               </span>
               <span className={`wiz-date ${draft.noEndDate ? 'is-off' : ''}`.trim()}>
                 <Calendar size={16} color="#8B8A99" strokeWidth={1.9} />
@@ -65,7 +65,7 @@ export function StepSchedule({
             </label>
           </div>
 
-          <div className="wiz-period__check">
+          <div className="mt-3.5">
             <Checkbox
               checked={draft.noEndDate}
               label="No end date (available indefinitely)"
@@ -112,7 +112,7 @@ export function StepSchedule({
         </div>
 
         <div className="wiz-note">
-          <span className="wiz-note__icon">
+          <span className="flex-none flex mt-px">
             <Clock size={17} color="#6D28FF" strokeWidth={1.9} />
           </span>
           <div>

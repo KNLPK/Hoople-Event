@@ -97,7 +97,7 @@ export function TeamsRegistrations() {
       </EventContext>
 
       <div className={`tm-work ${selected ? 'has-aside' : ''}`.trim()}>
-        <div className="stack" style={{ gap: 18 }}>
+        <div className="flex flex-col" style={{ gap: 18 }}>
           <Reveal className="org-stats org-stats--4">
             <Stat label="Total registrations" value={String(counts.total)} note="↑ 18.6% vs last week" up />
             <Stat
@@ -228,7 +228,7 @@ export function TeamsRegistrations() {
                           </div>
                         </td>
                         <td>
-                          <span className="tm-passchip">{pass?.name ?? row.passId}</span>
+                          <span className="inline-block py-[3px] px-[9px] rounded-pill bg-brand-tint-strong text-brand-ink text-[11.5px] font-semibold">{pass?.name ?? row.passId}</span>
                           <span className="org-table__sub">
                             {row.quantity} {row.quantity === 1 ? 'seat' : 'seats'}
                           </span>
@@ -280,8 +280,8 @@ export function TeamsRegistrations() {
 
             {rows.length === 0 ? (
               <div style={{ padding: 44, textAlign: 'center' }}>
-                <div className="empty__title">Nobody matches those filters</div>
-                <p className="empty__body">Clear a filter, or search by employee ID.</p>
+                <div className="font-heading text-[17px] font-semibold mb-1.5">Nobody matches those filters</div>
+                <p className="text-[13.5px] text-grey mb-[18px]">Clear a filter, or search by employee ID.</p>
               </div>
             ) : null}
           </Reveal>
@@ -320,11 +320,11 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
       </button>
 
       <div className="tm-aside__head">
-        <span className="tm-aside__avatar">
+        <span className="w-[54px] h-[54px] flex-none rounded-[50%] overflow-hidden bg-brand-tint-strong">
           <ImageSlot id={`tm-member-avatar-${row.id}`} shape="circle" placeholder="" interactive={false} />
         </span>
         <div>
-          <div className="tm-aside__name">
+          <div className="flex items-center gap-2 flex-wrap text-[15.5px] font-bold mb-1.5">
             {row.name}
             <span
               className={`org-pill org-pill--${row.attendance === 'Checked in' ? 'confirmed' : 'pending'}`}
@@ -362,7 +362,7 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
 
       {tab === 'overview' ? (
         <div className="tm-aside__body">
-          <Section title="Pass" aside={<span className="tm-passchip">{pass?.name}</span>}>
+          <Section title="Pass" aside={<span className="inline-block py-[3px] px-[9px] rounded-pill bg-brand-tint-strong text-brand-ink text-[11.5px] font-semibold">{pass?.name}</span>}>
             <Row label="Order ID" value={row.orderId || 'No order — free pass'} />
             <Row label="Quantity" value={`${row.quantity} ${row.quantity === 1 ? 'seat' : 'seats'}`} />
             <Row label="Price" value={pass && pass.price > 0 ? `${rupiah(pass.price)} / seat` : 'No cost'} />
@@ -394,7 +394,7 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
           <div className="tm-qr">
             <ImageSlot id={`tm-pass-qr-${row.id}`} shape="rounded" radius={12} placeholder="QR code" />
           </div>
-          <p className="tm-muted" style={{ textAlign: 'center', lineHeight: 1.6 }}>
+          <p className="text-[12.5px] text-grey" style={{ textAlign: 'center', lineHeight: 1.6 }}>
             Scanned at the door. The pass is tied to {row.employeeId}, so it cannot be forwarded to someone outside
             the organization.
           </p>
@@ -420,7 +420,7 @@ function MemberPanel({ event, row, onClose }: { event: TeamEvent; row: Registrat
 
 function Section({ title, aside, children }: { title: string; aside?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <section className="tm-asection">
+    <section className="mb-[22px]">
       <div className="tm-asection__head">
         <h3>{title}</h3>
         {aside}
@@ -442,7 +442,7 @@ function Row({ label, value }: { label: string; value: string }) {
 function Stat({ label, value, note, up }: { label: string; value: string; note: string; up?: boolean }) {
   return (
     <div className="org-stat">
-      <div className="org-stat__label" style={{ marginBottom: 10 }}>
+      <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
         {label}
       </div>
       <div className="org-stat__value">{value}</div>

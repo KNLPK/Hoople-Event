@@ -67,7 +67,7 @@ export function Entry() {
     <main className="entry">
       <div className="entry__inner">
         <Reveal className="entry__head">
-          <span className="entry__logo" aria-hidden="true">
+          <span className="inline-flex items-center gap-2 font-heading text-[24px] font-bold tracking-[-0.03em] mb-[22px]" aria-hidden="true">
             <Logo size={28} color="#6D28FF" />
             <span>hoople</span>
           </span>
@@ -94,13 +94,13 @@ export function Entry() {
                 </span>
 
                 <span className="entry-card__body">
-                  <span className="entry-card__eyebrow">
+                  <span className="flex items-center gap-2 text-[11.5px] font-bold tracking-[0.07em] uppercase text-grey mb-3">
                     {surface.icon}
                     {surface.eyebrow}
                   </span>
-                  <span className="entry-card__title">{surface.title}</span>
+                  <span className="font-heading text-[21px] font-bold tracking-[-0.02em]">{surface.title}</span>
                   <span className="entry-card__tagline">{surface.tagline}</span>
-                  <span className="entry-card__text">{surface.body}</span>
+                  <span className="text-[13.5px] leading-[1.65] text-ink-3 mt-2.5">{surface.body}</span>
 
                   <span className="entry-card__points">
                     {surface.points.map((point) => (

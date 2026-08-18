@@ -95,7 +95,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
 
         <section className="org-card wiz-panel">
           <div className="wiz-panel__head">
-            <span className="wiz-field__label">Ticket Types</span>
+            <span className="block text-[13.5px] font-semibold text-ink">Ticket Types</span>
             <button type="button" className="wiz-addsession" onClick={add}>
               <Plus size={14} color="#6D28FF" strokeWidth={2} />
               Add Ticket Type
@@ -103,7 +103,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
           </div>
 
           {draft.tickets.length === 0 ? (
-            <p className="wiz-sessions__empty">
+            <p className="text-[13px] text-grey py-[18px] px-0">
               No ticket types yet. Add one so people have something to register for.
             </p>
           ) : (
@@ -120,12 +120,12 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                     } ${ticket.active ? '' : 'is-off'}`.trim()}
                   >
                     <div className="evt-ticket__row">
-                      <span className="evt-ticket__icon">
+                      <span className="w-11 h-11 rounded-md bg-brand-tint-strong flex items-center justify-center">
                         <Icon size={19} color="#6D28FF" strokeWidth={1.8} />
                       </span>
 
                       <div className="evt-ticket__main">
-                        <div className="evt-ticket__name">
+                        <div className="flex items-center gap-2.5 text-[14.5px] font-semibold flex-wrap">
                           {ticket.name}
                           <span className={`evt-mode evt-mode--${ticket.mode.toLowerCase()}`}>
                             {MODE_LABEL[ticket.mode]}
@@ -187,7 +187,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                       <div className="evt-ticket__edit">
                         <div className="wiz-pair">
                           <div>
-                            <span className="wiz-field__label">Ticket name</span>
+                            <span className="block text-[13.5px] font-semibold text-ink">Ticket name</span>
                             <CounterInput
                               ariaLabel="Ticket name"
                               value={ticket.name}
@@ -197,7 +197,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                             />
                           </div>
                           <div>
-                            <span className="wiz-field__label">Who it is for</span>
+                            <span className="block text-[13.5px] font-semibold text-ink">Who it is for</span>
                             <SelectInput
                               ariaLabel="Ticket delivery mode"
                               value={ticket.mode}
@@ -208,7 +208,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                         </div>
 
                         <div>
-                          <span className="wiz-field__label">Description</span>
+                          <span className="block text-[13.5px] font-semibold text-ink">Description</span>
                           <CounterInput
                             ariaLabel="Ticket description"
                             value={ticket.description}
@@ -220,7 +220,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
 
                         <div className="wiz-triple">
                           <div>
-                            <span className="wiz-field__label">Price</span>
+                            <span className="block text-[13.5px] font-semibold text-ink">Price</span>
                             <AffixInput
                               ariaLabel="Ticket price"
                               prefix="Rp"
@@ -231,8 +231,8 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                             />
                           </div>
                           <div>
-                            <span className="wiz-field__label">
-                              Early bird <span className="wiz-field__optional">(Optional)</span>
+                            <span className="block text-[13.5px] font-semibold text-ink">
+                              Early bird <span className="font-normal text-grey">(Optional)</span>
                             </span>
                             <AffixInput
                               ariaLabel="Early bird price"
@@ -245,7 +245,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                             />
                           </div>
                           <div>
-                            <span className="wiz-field__label">Capacity</span>
+                            <span className="block text-[13.5px] font-semibold text-ink">Capacity</span>
                             <AffixInput
                               ariaLabel="Ticket capacity"
                               suffix="seats"
@@ -260,7 +260,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                         </div>
 
                         <div>
-                          <span className="wiz-field__label">Includes</span>
+                          <span className="block text-[13.5px] font-semibold text-ink">Includes</span>
                           <div className="wiz-tokens__suggest">
                             {TICKET_PERKS.map((perk) => {
                               const on = ticket.perks.includes(perk);
@@ -312,11 +312,11 @@ export function EventTickets({ draft, set }: EventSectionProps) {
         </section>
 
         <section className="org-card wiz-panel">
-          <span className="wiz-field__label">General Ticket Settings</span>
+          <span className="block text-[13.5px] font-semibold text-ink">General Ticket Settings</span>
 
           <div className="wiz-triple" style={{ marginTop: 14 }}>
             <div>
-              <span className="wiz-field__label">Sales Start</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Sales Start</span>
               <div className="wiz-when">
                 <span className="wiz-date">
                   <input
@@ -337,8 +337,8 @@ export function EventTickets({ draft, set }: EventSectionProps) {
               </div>
             </div>
             <div>
-              <span className="wiz-field__label">
-                Sales End <span className="wiz-field__optional">(Optional)</span>
+              <span className="block text-[13.5px] font-semibold text-ink">
+                Sales End <span className="font-normal text-grey">(Optional)</span>
               </span>
               <div className="wiz-when">
                 <span className="wiz-date">
@@ -361,7 +361,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
               </div>
             </div>
             <div>
-              <span className="wiz-field__label">Currency</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Currency</span>
               <SelectInput
                 ariaLabel="Currency"
                 value={draft.currency}
@@ -373,7 +373,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
 
           <div className="wiz-pair" style={{ marginTop: 18 }}>
             <div>
-              <span className="wiz-field__label">Refund Policy</span>
+              <span className="block text-[13.5px] font-semibold text-ink">Refund Policy</span>
               <SelectInput
                 ariaLabel="Refund policy"
                 value={draft.refundPolicy}
@@ -382,8 +382,8 @@ export function EventTickets({ draft, set }: EventSectionProps) {
               />
             </div>
             <div>
-              <span className="wiz-field__label">Payment Methods</span>
-              <div className="evt-pays">
+              <span className="block text-[13.5px] font-semibold text-ink">Payment Methods</span>
+              <div className="flex flex-wrap gap-1.5">
                 {PAYMENT_METHOD_OPTIONS.map((method) => {
                   const on = draft.paymentMethods.includes(method);
                   return (
@@ -412,7 +412,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
         </section>
 
         <div className="wiz-note">
-          <span className="wiz-note__icon">
+          <span className="flex-none flex mt-px">
             <Info size={16} color="#6D28FF" strokeWidth={1.9} />
           </span>
           <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>

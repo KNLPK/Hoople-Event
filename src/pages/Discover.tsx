@@ -155,9 +155,9 @@ export function Discover() {
         />
       </div>
 
-      <Reveal className="mx-auto w-full max-w-page px-gutter section--tight">
+      <Reveal className="mx-auto w-full max-w-page px-gutter pt-[30px]">
         <div className="surprise">
-          <div className="surprise__art float">
+          <div className="w-[92px] h-[78px] float">
             <ImageSlot id="surprise-art" shape="rounded" radius={12} placeholder="Dice 3D illustration" />
           </div>
           <div>
@@ -189,23 +189,23 @@ export function Discover() {
                   return (
                     <div key={activity.slug} className="calendar-view__day">
                       <div>
-                        <div className="calendar-view__date">
+                        <div className="font-heading text-[15px] font-semibold">
                           {upcoming ? longDate(upcoming.date) : 'Dates coming soon'}
                         </div>
-                        <div className="calendar-view__weekday">{activity.recurrence}</div>
+                        <div className="text-[12.5px] text-grey mt-[3px]">{activity.recurrence}</div>
                       </div>
-                      <div className="calendar-view__slots">
+                      <div className="flex flex-col gap-2.5">
                         <Link to={`/activities/${activity.slug}`} className="calendar-slot">
-                          <span className="calendar-slot__time">
+                          <span className="font-semibold text-[13.5px]">
                             {upcoming ? upcoming.start.replace(':', '.') : '—'}
                           </span>
                           <span>
-                            <span className="calendar-slot__title">{activity.title}</span>
-                            <span className="calendar-slot__host">
+                            <span className="font-semibold text-[14px]">{activity.title}</span>
+                            <span className="text-[12.5px] text-grey mt-0.5">
                               {activity.host} · {activity.venue.area}
                             </span>
                           </span>
-                          <span className="calendar-slot__slots">
+                          <span className="text-[12.5px] text-green font-semibold whitespace-nowrap">
                             {upcoming ? `${upcoming.slotsLeft} slots left` : 'Follow for dates'}
                           </span>
                           <span style={{ fontSize: 13.5, fontWeight: 700 }}>
@@ -228,8 +228,8 @@ export function Discover() {
             )
           ) : (
             <div className="empty">
-              <div className="empty__title">Nothing matches those filters</div>
-              <p className="empty__body">Reset and browse everything happening in Jakarta this month.</p>
+              <div className="font-heading text-[17px] font-semibold mb-1.5">Nothing matches those filters</div>
+              <p className="text-[13.5px] text-grey mb-[18px]">Reset and browse everything happening in Jakarta this month.</p>
               <Button
                 as="button"
                 variant="primary"
@@ -322,8 +322,8 @@ export function Discover() {
                     <Grid size={17} color="#6D28FF" strokeWidth={1.8} />
                   </span>
                   <span>
-                    <span className="category-tile__name">{category.name}</span>
-                    <span className="category-tile__count">{category.count}</span>
+                    <span className="text-[14.5px] font-semibold">{category.name}</span>
+                    <span className="text-[12.5px] text-grey mt-[3px]">{category.count}</span>
                   </span>
                 </Link>
               ))}
@@ -362,7 +362,7 @@ export function Discover() {
         />
       </Reveal>
 
-      <div className="mx-auto w-full max-w-page px-gutter section--tight" style={{ paddingBottom: 8 }}>
+      <div className="mx-auto w-full max-w-page px-gutter pt-[30px]" style={{ paddingBottom: 8 }}>
         <Link to="/events" className="link-more">
           Browse one-time events instead
           <ArrowRight size={15} strokeWidth={2} />

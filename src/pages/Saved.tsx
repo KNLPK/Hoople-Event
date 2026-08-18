@@ -40,11 +40,11 @@ export function Saved() {
       {count === 0 ? (
         <div className="mx-auto w-full max-w-page px-gutter section">
           <div className="empty">
-            <div className="empty__title">Your list is empty</div>
-            <p className="empty__body">
+            <div className="font-heading text-[17px] font-semibold mb-1.5">Your list is empty</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">
               Browse activities and events, hit the heart on the ones you like, and come back here to book.
             </p>
-            <div className="row" style={{ gap: 12, justifyContent: 'center' }}>
+            <div className="flex items-center" style={{ gap: 12, justifyContent: 'center' }}>
               <Button as="link" to="/activities" variant="primary">
                 Explore activities
               </Button>

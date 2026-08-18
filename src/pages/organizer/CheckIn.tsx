@@ -37,7 +37,7 @@ export function OrgCheckIn() {
           <h1>Check-in</h1>
           <p>Scan a participant's QR e-ticket at the door, or check them off by hand.</p>
         </div>
-        <div className="row" style={{ gap: 10, fontSize: 13.5, fontWeight: 600 }}>
+        <div className="flex items-center" style={{ gap: 10, fontSize: 13.5, fontWeight: 600 }}>
           <Users size={17} color="#6D28FF" strokeWidth={1.9} />
           {inCount} of {attendees.length} checked in
         </div>
@@ -72,7 +72,7 @@ export function OrgCheckIn() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Attendee list</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Attendee list</h2>
             <span style={{ fontSize: 13, color: 'var(--color-grey)' }}>Confirmed registrations only</span>
           </div>
 

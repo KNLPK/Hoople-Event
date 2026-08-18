@@ -51,19 +51,19 @@ export function EventDetail() {
           </div>
           <h1>{event.title}</h1>
           <div className="detail-hero__host">by {event.host}</div>
-          <div className="detail-hero__stats">
-            <span className="row" style={{ gap: 8 }}>
+          <div className="flex items-center gap-3.5 text-[15px] font-medium mb-[26px] flex-wrap">
+            <span className="flex items-center" style={{ gap: 8 }}>
               <Calendar size={17} color="#fff" strokeWidth={1.9} />
               {longDate(event.date)}
             </span>
             <span style={{ opacity: 0.5 }}>•</span>
-            <span className="row" style={{ gap: 8 }}>
+            <span className="flex items-center" style={{ gap: 8 }}>
               <Users size={17} color="#fff" />
               {event.going}
             </span>
           </div>
           <p className="detail-hero__summary">{event.summary}</p>
-          <div className="row" style={{ gap: 14, flexWrap: 'wrap' }}>
+          <div className="flex items-center" style={{ gap: 14, flexWrap: 'wrap' }}>
             <Button as="link" to={`/booking?event=${event.slug}`} variant="primary" size="xl" halo>
               {event.price === 0 ? 'Register free' : `Get tickets — ${rupiah(event.price)}`}
             </Button>
@@ -73,7 +73,7 @@ export function EventDetail() {
       </DarkHero>
 
       <div className="mx-auto w-full max-w-page px-gutter ticket-layout" style={{ paddingTop: 38 }}>
-        <div className="stack" style={{ gap: 22 }}>
+        <div className="flex flex-col" style={{ gap: 22 }}>
           <Reveal className="panel panel--lg">
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 14 }}>About this event</h2>
             <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--color-ink-3)', marginBottom: 26 }}>
@@ -82,31 +82,31 @@ export function EventDetail() {
             </p>
 
             <div className="grid grid--3" style={{ gap: 24 }}>
-              <div className="feature">
+              <div className="flex gap-[13px]">
                 <span className="icon-tile">
                   <Calendar size={17} color="#6D28FF" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <div className="feature__title">Date</div>
-                  <div className="feature__body">{longDate(event.date)}</div>
+                  <div className="text-[13.5px] font-semibold mb-[5px]">Date</div>
+                  <div className="text-[12.5px] text-grey leading-[1.6]">{longDate(event.date)}</div>
                 </div>
               </div>
-              <div className="feature">
+              <div className="flex gap-[13px]">
                 <span className="icon-tile">
                   <Clock size={17} color="#6D28FF" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <div className="feature__title">Time</div>
-                  <div className="feature__body">{timeRange(event.start, event.end)}</div>
+                  <div className="text-[13.5px] font-semibold mb-[5px]">Time</div>
+                  <div className="text-[12.5px] text-grey leading-[1.6]">{timeRange(event.start, event.end)}</div>
                 </div>
               </div>
-              <div className="feature">
+              <div className="flex gap-[13px]">
                 <span className="icon-tile">
                   <MapPin size={17} color="#6D28FF" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <div className="feature__title">Venue</div>
-                  <div className="feature__body">
+                  <div className="text-[13.5px] font-semibold mb-[5px]">Venue</div>
+                  <div className="text-[12.5px] text-grey leading-[1.6]">
                     {event.venueName}, {event.area}
                   </div>
                 </div>
@@ -115,7 +115,7 @@ export function EventDetail() {
           </Reveal>
 
           <Reveal className="panel panel--lg" delay={60}>
-            <div className="row row--between" style={{ marginBottom: 16, gap: 16, flexWrap: 'wrap' }}>
+            <div className="flex items-center justify-between" style={{ marginBottom: 16, gap: 16, flexWrap: 'wrap' }}>
               <h2 style={{ fontSize: 22, fontWeight: 600 }}>Schedule</h2>
               <span style={{ fontSize: 13, color: 'var(--color-grey)' }}>
                 {timeRange(event.start, event.end)}
@@ -127,10 +127,10 @@ export function EventDetail() {
           <Reveal className="panel panel--lg" delay={120}>
             <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 16 }}>Location</h2>
             <div className="map-card">
-              <div className="map-card__map">
+              <div className="h-[170px]">
                 <ImageSlot id={`event-map-${event.slug}`} shape="rect" placeholder="Map screenshot" />
               </div>
-              <div className="map-card__body">
+              <div className="p-5">
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 600, marginBottom: 6 }}>
                   {event.venueName}
                 </div>
@@ -155,7 +155,7 @@ export function EventDetail() {
 
             <button
               type="button"
-              className="tint-panel--soft"
+              className="bg-surface-panel rounded-lg py-4 px-[18px]"
               style={{
                 marginTop: 12,
                 width: '100%',
@@ -188,20 +188,20 @@ export function EventDetail() {
           <div className="panel">
             <div className="panel__title">Ticket</div>
             <div className="price-row">
-              <span className="price-row__label">General Admission</span>
-              <span className="price-row__value">{event.price === 0 ? 'Free' : idr(event.price)}</span>
+              <span className="flex items-center gap-[7px] text-ink-2">General Admission</span>
+              <span className="font-medium whitespace-nowrap">{event.price === 0 ? 'Free' : idr(event.price)}</span>
             </div>
             <div className="price-row">
-              <span className="price-row__label">
+              <span className="flex items-center gap-[7px] text-ink-2">
                 Hoople Platform Fee <Info size={14} color="#B4B2C0" strokeWidth={1.9} />
               </span>
-              <span className="price-row__value">{idr(money.platformFee)}</span>
+              <span className="font-medium whitespace-nowrap">{idr(money.platformFee)}</span>
             </div>
             <div className="price-row">
-              <span className="price-row__label">
+              <span className="flex items-center gap-[7px] text-ink-2">
                 Payment Gateway Fee <Info size={14} color="#B4B2C0" strokeWidth={1.9} />
               </span>
-              <span className="price-row__value">{idr(money.gatewayFee)}</span>
+              <span className="font-medium whitespace-nowrap">{idr(money.gatewayFee)}</span>
             </div>
             <div className="divider divider--dashed" style={{ margin: '20px 0 16px' }} />
             <div className="price-total">
@@ -220,7 +220,7 @@ export function EventDetail() {
               {event.price === 0 ? 'Register free' : 'Get tickets'}
             </Button>
 
-            <div className="tint-panel--soft" style={{ marginTop: 18, display: 'flex', gap: 13 }}>
+            <div className="bg-surface-panel rounded-lg py-4 px-[18px]" style={{ marginTop: 18, display: 'flex', gap: 13 }}>
               <ShieldCheck size={20} color="#6D28FF" strokeWidth={1.8} />
               <div>
                 <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 5 }}>Full Refund Available</div>

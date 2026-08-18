@@ -23,11 +23,11 @@ export function RecurringRow({ activity }: { activity: Activity }) {
         <Link to={`/activities/${activity.slug}`} className="recurring-row__title">
           {activity.title}
         </Link>
-        <div className="recurring-row__host">{activity.host}</div>
-        <div className="recurring-row__level">{activity.level}</div>
+        <div className="text-[12.5px] text-grey">{activity.host}</div>
+        <div className="text-[12.5px] text-grey-soft mt-[3px]">{activity.level}</div>
       </div>
 
-      <div className="stack" style={{ gap: 6 }}>
+      <div className="flex flex-col" style={{ gap: 6 }}>
         <span className="meta meta--sm">
           <Clock size={14} color="#8B8A99" strokeWidth={2} />
           {activity.recurrence}

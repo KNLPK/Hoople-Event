@@ -19,10 +19,10 @@ export function TeamsSettings() {
 
   return (
     <div className="tm-cols">
-      <div className="stack" style={{ gap: 18 }}>
+      <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-card">
           <div className="org-card__head">
-            <h2 className="org-card__title">Organization</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Organization</h2>
           </div>
           <div className="org-card__body org-form">
             <label className="field">
@@ -46,8 +46,8 @@ export function TeamsSettings() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Who counts as a member</h2>
-            <span className="tm-muted">{ORGANIZATION.members} members</span>
+            <h2 className="font-heading text-[15.5px] font-semibold">Who counts as a member</h2>
+            <span className="text-[12.5px] text-grey">{ORGANIZATION.members} members</span>
           </div>
           <div className="org-card__body">
             <Toggle
@@ -83,8 +83,8 @@ export function TeamsSettings() {
 
         <Reveal className="org-card" delay={120}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Departments</h2>
-            <span className="tm-muted">Used to pick an audience</span>
+            <h2 className="font-heading text-[15.5px] font-semibold">Departments</h2>
+            <span className="text-[12.5px] text-grey">Used to pick an audience</span>
           </div>
           <div className="org-table-wrap">
             <table className="org-table tm-table">
@@ -114,7 +114,7 @@ export function TeamsSettings() {
 
         <Reveal className="org-card" delay={180}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Collections</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Collections</h2>
           </div>
           <div className="org-card__body">
             <Row label="Bank account" value={`${PAYOUT_ACCOUNT.bank} ${PAYOUT_ACCOUNT.masked}`} />
@@ -132,14 +132,14 @@ export function TeamsSettings() {
         </Reveal>
       </div>
 
-      <aside className="stack tm-rail" style={{ gap: 18 }}>
+      <aside className="flex flex-col min-w-0" style={{ gap: 18 }}>
         <Reveal className="org-card">
           <div className="org-card__body" style={{ textAlign: 'center', paddingTop: 22 }}>
-            <span className="tm-logo">
+            <span className="inline-block w-[76px] h-[76px] rounded-[18px] overflow-hidden">
               <ImageSlot id="tm-org-logo" shape="rounded" radius={18} placeholder="Logo" />
             </span>
             <div style={{ fontWeight: 700, fontSize: 16, marginTop: 12 }}>{ORGANIZATION.name}</div>
-            <div className="tm-muted">{ORGANIZATION.legalName}</div>
+            <div className="text-[12.5px] text-grey">{ORGANIZATION.legalName}</div>
             <span className="tm-private" style={{ marginTop: 10 }}>
               <Lock size={12} color="#5B21F5" strokeWidth={2} />
               Private workspace
@@ -149,7 +149,7 @@ export function TeamsSettings() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Admins</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Admins</h2>
           </div>
           <div className="tm-quick">
             <span className="tm-quick__item">
@@ -173,11 +173,11 @@ export function TeamsSettings() {
 
         <Reveal className="org-card tm-tip" delay={120}>
           <div className="org-card__body">
-            <div className="row" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
+            <div className="flex items-center" style={{ gap: 8, marginBottom: 8, fontWeight: 600, fontSize: 13.5 }}>
               <Globe size={16} color="#6D28FF" strokeWidth={1.9} />
               Not on the public site
             </div>
-            <p className="tm-muted" style={{ lineHeight: 1.65 }}>
+            <p className="text-[12.5px] text-grey" style={{ lineHeight: 1.65 }}>
               Nothing in this workspace is indexed, searchable, or bookable from hoople.id. {event.title} exists only
               for the {ORGANIZATION.members} people in this directory.
             </p>
@@ -203,7 +203,7 @@ function Toggle({
 }) {
   return (
     <div className="tm-toggle">
-      <span className="org-stat__icon">{icon}</span>
+      <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">{icon}</span>
       <span className="tm-toggle__text">
         <strong>{title}</strong>
         <p>{body}</p>

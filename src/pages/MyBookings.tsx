@@ -57,7 +57,7 @@ export function MyBookings() {
         </h1>
 
         <div
-          className="row row--between"
+          className="flex items-center justify-between"
           style={{ borderBottom: '1px solid var(--color-line)', marginBottom: 22, gap: 16, flexWrap: 'wrap' }}
         >
           <div className="tabs">
@@ -142,8 +142,8 @@ export function MyBookings() {
           ))
         ) : (
           <div className="empty">
-            <div className="empty__title">Nothing here yet</div>
-            <p className="empty__body">
+            <div className="font-heading text-[17px] font-semibold mb-1.5">Nothing here yet</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">
               You have no {TAB_LABEL[tab].toLowerCase()} bookings. Find something worth showing up for.
             </p>
             <Button as="link" to="/activities" variant="primary">
@@ -153,7 +153,7 @@ export function MyBookings() {
         )}
 
         {visible < inTab.length ? (
-          <div className="row" style={{ justifyContent: 'center', marginTop: 26 }}>
+          <div className="flex items-center" style={{ justifyContent: 'center', marginTop: 26 }}>
             <Button as="button" variant="neutral" onClick={() => setVisible((count) => count + PAGE_SIZE)}>
               Load More
               <ChevronDown size={15} color="#8B8A99" strokeWidth={2} />
@@ -162,20 +162,20 @@ export function MyBookings() {
         ) : null}
       </div>
 
-      <aside className="stack" style={{ gap: 22 }}>
+      <aside className="flex flex-col" style={{ gap: 22 }}>
         <div className="panel">
           <div className="panel__title panel__title--sm">Booking Summary</div>
           {TABS.map((status) => (
             <button key={status} type="button" className="summary-row" onClick={() => switchTab(status)}>
-              <span className="summary-row__label">{TAB_LABEL[status]}</span>
-              <span className="summary-row__value">
+              <span className="text-[13.5px] text-ink-2">{TAB_LABEL[status]}</span>
+              <span className="flex items-center gap-3 text-[14px] font-semibold">
                 {byStatus(status).length}
                 <ChevronRight size={14} color="#B4B2C0" strokeWidth={2} />
               </span>
             </button>
           ))}
 
-          <div className="tint-panel--soft" style={{ marginTop: 18, display: 'flex', gap: 13 }}>
+          <div className="bg-surface-panel rounded-lg py-4 px-[18px]" style={{ marginTop: 18, display: 'flex', gap: 13 }}>
             <Calendar size={22} color="#6D28FF" strokeWidth={1.7} />
             <div>
               <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 5 }}>
@@ -220,13 +220,13 @@ export function MyBookings() {
               body: "Enjoy your experience and don't forget to share your moments!",
             },
           ].map(({ Icon, tone, colour, title, body }) => (
-            <div key={title} className="feature" style={{ marginBottom: 18 }}>
+            <div key={title} className="flex gap-[13px]" style={{ marginBottom: 18 }}>
               <span className={`icon-tile ${tone}`.trim()}>
                 <Icon size={17} color={colour} strokeWidth={1.8} />
               </span>
               <div>
-                <div className="feature__title">{title}</div>
-                <div className="feature__body">{body}</div>
+                <div className="text-[13.5px] font-semibold mb-[5px]">{title}</div>
+                <div className="text-[12.5px] text-grey leading-[1.6]">{body}</div>
               </div>
             </div>
           ))}
@@ -260,8 +260,8 @@ function BookingCard({ booking }: { booking: Booking }) {
         <Link to={`/activities/${booking.slug}`} className="booking-card__title">
           {booking.title}
         </Link>
-        <div className="booking-card__host">Hosted by {booking.host}</div>
-        <div className="stack" style={{ gap: 9 }}>
+        <div className="text-[13px] text-grey mb-3.5">Hosted by {booking.host}</div>
+        <div className="flex flex-col" style={{ gap: 9 }}>
           <span className="meta">
             <Calendar size={15} color="#8B8A99" strokeWidth={1.9} />
             {longDate(booking.date)}
@@ -280,7 +280,7 @@ function BookingCard({ booking }: { booking: Booking }) {
       <div className="booking-card__side">
         <StatusPill status={booking.status} />
 
-        <div className="ticket-block">
+        <div className="bg-surface-sunken rounded-md py-3 px-3.5 flex items-center gap-3">
           <Ticket size={18} color="#5C5B6B" strokeWidth={1.8} />
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13.5, fontWeight: 600 }}>

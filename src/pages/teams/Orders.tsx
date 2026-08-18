@@ -71,7 +71,7 @@ export function TeamsOrders() {
       </EventContext>
 
       <div className={`tm-work ${selected ? 'has-aside' : ''}`.trim()}>
-        <div className="stack" style={{ gap: 18 }}>
+        <div className="flex flex-col" style={{ gap: 18 }}>
           <Reveal className="org-stats org-stats--4">
             <Stat label="Orders" value={String(counts.total)} note="Members who owed a contribution" />
             <Stat label="Paid" value={String(counts.paid)} note={`${Math.round((counts.paid / counts.total) * 100)}% settled`} up />
@@ -145,7 +145,7 @@ export function TeamsOrders() {
                           </div>
                         </td>
                         <td>
-                          <span className="tm-passchip">{passOf(event, row.passId)?.name}</span>
+                          <span className="inline-block py-[3px] px-[9px] rounded-pill bg-brand-tint-strong text-brand-ink text-[11.5px] font-semibold">{passOf(event, row.passId)?.name}</span>
                           <span className="org-table__sub">
                             {row.quantity} {row.quantity === 1 ? 'seat' : 'seats'}
                           </span>
@@ -180,8 +180,8 @@ export function TeamsOrders() {
               </div>
             ) : (
               <div style={{ padding: 44, textAlign: 'center' }}>
-                <div className="empty__title">No orders match</div>
-                <p className="empty__body">Clear the filter, or search by order ID.</p>
+                <div className="font-heading text-[17px] font-semibold mb-1.5">No orders match</div>
+                <p className="text-[13.5px] text-grey mb-[18px]">Clear the filter, or search by order ID.</p>
               </div>
             )}
           </Reveal>
@@ -194,12 +194,12 @@ export function TeamsOrders() {
             </button>
 
             <div className="tm-aside__body">
-              <div className="row" style={{ gap: 8, marginBottom: 14 }}>
+              <div className="flex items-center" style={{ gap: 8, marginBottom: 14 }}>
                 <strong style={{ fontSize: 15 }}>{selected.orderId}</strong>
                 <span className={`org-pill org-pill--${tone(selected.payment)}`}>{selected.payment}</span>
               </div>
 
-              <section className="tm-asection">
+              <section className="mb-[22px]">
                 <div className="tm-asection__head">
                   <h3>Member</h3>
                   <button
@@ -228,10 +228,10 @@ export function TeamsOrders() {
                 <Row label="Department" value={selected.department} />
               </section>
 
-              <section className="tm-asection">
+              <section className="mb-[22px]">
                 <div className="tm-asection__head">
                   <h3>Order summary</h3>
-                  <span className="tm-passchip">{passOf(event, selected.passId)?.name}</span>
+                  <span className="inline-block py-[3px] px-[9px] rounded-pill bg-brand-tint-strong text-brand-ink text-[11.5px] font-semibold">{passOf(event, selected.passId)?.name}</span>
                 </div>
                 <Row label="Quantity" value={`${selected.quantity} seats`} />
                 <Row
@@ -250,7 +250,7 @@ export function TeamsOrders() {
                 </div>
               </section>
 
-              <section className="tm-asection">
+              <section className="mb-[22px]">
                 <div className="tm-asection__head">
                   <h3>Payment</h3>
                 </div>
@@ -263,7 +263,7 @@ export function TeamsOrders() {
                 />
               </section>
 
-              <div className="stack" style={{ gap: 8 }}>
+              <div className="flex flex-col" style={{ gap: 8 }}>
                 <Button as="button" variant="outline" size="sm" block onClick={() => toast('Invoice sent')}>
                   <Mail size={15} strokeWidth={1.9} />
                   Send invoice
@@ -303,7 +303,7 @@ function Row({ label, value }: { label: string; value: string }) {
 function Stat({ label, value, note, up }: { label: string; value: string; note: string; up?: boolean }) {
   return (
     <div className="org-stat">
-      <div className="org-stat__label" style={{ marginBottom: 10 }}>
+      <div className="text-[12.5px] text-grey font-medium leading-[1.35]" style={{ marginBottom: 10 }}>
         {label}
       </div>
       <div className="org-stat__value">{value}</div>

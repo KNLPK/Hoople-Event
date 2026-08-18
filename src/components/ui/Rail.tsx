@@ -36,7 +36,7 @@ export function Rail({ perView = 4, gap = 22, arrowTop = 150, label, children }:
   }
 
   return (
-    <div className="rail">
+    <div className="relative">
       <div
         ref={trackRef}
         className="rail__track"

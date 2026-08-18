@@ -103,27 +103,6 @@ p {
 .section {
   padding-top: 46px;
 }
-.section--tight {
-  padding-top: 30px;
-}
-.section--loose {
-  padding-top: 56px;
-}
-
-.stack {
-  display: flex;
-  flex-direction: column;
-}
-.row {
-  display: flex;
-  align-items: center;
-}
-.row--between {
-  justify-content: space-between;
-}
-.push {
-  margin-left: auto;
-}
 
 /* `minmax(0, …)` throughout: a `1fr` track refuses to shrink below its content,
    which is what pushes a page sideways on a phone. */

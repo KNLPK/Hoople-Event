@@ -75,21 +75,21 @@ export function Help() {
       <Reveal className="mx-auto w-full max-w-page px-gutter section">
         <div className="grid grid--3" style={{ gap: 22 }}>
           <button type="button" className="why-card lift" style={{ textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }} onClick={() => toast('Support replies on WhatsApp within 10 minutes')}>
-            <span className="why-card__icon">
+            <span className="w-11 h-11 rounded-lg bg-brand-tint-strong flex items-center justify-center mb-4">
               <Headset size={22} color="#6D28FF" strokeWidth={1.8} />
             </span>
             <h3>Chat with support</h3>
             <p>Our team is on WhatsApp every day, 08.00–22.00 WIB. Average reply time is under 10 minutes.</p>
           </button>
           <button type="button" className="why-card lift" style={{ textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }} onClick={() => toast('Email us at support@hoople.id')}>
-            <span className="why-card__icon">
+            <span className="w-11 h-11 rounded-lg bg-brand-tint-strong flex items-center justify-center mb-4">
               <Mail size={22} color="#6D28FF" strokeWidth={1.8} />
             </span>
             <h3>Email us</h3>
             <p>support@hoople.id — best for refunds, invoices and anything with an attachment.</p>
           </button>
           <button type="button" className="why-card lift" style={{ textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }} onClick={() => toast('Report sent to our trust & safety team')}>
-            <span className="why-card__icon">
+            <span className="w-11 h-11 rounded-lg bg-brand-tint-strong flex items-center justify-center mb-4">
               <Shield size={22} color="#6D28FF" strokeWidth={1.8} />
             </span>
             <h3>Report a problem</h3>
@@ -132,7 +132,7 @@ export function Help() {
               Open a support ticket
             </Button>
           </div>
-          <div className="tint-panel--soft" style={{ padding: '20px 24px' }}>
+          <div className="bg-surface-panel rounded-lg py-4 px-[18px]" style={{ padding: '20px 24px' }}>
             <div style={{ fontSize: 13.5, fontWeight: 600, marginBottom: 8 }}>Prototype notice</div>
             <div style={{ fontSize: 12.5, color: 'var(--color-grey)', lineHeight: 1.7 }}>
               This build is a clickable prototype for stakeholder review. Authentication and payment are not

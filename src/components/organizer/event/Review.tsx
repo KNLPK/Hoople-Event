@@ -77,7 +77,7 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
           >
             <div className="evt-review__brand">
               <div>
-                <span className="evt-review__label">Brand Colors</span>
+                <span className="block text-[11.5px] text-grey mb-[5px]">Brand Colors</span>
                 <span className="evt-swatches evt-swatches--read">
                   <i style={{ background: draft.brandColor }} />
                   <i style={{ background: '#12121A' }} />
@@ -88,13 +88,13 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
                 </span>
               </div>
               <div>
-                <span className="evt-review__label">Host Contact</span>
-                <span className="evt-review__contact">
+                <span className="block text-[11.5px] text-grey mb-[5px]">Host Contact</span>
+                <span className="flex items-center gap-[7px] text-[12.5px] text-ink-2 mb-1.5">
                   <Mail size={13} color="#8B8A99" strokeWidth={1.9} />
                   {draft.contactEmail}
                 </span>
                 {draft.contactPhone ? (
-                  <span className="evt-review__contact">
+                  <span className="flex items-center gap-[7px] text-[12.5px] text-ink-2 mb-1.5">
                     <Phone size={13} color="#8B8A99" strokeWidth={1.9} />
                     {draft.contactPhone}
                   </span>
@@ -171,7 +171,7 @@ export function EventReview({ draft, goTo }: EventSectionProps) {
         </section>
 
         <div className="wiz-note">
-          <span className="wiz-note__icon">
+          <span className="flex-none flex mt-px">
             <Calendar size={16} color="#6D28FF" strokeWidth={1.9} />
           </span>
           <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>
@@ -217,13 +217,13 @@ function ReviewRow({
 }) {
   return (
     <div className="evt-rv">
-      <span className={`evt-rv__icon evt-tl__icon--${tone}`}>
+      <span className={`w-[42px] h-[42px] rounded-[50%] flex items-center justify-center evt-tl__icon--${tone}`}>
         <Icon size={17} color="#6D28FF" strokeWidth={1.8} />
       </span>
 
       <div className="evt-rv__body">
         <div className="evt-rv__head">
-          <span className="evt-rv__index">{index}</span>
+          <span className="text-[12px] font-bold text-brand">{index}</span>
           <strong>{title}</strong>
           {action ? (
             <button type="button" className="wiz-addsession evt-rv__action" onClick={action.onClick}>
@@ -241,7 +241,7 @@ function ReviewRow({
             .filter((field) => field.value !== '')
             .map((field) => (
               <div key={field.label}>
-                <span className="evt-review__label">{field.label}</span>
+                <span className="block text-[11.5px] text-grey mb-[5px]">{field.label}</span>
                 <p>{field.value}</p>
               </div>
             ))}

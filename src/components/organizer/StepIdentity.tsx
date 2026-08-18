@@ -38,7 +38,7 @@ export function StepIdentity({
               />
             </div>
             <aside className="wiz-tips">
-              <div className="wiz-tips__head">
+              <div className="flex items-center gap-[7px] text-[12.5px] font-semibold text-brand mb-[9px]">
                 <Bulb size={15} color="#6D28FF" strokeWidth={1.9} />
                 Tips
               </div>
@@ -53,13 +53,13 @@ export function StepIdentity({
 
         <div className="wiz-field">
           <FieldHead label="Hosting As" required hint="Choose how you want to represent this activity." />
-          <div className="wiz-field__control wiz-field__control--half">
+          <div className="wiz-field__control max-w-[320px]">
             <SelectInput
               ariaLabel="Hosting as"
               value={draft.hostedAs}
               options={HOSTED_AS_OPTIONS}
               onChange={set('hostedAs')}
-              leading={<span className="wiz-select__avatar">{WORKSPACE_INITIALS}</span>}
+              leading={<span className="w-[26px] h-[26px] rounded-[50%] flex-none bg-brand text-[#fff] flex items-center justify-center font-heading text-[10px] font-bold">{WORKSPACE_INITIALS}</span>}
             />
           </div>
         </div>
@@ -86,7 +86,7 @@ export function StepIdentity({
             hint="Select the category that best fits your activity."
             saved={draft.category !== ''}
           />
-          <div className="wiz-field__control wiz-field__control--third">
+          <div className="wiz-field__control max-w-[290px]">
             <SelectInput
               ariaLabel="Activity category"
               value={draft.category}

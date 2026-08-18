@@ -125,7 +125,7 @@ export function EventFinalPublish({ draft }: EventSectionProps) {
 
         <div className="wiz-stack">
           <section className="org-card wiz-panel">
-            <span className="wiz-field__label">What happens next?</span>
+            <span className="block text-[13.5px] font-semibold text-ink">What happens next?</span>
             <ol className="evt-next">
               {NEXT_STEPS.map(({ Icon, title, sub }) => (
                 <li key={title}>
@@ -142,7 +142,7 @@ export function EventFinalPublish({ draft }: EventSectionProps) {
           </section>
 
           <div className="wiz-note">
-            <span className="wiz-note__icon">
+            <span className="flex-none flex mt-px">
               <ShieldCheck size={17} color="#6D28FF" strokeWidth={1.9} />
             </span>
             <p style={{ fontSize: 12.5, color: 'var(--color-ink-3)' }}>

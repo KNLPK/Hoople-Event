@@ -97,7 +97,7 @@ export function StepSessions({
 
       <div className="org-card wiz-card">
         <div className="wiz-about">
-          <span className="wiz-about__icon">
+          <span className="flex mt-px">
             <Info size={17} color="#6D28FF" strokeWidth={1.9} />
           </span>
           <div>
@@ -127,11 +127,11 @@ export function StepSessions({
         </div>
 
         {draft.sessions.length === 0 ? (
-          <p className="wiz-sessions__empty">
+          <p className="text-[13px] text-grey py-[18px] px-0">
             No sessions yet. Add one so participants have something to book.
           </p>
         ) : (
-          <div className="wiz-sessions">
+          <div className="flex flex-col gap-3">
             {draft.sessions.map((session) => {
               const { Icon, colour } = TONE_ICON[sessionTone(session)];
               const open = openId === session.id;
@@ -148,7 +148,7 @@ export function StepSessions({
                   onDrop={() => reorder(session.id)}
                 >
                   <div className="wiz-sess__row">
-                    <span className="wiz-sess__grip" aria-hidden="true">
+                    <span className="flex cursor-grab" aria-hidden="true">
                       <Grip size={15} color="#C3C1CE" />
                     </span>
 
@@ -157,7 +157,7 @@ export function StepSessions({
                     </span>
 
                     <div className="wiz-sess__main">
-                      <div className="wiz-sess__name">
+                      <div className="flex items-center gap-2.5 text-[13.5px] font-semibold">
                         {session.name}
                         <span className={`org-pill ${session.active ? 'org-pill--live' : 'org-pill--draft'}`}>
                           {session.active ? 'Active' : 'Paused'}
@@ -175,7 +175,7 @@ export function StepSessions({
                         <span>{session.slots} slots</span>
                         {/* Only worth saying when 2.2 has left the session unrunnable. */}
                         {days.length === 0 ? (
-                          <span className="wiz-sess__warn">Runs on no operating day</span>
+                          <span className="text-amber-ink font-semibold">Runs on no operating day</span>
                         ) : null}
                       </div>
                     </div>
@@ -212,7 +212,7 @@ export function StepSessions({
                   {open ? (
                     <div className="wiz-sess__edit">
                       <label className="field">
-                        <span className="wiz-field__label">Session name</span>
+                        <span className="block text-[13.5px] font-semibold text-ink">Session name</span>
                         <input
                           className="wiz-input"
                           value={session.name}
@@ -222,7 +222,7 @@ export function StepSessions({
                       </label>
 
                       <label className="field">
-                        <span className="wiz-field__label">Starts</span>
+                        <span className="block text-[13.5px] font-semibold text-ink">Starts</span>
                         <input
                           className="wiz-input"
                           type="time"
@@ -233,7 +233,7 @@ export function StepSessions({
                       </label>
 
                       <label className="field">
-                        <span className="wiz-field__label">Ends</span>
+                        <span className="block text-[13.5px] font-semibold text-ink">Ends</span>
                         <input
                           className="wiz-input"
                           type="time"
@@ -244,7 +244,7 @@ export function StepSessions({
                       </label>
 
                       <label className="field">
-                        <span className="wiz-field__label">Instructor</span>
+                        <span className="block text-[13.5px] font-semibold text-ink">Instructor</span>
                         <input
                           className="wiz-input"
                           value={session.instructor}
@@ -255,7 +255,7 @@ export function StepSessions({
                       </label>
 
                       <label className="field">
-                        <span className="wiz-field__label">Slots</span>
+                        <span className="block text-[13.5px] font-semibold text-ink">Slots</span>
                         <input
                           className="wiz-input"
                           inputMode="numeric"
@@ -268,7 +268,7 @@ export function StepSessions({
                       </label>
 
                       <div className="wiz-sess__days">
-                        <span className="wiz-field__label">Runs on</span>
+                        <span className="block text-[13.5px] font-semibold text-ink">Runs on</span>
                         <div>
                           {WEEKDAYS.map((day) => {
                             const operating = draft.operatingDays.includes(day);
@@ -319,7 +319,7 @@ export function StepSessions({
         )}
 
         <div className="wiz-note wiz-note--tip">
-          <span className="wiz-note__icon">
+          <span className="flex-none flex mt-px">
             <Bulb size={17} color="#6D28FF" strokeWidth={1.9} />
           </span>
           <div>

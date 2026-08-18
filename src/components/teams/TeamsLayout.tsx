@@ -69,7 +69,7 @@ export function TeamsLayout() {
         />
       ) : null}
 
-      <div className="org__main">
+      <div className="min-w-0 flex flex-col">
         <TeamsTopbar {...chrome} eventId={event.id} onOpenNav={() => setNavOpen(true)} />
         <div className="org__content">
           <Outlet context={event} />

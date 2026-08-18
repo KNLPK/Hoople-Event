@@ -28,8 +28,8 @@ export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSet
 
       <div className="org-card wiz-card">
         <div className="wiz-field">
-          <span className="wiz-field__label">
-            Cover Image<span className="field__req"> *</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Cover Image<span className="text-danger"> *</span>
           </span>
           <span className="wiz-field__hint">This will be the main image on your event page.</span>
 
@@ -47,7 +47,7 @@ export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSet
               <span className="evt-cover__browse">Browse File</span>
             </div>
 
-            <div className="evt-cover__preview">
+            <div className="relative h-[150px] rounded-lg overflow-hidden">
               <ImageSlot
                 id="event-cover"
                 src={draft.cover}
@@ -64,8 +64,8 @@ export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSet
         </div>
 
         <div className="wiz-field">
-          <span className="wiz-field__label">
-            Event Title<span className="field__req"> *</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Event Title<span className="text-danger"> *</span>
           </span>
           <span className="wiz-field__hint">Write a title that's clear, specific, and catchy.</span>
           <CounterInput
@@ -78,8 +78,8 @@ export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSet
         </div>
 
         <div className="wiz-field">
-          <span className="wiz-field__label">
-            Event Category<span className="field__req"> *</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Event Category<span className="text-danger"> *</span>
           </span>
           <span className="wiz-field__hint">
             How it is filed on the discovery pages. Offline, online or hybrid is asked in the next
@@ -95,8 +95,8 @@ export function EventIdentity({ draft, set }: { draft: EventDraft; set: EventSet
         </div>
 
         <div className="wiz-field">
-          <span className="wiz-field__label">
-            Short Description<span className="field__req"> *</span>
+          <span className="block text-[13.5px] font-semibold text-ink">
+            Short Description<span className="text-danger"> *</span>
           </span>
           <span className="wiz-field__hint">Describe your event in a short and engaging way.</span>
           <CounterArea

@@ -96,11 +96,11 @@ export function StepGallery({
               ) : null}
             </div>
             <aside className="wiz-tips">
-              <div className="wiz-tips__head">
+              <div className="flex items-center gap-[7px] text-[12.5px] font-semibold text-brand mb-[9px]">
                 <Photos size={15} color="#6D28FF" strokeWidth={1.9} />
                 Tips
               </div>
-              <p className="wiz-tips__body">
+              <p className="text-[12px] text-grey leading-[1.55]">
                 Use a high-quality image that represents your activity. Recommended size 1280 x 720px
                 (16:9).
               </p>
@@ -114,12 +114,12 @@ export function StepGallery({
               label="Gallery Photos"
               hint="Add photos that highlight your activity, venue, and experience."
             />
-            <div className="wiz-panel__aside">
+            <div className="flex flex-col items-end gap-1.5 flex-none">
               <button type="button" className="wiz-addsession" onClick={addPhotoSlot}>
                 <Plus size={14} color="#6D28FF" strokeWidth={2} />
                 Add Photos
               </button>
-              <span className="wiz-panel__count">
+              <span className="text-[11.5px] text-grey">
                 You can add up to {GALLERY_PHOTO_MAX} photos
               </span>
             </div>
@@ -149,7 +149,7 @@ export function StepGallery({
                 add another slot
               </button>
             </span>
-            <span className="wiz-drop__hint">JPG, PNG up to 10MB each</span>
+            <span className="text-[11.5px] text-grey">JPG, PNG up to 10MB each</span>
           </div>
         </section>
 
@@ -159,7 +159,7 @@ export function StepGallery({
               label="Gallery Videos (Optional)"
               hint="Add short videos to give participants a better preview of your activity."
             />
-            <div className="wiz-panel__aside">
+            <div className="flex flex-col items-end gap-1.5 flex-none">
               <button
                 type="button"
                 className="wiz-addsession"
@@ -168,7 +168,7 @@ export function StepGallery({
                 <Plus size={14} color="#6D28FF" strokeWidth={2} />
                 Add Video
               </button>
-              <span className="wiz-panel__count">You can add up to {GALLERY_VIDEO_MAX} videos</span>
+              <span className="text-[11.5px] text-grey">You can add up to {GALLERY_VIDEO_MAX} videos</span>
             </div>
           </div>
 
@@ -209,7 +209,7 @@ export function StepGallery({
                 click to upload
               </button>
             </span>
-            <span className="wiz-drop__hint">MP4 up to 100MB</span>
+            <span className="text-[11.5px] text-grey">MP4 up to 100MB</span>
           </div>
 
           <input

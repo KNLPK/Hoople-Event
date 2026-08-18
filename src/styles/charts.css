@@ -6,10 +6,6 @@
    readable (tooltips, axis labels) lives outside it as positioned elements.
    ============================================================ */
 
-.chart {
-  display: block;
-}
-
 .chart__key {
   display: flex;
   align-items: center;
@@ -259,12 +255,6 @@
   font-weight: 700;
   white-space: nowrap;
 }
-.barlist__track {
-  height: 8px;
-  border-radius: var(--radius-pill);
-  background: var(--color-surface-chip);
-  overflow: hidden;
-}
 .barlist__fill {
   height: 100%;
   border-radius: inherit;
@@ -279,12 +269,6 @@
   color: var(--color-ink);
   font-weight: 600;
 }
-.barlist__sub {
-  display: block;
-  margin-top: 5px;
-  font-size: 11.5px;
-  color: var(--color-grey);
-}
 
 /* ---------- Donut ---------- */
 
@@ -294,10 +278,6 @@
   gap: 22px;
   flex-wrap: wrap;
   padding: 6px 0 4px;
-}
-.donut__ring {
-  position: relative;
-  flex: none;
 }
 .donut__center {
   position: absolute;
@@ -358,11 +338,6 @@
   border-radius: 3px;
   flex: none;
   transform: translateY(1px);
-}
-.donut__label {
-  flex: 1;
-  min-width: 0;
-  color: var(--color-ink-2);
 }
 .donut__value {
   flex: none;

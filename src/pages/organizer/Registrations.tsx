@@ -127,8 +127,8 @@ export function OrgRegistrations() {
           </div>
         ) : (
           <div style={{ padding: 40, textAlign: 'center' }}>
-            <div className="empty__title">No registrations match</div>
-            <p className="empty__body">Try a different search or clear the status filter.</p>
+            <div className="font-heading text-[17px] font-semibold mb-1.5">No registrations match</div>
+            <p className="text-[13.5px] text-grey mb-[18px]">Try a different search or clear the status filter.</p>
           </div>
         )}
       </Reveal>

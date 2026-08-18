@@ -52,25 +52,8 @@
   align-items: center;
   padding: 14px 14px 14px 18px;
 }
-.evt-ticket__icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: var(--color-brand-tint-strong);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .evt-ticket__main {
   min-width: 0;
-}
-.evt-ticket__name {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14.5px;
-  font-weight: 600;
-  flex-wrap: wrap;
 }
 .evt-ticket__main p {
   font-size: 12.5px;
@@ -135,12 +118,6 @@
   color: var(--color-brand-deep);
   font-weight: 600;
 }
-
-.evt-pays {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
 .evt-pay {
   height: 32px;
   padding: 0 10px;
@@ -174,14 +151,6 @@
   gap: 14px;
   align-items: flex-start;
   margin-top: 8px;
-}
-.evt-asset__square {
-  position: relative;
-  width: 96px;
-  height: 96px;
-  flex: none;
-  border-radius: var(--radius-md);
-  overflow: hidden;
 }
 .evt-asset__square--brand {
   background: var(--color-brand);
@@ -221,12 +190,6 @@
   color: var(--color-ink);
   margin-bottom: 10px;
   pointer-events: none;
-}
-.evt-asset__hint {
-  display: block;
-  font-size: 11.5px;
-  color: var(--color-grey);
-  line-height: 1.6;
 }
 
 .evt-brandrow {
@@ -270,11 +233,6 @@
   border-radius: 50%;
   display: block;
 }
-.evt-aa {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-grey);
-}
 
 .evt-hostgrid {
   display: grid;
@@ -302,24 +260,11 @@
 .evt-rv + .evt-rv {
   border-top: 1px solid var(--color-line-faint);
 }
-.evt-rv__icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .evt-rv__head {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 14px;
-}
-.evt-rv__index {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-brand);
 }
 .evt-rv__head strong {
   font-size: 14.5px;
@@ -356,12 +301,6 @@
   line-height: 1.55;
   white-space: pre-line;
 }
-.evt-review__label {
-  display: block;
-  font-size: 11.5px;
-  color: var(--color-grey);
-  margin-bottom: 5px;
-}
 .evt-review__tickets {
   display: flex;
   flex-wrap: wrap;
@@ -392,14 +331,6 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 18px;
   margin-top: 16px;
-}
-.evt-review__contact {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12.5px;
-  color: var(--color-ink-2);
-  margin-bottom: 6px;
 }
 .evt-linkbtn {
   border: 0;
@@ -449,12 +380,6 @@
 }
 .evt-publishwhen.is-off {
   opacity: 0.55;
-}
-
-.evt-discovery {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 .evt-nested {
   padding: 14px;
@@ -506,11 +431,6 @@
   padding: 10px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-}
-.evt-social__art {
-  height: 70px;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
 }
 .evt-social strong {
   display: block;
@@ -736,10 +656,6 @@
   background: #fff;
   box-shadow: var(--shadow-card);
 }
-.evt-dcard__media {
-  position: relative;
-  height: 150px;
-}
 .evt-dcard__body {
   display: grid;
   grid-template-columns: 52px minmax(0, 1fr);
@@ -782,13 +698,6 @@
   letter-spacing: -0.02em;
   margin-bottom: 9px;
 }
-.evt-dcard__foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 12px;
-}
 .evt-dcard__faces {
   display: flex;
   align-items: center;
@@ -809,14 +718,6 @@
 .evt-dcard__faces i:last-of-type {
   margin-right: 8px;
 }
-.evt-dcard__cta {
-  padding: 7px 15px;
-  border-radius: var(--radius-sm);
-  background: var(--color-brand);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-}
 
 .evt-srow {
   display: grid;
@@ -827,11 +728,6 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: #fff;
-}
-.evt-srow__art {
-  height: 52px;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
 }
 .evt-srow strong {
   display: block;
@@ -861,10 +757,6 @@
 
 .evt-mcard {
   max-width: 280px;
-}
-.evt-mcard__media {
-  position: relative;
-  height: 120px;
 }
 .evt-mcard__body {
   display: grid;
@@ -897,20 +789,6 @@
   font-weight: 600;
   color: var(--color-green);
   margin-top: 6px;
-}
-
-.evt-final__previewhead {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
-}
-.evt-final__previewbtns {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
 }
 .evt-share__block {
   margin-top: 18px;

@@ -78,7 +78,7 @@ export function StepSummary({
       <div className="wiz-stack">
         <section className="org-card wiz-panel">
           <div className="wiz-panel__head">
-            <span className="wiz-field__label">Activity Summary</span>
+            <span className="block text-[13.5px] font-semibold text-ink">Activity Summary</span>
             <button type="button" className="wiz-addsession" onClick={onEdit}>
               <Pencil size={13} color="#6D28FF" strokeWidth={2} />
               Edit
@@ -86,7 +86,7 @@ export function StepSummary({
           </div>
 
           <div className="wiz-sum">
-            <div className="wiz-sum__media">
+            <div className="relative h-[128px] rounded-lg overflow-hidden">
               <ImageSlot
                 id="builder-cover"
                 src={draft.cover}
@@ -99,7 +99,7 @@ export function StepSummary({
             </div>
 
             <div>
-              <h3 className="wiz-sum__title">{draft.title || PREVIEW_FALLBACK.title}</h3>
+              <h3 className="font-heading text-[19px] font-semibold tracking-[-0.02em] mb-[11px]">{draft.title || PREVIEW_FALLBACK.title}</h3>
               <ul className="wiz-sum__meta">
                 <li>
                   <MapPin size={14} color="#6D28FF" strokeWidth={1.9} />
@@ -128,7 +128,7 @@ export function StepSummary({
           <div className="wiz-facts">
             {facts.map(({ Icon, label, value, note }) => (
               <div key={label} className="wiz-fact">
-                <span className="wiz-fact__head">
+                <span className="flex items-center gap-2 text-[12px] font-semibold text-ink mb-[7px]">
                   <Icon size={15} color="#6D28FF" strokeWidth={1.8} />
                   {label}
                 </span>
@@ -150,7 +150,7 @@ export function StepSummary({
 
         <div className="wiz-pair">
           <section className="org-card wiz-panel">
-            <span className="wiz-field__label">Publishing Checklist</span>
+            <span className="block text-[13.5px] font-semibold text-ink">Publishing Checklist</span>
             <span className="wiz-field__hint">Make sure everything is ready to go live.</span>
             <ul className="wiz-checklist">
               {checklist.map((item) => (
@@ -167,7 +167,7 @@ export function StepSummary({
           </section>
 
           <section className="org-card wiz-panel">
-            <span className="wiz-field__label">Publish Settings</span>
+            <span className="block text-[13.5px] font-semibold text-ink">Publish Settings</span>
             <span className="wiz-field__hint">
               Choose how and when your activity will be published.
             </span>

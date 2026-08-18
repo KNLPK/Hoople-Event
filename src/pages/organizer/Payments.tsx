@@ -26,34 +26,34 @@ export function OrgPayouts() {
         </Button>
       </div>
 
-      <div className="stack" style={{ gap: 18 }}>
+      <div className="flex flex-col" style={{ gap: 18 }}>
         <Reveal className="org-stats org-stats--3">
           <div className="org-stat">
             <div className="org-stat__head">
-              <span className="org-stat__icon">
+              <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">
                 <Wallet size={17} color="#6D28FF" strokeWidth={1.8} />
               </span>
-              <span className="org-stat__label">Scheduled payout</span>
+              <span className="text-[12.5px] text-grey font-medium leading-[1.35]">Scheduled payout</span>
             </div>
             <div className="org-stat__value org-stat__value--money">{rupiah(pendingTotal)}</div>
             <div className="org-stat__note">{scheduled.length} experiences awaiting settlement</div>
           </div>
           <div className="org-stat">
             <div className="org-stat__head">
-              <span className="org-stat__icon">
+              <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">
                 <Wallet size={17} color="#6D28FF" strokeWidth={1.8} />
               </span>
-              <span className="org-stat__label">Paid this quarter</span>
+              <span className="text-[12.5px] text-grey font-medium leading-[1.35]">Paid this quarter</span>
             </div>
             <div className="org-stat__value org-stat__value--money">{rupiah(paidTotal)}</div>
             <div className="org-stat__note">Net of platform and gateway fees</div>
           </div>
           <div className="org-stat">
             <div className="org-stat__head">
-              <span className="org-stat__icon">
+              <span className="w-8 h-8 rounded-[9px] flex items-center justify-center flex-none bg-brand-tint-strong">
                 <Info size={17} color="#6D28FF" strokeWidth={1.8} />
               </span>
-              <span className="org-stat__label">Fee model</span>
+              <span className="text-[12.5px] text-grey font-medium leading-[1.35]">Fee model</span>
             </div>
             <div className="org-stat__value org-stat__value--money">3% + gateway</div>
             <div className="org-stat__note">Shown to every buyer at checkout</div>
@@ -62,7 +62,7 @@ export function OrgPayouts() {
 
         <Reveal className="org-card" delay={60}>
           <div className="org-card__head">
-            <h2 className="org-card__title">Payout history</h2>
+            <h2 className="font-heading text-[15.5px] font-semibold">Payout history</h2>
           </div>
           <div className="org-table-wrap">
             <table className="org-table">
