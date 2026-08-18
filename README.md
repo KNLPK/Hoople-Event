@@ -511,6 +511,10 @@ directory; it recovered by guessing `dist/`, and the deployment went out fine,
 but the guess was not guaranteed. `framework`, `buildCommand` and
 `outputDirectory` are now stated outright and the warning is gone.
 
+The reasoning lives here rather than in the file because Vercel validates
+`vercel.json` against a strict schema and rejects unknown keys — including the
+`"//"` convention people use for comments in JSON.
+
 ## The document
 
 - **Every route names its own tab.** `src/lib/title.ts` maps a pathname to a

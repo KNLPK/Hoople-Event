@@ -1,12 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
-  "//": "Declared explicitly because the project had no framework preset. Vercel was running a generic build, then warning that the output held no functions/ or static/ directory — it recovered by guessing dist/, but the warning was real and the guess was not guaranteed.",
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-
-  "//rewrites": "Client-side routes must survive a reload. Vercel checks the filesystem first, so real files in public/ — the icons, robots.txt, sitemap.xml, og.jpg — are still served as themselves.",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
