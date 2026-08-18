@@ -5,7 +5,6 @@ import { WizardStepper } from '@/components/organizer/WizardStepper';
 import { WizardAccordion, type AccordionPanel } from '@/components/organizer/WizardAccordion';
 import { EventBenefits } from '@/components/organizer/event/Benefits';
 import { EventDateLocation } from '@/components/organizer/event/DateLocation';
-import { EventExperience } from '@/components/organizer/event/Experience';
 import { EventIdentity } from '@/components/organizer/event/Identity';
 import { EventPlace } from '@/components/organizer/event/Place';
 import { EventSchedule } from '@/components/organizer/event/Schedule';
@@ -27,8 +26,7 @@ import { useExperiences } from '@/store/experiences';
 const SECTIONS: Record<string, (props: EventSectionProps) => JSX.Element> = {
   '1.0': EventIdentity,
   '1.1': EventBrand,
-  '1.2': EventExperience,
-  '1.3': EventBenefits,
+  '1.2': EventBenefits,
   '2.0': EventDateLocation,
   '2.1': EventPlace,
   '2.2': EventSchedule,

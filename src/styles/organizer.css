@@ -3837,11 +3837,20 @@ body[data-surface='console'] {
   border-color: var(--brand);
   background: var(--brand-tint);
 }
+/* Grouped left. `space-between` pushed the radio, the icon and the label into
+   three corners of the tile, so "Public" sat hard right of its own glyph. */
 .wiz-vistile__top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 7px;
+  gap: 9px;
+  margin-bottom: 6px;
+}
+.wiz-vistile__top .wiz-tile__title {
+  flex: 1;
+  min-width: 0;
+}
+.wiz-vistile__top svg {
+  flex: none;
 }
 
 .wiz-schedule {

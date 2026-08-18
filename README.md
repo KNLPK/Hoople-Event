@@ -328,7 +328,7 @@ preview — and differs where an event genuinely differs.
 
 | Step | Sub-sections |
 | --- | --- |
-| 1 Basic Information | 1.1 Identity · 1.2 Brand & Host · 1.3 Experience Details · 1.4 Benefits |
+| 1 Basic Information | 1.1 Identity · 1.2 Brand & Host · 1.3 Benefits |
 | 2 Date & Location | 2.1 when · 2.2 where · 2.3 Event Schedule |
 | 3 Ticket Setup | one panel — ticket types, sales window, payment methods |
 | 4 Review & Publish | 4.1 Review Summary · 4.2 Publish Settings · 4.3 Final Publish |
@@ -610,7 +610,7 @@ Information:
 
 | | Before | After |
 | --- | --- | --- |
-| 1 | Basic Information — Identity, Experience Details, Benefits | Basic Information — **Identity, Brand & Host, Experience Details, Benefits** |
+| 1 | Basic Information — Identity, Experience Details, Benefits | Basic Information — **Identity, Brand & Host, Benefits** |
 | 2 | Date & Location | Date & Location |
 | 3 | Ticket Setup | Ticket Setup |
 | 4 | Brand & Host | Review & Publish |
@@ -631,6 +631,33 @@ Three fields were being asked for twice, and a fourth was decoration.
   is a venue or a meeting link.
 - **Tags** and the `theme · category · type` line under it were shown on four
   previews and nowhere else. Both are gone.
+- **Experience Details** (the whole of 1.3) held a visibility picker that was
+  the same control as 4.2's first setting, plus theme and audience fields that
+  nothing read once the tag line went. The section is gone; Basic Information
+  is Identity, Brand & Host, Benefits.
+
+`draft.audience`, `language` and `ageRestriction` still feed the preview's "Who
+should join" block from their seeded values — they are no longer editable, and
+should get a home if that block is ever meant to be filled in.
+
+### Publish Settings
+
+Its six blocks were lettered **A**–**F** down a 150px column beside each panel.
+The letters indexed nothing — no rail jumped to them, no copy said "see C" —
+and a title plus a sentence squeezed into that column left the circle reading
+as a stray avatar. Each heading now sits above its own panel at full width.
+
+**C Discovery** and **D Participant Notification** are commented out rather
+than deleted. Neither has anything behind it — there is no Discover ranking to
+opt into and no notification to send — so a switch there would promise
+something the prototype cannot do. The markup is left in place with a note, to
+be restored when they are real.
+
+**F Publish Checklist** is gone outright: 4.3 opens with the same checklist,
+and the two disagreed about nothing except how much room they took.
+
+**Transfer / Resell** came off Ticket Setup for the same reason as Tags —
+nothing reads it.
 
 The review summary is numbered after the part of the builder that owns each
 row, not `01..05` of its own. A second numbering meant "05 Brand & Host" sent

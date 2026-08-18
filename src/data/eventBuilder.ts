@@ -157,7 +157,9 @@ export function eventSteps(type: EventType): WizardStep[] {
         /* Branding and the host sat in a step of their own, three screens
            away from the name and category they belong with. */
         { id: 'brand', label: 'Brand & Host' },
-        { id: 'experience', label: 'Experience Details' },
+        /* Experience Details is gone: its visibility picker was the same
+           control as 4.2 A, and the rest of it was theme and audience fields
+           nothing reads any more. */
         { id: 'benefits', label: 'Benefits' },
       ],
     },

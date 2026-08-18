@@ -19,7 +19,6 @@ import {
   PAYMENT_METHOD_OPTIONS,
   REFUND_POLICIES,
   TICKET_PERKS,
-  TRANSFER_POLICIES,
   nextTicketId,
   ticketsLeft,
   type DeliveryMode,
@@ -372,7 +371,7 @@ export function EventTickets({ draft, set }: EventSectionProps) {
             </div>
           </div>
 
-          <div className="wiz-triple" style={{ marginTop: 18 }}>
+          <div className="wiz-pair" style={{ marginTop: 18 }}>
             <div>
               <span className="wiz-field__label">Refund Policy</span>
               <SelectInput
@@ -380,15 +379,6 @@ export function EventTickets({ draft, set }: EventSectionProps) {
                 value={draft.refundPolicy}
                 options={REFUND_POLICIES}
                 onChange={set('refundPolicy')}
-              />
-            </div>
-            <div>
-              <span className="wiz-field__label">Transfer / Resell</span>
-              <SelectInput
-                ariaLabel="Transfer or resell policy"
-                value={draft.transferPolicy}
-                options={TRANSFER_POLICIES}
-                onChange={set('transferPolicy')}
               />
             </div>
             <div>

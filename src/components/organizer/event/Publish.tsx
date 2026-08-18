@@ -1,10 +1,8 @@
-import { Checkbox, Toggle } from '../WizardFields';
 import { EventHead, type EventSectionProps } from './shared';
 import { ImageSlot } from '@/components/ui/ImageSlot';
 import { useToast } from '@/components/ui/Toast';
 import {
   Calendar,
-  CheckCircle,
   Clock,
   Copy,
   Doc,
@@ -12,12 +10,10 @@ import {
   Info,
   LinkChain,
   Lock,
-  Rocket,
 } from '@/components/ui/icons';
 import {
   EVENT_VISIBILITY,
   REGISTRATION_STATUS,
-  eventChecklist,
   type EventVisibility,
   type RegistrationStatus,
 } from '@/data/eventBuilder';
@@ -36,21 +32,10 @@ const STATUS_ICON: Record<RegistrationStatus, React.ReactNode> = {
   draft: <Doc size={17} color="#5C5B6B" strokeWidth={1.8} />,
 };
 
-/** Short labels for the checklist chips, in the order the wizard asks for them. */
-const CHECK_CHIPS = [
-  'Cover uploaded',
-  'Schedule completed',
-  'Venue added',
-  'Ticket created',
-  'Brand completed',
-];
-
-/** 5.2 — who can find the event, and how it looks when they do. */
+/** 4.2 — who can find the event, and how it looks when they do. */
 export function EventPublish({ draft, set }: EventSectionProps) {
   const toast = useToast();
 
-  const checklist = eventChecklist(draft);
-  const ready = checklist.every((item) => item.done);
   const shareLink = `hoople.id/e/${draft.shareSlug}`;
 
   return (
@@ -61,7 +46,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
       />
 
       <div className="wiz-stack">
-        <Lettered letter="A" title="Visibility" sub="Choose who can see this event.">
+        <Setting title="Visibility" sub="Choose who can see this event.">
           <div className="wiz-vis">
             {EVENT_VISIBILITY.map((option) => (
               <label
@@ -84,10 +69,9 @@ export function EventPublish({ draft, set }: EventSectionProps) {
               </label>
             ))}
           </div>
-        </Lettered>
+        </Setting>
 
-        <Lettered
-          letter="B"
+        <Setting
           title="Registration Status"
           sub="Control when registration will open for participants."
         >
@@ -146,7 +130,13 @@ export function EventPublish({ draft, set }: EventSectionProps) {
               </span>
             </label>
           </div>
-        </Lettered>
+        </Setting>
+
+        {/*
+          Discovery and Participant Notification are parked, not dropped.
+          Neither has anything behind it yet — there is no Discover ranking to
+          opt into and no notification to send — so a switch here would promise
+          something the prototype cannot do. Restore both when they are real.
 
         <Lettered
           letter="C"
@@ -170,7 +160,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
               />
             </div>
           </div>
-        </Lettered>
+        </Setting>
 
         <Lettered
           letter="D"
@@ -204,9 +194,10 @@ export function EventPublish({ draft, set }: EventSectionProps) {
               <span className="evt-soon">Coming Soon</span>
             </div>
           </div>
-        </Lettered>
+        </Setting>
+        */}
 
-        <Lettered letter="E" title="SEO / Share Preview" sub="Customize how your link looks when shared.">
+        <Setting title="SEO / Share Preview" sub="Customize how your link looks when shared.">
           <div className="evt-share">
             <div>
               <span className="wiz-field__label">Share Link</span>
@@ -260,26 +251,7 @@ export function EventPublish({ draft, set }: EventSectionProps) {
               </div>
             </div>
           </div>
-        </Lettered>
-
-        <Lettered letter="F" title="Publish Checklist" sub="Make sure everything is ready.">
-          <div className="evt-checkchips">
-            {CHECK_CHIPS.map((label, index) => (
-              <span key={label} className={checklist[index]?.done ? 'is-done' : ''}>
-                <CheckCircle
-                  size={15}
-                  color={checklist[index]?.done ? '#16A34A' : '#B4B2C0'}
-                  strokeWidth={2}
-                />
-                {label}
-              </span>
-            ))}
-            <span className={`evt-ready ${ready ? '' : 'is-waiting'}`.trim()}>
-              <Rocket size={14} color={ready ? '#6D28FF' : '#EA8C00'} strokeWidth={1.9} />
-              {ready ? 'Ready to Publish' : 'Almost ready'}
-            </span>
-          </div>
-        </Lettered>
+        </Setting>
 
         <div className="wiz-note">
           <span className="wiz-note__icon">
@@ -295,26 +267,29 @@ export function EventPublish({ draft, set }: EventSectionProps) {
   );
 }
 
-/** The lettered rail down the left of 5.2, so long settings stay navigable. */
-function Lettered({
-  letter,
+/**
+ * One setting, titled.
+ *
+ * These were lettered A–F down a 150px column beside each panel. The letters
+ * indexed nothing — there was no rail to jump to and no cross-reference to
+ * "see C" — and squeezing a title plus a sentence into that column left the
+ * circle reading as a stray avatar. The heading sits above its panel now, with
+ * the full width to say what it is.
+ */
+function Setting({
   title,
   sub,
   children,
 }: {
-  letter: string;
   title: string;
   sub: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="evt-lettered">
-      <div className="evt-lettered__head">
-        <span className="evt-lettered__letter">{letter}</span>
-        <div>
-          <strong>{title}</strong>
-          <span>{sub}</span>
-        </div>
+    <section className="evt-setting">
+      <div className="evt-setting__head">
+        <strong>{title}</strong>
+        <span>{sub}</span>
       </div>
       <div className="org-card wiz-panel">{children}</div>
     </section>

@@ -415,42 +415,27 @@
 
 /* ============ 5.2 Publish Settings ============ */
 
-.evt-lettered {
-  display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-}
-.evt-lettered__head {
+/* The heading sits above its panel at full width. It used to be a 150px column
+   beside it holding a lettered circle, a title and a sentence — see Setting in
+   Publish.tsx for why the letters went. */
+.evt-setting {
   display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  padding-top: 4px;
+  flex-direction: column;
+  gap: 10px;
 }
-.evt-lettered__letter {
-  width: 26px;
-  height: 26px;
-  flex: none;
-  border-radius: 50%;
-  background: var(--brand-tint-strong);
-  color: var(--brand);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
-}
-.evt-lettered__head strong {
+.evt-setting__head strong {
   display: block;
-  font-size: 13.5px;
+  font-family: var(--font-heading);
+  font-size: 14.5px;
   font-weight: 600;
+  letter-spacing: -0.015em;
 }
-.evt-lettered__head span {
+.evt-setting__head span {
   display: block;
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--grey);
   line-height: 1.5;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 .evt-publishwhen {
@@ -979,7 +964,6 @@
   .evt-brand,
   .evt-brandrow,
   .evt-hostgrid,
-  .evt-lettered,
   .evt-final,
   .evt-share {
     grid-template-columns: minmax(0, 1fr);
