@@ -36,16 +36,36 @@ function Stroke({
   );
 }
 
-export const Logo = ({ size = 26, color = 'currentColor' }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M12 3a9 9 0 1 0 8.5 6" stroke={color} strokeWidth="2.6" strokeLinecap="round" />
-    <path
-      d="M15 2.5l6 1.2-1.2 6"
+/**
+ * The Hoople mark: a hoop with a piece thrown clear of it.
+ *
+ * Drawn as one dashed circle plus one dot rather than as outline paths, so the
+ * weight is a single number and the shape stays perfectly round at any size.
+ * The gap is 46° of a 50.27-unit circumference, which is what keeps the break
+ * legible down at a 16px favicon instead of closing up into a plain O.
+ */
+export const Logo = ({ size = 26, color = 'currentColor', strokeWidth = 3.8, className, style }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    style={style}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <circle
+      cx="11.4"
+      cy="12.8"
+      r="8"
       stroke={color}
-      strokeWidth="2.6"
+      strokeWidth={strokeWidth}
       strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeDasharray="43.85 50.27"
+      transform="rotate(-27 11.4 12.8)"
     />
+    <circle cx="17.83" cy="5.14" r="2.2" fill={color} />
   </svg>
 );
 
@@ -464,6 +484,22 @@ export const Sparkle = (p: IconProps) => (
   <Stroke {...p}>
     <path d="M12 3v5M12 16v5M3 12h5M16 12h5M6.5 6.5l3 3M14.5 14.5l3 3M17.5 6.5l-3 3M9.5 14.5l-3 3" />
   </Stroke>
+);
+
+/** The solid four-pointed star, for the hero's eyebrow and scattered accents. */
+export const Sparkle4 = ({ size = 16, color = 'currentColor', className, style }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    className={className}
+    style={style}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M12 1.6c.5 4.6 1.8 6.7 5.9 7.6 1.5.3 1.5 2.3 0 2.6-4.1.9-5.4 3-5.9 7.6-.1 1.1-1.7 1.1-1.8 0-.5-4.6-1.8-6.7-5.9-7.6-1.5-.3-1.5-2.3 0-2.6 4.1-.9 5.4-3 5.9-7.6.1-1.1 1.7-1.1 1.8 0Z" />
+  </svg>
 );
 
 export const Compass = (p: IconProps) => (

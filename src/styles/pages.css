@@ -1467,31 +1467,70 @@
 /* ============ Landing ============ */
 
 .landing-hero {
-  background: linear-gradient(180deg, var(--brand-tint) 0%, #ffffff 100%);
-  padding: 62px 0 76px;
+  background:
+    radial-gradient(760px 460px at 88% 6%, rgba(167, 139, 250, 0.22) 0%, transparent 62%),
+    radial-gradient(560px 420px at 4% 88%, rgba(109, 40, 255, 0.09) 0%, transparent 58%),
+    linear-gradient(180deg, var(--brand-tint) 0%, #ffffff 100%);
+  padding: 54px 0 64px;
+  overflow: hidden;
 }
 .landing-hero__grid {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 48px;
+  grid-template-columns: minmax(0, 1fr) 620px;
+  gap: 40px;
   align-items: center;
 }
+.landing-hero__copy {
+  max-width: 620px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px 7px 12px;
+  margin-bottom: 22px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--brand-soft);
+  box-shadow: 0 2px 10px rgba(76, 23, 214, 0.07);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand-ink);
+  letter-spacing: -0.005em;
+}
+
 .landing-hero h1 {
-  font-size: 60px;
+  font-size: 62px;
   font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.04;
-  margin-bottom: 20px;
+  letter-spacing: -0.038em;
+  line-height: 1.05;
+  margin-bottom: 22px;
 }
 .landing-hero h1 .script {
+  position: relative;
+  display: inline-block;
   color: var(--brand);
-  font-size: 64px;
+  font-size: 66px;
+  padding-bottom: 6px;
 }
+/* The swoop is absolutely placed so it cannot add to the line box. */
+.script__rule {
+  position: absolute;
+  left: 2%;
+  bottom: -12px;
+  width: 104%;
+  height: 18px;
+  color: var(--brand);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
 .landing-hero__lede {
   font-size: 17.5px;
   line-height: 1.7;
   color: var(--ink-3);
-  max-width: 500px;
+  max-width: 470px;
   margin-bottom: 30px;
 }
 .landing-hero__ctas {
@@ -1499,82 +1538,309 @@
   gap: 14px;
   flex-wrap: wrap;
 }
-.landing-hero__proof {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 30px;
-}
-.float-stack {
+
+/* ------------------------------------------------------------------ *
+ * The hero collage.
+ *
+ * Laid out at a fixed 620x560 and scaled as one piece, because six
+ * overlapping cards cannot be re-flowed by a grid without the whole
+ * composition coming apart. Below 980px it stops being a collage.
+ * ------------------------------------------------------------------ */
+
+.hero-stage {
   position: relative;
-  height: 540px;
+  width: 620px;
+  height: calc(540px * var(--stage-scale, 1));
+  justify-self: end;
 }
-.float-card {
+.hero-stage__inner {
   position: absolute;
-  background: #fff;
-  border-radius: var(--r-3xl);
-  box-shadow: 0 18px 44px rgba(20, 10, 60, 0.14);
-  border: 1px solid var(--line-card);
-  overflow: hidden;
-}
-.float-card--event {
-  width: 250px;
-  top: 0;
-  left: 0;
-}
-.float-card--ticket {
-  width: 240px;
-  right: 0;
-  top: 150px;
-  padding: 18px;
-  z-index: 3;
-}
-.float-card--activity {
-  width: 250px;
-  bottom: 0;
-  left: 28px;
-  z-index: 2;
-}
-@media (max-width: 1040px) {
-  .landing-hero__grid {
-    grid-template-columns: 1fr;
-  }
-  .landing-hero h1 {
-    font-size: 40px;
-  }
-  .landing-hero h1 .script {
-    font-size: 44px;
-  }
-}
-@media (max-width: 620px) {
-  .float-stack {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  .float-card {
-    position: static;
-    width: 100% !important;
-  }
+  inset: 0;
+  height: 540px;
+  transform: scale(var(--stage-scale, 1));
+  transform-origin: top right;
 }
 
-.logo-strip {
+.hero-thread {
+  position: absolute;
+  inset: 0;
+  width: 620px;
+  height: 540px;
+}
+.hero-pin {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid var(--brand-soft);
+  box-shadow: 0 4px 12px rgba(76, 23, 214, 0.14);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding: 26px 30px;
-  background: var(--surface-alt);
-  border-radius: var(--r-2xl);
+  justify-content: center;
 }
-.logo-strip__mark {
+.hero-spark {
+  position: absolute;
+}
+.hero-spark--a { top: 8px; left: 356px; }
+.hero-spark--b { top: 430px; left: 104px; }
+.hero-spark--c { top: 158px; left: 8px; }
+
+.hero-photo {
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 22px 50px rgba(20, 10, 60, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+.hero-photo__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+.hero-photo--event {
+  top: 30px;
+  left: 34px;
+  width: 300px;
+  height: 192px;
+  transform: rotate(-1.6deg);
+}
+.hero-photo--activity {
+  top: 196px;
+  right: 2px;
+  width: 286px;
+  height: 176px;
+  transform: rotate(1.4deg);
+}
+
+.hero-note {
+  position: absolute;
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid var(--line-card);
+  box-shadow: 0 16px 40px rgba(20, 10, 60, 0.14);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.hero-note--event {
+  top: 196px;
+  left: 0;
+  width: 286px;
+  z-index: 3;
+}
+.hero-note--activity {
+  top: 344px;
+  right: 26px;
+  width: 304px;
+  z-index: 3;
+}
+.hero-note__title {
   font-family: var(--font-heading);
   font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.hero-note__row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
+.hero-note__row svg {
+  flex: none;
+}
+.hero-note__foot {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 3px;
+}
+.hero-note__going {
+  font-size: 12.5px;
   font-weight: 600;
-  color: #a5a3b4;
-  letter-spacing: -0.01em;
+  color: var(--grey);
+  margin-right: auto;
+  white-space: nowrap;
+}
+.hero-note__cta {
+  flex: none;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--brand);
+  color: var(--brand);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+.hero-note__cta:hover {
+  background: var(--brand);
+  color: #fff;
+}
+.hero-note__cta--green {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+.hero-note__cta--green:hover {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+}
+
+.avatar-stack--sm > div {
+  width: 26px;
+  height: 26px;
+}
+
+.hero-ticket {
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  width: 240px;
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid var(--line-card);
+  box-shadow: 0 18px 44px rgba(20, 10, 60, 0.16);
+  padding: 16px 18px 18px;
+  z-index: 4;
+}
+.hero-ticket__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.hero-ticket__body {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+.hero-ticket__qr {
+  display: block;
+  width: 84px;
+  height: 84px;
+  flex: none;
+}
+.hero-ticket__state {
+  flex: none;
+}
+
+@media (max-width: 1360px) {
+  .landing-hero__grid { grid-template-columns: minmax(0, 1fr) 560px; }
+  .hero-stage { width: 560px; --stage-scale: 0.9; }
+}
+@media (max-width: 1180px) {
+  .landing-hero h1 { font-size: 52px; }
+  .landing-hero h1 .script { font-size: 55px; }
+  .landing-hero__grid { grid-template-columns: minmax(0, 1fr) 470px; gap: 26px; }
+  .hero-stage { width: 470px; --stage-scale: 0.756; }
+}
+
+/* Below this the collage would be smaller than its own type: drop it and
+   show the pieces as ordinary cards instead. */
+@media (max-width: 980px) {
+  .landing-hero { padding: 40px 0 48px; }
+  .landing-hero__grid { grid-template-columns: 1fr; gap: 38px; }
+  .landing-hero__copy { max-width: none; }
+  .landing-hero h1 { font-size: 42px; }
+  .landing-hero h1 .script { font-size: 45px; }
+  .landing-hero__lede { max-width: 560px; }
+
+  .hero-stage,
+  .hero-stage__inner {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none;
+  }
+  .hero-stage__inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+  .hero-thread,
+  .hero-pin,
+  .hero-spark {
+    display: none;
+  }
+  .hero-photo,
+  .hero-note,
+  .hero-ticket {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+  .hero-photo { height: 190px; }
+  .hero-photo--event { grid-column: 1; }
+  .hero-note--event { grid-column: 1; }
+  .hero-photo--activity { grid-column: 2; }
+  .hero-note--activity { grid-column: 2; }
+  .hero-ticket { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; }
+  .hero-ticket__body { margin-top: 0; }
+}
+
+@media (max-width: 620px) {
+  .landing-hero h1 { font-size: 34px; }
+  .landing-hero h1 .script { font-size: 37px; }
+  .script__rule { height: 13px; bottom: -8px; }
+  .hero-eyebrow { font-size: 11.5px; padding: 6px 13px 6px 10px; }
+  .hero-stage__inner { grid-template-columns: 1fr; }
+  .hero-photo--event,
+  .hero-note--event,
+  .hero-photo--activity,
+  .hero-note--activity,
+  .hero-ticket { grid-column: 1; }
+  .hero-photo { height: 168px; }
+  .landing-hero__ctas > * { flex: 1 1 100%; }
+}
+
+/* ------------------------------------------------------------------ *
+ * Trust band
+ * ------------------------------------------------------------------ */
+
+.trust {
+  text-align: center;
+  padding-top: 6px;
+}
+.trust__cap {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-3);
+  margin-bottom: 22px;
+}
+.trust__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 44px;
+  flex-wrap: wrap;
+}
+.trust__mark {
+  font-family: var(--font-heading);
+  font-size: 17.5px;
+  font-weight: 700;
+  color: #9d9bb0;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+.trust__mark:hover {
+  color: var(--ink-2);
+}
+.trust__more {
+  font-size: 14px;
+  color: var(--grey-soft);
+  white-space: nowrap;
+}
+@media (max-width: 620px) {
+  .trust__row { gap: 12px 26px; }
+  .trust__mark { font-size: 15px; }
 }
 
 .why-grid {

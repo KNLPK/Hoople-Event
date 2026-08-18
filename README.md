@@ -505,6 +505,12 @@ survive a reload. Vercel checks the filesystem before rewrites, so real files
 in `public/` — the icons, `robots.txt`, `sitemap.xml`, `og.jpg` — are served as
 themselves rather than being swallowed by the SPA fallback.
 
+It also declares the framework. The project had no preset, so Vercel ran a
+generic build and then warned that the output held no `functions/` or `static/`
+directory; it recovered by guessing `dist/`, and the deployment went out fine,
+but the guess was not guaranteed. `framework`, `buildCommand` and
+`outputDirectory` are now stated outright and the warning is gone.
+
 ## The document
 
 - **Every route names its own tab.** `src/lib/title.ts` maps a pathname to a
@@ -533,6 +539,40 @@ console before the home page could paint, and most visitors never open either.
 
 The rest arrives per console page, the largest being the two builders at
 ~20 kB gzipped each. A `.route-loading` fallback covers the gap.
+
+## The mark
+
+One symbol, drawn once in `src/components/ui/icons.tsx` and used by all four
+lockups: the participant navigation, the front door, the organizer rail, and
+the Event Builder rail — which is the same mark with `Event Builder` set under
+the wordmark.
+
+It is a hoop with a piece thrown clear of it, built as a dashed circle plus a
+dot rather than as outline paths. That means the weight is a single number, the
+curve stays perfectly round at any size, and the break in the ring is a stated
+46° rather than an accident of two hand-drawn arcs. The break is what carries
+the mark: closed up it is an O, and at 16px in a browser tab an O is all you
+would see.
+
+`public/` holds the raster forms — a 32px `.ico`, a 180px touch icon and the
+1200×630 share card — all rendered from that same geometry by
+`scripts/brand-assets.mjs`. Change the symbol and re-run the script.
+
+## The hero
+
+The landing hero is a collage: an event, the class that repeats every week, and
+the ticket both of them end in, with a dashed thread looping behind the cards
+and pins where it surfaces.
+
+It is laid out at a fixed 620×540 and scaled as a single piece through
+`--stage-scale`, because six overlapping cards cannot be re-flowed by a grid
+without the composition coming apart — the overlaps are the design. Below
+980px it stops pretending: the thread, pins and sparkles are dropped and the
+same five pieces become an ordinary two-column card grid, then one column on a
+phone.
+
+The event shown is real data, not a mock. It used to label an *activity* as an
+EVENT, which is the one thing the two halves of the catalogue must never blur.
 
 ## Prototype boundaries
 

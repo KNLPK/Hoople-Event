@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ImageSlot } from '@/components/ui/ImageSlot';
 import { Reveal } from '@/components/ui/Reveal';
-import { ArrowRight, Building, Check, Compass, Layers, Lock } from '@/components/ui/icons';
+import { ArrowRight, Building, Check, Compass, Layers, Lock, Logo } from '@/components/ui/icons';
 
 /**
  * The front door.
@@ -68,16 +68,7 @@ export function Entry() {
       <div className="entry__inner">
         <Reveal className="entry__head">
           <span className="entry__logo" aria-hidden="true">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3a9 9 0 1 0 8.5 6" stroke="#6D28FF" strokeWidth="2.6" strokeLinecap="round" />
-              <path
-                d="M15 2.5l6 1.2-1.2 6"
-                stroke="#6D28FF"
-                strokeWidth="2.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Logo size={28} color="#6D28FF" />
             <span>hoople</span>
           </span>
           <h1>

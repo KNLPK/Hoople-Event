@@ -16,8 +16,9 @@ import { chromium } from 'playwright';
 import { writeFileSync } from 'node:fs';
 
 const MARK = `<svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
-  <path d="M12 3a9 9 0 1 0 8.5 6" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
-  <path d="M15 2.5l6 1.2-1.2 6" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="11.4" cy="12.8" r="8" stroke="#fff" stroke-width="3.8" stroke-linecap="round"
+          stroke-dasharray="43.85 50.27" transform="rotate(-27 11.4 12.8)"/>
+  <circle cx="17.83" cy="5.14" r="2.2" fill="#fff"/>
 </svg>`;
 
 const CARD = `<!doctype html><html><head><meta charset="utf-8">
@@ -60,7 +61,7 @@ const ICON = `<!doctype html><html><head><meta charset="utf-8"><style>
          align-items: center; justify-content: center; }
   .m { width: 112px; height: 112px; }
   .m svg { stroke-width: 2.9; }
-</style></head><body><div class="m">${MARK.replace('2.6"', '2.9"').replace('2.6"', '2.9"')}</div></body></html>`;
+</style></head><body><div class="m">${MARK}</div></body></html>`;
 
 const browser = await chromium.launch();
 
@@ -89,7 +90,7 @@ console.log('wrote public/og.jpg and public/apple-touch-icon.png');
     `<!doctype html><meta charset="utf-8"><style>*{margin:0;padding:0}
      body{width:32px;height:32px;background:#6D28FF;display:flex;align-items:center;justify-content:center}
      .m{width:23px;height:23px}</style>
-     <div class="m">${MARK.replaceAll('2.6"', '3.1"')}</div>`,
+     <div class="m">${MARK}</div>`,
     { waitUntil: 'load' },
   );
   const png = await p.screenshot({ type: 'png' });

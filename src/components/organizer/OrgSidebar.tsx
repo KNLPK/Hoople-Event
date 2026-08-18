@@ -15,6 +15,7 @@ import {
   IdCard,
   Info,
   Layers,
+  Logo,
   Ticket,
 } from "@/components/ui/icons";
 import { WORKSPACE, WORKSPACE_INITIALS } from "@/data/organizer";
@@ -35,27 +36,7 @@ export function OrgSidebar({ onClose }: { onClose?: () => void }) {
         aria-label="Hoople organizer console"
       >
         <span className="org-side__logo">
-          <svg
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M12 3a9 9 0 1 0 8.5 6"
-              stroke="#6D28FF"
-              strokeWidth="2.6"
-              strokeLinecap="round"
-            />
-            <path
-              d="M15 2.5l6 1.2-1.2 6"
-              stroke="#6D28FF"
-              strokeWidth="2.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <Logo size={26} color="#6D28FF" />
         </span>
         <span className="org-side__wordmark">hoople</span>
       </Link>

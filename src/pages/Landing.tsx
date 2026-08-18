@@ -14,12 +14,14 @@ import {
   Heart,
   Layers,
   MapPin,
+  Sparkle4,
   Star,
   Users,
   Wallet,
 } from '@/components/ui/icons';
 import { ACTIVITIES } from '@/data/activities';
-import { rupiah, shortDate } from '@/lib/format';
+import { EVENTS } from '@/data/events';
+import { compactDate, rupiah, shortDate } from '@/lib/format';
 import { nextSession } from '@/data/schedule';
 
 const TRUSTED_BY = [
@@ -119,10 +121,19 @@ const VALUE_FLOW = [
   },
 ];
 
+/** `Every Monday, Wednesday, Friday` -> `Mon, Wed, Fri`, to hold the row to one line. */
+function shortDays(recurrence: string): string {
+  return recurrence
+    .replace('Every ', '')
+    .split(', ')
+    .map((day) => day.slice(0, 3))
+    .join(', ');
+}
+
 export function Landing() {
-  const featured = ACTIVITIES[0];
+  /* The hero shows one of each kind: the biggest event, and a weekly class. */
+  const heroEvent = EVENTS.find((event) => event.slug === 'jakarta-coffee-week') ?? EVENTS[0];
   const activity = ACTIVITIES[1];
-  const featuredSession = nextSession(featured);
   const activitySession = nextSession(activity);
 
   return (
@@ -130,14 +141,39 @@ export function Landing() {
       {/* Hero */}
       <section className="landing-hero">
         <div className="container landing-hero__grid">
-          <div>
+          <div className="landing-hero__copy">
+            <span className="hero-eyebrow">
+              <Sparkle4 size={14} color="#6D28FF" />
+              All-in-one Experience Platform for Community
+            </span>
             <h1>
               Experiences that connect communities,{' '}
-              <span className="script">that grow.</span>
+              <span className="script">
+                that grow.
+                {/* Hand-drawn swoop. Sits under the words as a separate layer so
+                    the text keeps its own line box and never shifts. */}
+                <svg className="script__rule" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true">
+                  <path
+                    d="M4 13c46-9 128-11 232-6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3.4"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M212 4c9 2.6 17 4.6 24 6-6.6 2-13.4 3.4-20 4.4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
             </h1>
             <p className="landing-hero__lede">
-              Hoople is the all-in-one platform for events and activities in Indonesia. Discover something
-              worth showing up for — or run your own, from registration to QR check-in.
+              From one-time events to recurring activities, Hoople helps communities create, join, and grow
+              unforgettable experiences.
             </p>
             <div className="landing-hero__ctas">
               <Button as="link" to="/discover" variant="primary" size="xl" halo>
@@ -148,74 +184,110 @@ export function Landing() {
                 Create Experience
               </Button>
             </div>
-            <div className="landing-hero__proof">
-              <div className="avatar-stack" style={{ filter: 'none' }}>
-                {[1, 2, 3, 4].map((index) => (
-                  <div key={index} style={{ borderColor: '#fff' }}>
-                    <ImageSlot id={`landing-avatar-${index}`} shape="circle" placeholder="" />
-                  </div>
-                ))}
-              </div>
-              <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--ink-2)' }}>
-                10,000+ people joined a Hoople experience this week
-              </span>
-            </div>
           </div>
 
-          {/* Floating card previews */}
-          <div className="float-stack">
-            <div className="float-card float-card--event float">
-              <div style={{ height: 120 }}>
-                <ImageSlot id="landing-card-event" shape="rect" placeholder={featured.photoHint} />
-              </div>
-              <div style={{ padding: 16 }}>
-                <span className="badge">EVENT</span>
-                <div style={{ fontFamily: 'var(--font-heading)', fontSize: 15, fontWeight: 600, marginTop: 10 }}>
-                  {featured.title}
-                </div>
-                <div className="meta meta--sm" style={{ marginTop: 8 }}>
-                  <Calendar size={13} color="#8B8A99" strokeWidth={2} />
-                  {featuredSession ? shortDate(featuredSession.date) : 'New dates soon'}
-                </div>
-                <div style={{ fontSize: 14, fontWeight: 700, marginTop: 10 }}>
-                  {rupiah(featured.priceFrom)}
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="float-card float-card--ticket float"
-              style={{ animationDelay: '0.8s' }}
-            >
-              <div className="row row--between" style={{ marginBottom: 14 }}>
-                <span className="tag tag--status">
-                  Confirmed <Check size={13} />
+          {/* The collage: two experiences and the ticket they end in. */}
+          <div className="hero-stage">
+            <div className="hero-stage__inner">
+              {/* Drawn first so the thread and its pins sit behind every card. */}
+              {/* One loop around the whole collage. The cards cover its middle,
+                  so it reads as a line ducking behind them and back out. */}
+              <svg className="hero-thread" viewBox="0 0 620 540" fill="none" aria-hidden="true">
+                <path
+                  d="M310 18c160 0 290 113 290 252S470 522 310 522 20 409 20 270 150 18 310 18Z"
+                  stroke="var(--brand-border)"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeDasharray="1 8"
+                />
+              </svg>
+              {[
+                { top: 270, left: 20 },
+                { top: 18, left: 310 },
+                { top: 270, left: 600 },
+                { top: 522, left: 310 },
+              ].map((pin) => (
+                <span key={`${pin.top}-${pin.left}`} className="hero-pin" style={{ top: pin.top, left: pin.left }}>
+                  <MapPin size={13} color="#6D28FF" strokeWidth={2.2} />
                 </span>
-                <span style={{ fontSize: 11, color: 'var(--grey-soft)' }}>TKT-8KZ7-01</span>
-              </div>
-              <div style={{ height: 128, borderRadius: 12, overflow: 'hidden', marginBottom: 14 }}>
-                <ImageSlot id="landing-card-qr" shape="rounded" radius={12} placeholder="QR code" />
-              </div>
-              <div style={{ fontSize: 12.5, color: 'var(--grey)', textAlign: 'center' }}>
-                Scan at the door to check in
-              </div>
-            </div>
+              ))}
 
-            <div className="float-card float-card--activity float" style={{ animationDelay: '1.6s' }}>
-              <div style={{ height: 110 }}>
-                <ImageSlot id="landing-card-activity" shape="rect" placeholder={activity.photoHint} />
+              <Sparkle4 className="hero-spark hero-spark--a" size={18} color="#C9BEF5" />
+              <Sparkle4 className="hero-spark hero-spark--b" size={13} color="#D8CCF8" />
+              <Sparkle4 className="hero-spark hero-spark--c" size={22} color="#C9BEF5" />
+
+              {/* The event: a photo, then the details that sell it. */}
+              <div className="hero-photo hero-photo--event float">
+                <ImageSlot id="landing-card-event" shape="rect" placeholder={heroEvent.photoHint} />
+                <span className="badge hero-photo__badge">EVENT</span>
               </div>
-              <div style={{ padding: 16 }}>
-                <span className="badge badge--green">ACTIVITY</span>
-                <div style={{ fontFamily: 'var(--font-heading)', fontSize: 15, fontWeight: 600, marginTop: 10 }}>
-                  {activity.title}
+              <div className="hero-note hero-note--event float" style={{ animationDelay: '0.5s' }}>
+                <div className="hero-note__row">
+                  <Calendar size={15} color="#6D28FF" strokeWidth={1.9} />
+                  {compactDate(heroEvent.date)} ({shortDate(heroEvent.date).slice(0, 3)}) ·{' '}
+                  {heroEvent.start.replace(':', '.')} – {heroEvent.end.replace(':', '.')}
                 </div>
-                <div className="meta meta--sm meta--amber" style={{ marginTop: 8 }}>
-                  <Bolt size={13} color="#EA8C00" strokeWidth={2} />
-                  {activitySession?.slotsLeft ?? 0} slots remaining!
+                <div className="hero-note__row">
+                  <MapPin size={15} color="#6D28FF" strokeWidth={1.9} />
+                  {heroEvent.venueName} · {heroEvent.area.split(', ').pop()}
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 700, marginTop: 10, color: 'var(--green)' }}>
-                  {rupiah(activity.priceFrom)} / session
+                <div className="hero-note__foot">
+                  <span className="avatar-stack avatar-stack--sm" style={{ filter: 'none' }}>
+                    {[1, 2, 3].map((index) => (
+                      <div key={index} style={{ borderColor: '#fff' }}>
+                        <ImageSlot id={`landing-avatar-${index}`} shape="circle" placeholder="" interactive={false} />
+                      </div>
+                    ))}
+                  </span>
+                  <span className="hero-note__going">{heroEvent.going}</span>
+                  <Link to={`/events/${heroEvent.slug}`} className="hero-note__cta">
+                    Get Tickets
+                  </Link>
+                </div>
+              </div>
+
+              {/* Where every booking ends up. */}
+              <div className="hero-ticket float" style={{ animationDelay: '1s' }}>
+                <div className="hero-ticket__head">
+                  <span className="hero-ticket__label">Your QR Ticket</span>
+                </div>
+                <div className="hero-ticket__body">
+                  <span className="hero-ticket__qr">
+                    <ImageSlot id="landing-card-qr" shape="rounded" radius={8} placeholder="QR code" interactive={false} />
+                  </span>
+                  <span className="tag tag--status hero-ticket__state">
+                    Confirmed <Check size={12} />
+                  </span>
+                </div>
+              </div>
+
+              {/* The recurring half of the catalogue. */}
+              <div className="hero-photo hero-photo--activity float" style={{ animationDelay: '1.5s' }}>
+                <ImageSlot id="landing-card-activity" shape="rect" placeholder={activity.photoHint} />
+                <span className="badge badge--green hero-photo__badge">ACTIVITY</span>
+              </div>
+              <div className="hero-note hero-note--activity float" style={{ animationDelay: '2s' }}>
+                <div className="hero-note__title">{activity.title}</div>
+                <div className="hero-note__row">
+                  <Clock size={15} color="#6D28FF" strokeWidth={1.9} />
+                  {shortDays(activity.recurrence)} · {activity.recurrenceTime}
+                </div>
+                <div className="hero-note__row">
+                  <MapPin size={15} color="#6D28FF" strokeWidth={1.9} />
+                  {activity.venue.name}, {activity.venue.area}
+                </div>
+                <div className="hero-note__foot">
+                  <span className="avatar-stack avatar-stack--sm" style={{ filter: 'none' }}>
+                    {[4, 5, 6].map((index) => (
+                      <div key={index} style={{ borderColor: '#fff' }}>
+                        <ImageSlot id={`landing-avatar-${index}`} shape="circle" placeholder="" interactive={false} />
+                      </div>
+                    ))}
+                  </span>
+                  <span className="hero-note__going">{activitySession?.slotsLeft ?? 12} slots left</span>
+                  <Link to={`/activities/${activity.slug}`} className="hero-note__cta hero-note__cta--green">
+                    Book Session
+                  </Link>
                 </div>
               </div>
             </div>
@@ -223,17 +295,16 @@ export function Landing() {
         </div>
       </section>
 
-      {/* Trusted by */}
-      <Reveal className="container section--tight">
-        <div className="logo-strip">
-          <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--grey)' }}>
-            Trusted by communities running experiences every week
-          </span>
+      {/* Trusted by — centred under the hero, the way a proof line reads best. */}
+      <Reveal className="container trust">
+        <p className="trust__cap">Trusted by community builders and organizers across Indonesia</p>
+        <div className="trust__row">
           {TRUSTED_BY.map((name) => (
-            <span key={name} className="logo-strip__mark">
+            <span key={name} className="trust__mark">
               {name}
             </span>
           ))}
+          <span className="trust__more">And 500+ more</span>
         </div>
       </Reveal>
 
