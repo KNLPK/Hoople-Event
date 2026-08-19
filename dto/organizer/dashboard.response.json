@@ -3,7 +3,7 @@
   "message": "Dashboard berhasil dimuat",
   "data": {
     "workspace": {
-      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000401",
+      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
       "name": "Waktu Luang",
       "category": "Community & Lifestyle",
       "plan": "starter",
@@ -16,7 +16,7 @@
       "to": "2026-03-14T23:59:59+07:00",
       "label": "30 hari terakhir"
     },
-    "stats": [
+    "statCards": [
       {
         "key": "experiences",
         "label": "Total Experience",

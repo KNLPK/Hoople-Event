@@ -8,7 +8,7 @@
       "orderId": "ORD-260719-001",
       "member": {
         "name": "Adriani Ajeng",
-        "email": "adriani.ajeng@sinarnusantara.co.id",
+        "workEmail": "adriani.ajeng@sinarnusantara.co.id",
         "phone": "+62 812 3456 7890",
         "employeeId": "SN-0042",
         "department": "People Ops",
@@ -35,7 +35,7 @@
       "orderId": null,
       "member": {
         "name": "Raka Mahendra",
-        "email": "raka.mahendra@sinarnusantara.co.id",
+        "workEmail": "raka.mahendra@sinarnusantara.co.id",
         "phone": "+62 812 5544 3322",
         "employeeId": "SN-0117",
         "department": "Engineering",
@@ -62,7 +62,7 @@
       "orderId": "ORD-260720-014",
       "member": {
         "name": "Sinta Wijaya",
-        "email": "sinta.wijaya@sinarnusantara.co.id",
+        "workEmail": "sinta.wijaya@sinarnusantara.co.id",
         "phone": "+62 811 2233 4455",
         "employeeId": "SN-0208",
         "department": "Product & Design",
@@ -89,7 +89,7 @@
       "orderId": "ORD-260721-032",
       "member": {
         "name": "Bagas Nugroho",
-        "email": "bagas.nugroho@sinarnusantara.co.id",
+        "workEmail": "bagas.nugroho@sinarnusantara.co.id",
         "phone": "+62 857 1122 3344",
         "employeeId": "SN-0311",
         "department": "Sales & Growth",
@@ -116,7 +116,7 @@
       "orderId": null,
       "member": {
         "name": "Putri Handayani",
-        "email": "putri.handayani@sinarnusantara.co.id",
+        "workEmail": "putri.handayani@sinarnusantara.co.id",
         "phone": "+62 878 6655 4433",
         "employeeId": "SN-0455",
         "department": "Finance & Legal",

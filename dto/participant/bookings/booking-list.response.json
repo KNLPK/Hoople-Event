@@ -13,7 +13,11 @@
         "id": "a1b2c3d4-1111-4a2b-8c3d-000000000101",
         "slug": "morning-yoga-flow",
         "title": "Morning Yoga Flow",
-        "host": "Flow with Me Studio",
+        "host": {
+          "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+          "name": "Waktu Luang",
+          "slug": "waktu-luang"
+        },
         "coverImageUrl": "https://cdn.hoople.id/covers/morning-yoga-flow.jpg"
       },
       "session": {
@@ -53,7 +57,7 @@
         "email": "adriani.ajeng@gmail.com",
         "phone": "+62 812 3456 7890"
       },
-      "price": {
+      "priceBreakdown": {
         "unitPrice": {
           "amount": 120000,
           "currency": "IDR"
@@ -105,7 +109,11 @@
         "id": "a1b2c3d4-5555-4a2b-8c3d-000000000105",
         "slug": "healthy-cooking-class",
         "title": "Healthy Cooking Class",
-        "host": "GreenBite Kitchen",
+        "host": {
+          "id": "c0ffee11-aaaa-4bbb-8ccc-000000000406",
+          "name": "GreenBite Kitchen",
+          "slug": "greenbite-kitchen"
+        },
         "coverImageUrl": "https://cdn.hoople.id/covers/healthy-cooking-class.jpg"
       },
       "session": {
@@ -139,7 +147,7 @@
         "email": "adriani.ajeng@gmail.com",
         "phone": "+62 812 3456 7890"
       },
-      "price": {
+      "priceBreakdown": {
         "unitPrice": {
           "amount": 175000,
           "currency": "IDR"
@@ -191,7 +199,11 @@
         "id": "e1f2a3b4-2222-4c5d-9e6f-000000000202",
         "slug": "sunset-rooftop-jazz",
         "title": "Sunset Rooftop Jazz",
-        "host": "Waktu Luang",
+        "host": {
+          "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+          "name": "Waktu Luang",
+          "slug": "waktu-luang"
+        },
         "coverImageUrl": "https://cdn.hoople.id/covers/sunset-rooftop-jazz.jpg"
       },
       "session": null,
@@ -222,7 +234,7 @@
         "email": "adriani.ajeng@gmail.com",
         "phone": "+62 812 3456 7890"
       },
-      "price": {
+      "priceBreakdown": {
         "unitPrice": {
           "amount": 275000,
           "currency": "IDR"
@@ -274,7 +286,11 @@
         "id": "a1b2c3d4-3333-4a2b-8c3d-000000000103",
         "slug": "latte-art-workshop",
         "title": "Latte Art Workshop",
-        "host": "Kopi Karya",
+        "host": {
+          "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+          "name": "Waktu Luang",
+          "slug": "waktu-luang"
+        },
         "coverImageUrl": "https://cdn.hoople.id/covers/latte-art-workshop.jpg"
       },
       "session": {
@@ -308,7 +324,7 @@
         "email": "adriani.ajeng@gmail.com",
         "phone": "+62 812 3456 7890"
       },
-      "price": {
+      "priceBreakdown": {
         "unitPrice": {
           "amount": 185000,
           "currency": "IDR"

@@ -7,14 +7,14 @@
     "title": "Morning Yoga Flow",
     "kind": "activity",
     "host": {
-      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000401",
-      "name": "Flow with Me Studio",
-      "slug": "flow-with-me",
-      "avatarUrl": "https://cdn.hoople.id/hosts/flow-with-me.jpg",
+      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+      "name": "Waktu Luang",
+      "slug": "waktu-luang",
+      "avatarUrl": "https://cdn.hoople.id/hosts/waktu-luang.jpg",
       "verified": true,
       "rating": 4.9,
       "experienceCount": 6,
-      "bio": "Studio yoga di Kemang yang fokus pada kelas kecil dan personal."
+      "bio": "Ruang kelas kecil di Kemang untuk yoga, keramik, dan kopi."
     },
     "category": "Yoga & Wellness",
     "categoryLabel": "YOGA & WELLNESS",

@@ -3,7 +3,7 @@
   "message": "Daftar komunitas berhasil diambil",
   "data": [
     {
-      "id": "cm-0001-4aaa-8bbb-000000000001",
+      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000401",
       "slug": "kopi-karya",
       "name": "Kopi Karya",
       "focus": "Kopi & roastery",
@@ -14,7 +14,7 @@
       "isJoined": true
     },
     {
-      "id": "cm-0002-4aaa-8bbb-000000000002",
+      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
       "slug": "waktu-luang",
       "name": "Waktu Luang",
       "focus": "Kelas kreatif akhir pekan",
@@ -25,7 +25,7 @@
       "isJoined": false
     },
     {
-      "id": "cm-0003-4aaa-8bbb-000000000003",
+      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000404",
       "slug": "strive-gym-scbd",
       "name": "Strive Gym SCBD",
       "focus": "Padel & functional training",
@@ -36,7 +36,7 @@
       "isJoined": false
     },
     {
-      "id": "cm-0004-4aaa-8bbb-000000000004",
+      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000405",
       "slug": "lingua-space-menteng",
       "name": "Lingua Space Menteng",
       "focus": "Kelas bahasa & conversation club",

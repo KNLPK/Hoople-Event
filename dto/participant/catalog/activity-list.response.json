@@ -7,7 +7,11 @@
       "slug": "morning-yoga-flow",
       "title": "Morning Yoga Flow",
       "kind": "activity",
-      "host": "Flow with Me Studio",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+        "name": "Waktu Luang",
+        "slug": "waktu-luang"
+      },
       "category": "Yoga & Wellness",
       "categoryLabel": "YOGA & WELLNESS",
       "badge": "popular",
@@ -39,7 +43,11 @@
       "slug": "pottery-class",
       "title": "Kelas Keramik untuk Pemula",
       "kind": "activity",
-      "host": "Waktu Luang",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+        "name": "Waktu Luang",
+        "slug": "waktu-luang"
+      },
       "category": "Classes",
       "categoryLabel": "CLASSES",
       "badge": "trending",
@@ -71,7 +79,11 @@
       "slug": "latte-art-workshop",
       "title": "Latte Art Workshop",
       "kind": "activity",
-      "host": "Kopi Karya",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+        "name": "Waktu Luang",
+        "slug": "waktu-luang"
+      },
       "category": "Food & Drink",
       "categoryLabel": "FOOD & DRINK",
       "badge": "new",
@@ -103,7 +115,11 @@
       "slug": "padel-friday",
       "title": "Padel Friday Social",
       "kind": "activity",
-      "host": "Strive Gym SCBD",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000404",
+        "name": "Strive Gym SCBD",
+        "slug": "strive-gym-scbd"
+      },
       "category": "Sports & Fitness",
       "categoryLabel": "SPORTS & FITNESS",
       "badge": null,
@@ -135,7 +151,11 @@
       "slug": "healthy-cooking-class",
       "title": "Healthy Cooking Class",
       "kind": "activity",
-      "host": "GreenBite Kitchen",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000406",
+        "name": "GreenBite Kitchen",
+        "slug": "greenbite-kitchen"
+      },
       "category": "Food & Drink",
       "categoryLabel": "FOOD & DRINK",
       "badge": "featured",

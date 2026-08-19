@@ -3,7 +3,7 @@
   "message": "Pengaturan berhasil diambil",
   "data": {
     "workspace": {
-      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000401",
+      "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
       "name": "Waktu Luang",
       "category": "Community & Lifestyle",
       "handle": "waktu-luang",
@@ -28,7 +28,7 @@
       "bankName": "BCA",
       "accountNumber": "****7890",
       "accountHolder": "Adriani Ajeng",
-      "schedule": "weekly",
+      "payoutSchedule": "weekly",
       "nextPayoutAt": "2026-03-20T00:00:00+07:00",
       "isVerified": true
     },

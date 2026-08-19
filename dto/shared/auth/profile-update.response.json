@@ -9,7 +9,8 @@
     "avatarUrl": null,
     "roles": [
       "participant",
-      "organizer"
+      "organizer",
+      "teams_admin"
     ],
     "emailVerifiedAt": null,
     "createdAt": "2026-03-14T09:30:00+07:00",

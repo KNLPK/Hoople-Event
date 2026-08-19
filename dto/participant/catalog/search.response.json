@@ -16,7 +16,11 @@
         "slug": "morning-yoga-flow",
         "title": "Morning Yoga Flow",
         "kind": "activity",
-        "host": "Flow with Me Studio",
+        "host": {
+          "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+          "name": "Waktu Luang",
+          "slug": "waktu-luang"
+        },
         "category": "Yoga & Wellness",
         "categoryLabel": "YOGA & WELLNESS",
         "badge": "popular",

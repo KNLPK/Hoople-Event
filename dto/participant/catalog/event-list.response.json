@@ -7,7 +7,11 @@
       "slug": "jakarta-coffee-week",
       "title": "Jakarta Coffee Week 2026",
       "kind": "event",
-      "host": "Kopi Karya",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000401",
+        "name": "Kopi Karya",
+        "slug": "kopi-karya"
+      },
       "category": "Food & Drink",
       "badge": "featured",
       "status": "published",
@@ -35,7 +39,11 @@
       "slug": "sunset-rooftop-jazz",
       "title": "Sunset Rooftop Jazz",
       "kind": "event",
-      "host": "Waktu Luang",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+        "name": "Waktu Luang",
+        "slug": "waktu-luang"
+      },
       "category": "Music",
       "badge": "trending",
       "status": "published",
@@ -63,7 +71,11 @@
       "slug": "pasar-kreatif-kemang",
       "title": "Pasar Kreatif Kemang",
       "kind": "event",
-      "host": "Komunitas Kemang",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+        "name": "Waktu Luang",
+        "slug": "waktu-luang"
+      },
       "category": "Market",
       "badge": null,
       "status": "published",
@@ -91,7 +103,11 @@
       "slug": "creative-talk-build-your-brand",
       "title": "Creative Talk: Build Your Brand",
       "kind": "event",
-      "host": "Waktu Luang",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+        "name": "Waktu Luang",
+        "slug": "waktu-luang"
+      },
       "category": "Business & Professional",
       "badge": null,
       "status": "published",
@@ -119,7 +135,11 @@
       "slug": "ux-in-practice",
       "title": "UX in Practice",
       "kind": "event",
-      "host": "Lingua Space",
+      "host": {
+        "id": "c0ffee11-aaaa-4bbb-8ccc-000000000402",
+        "name": "Waktu Luang",
+        "slug": "waktu-luang"
+      },
       "category": "Business & Professional",
       "badge": "new",
       "status": "published",

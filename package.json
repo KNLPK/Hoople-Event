@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "typecheck": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dto:verify": "node scripts/dto-verify.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

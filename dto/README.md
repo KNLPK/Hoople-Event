@@ -7,9 +7,89 @@ Contoh response API untuk seluruh permukaan aplikasi Hoople. Dua kegunaannya:
 2. **Mock data frontend** sementara endpoint asli belum siap. Nanti tinggal ganti
    import file JSON dengan `fetch` ke URL sungguhan; bentuk datanya tidak berubah.
 
-95 file JSON, 10 domain. Seluruhnya lolos audit otomatis: parse, envelope, camelCase,
+95 file JSON, tersusun jadi **tiga section + satu inti bersama**. Seluruhnya lolos audit otomatis: parse, envelope, camelCase,
 casing enum, bentuk uang, format tanggal, aritmetika pagination, dan integritas
 referensi id/slug. Lihat [Hasil audit](#6-hasil-audit-finalisasi).
+
+---
+
+## 0. Tiga section, satu inti bersama
+
+Hoople akan dipecah jadi **tiga website terpisah**, jadi kontraknya disusun
+begitu juga. Setiap section bisa diserahkan ke tim yang berbeda tanpa saling
+menunggu.
+
+```
+dto/
+  shared/       ← dipakai ketiganya
+    common/     envelope, pagination, enum, semua bentuk error
+    auth/       login, register, refresh, /auth/me
+    media/      unggah gambar
+  participant/  ← Website 1 — situs peserta
+    catalog/ bookings/ saved/ payments/ content/
+  organizer/    ← Website 2 — konsol penyelenggara
+  teams/        ← Website 3 — konsol event internal perusahaan
+```
+
+**Kenapa ada `shared/` dan bukan tiga section bulat-bulat.** Autentikasi, bentuk
+error, dan daftar enum dibutuhkan ketiga situs. Menyalinnya tiga kali justru
+sumber utama perbedaan versi di kemudian hari — satu situs memperbaiki enum,
+dua lainnya tidak. Jadi `shared/` bukan pelanggaran pemisahan; itu justru yang
+menjaganya.
+
+### Pembagian jalur URL
+
+| Section | Awalan | Jumlah endpoint | Autentikasi |
+| --- | --- | --- | --- |
+| `shared` | `/auth/*`, `/media/*` | 9 | campuran |
+| `participant` | tanpa awalan — `/activities`, `/events`, `/bookings`, `/saved`, `/search`, … | 24 | katalog publik; `/bookings` & `/saved` perlu token |
+| `organizer` | `/organizer/*` | 17 | wajib, `roles` memuat `organizer` |
+| `teams` | `/teams/*` | 15 | wajib, `roles` memuat `teams_admin` |
+| *(bukan situs)* | `/webhooks/payment` | 1 | tanda tangan gateway |
+
+Dua konsol sudah bernama ruang sendiri, jadi gateway bisa memakai aturan
+sederhana: `/organizer/*` → app B, `/teams/*` → app C, `/auth/*` dan `/media/*`
+→ layanan bersama, sisanya → app A.
+
+> **Situs peserta sengaja tidak diberi awalan `/participant`.** Katalognya
+> publik dan terindeks mesin pencari; URL API-nya mengikuti URL halaman
+> (`/activities/morning-yoga-flow`). Menambah awalan hanya memperpanjang tanpa
+> memisahkan apa pun — tidak ada satu pun jalur peserta yang bertabrakan dengan
+> `/organizer/*` atau `/teams/*`.
+
+### Aturan yang menjaga ketiganya tidak bentrok
+
+Lima aturan berikut ditegakkan lewat skrip, bukan kesepakatan lisan. Melanggar
+salah satunya berarti dua situs menyebut hal yang sama dengan cara berbeda.
+
+| # | Aturan | Kenapa |
+| --- | --- | --- |
+| 1 | **Satu organisasi = satu UUID**, baik muncul sebagai `community.id`, `host.id`, maupun `workspace.id`. | Kalau berbeda, situs peserta dan konsol organizer tidak bisa di-join sama sekali. |
+| 2 | **Satu akun = satu UUID dan satu `roles`**, sama persis di semua section. | Akun yang sama tidak boleh punya daftar peran berbeda tergantung situs mana yang bertanya. |
+| 3 | **Experience yang dimiliki konsol organizer wajib berhost workspace itu juga di katalog publik.** | Kalau tidak, publik melihat pemilik yang berbeda dari yang tertulis di konsol. |
+| 4 | **Satu nama field tidak boleh punya dua tipe.** | Klien bertipe pecah begitu ketiga situs dipisah dan berbagi satu paket tipe. |
+| 5 | **Email akun ≠ email kantor.** `email` selalu alamat akun Hoople; alamat korporat bernama `workEmail`. | Satu orang bisa masuk Teams lewat email kantor tapi memesan kelas akhir pekan dengan email pribadi. |
+
+Penerapan aturan 4 pada nama yang sempat bertabrakan:
+
+| Field | Artinya sekarang | Dulu |
+| --- | --- | --- |
+| `host` | **selalu objek** `{ id, name, slug }` | string di endpoint list, objek di endpoint detail |
+| `price` | **selalu** objek uang `{ amount, currency }` | juga dipakai untuk rincian checkout |
+| `priceBreakdown` | rincian checkout (`unitPrice`, `subtotal`, `platformFee`, `total`) | dulu bernama `price` |
+| `pricing` | langkah harga di builder organizer (`basePrice`, `defaultCapacity`) | — |
+| `stats` | **selalu objek** counter milik entitas induknya | juga dipakai untuk larik kartu dashboard |
+| `statCards` | larik kartu statistik dashboard (`key`, `label`, `value`, `unit`) | dulu bernama `stats` |
+| `scheduleSummary` | baris tampilan `{ label, time }` di katalog | dulu bernama `schedule` |
+| `schedule` | konfigurasi jadwal builder (`operatingDays`, `repeatWeekly`, …) | — |
+| `rundown` | susunan acara `[{ time, label }]` di event | dulu bernama `schedule` |
+| `payout.payoutSchedule` | irama pencairan (`daily` | `weekly` | `monthly`) | dulu `payout.schedule` |
+
+> **`summary` sengaja dibiarkan berbeda** antara `organizer/analytics` dan
+> `teams/analytics`. Keduanya berarti "ringkasan analitik konsol ini", metriknya
+> memang berlainan, dan keduanya tidak pernah tampil di situs yang sama. Yang
+> penting: jangan bikin satu tipe `Summary` global — biarkan tiap section
+> mengetikkan miliknya sendiri. Hal yang sama berlaku untuk `stats`.
 
 ---
 
@@ -95,7 +175,7 @@ Ini satu-satunya tempat nominal rupiah tidak dibungkus.
 ### Enum
 
 Semua enum **lowercase snake_case**. Daftar lengkap ada di
-[`common/enums.reference.json`](common/enums.reference.json).
+[`shared/common/enums.reference.json`](shared/common/enums.reference.json).
 
 | Enum | Nilai |
 | --- | --- |
@@ -192,7 +272,7 @@ Content-Type: application/json
 
 ## 2. Pemetaan file → endpoint
 
-### `common/` — dipakai semua domain
+### `shared/common/` — dipakai semua domain
 
 | File | HTTP | Deskripsi |
 | --- | --- | --- |
@@ -206,7 +286,7 @@ Content-Type: application/json
 | `error-conflict.response.json` | `409` | Bentrok state, mis. slot habis. |
 | `error-server.response.json` | `500` | Kesalahan tak terduga. |
 
-### `auth/` — autentikasi & profil
+### `shared/auth/` — autentikasi & profil
 
 | File | HTTP | Endpoint | Deskripsi |
 | --- | --- | --- | --- |
@@ -220,7 +300,7 @@ Content-Type: application/json
 | `password-forgot.request.json`<br>`password-forgot.response.json` | `POST` | `/auth/password/forgot` | Kirim tautan reset. |
 | `password-reset.request.json`<br>`password-reset.response.json` | `POST` | `/auth/password/reset` | Set password baru. |
 
-### `catalog/` — katalog publik (situs peserta)
+### `participant/catalog/` — katalog publik (situs peserta)
 
 | File | HTTP | Endpoint | Deskripsi |
 | --- | --- | --- | --- |
@@ -235,7 +315,7 @@ Content-Type: application/json
 | `community-detail.response.json` | `GET` | `/communities/{slug}` | Profil komunitas + experience mendatang. |
 | `category-list.response.json` | `GET` | `/categories` | Kategori untuk filter & navigasi. |
 
-### `bookings/` — pemesanan peserta
+### `participant/bookings/` — pemesanan peserta
 
 | File | HTTP | Endpoint | Deskripsi |
 | --- | --- | --- | --- |
@@ -246,14 +326,14 @@ Content-Type: application/json
 | `booking-cancel.request.json`<br>`booking-cancel.response.json` | `POST` | `/bookings/{id}/cancel` | Batalkan + info refund. |
 | `eticket.response.json` | `GET` | `/bookings/{id}/ticket` | E-tiket: QR, kode per peserta, `.ics`. |
 
-### `saved/` — daftar simpanan
+### `participant/saved/` — daftar simpanan
 
 | File | HTTP | Endpoint | Deskripsi |
 | --- | --- | --- | --- |
 | `saved-list.response.json` | `GET` | `/saved` | Semua yang disimpan. |
 | `saved-toggle.request.json`<br>`saved-toggle.response.json` | `POST` | `/saved/toggle` | Simpan/lepas. Idempoten, mengembalikan `isSaved` terbaru. |
 
-### `payments/` — pembayaran
+### `participant/payments/` — pembayaran
 
 | File | HTTP | Endpoint | Deskripsi |
 | --- | --- | --- | --- |
@@ -262,7 +342,7 @@ Content-Type: application/json
 | `payment-status.response.json` | `GET` | `/payments/{paymentId}` | Polling status bayar. |
 | `payment-webhook.request.json` | `POST` | `/webhooks/payment` | Callback dari payment gateway ke backend. |
 
-### `content/` — halaman statis & dukungan
+### `participant/content/` — halaman statis & dukungan
 
 | File | HTTP | Endpoint | Deskripsi |
 | --- | --- | --- | --- |
@@ -271,7 +351,7 @@ Content-Type: application/json
 | `support-contact.request.json`<br>`support-contact.response.json` | `POST` | `/support/tickets` | Form hubungi kami. |
 | `newsletter-subscribe.request.json`<br>`newsletter-subscribe.response.json` | `POST` | `/newsletter/subscribe` | Langganan newsletter footer. |
 
-### `media/` — unggah berkas
+### `shared/media/` — unggah berkas
 
 | File | HTTP | Endpoint | Deskripsi |
 | --- | --- | --- | --- |
@@ -351,7 +431,7 @@ Supaya UI bisa diuji tanpa mengarang data:
 - **Payout** — scheduled, paid, dan satu `on_hold` lengkap dengan `holdReason`.
 - **Transaksi bernilai negatif** — refund dan payout, agar tabel keuangan teruji.
 - **Booking pending dengan countdown berjalan** — satu baris di
-  `bookings/booking-list.response.json` berstatus `pending` dengan
+  `participant/bookings/booking-list.response.json` berstatus `pending` dengan
   `payment.expiresAt` di masa depan, supaya hitung mundur teruji **di dalam list**,
   bukan hanya di halaman detail.
 - **Kuota terlampaui** — `pass-online` di Town Hall terjual 108 dari kuota 100,
@@ -381,10 +461,10 @@ Silakan koreksi kalau backend berpendapat lain.
    karena yang kedaluwarsa adalah instruksi pembayarannya, bukan pesanannya. Isinya
    ISO 8601 saat `paymentStatus` masih `pending`, dan `null` begitu lunas, dibatalkan,
    atau selesai. Itulah field yang dipakai frontend untuk countdown. Nilai yang sama
-   muncul di `payments/payment-charge.response.json` dan
-   `payments/payment-status.response.json`, sehingga polling status tidak perlu
+   muncul di `participant/payments/payment-charge.response.json` dan
+   `participant/payments/payment-status.response.json`, sehingga polling status tidak perlu
    mengambil ulang seluruh booking hanya demi sisa waktu. Satu baris di
-   `bookings/booking-list.response.json` sengaja berstatus `pending` agar hitung
+   `participant/bookings/booking-list.response.json` sengaja berstatus `pending` agar hitung
    mundur teruji di dalam daftar, bukan hanya di halaman detail.
 4. **Harga sesi bisa berbeda dari harga dasar.** Builder aktivitas sekarang punya
    base price + override per sesi, jadi `activity-detail` memakai `priceFrom` dan
@@ -418,7 +498,7 @@ itu di `src/`, jadi penghapusannya tidak memutus apa pun.
 
 ```ts
 // Sekarang — baca file lokal
-import activityList from '@/../dto/catalog/activity-list.response.json';
+import activityList from '@/../dto/participant/catalog/activity-list.response.json';
 
 // Nanti — tinggal ganti sumbernya, bentuk datanya sama
 const activityList = await fetch(`${API_BASE}/activities`).then((r) => r.json());
@@ -451,7 +531,32 @@ ketidakkonsistenan ditemukan dan sudah diperbaiki:
 | 5 | Kunci `status` pada sesi berarti dua enum berbeda antar-endpoint | Katalog memakai `availability`, konsol tetap `status` |
 | 6 | `eventId` pada webhook bentrok dengan `eventId` milik Teams | Jadi `deliveryId` |
 | 7 | Slug `padel-friday` menunjuk dua entitas berbeda | Event internal jadi `padel-friday-club` |
-| 8 | 16 nilai enum dipakai tapi tidak terdaftar | Semua didaftarkan di `common/enums.reference.json` |
+| 8 | 16 nilai enum dipakai tapi tidak terdaftar | Semua didaftarkan di `shared/common/enums.reference.json` |
+
+### Audit pemisahan tiga section
+
+Setelah kontrak dibelah jadi tiga section, seluruh 95 berkas diperiksa ulang
+untuk mencari hal yang disebut berbeda oleh dua situs. Sembilan ditemukan:
+
+| # | Temuan | Perbaikan |
+| --- | --- | --- |
+| 9 | Satu UUID `…0401` dipakai tiga organisasi berbeda — Flow with Me Studio, Kopi Karya, dan workspace Waktu Luang | Tiap organisasi diberi UUID sendiri (`…0401`–`…0407`) |
+| 10 | Komunitas memakai id `cm-0001-…` yang bukan UUID, dan terpisah dari `host.id` organisasi yang sama | Komunitas, host, dan workspace kini berbagi satu UUID per organisasi |
+| 11 | Empat experience milik konsol organizer tercatat berhost studio lain di katalog publik (`morning-yoga-flow`, `pasar-kreatif-kemang`, `ux-in-practice`, `latte-art-workshop`) | Host di katalog disamakan dengan workspace pemiliknya |
+| 12 | Halaman komunitas Kopi Karya masih menampilkan experience yang bukan miliknya | Daftar `upcomingExperiences` disaring ke host sendiri |
+| 13 | Akun yang sama punya `roles` berbeda — `["participant","organizer"]` di `auth`, `["participant","teams_admin"]` di `teams` | Satu akun, satu daftar: `["participant","organizer","teams_admin"]` |
+| 14 | `auth/register` mengembalikan id akun yang sudah ada, seolah pendaftaran baru mencetak akun lama | Register mencetak akun baru (Nadia Puspita, UUID sendiri, `["participant"]`) |
+| 15 | Satu akun punya dua `email` berbeda — pribadi di `auth`, korporat di `teams` | `email` = alamat akun; alamat korporat jadi `workEmail` |
+| 16 | `host` bertipe string di endpoint list dan objek di endpoint detail | Selalu objek `{ id, name, slug }` |
+| 17 | `price` berarti objek uang sekaligus rincian checkout; `stats` berarti objek counter sekaligus larik kartu | Dipisah jadi `priceBreakdown` dan `statCards` |
+| 18 | `schedule` berarti **empat** hal: baris tampilan katalog, susunan acara, konfigurasi builder, dan jadwal pencairan | Jadi `scheduleSummary`, `rundown`, `schedule`, dan `payout.payoutSchedule` |
+
+Seluruhnya ditegakkan ulang lewat `npm run dto:verify` ([`scripts/dto-verify.mjs`](../scripts/dto-verify.mjs)),
+yang gagal dengan exit code 1 begitu salah satu aturan dilanggar. Jalankan
+setiap kali menambah atau mengubah berkas di sini.
+
+Temuan 11–12 adalah yang paling penting: keduanya mengajarkan backend membangun
+join yang salah, dan baru terlihat setelah kedua situs dibandingkan berdampingan.
 
 Yang **sengaja dibiarkan**, dan alasannya:
 

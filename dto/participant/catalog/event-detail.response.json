@@ -87,7 +87,7 @@
         "salesEndAt": "2026-04-11T18:00:00+07:00"
       }
     ],
-    "schedule": [
+    "rundown": [
       {
         "time": "10:00",
         "label": "Pintu dibuka"

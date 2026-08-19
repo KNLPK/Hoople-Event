@@ -15,7 +15,7 @@
     "bankName": "BCA",
     "accountNumber": "1234567890",
     "accountHolder": "Adriani Ajeng",
-    "schedule": "weekly"
+    "payoutSchedule": "weekly"
   },
   "fees": {
     "absorbedByOrganizer": false

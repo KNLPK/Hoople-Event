@@ -33,7 +33,7 @@
   "startsAt": "2026-05-09T09:00:00+07:00",
   "endsAt": "2026-05-09T16:00:00+07:00",
   "timezone": "Asia/Jakarta",
-  "schedule": [
+  "rundown": [
     {
       "time": "09:00",
       "label": "Registrasi"
