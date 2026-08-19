@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "message": "Experience berhasil dihapus",
+  "data": {
+    "id": "e1f2a3b4-5555-4c5d-9e6f-000000000205",
+    "deletedAt": "2026-03-14T09:30:00+07:00"
+  },
+  "meta": null
+}

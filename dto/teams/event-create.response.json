@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "message": "Event internal berhasil dibuat",
+  "data": {
+    "id": "f00d1e00-4444-4222-8333-000000000604",
+    "slug": "family-day-2026",
+    "title": "Family Day 2026",
+    "summary": "Piknik keluarga, lomba, dan panggung hiburan.",
+    "status": "draft",
+    "format": "onsite",
+    "costModel": "cost_shared",
+    "audience": [
+      "All members"
+    ],
+    "code": "SN-FD26",
+    "startsAt": "2026-06-13T07:00:00+07:00",
+    "endsAt": "2026-06-13T15:00:00+07:00",
+    "timezone": "Asia/Jakarta",
+    "venue": "Taman Mini Indonesia Indah",
+    "room": "Plaza Utama",
+    "onlineUrl": null,
+    "capacity": 800,
+    "registeredCount": 0,
+    "checkedInCount": 0,
+    "onsiteScanCount": 0,
+    "coverImageUrl": "https://cdn.hoople.id/teams/family-day-2026.jpg",
+    "organiser": "People Ops",
+    "recurring": null,
+    "createdAt": "2026-01-08T10:00:00+07:00",
+    "publishedAt": null,
+    "passes": [
+      {
+        "id": "pass-employee",
+        "name": "Karyawan",
+        "note": "Ditanggung perusahaan",
+        "price": {
+          "amount": 0,
+          "currency": "IDR"
+        },
+        "sold": 0,
+        "quota": 500,
+        "onsite": true
+      },
+      {
+        "id": "pass-family",
+        "name": "Anggota keluarga",
+        "note": "Subsidi 50%",
+        "price": {
+          "amount": 125000,
+          "currency": "IDR"
+        },
+        "sold": 0,
+        "quota": 300,
+        "onsite": true
+      }
+    ]
+  },
+  "meta": null
+}

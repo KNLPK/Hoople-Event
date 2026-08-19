@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "message": "Instruksi pembayaran berhasil dibuat",
+  "data": {
+    "paymentId": "pay-9f8e7d6c-1111-4222-8333-000000000701",
+    "bookingId": "b0071e5c-1111-4d2e-8a3f-000000000301",
+    "status": "pending",
+    "methodId": "pm-bca-va",
+    "methodName": "BCA Virtual Account",
+    "amount": {
+      "amount": 251520,
+      "currency": "IDR"
+    },
+    "virtualAccountNumber": "8277 0812 3456 7890",
+    "qrString": null,
+    "deeplinkUrl": null,
+    "expiresAt": "2026-03-14T10:30:00+07:00",
+    "instructions": [
+      {
+        "channel": "ATM BCA",
+        "steps": [
+          "Masukkan kartu dan PIN",
+          "Pilih Transaksi Lainnya > Transfer > ke BCA Virtual Account",
+          "Masukkan nomor 8277 0812 3456 7890",
+          "Konfirmasi jumlah Rp 251.520"
+        ]
+      },
+      {
+        "channel": "m-BCA",
+        "steps": [
+          "Buka m-BCA > m-Transfer > BCA Virtual Account",
+          "Masukkan nomor 8277 0812 3456 7890",
+          "Konfirmasi dan masukkan PIN"
+        ]
+      }
+    ]
+  },
+  "meta": null
+}

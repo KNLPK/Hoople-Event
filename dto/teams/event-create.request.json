@@ -1,0 +1,45 @@
+{
+  "title": "Family Day 2026",
+  "summary": "Piknik keluarga, lomba, dan panggung hiburan.",
+  "description": "Acara tahunan untuk karyawan dan keluarga.",
+  "format": "onsite",
+  "costModel": "cost_shared",
+  "audience": [
+    "All members"
+  ],
+  "startsAt": "2026-06-13T07:00:00+07:00",
+  "endsAt": "2026-06-13T15:00:00+07:00",
+  "timezone": "Asia/Jakarta",
+  "venue": "Taman Mini Indonesia Indah",
+  "room": "Plaza Utama",
+  "onlineUrl": null,
+  "capacity": 800,
+  "organiser": "People Ops",
+  "passes": [
+    {
+      "name": "Karyawan",
+      "note": "Ditanggung perusahaan",
+      "price": 0,
+      "quota": 500,
+      "onsite": true
+    },
+    {
+      "name": "Anggota keluarga",
+      "note": "Subsidi 50%",
+      "price": 125000,
+      "quota": 300,
+      "onsite": true
+    }
+  ],
+  "agenda": [
+    {
+      "time": "07:00",
+      "label": "Kumpul & berangkat"
+    },
+    {
+      "time": "09:00",
+      "label": "Lomba keluarga"
+    }
+  ],
+  "publishMode": "draft"
+}

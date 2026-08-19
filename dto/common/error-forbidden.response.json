@@ -1,0 +1,10 @@
+{
+  "success": false,
+  "message": "Anda tidak memiliki akses ke sumber daya ini",
+  "data": null,
+  "meta": null,
+  "error": {
+    "code": "FORBIDDEN",
+    "errors": null
+  }
+}

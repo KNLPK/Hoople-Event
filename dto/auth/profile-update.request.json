@@ -1,0 +1,16 @@
+{
+  "fullName": "Adriani Ajeng",
+  "phone": "+62 812 3456 7890",
+  "city": "Jakarta Selatan",
+  "avatarUrl": null,
+  "interests": [
+    "sports_fitness",
+    "art_design",
+    "food_drink"
+  ],
+  "notificationPreferences": {
+    "email": true,
+    "whatsapp": true,
+    "push": false
+  }
+}

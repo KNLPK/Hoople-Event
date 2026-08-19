@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "message": "Experience berhasil dipublikasikan",
+  "data": {
+    "id": "e1f2a3b4-5555-4c5d-9e6f-000000000205",
+    "status": "published",
+    "publishedAt": "2026-03-14T09:30:00+07:00",
+    "publicUrl": "https://hoople.id/events/ux-in-practice"
+  },
+  "meta": null
+}

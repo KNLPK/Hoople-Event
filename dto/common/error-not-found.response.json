@@ -1,0 +1,10 @@
+{
+  "success": false,
+  "message": "Data yang Anda cari tidak ditemukan",
+  "data": null,
+  "meta": null,
+  "error": {
+    "code": "NOT_FOUND",
+    "errors": null
+  }
+}

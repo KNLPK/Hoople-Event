@@ -1,0 +1,32 @@
+{
+  "experienceId": "a1b2c3d4-1111-4a2b-8c3d-000000000101",
+  "kind": "activity",
+  "sessionId": "11111111-0001-4aaa-8bbb-000000000001",
+  "ticketTypeId": null,
+  "quantity": 2,
+  "buyer": {
+    "fullName": "Adriani Ajeng",
+    "email": "adriani.ajeng@gmail.com",
+    "phone": "+62 812 3456 7890"
+  },
+  "buyerIsParticipant": true,
+  "participants": [
+    {
+      "fullName": "Adriani Ajeng",
+      "email": "adriani.ajeng@gmail.com",
+      "phone": "+62 812 3456 7890"
+    },
+    {
+      "fullName": "Dewi Lestari",
+      "email": "dewi.lestari@gmail.com",
+      "phone": "+62 813 9988 7766"
+    }
+  ],
+  "paymentMethodId": "pm-bca-va",
+  "promoCode": null,
+  "consent": {
+    "media": true,
+    "terms": true
+  },
+  "notes": null
+}

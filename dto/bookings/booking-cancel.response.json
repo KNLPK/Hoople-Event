@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "message": "Pesanan berhasil dibatalkan",
+  "data": {
+    "id": "b0071e5c-1111-4d2e-8a3f-000000000301",
+    "orderId": "ORD-20260314-0001",
+    "status": "cancelled",
+    "paymentStatus": "refunded",
+    "cancelledAt": "2026-03-15T08:12:00+07:00",
+    "cancellationReason": "Ada agenda mendadak",
+    "refund": {
+      "amount": 251520,
+      "currency": "IDR",
+      "estimatedArrival": "2026-03-19T23:59:00+07:00",
+      "destination": "BCA ****7890"
+    }
+  },
+  "meta": null
+}

@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "message": "Token diperbarui",
+  "data": {
+    "tokenType": "Bearer",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mock-access-token",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mock-refresh-token",
+    "expiresIn": 3600,
+    "expiresAt": "2026-03-14T10:30:00+07:00"
+  },
+  "meta": null
+}

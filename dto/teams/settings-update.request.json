@@ -1,0 +1,23 @@
+{
+  "organization": {
+    "name": "Sinar Nusantara",
+    "legalName": "PT Sinar Nusantara Digital",
+    "city": "Jakarta Selatan",
+    "domain": "sinarnusantara.co.id"
+  },
+  "membership": {
+    "rule": "email_domain",
+    "allowedDomains": [
+      "sinarnusantara.co.id"
+    ],
+    "requireCompanySignIn": true,
+    "autoApprove": true
+  },
+  "collections": {
+    "bankName": "BCA",
+    "accountNumber": "1122334821",
+    "accountHolder": "PT Sinar Nusantara Digital",
+    "disbursement": "after_event",
+    "payoutSchedule": "weekly"
+  }
+}

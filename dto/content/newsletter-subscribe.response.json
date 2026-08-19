@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "message": "Terima kasih! Anda berhasil berlangganan.",
+  "data": {
+    "email": "adriani.ajeng@gmail.com",
+    "status": "subscribed",
+    "subscribedAt": "2026-03-14T09:30:00+07:00"
+  },
+  "meta": null
+}

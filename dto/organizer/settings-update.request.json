@@ -1,0 +1,29 @@
+{
+  "workspace": {
+    "name": "Waktu Luang",
+    "category": "Community & Lifestyle",
+    "description": "Kelas kreatif akhir pekan di Jakarta Selatan.",
+    "contactEmail": "halo@waktuluang.id",
+    "contactPhone": "+62 812 3456 7890",
+    "socials": {
+      "website": "https://waktuluang.id",
+      "instagram": "@waktuluang",
+      "youtube": null
+    }
+  },
+  "payout": {
+    "bankName": "BCA",
+    "accountNumber": "1234567890",
+    "accountHolder": "Adriani Ajeng",
+    "schedule": "weekly"
+  },
+  "fees": {
+    "absorbedByOrganizer": false
+  },
+  "notifications": {
+    "newRegistration": true,
+    "paymentReceived": true,
+    "payoutSettled": true,
+    "weeklyDigest": true
+  }
+}

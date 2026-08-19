@@ -1,0 +1,10 @@
+{
+  "success": false,
+  "message": "Terjadi kesalahan pada server. Silakan coba lagi.",
+  "data": null,
+  "meta": null,
+  "error": {
+    "code": "INTERNAL_ERROR",
+    "errors": null
+  }
+}

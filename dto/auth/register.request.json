@@ -1,0 +1,12 @@
+{
+  "fullName": "Adriani Ajeng",
+  "email": "adriani.ajeng@gmail.com",
+  "phone": "+62 812 3456 7890",
+  "password": "RahasiaKu123",
+  "passwordConfirmation": "RahasiaKu123",
+  "interests": [
+    "sports_fitness",
+    "art_design"
+  ],
+  "acceptedTermsAt": "2026-03-14T09:30:00+07:00"
+}

@@ -1,0 +1,20 @@
+{
+  "success": false,
+  "message": "Data yang dikirim tidak valid",
+  "data": null,
+  "meta": null,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "errors": {
+      "email": [
+        "Format email tidak valid"
+      ],
+      "password": [
+        "Password minimal 8 karakter"
+      ],
+      "participants.0.phone": [
+        "Nomor telepon wajib diisi"
+      ]
+    }
+  }
+}

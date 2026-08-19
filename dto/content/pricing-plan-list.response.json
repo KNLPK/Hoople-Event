@@ -1,0 +1,80 @@
+{
+  "success": true,
+  "message": "Daftar paket berhasil diambil",
+  "data": [
+    {
+      "id": "plan-starter",
+      "slug": "starter",
+      "name": "Starter",
+      "tagline": "Untuk komunitas yang baru mulai",
+      "monthlyPrice": {
+        "amount": 0,
+        "currency": "IDR"
+      },
+      "annualPrice": {
+        "amount": 0,
+        "currency": "IDR"
+      },
+      "platformFeeRate": 0.05,
+      "isPopular": false,
+      "features": [
+        "Hingga 3 experience aktif",
+        "Halaman publik",
+        "Check-in QR",
+        "Laporan dasar"
+      ],
+      "limits": {
+        "activeExperiences": 3,
+        "teamSeats": 1
+      }
+    },
+    {
+      "id": "plan-pro",
+      "slug": "pro",
+      "name": "Pro",
+      "tagline": "Untuk penyelenggara rutin",
+      "monthlyPrice": {
+        "amount": 299000,
+        "currency": "IDR"
+      },
+      "annualPrice": {
+        "amount": 2990000,
+        "currency": "IDR"
+      },
+      "platformFeeRate": 0.03,
+      "isPopular": true,
+      "features": [
+        "Experience tak terbatas",
+        "Domain kustom",
+        "Analitik lengkap",
+        "Pencairan mingguan",
+        "Dukungan prioritas"
+      ],
+      "limits": {
+        "activeExperiences": null,
+        "teamSeats": 5
+      }
+    },
+    {
+      "id": "plan-enterprise",
+      "slug": "enterprise",
+      "name": "Enterprise",
+      "tagline": "Untuk perusahaan dan institusi",
+      "monthlyPrice": null,
+      "annualPrice": null,
+      "platformFeeRate": 0.015,
+      "isPopular": false,
+      "features": [
+        "Semua fitur Pro",
+        "SSO & audit log",
+        "SLA 99,9%",
+        "Account manager"
+      ],
+      "limits": {
+        "activeExperiences": null,
+        "teamSeats": null
+      }
+    }
+  ],
+  "meta": null
+}

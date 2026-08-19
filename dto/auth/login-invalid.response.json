@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "message": "Email atau password salah",
+  "data": null,
+  "meta": null,
+  "error": {
+    "code": "INVALID_CREDENTIALS",
+    "errors": {
+      "email": [
+        "Kredensial tidak cocok"
+      ]
+    }
+  }
+}

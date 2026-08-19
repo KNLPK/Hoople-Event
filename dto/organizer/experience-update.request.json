@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "title": "Kelas Keramik untuk Pemula (Batch 2)",
+    "category": "Classes",
+    "summary": "Belajar teknik pinch dan coil.",
+    "coverImageUrl": "https://cdn.hoople.id/covers/pottery.jpg"
+  },
+  "pricing": {
+    "basePrice": 275000,
+    "currency": "IDR",
+    "defaultCapacity": 12,
+    "minParticipants": 3
+  }
+}

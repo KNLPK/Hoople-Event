@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "message": "Check-in berhasil",
+  "data": {
+    "result": "accepted",
+    "registrationId": "treg-0001",
+    "member": {
+      "name": "Adriani Ajeng",
+      "employeeId": "SN-0042",
+      "department": "People Ops",
+      "title": "People Ops Lead"
+    },
+    "passName": "Plus One",
+    "quantity": 2,
+    "checkedInAt": "2026-03-20T09:15:00+07:00",
+    "scannerId": "gate-1",
+    "progress": {
+      "checkedIn": 247,
+      "registered": 412,
+      "rate": 0.599
+    }
+  },
+  "meta": null
+}

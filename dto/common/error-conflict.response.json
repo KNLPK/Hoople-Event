@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "message": "Kuota sesi ini sudah habis",
+  "data": null,
+  "meta": null,
+  "error": {
+    "code": "SLOT_UNAVAILABLE",
+    "errors": {
+      "sessionId": [
+        "Sisa slot 0 dari kapasitas 12"
+      ]
+    }
+  }
+}

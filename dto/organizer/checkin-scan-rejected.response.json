@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "message": "Tiket ini sudah dipakai check-in",
+  "data": {
+    "result": "already_used",
+    "ticketCode": "HPL-8K2M-4QX7-1",
+    "checkedInAt": "2026-03-16T06:52:00+07:00"
+  },
+  "meta": null,
+  "error": {
+    "code": "TICKET_ALREADY_USED",
+    "errors": null
+  }
+}

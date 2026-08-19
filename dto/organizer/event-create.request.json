@@ -1,0 +1,79 @@
+{
+  "kind": "event",
+  "identity": {
+    "title": "UX in Practice",
+    "category": "Business & Professional",
+    "summary": "Workshop sehari penuh: riset, wireframe, usability testing.",
+    "coverImageUrl": "https://cdn.hoople.id/uploads/tmp/cover-ux.jpg"
+  },
+  "brand": {
+    "hostName": "Lingua Space",
+    "hostType": "Community",
+    "hostBio": "Ruang belajar bahasa dan keterampilan di Menteng.",
+    "logoUrl": null,
+    "contactEmail": "halo@linguaspace.id",
+    "contactPhone": "+62 811 2233 4455"
+  },
+  "benefits": [
+    "Sertifikat kehadiran",
+    "Materi workshop",
+    "Makan siang"
+  ],
+  "format": "onsite",
+  "venue": {
+    "name": "Balai Kartini",
+    "area": "Kuningan",
+    "city": "Jakarta Selatan",
+    "address": "Jl. Gatot Subroto Kav. 37, Jakarta Selatan 12950",
+    "latitude": -6.2331,
+    "longitude": 106.8283,
+    "notes": []
+  },
+  "onlineUrl": null,
+  "startsAt": "2026-05-09T09:00:00+07:00",
+  "endsAt": "2026-05-09T16:00:00+07:00",
+  "timezone": "Asia/Jakarta",
+  "schedule": [
+    {
+      "time": "09:00",
+      "label": "Registrasi"
+    },
+    {
+      "time": "10:00",
+      "label": "Sesi 1 — Riset pengguna"
+    },
+    {
+      "time": "13:00",
+      "label": "Sesi 2 — Wireframing"
+    },
+    {
+      "time": "15:00",
+      "label": "Usability testing"
+    }
+  ],
+  "ticketTypes": [
+    {
+      "name": "Early Bird",
+      "description": "Kuota terbatas",
+      "price": 95000,
+      "quota": 40,
+      "salesStartAt": "2026-03-15T00:00:00+07:00",
+      "salesEndAt": "2026-04-10T23:59:00+07:00"
+    },
+    {
+      "name": "Regular",
+      "description": "Harga normal",
+      "price": 125000,
+      "quota": 80,
+      "salesStartAt": "2026-04-11T00:00:00+07:00",
+      "salesEndAt": "2026-05-08T23:59:00+07:00"
+    }
+  ],
+  "publishSettings": {
+    "visibility": "public",
+    "showOnDiscovery": true,
+    "allowWaitlist": true,
+    "publishMode": "scheduled",
+    "scheduledAt": "2026-03-15T09:00:00+07:00"
+  }
+}

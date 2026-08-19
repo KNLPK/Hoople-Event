@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "message": "Ringkasan check-in berhasil diambil",
+  "data": {
+    "sessionId": "ses-0001-4aaa-8bbb-000000000001",
+    "experienceTitle": "Morning Yoga Flow",
+    "startsAt": "2026-03-16T07:00:00+07:00",
+    "booked": 24,
+    "checkedIn": 18,
+    "noShow": 2,
+    "pending": 4,
+    "checkInRate": 0.75,
+    "recentScans": [
+      {
+        "ticketCode": "HPL-8K2M-4QX7-1",
+        "name": "Adriani Ajeng",
+        "checkedInAt": "2026-03-16T06:52:00+07:00"
+      },
+      {
+        "ticketCode": "HPL-2M9X-7KL3-1",
+        "name": "Sinta Wijaya",
+        "checkedInAt": "2026-03-16T06:49:00+07:00"
+      }
+    ]
+  },
+  "meta": null
+}

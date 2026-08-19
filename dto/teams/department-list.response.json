@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "message": "Daftar departemen berhasil diambil",
+  "data": [
+    {
+      "id": "dep-01",
+      "name": "Engineering",
+      "headcount": 164
+    },
+    {
+      "id": "dep-02",
+      "name": "Product & Design",
+      "headcount": 78
+    },
+    {
+      "id": "dep-03",
+      "name": "Sales & Growth",
+      "headcount": 96
+    },
+    {
+      "id": "dep-04",
+      "name": "Operations",
+      "headcount": 74
+    },
+    {
+      "id": "dep-05",
+      "name": "People Ops",
+      "headcount": 38
+    },
+    {
+      "id": "dep-06",
+      "name": "Finance & Legal",
+      "headcount": 36
+    }
+  ],
+  "meta": null
+}

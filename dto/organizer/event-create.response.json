@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "message": "Event berhasil dibuat",
+  "data": {
+    "id": "e1f2a3b4-5555-4c5d-9e6f-000000000205",
+    "slug": "ux-in-practice",
+    "title": "UX in Practice",
+    "kind": "event",
+    "status": "draft",
+    "visibility": "private",
+    "category": "Business & Professional",
+    "coverImageUrl": "https://cdn.hoople.id/covers/ux-in-practice.jpg",
+    "startsAt": "2026-05-09T09:00:00+07:00",
+    "endsAt": "2026-05-09T16:00:00+07:00",
+    "note": "Belum dipublikasikan",
+    "venue": {
+      "name": "Balai Kartini",
+      "area": "Kuningan",
+      "city": "Jakarta Selatan"
+    },
+    "registeredCount": 0,
+    "capacity": 120,
+    "occupancyRate": 0,
+    "revenue": {
+      "amount": 0,
+      "currency": "IDR"
+    },
+    "sessionCount": null,
+    "createdAt": "2026-01-12T10:00:00+07:00",
+    "publishedAt": null,
+    "publicUrl": null,
+    "scheduledPublishAt": "2026-03-15T09:00:00+07:00"
+  },
+  "meta": null
+}

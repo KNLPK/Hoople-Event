@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "message": "Check-in berhasil",
+  "data": {
+    "result": "accepted",
+    "ticketCode": "HPL-8K2M-4QX7-1",
+    "registrationId": "reg-0001-4aaa-8bbb-000000000001",
+    "participant": {
+      "name": "Adriani Ajeng",
+      "email": "adriani.ajeng@gmail.com"
+    },
+    "experienceTitle": "Morning Yoga Flow",
+    "sessionStartsAt": "2026-03-16T07:00:00+07:00",
+    "checkedInAt": "2026-03-16T06:52:00+07:00",
+    "sessionProgress": {
+      "checkedIn": 18,
+      "booked": 24,
+      "capacity": 30
+    }
+  },
+  "meta": null
+}

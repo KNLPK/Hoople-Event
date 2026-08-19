@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "message": "Pesan Anda telah dikirim",
+  "data": {
+    "ticketId": "SUP-20260314-0042",
+    "status": "open",
+    "estimatedResponseAt": "2026-03-15T09:30:00+07:00",
+    "createdAt": "2026-03-14T09:30:00+07:00"
+  },
+  "meta": null
+}

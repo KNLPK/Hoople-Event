@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "message": "Status pembayaran berhasil diambil",
+  "data": {
+    "paymentId": "pay-9f8e7d6c-1111-4222-8333-000000000701",
+    "bookingId": "b0071e5c-1111-4d2e-8a3f-000000000301",
+    "status": "paid",
+    "amount": {
+      "amount": 251520,
+      "currency": "IDR"
+    },
+    "paidAt": "2026-03-14T09:41:00+07:00",
+    "reference": "TRX-BCA-260314-77120",
+    "failureReason": null
+  },
+  "meta": null
+}
