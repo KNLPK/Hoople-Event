@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { AffixInput } from './WizardFields';
+import { rupiah } from '@/lib/format';
 import { ImageSlot } from '@/components/ui/ImageSlot';
 import { useToast } from '@/components/ui/Toast';
 import {
@@ -173,6 +175,9 @@ export function StepSessions({
                           {session.instructor || 'No instructor yet'}
                         </span>
                         <span>{session.slots} slots</span>
+                        {session.price !== undefined && session.price !== draft.price ? (
+                          <span className="font-semibold text-brand">{rupiah(session.price)}</span>
+                        ) : null}
                         {/* Only worth saying when 2.2 has left the session unrunnable. */}
                         {days.length === 0 ? (
                           <span className="text-amber-ink font-semibold">Runs on no operating day</span>
@@ -265,6 +270,27 @@ export function StepSessions({
                             update(session.id, { slots: Number(event.target.value.replace(/\D/g, '')) || 0 })
                           }
                         />
+                      </label>
+
+                      <label className="field">
+                        <span className="block text-[13.5px] font-semibold text-ink">Price</span>
+                        {/* Empty means "follow the base price", which is why the
+                            placeholder shows what that base currently is. */}
+                        <AffixInput
+                          ariaLabel={`Price for ${session.name}`}
+                          prefix="Rp"
+                          placeholder={draft.price.toLocaleString('id-ID')}
+                          value={session.price === undefined ? '' : session.price.toLocaleString('id-ID')}
+                          onChange={(value) => {
+                            const digits = value.replace(/\D/g, '');
+                            update(session.id, { price: digits === '' ? undefined : Number(digits) });
+                          }}
+                        />
+                        <span className="text-[11.5px] text-grey-soft mt-1.5 block">
+                          {session.price === undefined
+                            ? 'Using the base price from step 3.'
+                            : 'Overrides the base price.'}
+                        </span>
                       </label>
 
                       <div className="wiz-sess__days">

@@ -4,13 +4,11 @@ import { useToast } from '@/components/ui/Toast';
 import { Globe, Grip, Instagram, LinkChain, Plus, Trash, YouTube } from '@/components/ui/icons';
 import {
   EXPERTISE_SUGGESTIONS,
-  HOST_BIO_LIMIT,
   INSTRUCTOR_BIO_LIMIT,
   nextId,
   type ActivityDraft,
   type Instructor,
 } from '@/data/builder';
-import { WORKSPACE_INITIALS } from '@/data/organizer';
 
 const LINKS = [
   { key: 'website', label: 'Website', placeholder: 'https://', Icon: Globe },
@@ -19,7 +17,7 @@ const LINKS = [
   { key: 'otherLink', label: 'Other (e.g. TikTok, LinkedIn)', placeholder: 'https://', Icon: LinkChain },
 ] as const;
 
-/** 4.1 — the people behind the activity. */
+/** 4.1 — who teaches the activity, and where to find you. */
 export function StepHost({
   draft,
   set,
@@ -44,54 +42,16 @@ export function StepHost({
 
   return (
     <>
-      <p className="wiz-section__lede">Introduce the people behind your activity.</p>
+      <p className="wiz-section__lede">
+        Introduce whoever teaches this, and where people can find you.
+      </p>
 
       <div className="wiz-stack">
         <section className="org-card wiz-panel">
-          <FieldHead
-            label="Host / Organizer (Displayed to participants)"
-            hint="This is the organizer or entity running the activity."
-          />
-          <div className="wiz-host">
-            <div className="wiz-host__avatar">
-              <span className="absolute inset-0 flex items-center justify-center font-heading text-[30px] font-bold text-[#fff]">{WORKSPACE_INITIALS}</span>
-              <ImageSlot id="builder-host-avatar" shape="rounded" radius={12} placeholder="" />
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div>
-                <span className="block text-[13.5px] font-semibold text-ink">
-                  Host Name<span className="text-danger"> *</span>
-                </span>
-                <input
-                  className="wiz-input"
-                  value={draft.hostName}
-                  aria-label="Host name"
-                  onChange={(event) => set('hostName')(event.target.value)}
-                />
-              </div>
-              <div>
-                <span className="block text-[13.5px] font-semibold text-ink">
-                  Short Bio<span className="text-danger"> *</span>
-                </span>
-                <CounterArea
-                  ariaLabel="Host short bio"
-                  value={draft.hostBio}
-                  onChange={set('hostBio')}
-                  limit={HOST_BIO_LIMIT}
-                  placeholder="What does your community stand for?"
-                  rows={3}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="org-card wiz-panel">
           <div className="wiz-panel__head">
             <FieldHead
-              label="Instructor / Facilitator"
-              hint="Add the instructors or facilitators for this activity."
+              label="Instructor / Facilitator (Optional)"
+              hint="Add them if someone specific teaches this. Plenty of activities are run by the host alone."
             />
             <button type="button" className="wiz-addsession" onClick={add}>
               <Plus size={14} color="#6D28FF" strokeWidth={2} />
@@ -101,7 +61,7 @@ export function StepHost({
 
           {draft.instructors.length === 0 ? (
             <p className="text-[13px] text-grey py-[18px] px-0">
-              No instructor yet. Participants like knowing who will teach them.
+              No instructor listed. That is fine — the activity will show your host instead.
             </p>
           ) : (
             draft.instructors.map((person) => (
@@ -122,7 +82,7 @@ export function StepHost({
                   <div className="wiz-pair">
                     <div>
                       <span className="block text-[13.5px] font-semibold text-ink">
-                        Name<span className="text-danger"> *</span>
+                        Name
                       </span>
                       <input
                         className="wiz-input"
@@ -134,7 +94,7 @@ export function StepHost({
                     </div>
                     <div>
                       <span className="block text-[13.5px] font-semibold text-ink">
-                        Role / Title<span className="text-danger"> *</span>
+                        Role / Title
                       </span>
                       <input
                         className="wiz-input"
@@ -148,7 +108,7 @@ export function StepHost({
 
                   <div>
                     <span className="block text-[13.5px] font-semibold text-ink">
-                      Bio<span className="text-danger"> *</span>
+                      Bio
                     </span>
                     <CounterArea
                       ariaLabel="Instructor bio"

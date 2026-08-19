@@ -23,6 +23,7 @@ import {
   DIFFICULTY_LEVELS,
   PREVIEW_FALLBACK,
   effectiveDays,
+  priceSpread,
   sessionTone,
   slotsPerSession,
   venueLine,
@@ -58,6 +59,7 @@ export function ActivityPreview({
 
   const badge = DIFFICULTY_LEVELS.find((level) => level.value === draft.difficulty)?.badge;
   const live = draft.sessions.filter((session) => session.active);
+  const spread = priceSpread(draft);
   const lead = draft.instructors.find((person) => person.name.trim() !== '');
 
   /* The card stays a card — the rest sit behind "View all sessions". */
@@ -132,7 +134,8 @@ export function ActivityPreview({
             </ul>
 
             <div className="wiz-phone__price">
-              <strong>{rupiah(draft.price)}</strong>
+              {spread.varies ? <span>from</span> : null}
+              <strong>{rupiah(spread.low)}</strong>
               <span>/ session</span>
             </div>
 
@@ -194,7 +197,8 @@ export function ActivityPreview({
             </li>
             <li>
               <Wallet size={14} color="#6D28FF" strokeWidth={1.9} />
-              {rupiah(draft.price)} per session
+              {spread.varies ? 'from ' : ''}
+              {rupiah(spread.low)} per session
             </li>
             <li>
               <Clock size={14} color="#6D28FF" strokeWidth={1.9} />

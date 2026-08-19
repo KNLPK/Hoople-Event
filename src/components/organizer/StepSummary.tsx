@@ -18,6 +18,7 @@ import {
   CANCELLATION_POLICIES,
   DIFFICULTY_LEVELS,
   PREVIEW_FALLBACK,
+  priceSpread,
   publishChecklist,
   slotsPerSession,
   venueLine,
@@ -39,6 +40,7 @@ export function StepSummary({
   const toast = useToast();
 
   const live = draft.sessions.filter((session) => session.active);
+  const spread = priceSpread(draft);
   const policy = CANCELLATION_POLICIES.find((item) => item.value === draft.cancellation);
   const lead = draft.instructors.find((person) => person.name.trim() !== '');
   const badge = DIFFICULTY_LEVELS.find((level) => level.value === draft.difficulty)?.badge;
@@ -47,7 +49,12 @@ export function StepSummary({
   /* Every tile reads the draft — nothing here is written down twice. */
   const facts = [
     { Icon: Calendar, label: 'Sessions', value: `${live.length} session${live.length === 1 ? '' : 's'}` },
-    { Icon: Wallet, label: 'Price per Session', value: rupiah(draft.price) },
+    {
+      Icon: Wallet,
+      label: 'Price per Session',
+      value: spread.varies ? `from ${rupiah(spread.low)}` : rupiah(spread.low),
+      note: spread.varies ? 'Some sessions are priced individually.' : undefined,
+    },
     { Icon: Users, label: 'Max Participants', value: `${draft.defaultCapacity} participants` },
     { Icon: Clock, label: 'Booking Window', value: draft.bookingOpens },
     { Icon: Shield, label: 'Cancellation Policy', value: draft.cancellation, note: policy?.preview[0] },

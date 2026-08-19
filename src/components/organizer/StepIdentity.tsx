@@ -1,13 +1,7 @@
 import { CounterArea, FieldHead, SelectInput, TextInput } from './WizardFields';
 import { ImageSlot } from '@/components/ui/ImageSlot';
 import { Bulb } from '@/components/ui/icons';
-import {
-  BUILDER_CATEGORIES,
-  HOSTED_AS_OPTIONS,
-  SUMMARY_LIMIT,
-  type ActivityDraft,
-} from '@/data/builder';
-import { WORKSPACE_INITIALS } from '@/data/organizer';
+import { BUILDER_CATEGORIES, SUMMARY_LIMIT, type ActivityDraft } from '@/data/builder';
 
 const COVER_TIPS = ['Use high-quality image', 'Avoid busy background', 'Showcase your activity clearly'];
 
@@ -48,19 +42,6 @@ export function StepIdentity({
                 ))}
               </ul>
             </aside>
-          </div>
-        </div>
-
-        <div className="wiz-field">
-          <FieldHead label="Hosting As" required hint="Choose how you want to represent this activity." />
-          <div className="wiz-field__control max-w-[320px]">
-            <SelectInput
-              ariaLabel="Hosting as"
-              value={draft.hostedAs}
-              options={HOSTED_AS_OPTIONS}
-              onChange={set('hostedAs')}
-              leading={<span className="w-[26px] h-[26px] rounded-[50%] flex-none bg-brand text-[#fff] flex items-center justify-center font-heading text-[10px] font-bold">{WORKSPACE_INITIALS}</span>}
-            />
           </div>
         </div>
 

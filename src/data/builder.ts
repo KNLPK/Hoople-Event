@@ -51,7 +51,7 @@ export const WIZARD_STEPS: WizardStep[] = [
     label: 'Host & Experience',
     ready: true,
     substeps: [
-      { id: 'host', label: 'Host / Instructor' },
+      { id: 'host', label: 'Instructor' },
       { id: 'gallery', label: 'Gallery' },
       { id: 'facilities', label: 'Facilities & Equipment' },
       { id: 'rules', label: 'House Rules' },
@@ -87,6 +87,13 @@ export interface SessionDraft {
   slots: number;
   days: Weekday[];
   active: boolean;
+  /**
+   * What this one session costs, when it is not the base price from step 3.
+   * Left undefined it follows the base, which is what nearly every session
+   * does — a Saturday slot that costs more is the exception, so it is the
+   * exception that gets stored.
+   */
+  price?: number;
 }
 
 /** Where the pin sits on the map, as a percentage of the frame. */
@@ -125,13 +132,15 @@ export interface EquipmentItem {
 export interface ActivityDraft {
   /* 1.1 Identity */
   cover?: string;
+  /* Not asked for any more. Neither 1.1 nor 4.1 puts the question to the
+     organizer: the workspace they are signed into is the host, so this is
+     seeded from it and only ever read — by the previews and the summary. */
   hostedAs: string;
   title: string;
   category: string;
   summary: string;
 
   /* 1.2 Activity Details */
-  tags: string[];
   difficulty: Difficulty;
   language: string;
   ageRule: AgeRule;
@@ -158,6 +167,22 @@ export interface ActivityDraft {
   endDate: string;
   noEndDate: boolean;
   operatingDays: Weekday[];
+  /**
+   * How the calendar is read.
+   *
+   * `true` — the weekly pattern: the activity runs on `operatingDays` every
+   * week inside the effective period, and `skippedDates` are the individual
+   * days taken out of it (a holiday, a studio closure).
+   *
+   * `false` — no pattern at all: it runs on exactly the dates in
+   * `pickedDates` and nothing else.
+   *
+   * Only one of the two lists is ever in play, which is why they are separate
+   * fields rather than one list that means different things.
+   */
+  repeatWeekly: boolean;
+  skippedDates: string[];
+  pickedDates: string[];
   timezone: string;
 
   /* 2.3 Sessions */
@@ -173,9 +198,7 @@ export interface ActivityDraft {
   cancellation: Cancellation;
   confirmation: Confirmation;
 
-  /* 4.1 Host / Instructor */
-  hostName: string;
-  hostBio: string;
+  /* 4.1 Instructor */
   instructors: Instructor[];
   website: string;
   instagram: string;
@@ -204,8 +227,6 @@ export interface ActivityDraft {
   showOnDiscovery: boolean;
   allowWaitlist: boolean;
 }
-
-export const HOSTED_AS_OPTIONS = ['Waktu Luang', 'Adriani Ajeng (personal)'] as const;
 
 export const BUILDER_CATEGORIES = [
   'Classes',
@@ -236,16 +257,6 @@ export const VISIBILITY_OPTIONS: { value: Visibility; sub: string }[] = [
   { value: 'Private', sub: 'Only invited participants can access' },
 ];
 
-export const TAG_SUGGESTIONS = [
-  'Pottery',
-  'Creative',
-  'Hands-on',
-  'Beginner Friendly',
-  'Weekend',
-  'Small Group',
-  'Indoor',
-  'Take-home',
-];
 
 export const INCLUDED_SUGGESTIONS = [
   'All pottery materials',
@@ -386,7 +397,6 @@ export const PHOTOGRAPHY_OPTIONS: { value: Photography; sub: string }[] = [
   { value: 'Not allowed', sub: 'Keep cameras away to protect everyone’s privacy.' },
 ];
 
-export const HOST_BIO_LIMIT = 300;
 export const INSTRUCTOR_BIO_LIMIT = 300;
 export const RULES_NOTES_LIMIT = 300;
 export const GALLERY_PHOTO_MAX = 20;
@@ -404,12 +414,11 @@ export const ABOUT_SESSIONS = [
  * only need to edit.
  */
 export const DRAFT_SEED: ActivityDraft = {
-  hostedAs: HOSTED_AS_OPTIONS[0],
+  hostedAs: 'Waktu Luang',
   title: '',
   category: '',
   summary: '',
 
-  tags: ['Pottery', 'Creative', 'Hands-on', 'Beginner Friendly'],
   difficulty: 'Beginner',
   language: 'Bahasa Indonesia',
   ageRule: 'all',
@@ -451,6 +460,9 @@ export const DRAFT_SEED: ActivityDraft = {
   endDate: '',
   noEndDate: true,
   operatingDays: ['Mon', 'Tue', 'Wed', 'Fri', 'Sat'],
+  repeatWeekly: true,
+  skippedDates: [],
+  pickedDates: [],
   timezone: TIMEZONE_OPTIONS[0],
 
   sessions: [
@@ -469,9 +481,6 @@ export const DRAFT_SEED: ActivityDraft = {
   cancellation: 'Moderate',
   confirmation: 'Instant',
 
-  hostName: 'Waktu Luang',
-  hostBio:
-    'Waktu Luang is a community-driven brand focused on meaningful activities that inspire growth, creativity, and connection.',
   instructors: [
     {
       id: 'i1',
@@ -534,11 +543,10 @@ export function publishChecklist(draft: ActivityDraft): { label: string; done: b
       done: draft.price > 0 && draft.defaultCapacity > 0,
     },
     {
-      label: 'Host, instructor, and gallery are added',
-      done:
-        draft.hostName.trim() !== '' &&
-        draft.instructors.some((person) => person.name.trim() !== '') &&
-        draft.gallery.length > 0,
+      /* Instructors are optional — plenty of activities are run by the host
+         alone — so this asks only for the gallery, which every listing needs. */
+      label: 'Gallery photos are added',
+      done: draft.gallery.length > 0,
     },
     {
       label: 'Facilities, equipment, and house rules are set',
@@ -567,6 +575,23 @@ export const PREVIEW_FALLBACK = {
  */
 export function effectiveDays(session: SessionDraft, operatingDays: Weekday[]): Weekday[] {
   return session.days.filter((day) => operatingDays.includes(day));
+}
+
+/** What one session costs: its own price when it has one, else the base. */
+export function sessionPrice(session: SessionDraft, draft: ActivityDraft): number {
+  return session.price ?? draft.price;
+}
+
+/**
+ * The lowest price a participant can pay, and whether any session costs more.
+ * A card says "from Rp 120.000" only when that "from" is doing some work.
+ */
+export function priceSpread(draft: ActivityDraft): { low: number; varies: boolean } {
+  const active = draft.sessions.filter((session) => session.active);
+  if (active.length === 0) return { low: draft.price, varies: false };
+  const prices = active.map((session) => sessionPrice(session, draft));
+  const low = Math.min(...prices);
+  return { low, varies: Math.max(...prices) !== low };
 }
 
 /** `10` or `10–15`, from the capacity the organizer set per session. */

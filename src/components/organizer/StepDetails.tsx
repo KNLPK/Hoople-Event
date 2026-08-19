@@ -1,9 +1,8 @@
-import { ChoiceTile, FieldHead, SelectInput, TokenList } from './WizardFields';
+import { ChoiceTile, FieldHead, SelectInput } from './WizardFields';
 import { Chart, Globe, Levels, LinkChain, Lock, Sprout } from '@/components/ui/icons';
 import {
   DIFFICULTY_LEVELS,
   LANGUAGE_OPTIONS,
-  TAG_SUGGESTIONS,
   VISIBILITY_OPTIONS,
   type ActivityDraft,
   type Difficulty,
@@ -37,17 +36,6 @@ export function StepDetails({
       </p>
 
       <div className="org-card wiz-card">
-        <div className="wiz-field">
-          <FieldHead label="Tags" hint="Add relevant tags so people can discover your activity easily." />
-          <TokenList
-            values={draft.tags}
-            onChange={set('tags')}
-            suggestions={TAG_SUGGESTIONS}
-            addLabel="Add tag"
-            inputPlaceholder="Type a tag and press Enter"
-          />
-        </div>
-
         <div className="wiz-field">
           <FieldHead
             label="Difficulty Level"

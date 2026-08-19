@@ -26,6 +26,11 @@ export function StepPricing({
 }) {
   const policy = CANCELLATION_POLICIES.find((item) => item.value === draft.cancellation);
   const actualRange = slotsPerSession(draft.sessions);
+  /* Say plainly when a session is not on the base price, so the number above
+     is never read as the only thing anyone pays. */
+  const overrides = draft.sessions.filter(
+    (session) => session.active && session.price !== undefined,
+  ).length;
 
   return (
     <>
@@ -33,19 +38,24 @@ export function StepPricing({
 
       <div className="wiz-stack">
         <section className="org-card wiz-panel">
-          <FieldHead label="Pricing per Session" hint="This price will be applied to all sessions." />
+          <FieldHead
+            label="Pricing per Session"
+            hint="One price covers every session. Charge differently for a particular slot in 2.3."
+          />
           <div className="wiz-field__control max-w-[320px]">
             <span className="block text-[13.5px] font-semibold text-ink">
-              Price per Session<span className="text-danger"> *</span>
+              Base Price per Session<span className="text-danger"> *</span>
             </span>
             <AffixInput
-              ariaLabel="Price per session"
+              ariaLabel="Base price per session"
               prefix="Rp"
               value={draft.price.toLocaleString('id-ID')}
               onChange={(value) => set('price')(Number(value.replace(/\D/g, '')) || 0)}
             />
             <span className="text-[12px] text-grey-soft mt-2">
-              This is the amount participants will pay for each session.
+              {overrides === 0
+                ? 'Every session uses this price unless you give one its own in 2.3.'
+                : `${overrides === 1 ? '1 session has its' : `${overrides} sessions have their`} own price set in 2.3.`}
             </span>
           </div>
         </section>

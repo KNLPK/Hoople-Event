@@ -18,6 +18,7 @@ import {
 import {
   DIFFICULTY_LEVELS,
   PREVIEW_FALLBACK,
+  priceSpread,
   slotsPerSession,
   venueLine,
   type ActivityDraft,
@@ -33,6 +34,7 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
   const [view, setView] = useState<View>('participant');
 
   const live = draft.sessions.filter((session) => session.active);
+  const spread = priceSpread(draft);
   const badge = DIFFICULTY_LEVELS.find((level) => level.value === draft.difficulty)?.badge;
   const capacity = live.reduce((total, session) => total + session.slots, 0);
 
@@ -114,8 +116,15 @@ export function StepPreview({ draft }: { draft: ActivityDraft }) {
           <div className="wiz-pair">
             <section className="org-card wiz-panel">
               <span className="block text-[13.5px] font-semibold text-ink">Price per Session</span>
-              <div className="font-heading text-[24px] font-bold tracking-[-0.02em] mt-2 mx-0 mb-1.5">{rupiah(draft.price)}</div>
-              <span className="wiz-field__hint">This price will be applied to all sessions.</span>
+              <div className="font-heading text-[24px] font-bold tracking-[-0.02em] mt-2 mx-0 mb-1.5">
+                {spread.varies ? 'from ' : ''}
+                {rupiah(spread.low)}
+              </div>
+              <span className="wiz-field__hint">
+                {spread.varies
+                  ? 'The cheapest session. Others are priced individually in 2.3.'
+                  : 'This price applies to every session.'}
+              </span>
             </section>
 
             <section className="org-card wiz-panel flex flex-col justify-center gap-2.5">

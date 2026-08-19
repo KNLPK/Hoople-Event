@@ -1,8 +1,10 @@
 import { Checkbox, FieldHead, SelectInput } from './WizardFields';
+import { ScheduleCalendar } from './ScheduleCalendar';
 import { Calendar, Check, Clock, Globe } from '@/components/ui/icons';
+import { compactDate } from '@/lib/format';
 import { TIMEZONE_OPTIONS, WEEKDAYS, type ActivityDraft, type Weekday } from '@/data/builder';
 
-/** 2.2 — the window the activity runs in, and which weekdays it runs on. */
+/** 2.2 — the window the activity runs in, and which dates inside it it runs on. */
 export function StepSchedule({
   draft,
   set,
@@ -19,17 +21,20 @@ export function StepSchedule({
     );
   }
 
+  const skipped = draft.skippedDates.length;
+  const picked = draft.pickedDates.length;
+
   return (
     <>
       <p className="wiz-section__lede">
-        Set the days and time range when your activity will be available.
+        Set the period your activity runs in, then choose the dates inside it.
       </p>
 
       <div className="org-card wiz-card">
         <div className="wiz-field">
           <FieldHead
             label="Effective Period"
-            hint="Choose the period when your activity will be available for booking."
+            hint="The window your activity is bookable in. Dates outside it cannot be selected."
           />
           <div className="wiz-period">
             <label className="field">
@@ -78,26 +83,70 @@ export function StepSchedule({
         </div>
 
         <div className="wiz-field wiz-field--ruled">
-          <FieldHead label="Operating Days" required hint="Select the days when your activity runs." />
-          <div className="wiz-days">
-            {WEEKDAYS.map((day) => {
-              const on = draft.operatingDays.includes(day);
-              return (
-                <button
-                  key={day}
-                  type="button"
-                  className={`wiz-day ${on ? 'is-on' : ''}`.trim()}
-                  onClick={() => toggleDay(day)}
-                  aria-pressed={on}
-                >
-                  <span className="wiz-day__mark">
-                    {on ? <Check size={11} color="#fff" strokeWidth={3} /> : null}
-                  </span>
-                  {day}
-                </button>
-              );
-            })}
+          <FieldHead
+            label="Availability"
+            required
+            hint="Pick the dates your activity runs on, or let it repeat on the same days each week."
+          />
+
+          <div className="mb-4">
+            <Checkbox
+              checked={draft.repeatWeekly}
+              label="Repeat every week"
+              onChange={(checked) => set('repeatWeekly')(checked)}
+            />
           </div>
+
+          {/* Weekdays only mean anything when there is a weekly pattern. */}
+          {draft.repeatWeekly ? (
+            <div className="mb-4.5">
+              <span className="block text-[13.5px] font-semibold text-ink mb-2.5">
+                Operating Days<span className="text-danger"> *</span>
+              </span>
+              <div className="wiz-days">
+                {WEEKDAYS.map((day) => {
+                  const on = draft.operatingDays.includes(day);
+                  return (
+                    <button
+                      key={day}
+                      type="button"
+                      className={`wiz-day ${on ? 'is-on' : ''}`.trim()}
+                      onClick={() => toggleDay(day)}
+                      aria-pressed={on}
+                    >
+                      <span className="wiz-day__mark">
+                        {on ? <Check size={11} color="#fff" strokeWidth={3} /> : null}
+                      </span>
+                      {day}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
+
+          <ScheduleCalendar
+            repeatWeekly={draft.repeatWeekly}
+            startDate={draft.startDate}
+            endDate={draft.noEndDate ? '' : draft.endDate}
+            operatingDays={draft.operatingDays}
+            skippedDates={draft.skippedDates}
+            pickedDates={draft.pickedDates}
+            onSkippedChange={set('skippedDates')}
+            onPickedChange={set('pickedDates')}
+          />
+
+          <p className="text-[12.5px] text-grey mt-3">
+            {draft.repeatWeekly
+              ? skipped === 0
+                ? 'Click a date to take it out — a public holiday, or a day the space is booked.'
+                : `${skipped} date${skipped === 1 ? '' : 's'} taken out of the weekly pattern.`
+              : picked === 0
+                ? 'Click the dates this activity runs on. Nothing repeats until you turn that on.'
+                : `Runs on ${picked} date${picked === 1 ? '' : 's'}${
+                    picked > 0 ? `, starting ${compactDate([...draft.pickedDates].sort()[0])}` : ''
+                  }.`}
+          </p>
         </div>
 
         <div className="wiz-field">
@@ -118,8 +167,8 @@ export function StepSchedule({
           <div>
             <strong>How it works</strong>
             <p>
-              Participants will see the available sessions based on the operating days and time you
-              set in the next step. You can always update this schedule anytime.
+              Participants will see the available sessions based on the dates and time you set in
+              the next step. You can always update this schedule anytime.
             </p>
           </div>
         </div>
