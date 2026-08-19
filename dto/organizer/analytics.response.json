@@ -25,32 +25,50 @@
       {
         "period": "2025-10",
         "registrations": 118,
-        "revenue": 14200000
+        "revenue": {
+          "amount": 14200000,
+          "currency": "IDR"
+        }
       },
       {
         "period": "2025-11",
         "registrations": 142,
-        "revenue": 17800000
+        "revenue": {
+          "amount": 17800000,
+          "currency": "IDR"
+        }
       },
       {
         "period": "2025-12",
         "registrations": 196,
-        "revenue": 24100000
+        "revenue": {
+          "amount": 24100000,
+          "currency": "IDR"
+        }
       },
       {
         "period": "2026-01",
         "registrations": 174,
-        "revenue": 21500000
+        "revenue": {
+          "amount": 21500000,
+          "currency": "IDR"
+        }
       },
       {
         "period": "2026-02",
         "registrations": 228,
-        "revenue": 26900000
+        "revenue": {
+          "amount": 26900000,
+          "currency": "IDR"
+        }
       },
       {
         "period": "2026-03",
         "registrations": 264,
-        "revenue": 31950000
+        "revenue": {
+          "amount": 31950000,
+          "currency": "IDR"
+        }
       }
     ],
     "topExperiences": [
@@ -114,22 +132,34 @@
       {
         "category": "Music",
         "registrations": 412,
-        "revenue": 58200000
+        "revenue": {
+          "amount": 58200000,
+          "currency": "IDR"
+        }
       },
       {
         "category": "Classes",
         "registrations": 386,
-        "revenue": 34100000
+        "revenue": {
+          "amount": 34100000,
+          "currency": "IDR"
+        }
       },
       {
         "category": "Yoga & Wellness",
         "registrations": 288,
-        "revenue": 24150000
+        "revenue": {
+          "amount": 24150000,
+          "currency": "IDR"
+        }
       },
       {
         "category": "Food & Drink",
         "registrations": 162,
-        "revenue": 12000000
+        "revenue": {
+          "amount": 12000000,
+          "currency": "IDR"
+        }
       }
     ]
   },

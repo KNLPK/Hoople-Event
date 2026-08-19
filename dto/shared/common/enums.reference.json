@@ -1,0 +1,169 @@
+{
+  "success": true,
+  "message": "Daftar enum yang dipakai di seluruh API",
+  "data": {
+    "activityFeedType": [
+      "registration",
+      "checkin",
+      "publish",
+      "cancellation"
+    ],
+    "attendanceStatus": [
+      "not_checked_in",
+      "checked_in",
+      "no_show"
+    ],
+    "bookingConfirmation": [
+      "instant",
+      "manual"
+    ],
+    "bookingStatus": [
+      "pending",
+      "confirmed",
+      "completed",
+      "cancelled",
+      "refunded"
+    ],
+    "bookingTimelineStatus": [
+      "created",
+      "paid",
+      "confirmed",
+      "cancelled",
+      "refunded"
+    ],
+    "costModel": [
+      "company_paid",
+      "cost_shared",
+      "free"
+    ],
+    "device": [
+      "mobile",
+      "desktop",
+      "tablet"
+    ],
+    "difficulty": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "disbursement": [
+      "after_event",
+      "weekly",
+      "manual"
+    ],
+    "eventFormat": [
+      "onsite",
+      "online",
+      "hybrid"
+    ],
+    "experienceKind": [
+      "event",
+      "activity"
+    ],
+    "experienceStatus": [
+      "draft",
+      "published",
+      "ongoing",
+      "completed",
+      "cancelled"
+    ],
+    "membershipRule": [
+      "email_domain",
+      "invite_only",
+      "manual"
+    ],
+    "paymentMethodGroup": [
+      "virtual_account",
+      "ewallet",
+      "qris",
+      "card"
+    ],
+    "paymentStatus": [
+      "pending",
+      "paid",
+      "failed",
+      "refunded",
+      "covered"
+    ],
+    "payoutSchedule": [
+      "daily",
+      "weekly",
+      "monthly"
+    ],
+    "payoutStatus": [
+      "scheduled",
+      "paid",
+      "on_hold",
+      "failed"
+    ],
+    "payoutStepStatus": [
+      "done",
+      "pending",
+      "failed"
+    ],
+    "publishMode": [
+      "now",
+      "scheduled",
+      "draft"
+    ],
+    "role": [
+      "participant",
+      "organizer",
+      "teams_admin"
+    ],
+    "scanResult": [
+      "accepted",
+      "already_used",
+      "invalid",
+      "expired",
+      "wrong_event"
+    ],
+    "sessionAvailability": [
+      "open",
+      "sold_out"
+    ],
+    "sessionStatus": [
+      "scheduled",
+      "cancelled",
+      "completed"
+    ],
+    "statUnit": [
+      "count",
+      "idr",
+      "rate"
+    ],
+    "subscriptionStatus": [
+      "subscribed",
+      "unsubscribed",
+      "pending"
+    ],
+    "supportTicketStatus": [
+      "open",
+      "in_progress",
+      "resolved",
+      "closed"
+    ],
+    "teamSessionState": [
+      "upcoming",
+      "ongoing",
+      "ended"
+    ],
+    "transactionType": [
+      "sale",
+      "refund",
+      "payout",
+      "adjustment"
+    ],
+    "visibility": [
+      "public",
+      "unlisted",
+      "private"
+    ],
+    "workspaceRole": [
+      "owner",
+      "admin",
+      "staff"
+    ]
+  },
+  "meta": null
+}

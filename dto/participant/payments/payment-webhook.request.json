@@ -1,6 +1,6 @@
 {
   "eventType": "payment.succeeded",
-  "eventId": "evt-0a1b2c3d-1111-4222-8333-000000000801",
+  "deliveryId": "evt-0a1b2c3d-1111-4222-8333-000000000801",
   "occurredAt": "2026-03-14T09:41:00+07:00",
   "data": {
     "paymentId": "pay-9f8e7d6c-1111-4222-8333-000000000701",

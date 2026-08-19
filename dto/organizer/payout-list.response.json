@@ -25,7 +25,8 @@
         "currency": "IDR"
       },
       "bankAccount": "BCA ****7890",
-      "paidAt": null
+      "paidAt": null,
+      "holdReason": null
     },
     {
       "id": "po-0002-4aaa-8bbb-000000000002",
@@ -50,7 +51,8 @@
         "currency": "IDR"
       },
       "bankAccount": "BCA ****7890",
-      "paidAt": null
+      "paidAt": null,
+      "holdReason": null
     },
     {
       "id": "po-0003-4aaa-8bbb-000000000003",
@@ -75,7 +77,8 @@
         "currency": "IDR"
       },
       "bankAccount": "BCA ****7890",
-      "paidAt": "2026-03-06T14:02:00+07:00"
+      "paidAt": "2026-03-06T14:02:00+07:00",
+      "holdReason": null
     },
     {
       "id": "po-0004-4aaa-8bbb-000000000004",
@@ -100,7 +103,8 @@
         "currency": "IDR"
       },
       "bankAccount": "BCA ****7890",
-      "paidAt": "2026-02-28T10:31:00+07:00"
+      "paidAt": "2026-02-28T10:31:00+07:00",
+      "holdReason": null
     },
     {
       "id": "po-0005-4aaa-8bbb-000000000005",

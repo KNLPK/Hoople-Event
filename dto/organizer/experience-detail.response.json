@@ -126,8 +126,8 @@
       "Gunakan pakaian yang boleh kotor"
     ],
     "booking": {
-      "opensAt": "30 hari sebelum sesi",
-      "closesAt": "2 jam sebelum sesi",
+      "opensBefore": "30d",
+      "closesBefore": "2h",
       "confirmation": "instant",
       "cancellationPolicy": "flexible",
       "allowWaitlist": true

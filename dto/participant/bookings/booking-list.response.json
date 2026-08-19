@@ -95,6 +95,92 @@
       "cancellationReason": null
     },
     {
+      "id": "b0071e5c-4444-4d2e-8a3f-000000000304",
+      "orderId": "ORD-20260314-0207",
+      "ticketId": null,
+      "status": "pending",
+      "paymentStatus": "pending",
+      "kind": "activity",
+      "experience": {
+        "id": "a1b2c3d4-5555-4a2b-8c3d-000000000105",
+        "slug": "healthy-cooking-class",
+        "title": "Healthy Cooking Class",
+        "host": "GreenBite Kitchen",
+        "coverImageUrl": "https://cdn.hoople.id/covers/healthy-cooking-class.jpg"
+      },
+      "session": {
+        "id": "11111111-0009-4aaa-8bbb-000000000009",
+        "name": "Kelas Minggu Pagi",
+        "startsAt": "2026-03-22T10:00:00+07:00",
+        "endsAt": "2026-03-22T12:00:00+07:00",
+        "coach": "Chef Alit",
+        "room": "Main Kitchen"
+      },
+      "ticketType": null,
+      "venue": {
+        "name": "GreenBite Kitchen",
+        "area": "Pantai Indah Kapuk",
+        "city": "Jakarta Utara",
+        "address": "Ruko Garden House Blok B No. 12, Pantai Indah Kapuk, Jakarta Utara 14470",
+        "latitude": -6.1094,
+        "longitude": 106.7405
+      },
+      "quantity": 1,
+      "participants": [
+        {
+          "fullName": "Adriani Ajeng",
+          "email": "adriani.ajeng@gmail.com",
+          "phone": "+62 812 3456 7890",
+          "checkedInAt": null
+        }
+      ],
+      "buyer": {
+        "fullName": "Adriani Ajeng",
+        "email": "adriani.ajeng@gmail.com",
+        "phone": "+62 812 3456 7890"
+      },
+      "price": {
+        "unitPrice": {
+          "amount": 175000,
+          "currency": "IDR"
+        },
+        "quantity": 1,
+        "subtotal": {
+          "amount": 175000,
+          "currency": "IDR"
+        },
+        "discount": {
+          "amount": 0,
+          "currency": "IDR"
+        },
+        "platformFee": {
+          "amount": 5250,
+          "currency": "IDR"
+        },
+        "gatewayFee": {
+          "amount": 3150,
+          "currency": "IDR"
+        },
+        "total": {
+          "amount": 183400,
+          "currency": "IDR"
+        },
+        "currency": "IDR"
+      },
+      "payment": {
+        "methodId": "pm-qris",
+        "methodName": "QRIS",
+        "virtualAccountNumber": null,
+        "paidAt": null,
+        "expiresAt": "2026-03-14T10:15:00+07:00",
+        "reference": null
+      },
+      "qrCodeUrl": null,
+      "createdAt": "2026-03-14T09:45:00+07:00",
+      "cancelledAt": null,
+      "cancellationReason": null
+    },
+    {
       "id": "b0071e5c-2222-4d2e-8a3f-000000000302",
       "orderId": "ORD-20260228-0114",
       "ticketId": "HPL-3P9Z-1LM5",
@@ -267,7 +353,7 @@
   "meta": {
     "page": 1,
     "perPage": 10,
-    "total": 12,
+    "total": 13,
     "totalPages": 2
   }
 }

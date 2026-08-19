@@ -210,7 +210,7 @@
     },
     {
       "id": "f00d1e00-5555-4222-8333-000000000605",
-      "slug": "padel-friday",
+      "slug": "padel-friday-club",
       "title": "Padel Friday",
       "summary": "Klub padel mingguan, terbuka untuk semua departemen.",
       "status": "published",
@@ -230,7 +230,7 @@
       "registeredCount": 24,
       "checkedInCount": 0,
       "onsiteScanCount": 0,
-      "coverImageUrl": "https://cdn.hoople.id/teams/padel-friday.jpg",
+      "coverImageUrl": "https://cdn.hoople.id/teams/padel-friday-club.jpg",
       "organiser": "Sports Club",
       "recurring": "Setiap Jumat",
       "createdAt": "2026-01-08T10:00:00+07:00",

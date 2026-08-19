@@ -7,7 +7,10 @@
     "email": "adriani.ajeng@gmail.com",
     "phone": "+62 812 3456 7890",
     "avatarUrl": null,
-    "role": "participant",
+    "roles": [
+      "participant",
+      "organizer"
+    ],
     "emailVerifiedAt": "2026-03-14T09:41:00+07:00",
     "createdAt": "2026-03-14T09:30:00+07:00",
     "interests": [

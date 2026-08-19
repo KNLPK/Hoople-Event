@@ -9,6 +9,7 @@
       "amount": 251520,
       "currency": "IDR"
     },
+    "expiresAt": null,
     "paidAt": "2026-03-14T09:41:00+07:00",
     "reference": "TRX-BCA-260314-77120",
     "failureReason": null

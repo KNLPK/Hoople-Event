@@ -19,7 +19,7 @@
         "currency": "IDR"
       },
       "isPopular": true,
-      "status": "open"
+      "availability": "open"
     },
     {
       "id": "11111111-0002-4aaa-8bbb-000000000002",
@@ -38,7 +38,7 @@
         "currency": "IDR"
       },
       "isPopular": false,
-      "status": "open"
+      "availability": "open"
     },
     {
       "id": "11111111-0003-4aaa-8bbb-000000000003",
@@ -57,7 +57,7 @@
         "currency": "IDR"
       },
       "isPopular": false,
-      "status": "sold_out"
+      "availability": "sold_out"
     }
   ],
   "meta": {
